@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd "$(dirname ${BASH_SOURCE[0]})/.."
+sudo nix-channel --update
+sudo scripts/update-nix
