@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./networking-configuration.nix
+      ../secrets/networking-configuration.nix
       ./packaging-configuration.nix
 #      ./eduroam.nix
     ];
