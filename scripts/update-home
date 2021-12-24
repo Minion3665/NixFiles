@@ -1,5 +1,6 @@
 #!/bin/sh
 
 cd "$(dirname ${BASH_SOURCE[0]})/.."
-
-home-manager switch -f ./users/minion/home.nix
+nix build .#homeManagerConfigurations.minion.activationPackage
+./result/activate
+scripts/commit home

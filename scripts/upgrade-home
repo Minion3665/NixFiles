@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd "$(dirname ${BASH_SOURCE[0]})/.."
-nix-channel --update
-home-manager switch -f ./users/minion/home.nix
+nix flake update
+scripts/update-home

@@ -23,6 +23,10 @@
     steam-tui steam-run
     minecraft
     git-crypt gnupg pinentry_qt
+    spotify
+    keepassxc
+    grim slurp
+    neovim
   ];
 
   programs.git = {

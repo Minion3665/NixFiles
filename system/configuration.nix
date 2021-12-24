@@ -13,6 +13,14 @@
 #      ./eduroam.nix
     ];
 
+  # Prepare nix flakes
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -157,6 +165,7 @@
   services.keybase.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
+  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
