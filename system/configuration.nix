@@ -27,7 +27,7 @@
   boot.loader.grub.useOSProber = true;
 
   # Enable emulated systems
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
 
   # Enable apparmor
   security.apparmor.enable = true;
