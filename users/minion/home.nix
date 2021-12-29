@@ -27,7 +27,6 @@
     keepassxc
     grim slurp
     neovim
-    qemu-user-static
   ];
 
   programs.git = {
