@@ -133,6 +133,7 @@
     keybase  # Install keybase
     keybase-gui
     kbfs
+    busybox
   ];
 
 #  environment.systemPackages = [
