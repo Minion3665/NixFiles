@@ -26,6 +26,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
 
+  # Enable emulated systems
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Enable apparmor
   security.apparmor.enable = true;
   security.apparmor.killUnconfinedConfinables = true;
