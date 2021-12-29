@@ -27,6 +27,7 @@
     keepassxc
     grim slurp
     neovim
+    qemu
   ];
 
   programs.git = {

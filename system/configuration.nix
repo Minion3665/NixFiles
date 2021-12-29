@@ -133,7 +133,6 @@
     keybase  # Install keybase
     keybase-gui
     kbfs
-    qemu-user-static
   ];
 
 #  environment.systemPackages = [
