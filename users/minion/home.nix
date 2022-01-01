@@ -28,6 +28,7 @@
     grim slurp
     neovim
     qemu
+    bind
   ];
 
   programs.git = {
