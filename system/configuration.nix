@@ -50,7 +50,7 @@
       xterm.enable = false;
       # xfce.enable = true;
     };
-    displayManager.sddm.enable = true;
+    displayManager.startx.enable = true;
   };
 
   # And wayland
