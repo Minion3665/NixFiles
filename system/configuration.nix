@@ -33,11 +33,6 @@
   security.apparmor.enable = true;
   security.apparmor.killUnconfinedConfinables = true;
 
-  # Change the sudo askpass program
-  environment.variables = {
-    "SUDO_ASKPASS" = "/nix/store/5x5y8amldf8p1llwsv60jalmfy51aq51-ssh-askpass-fullscreen-1.2/bin/ssh-askpass-fullscreen";
-  };
-
   # Set your time zone.
   time.timeZone = "Europe/London";
 
@@ -138,7 +133,7 @@
     keybase  # Install keybase
     keybase-gui
     kbfs
-    ssh-askpass-fullscreen
+    polkit_gnome
   ];
 
 #  environment.systemPackages = [
