@@ -33,6 +33,11 @@
   security.apparmor.enable = true;
   security.apparmor.killUnconfinedConfinables = true;
 
+  # Change the sudo askpass program
+  security.sudo.extraConfig = ''
+    Plugin askpass /nix/store/5x5y8amldf8p1llwsv60jalmfy51aq51-ssh-askpass-fullscreen-1.2/bin/ssh-askpass-fullscreen
+  ''
+
   # Set your time zone.
   time.timeZone = "Europe/London";
 
@@ -64,7 +69,6 @@
       wl-clipboard
       mako # notification daemon
       alacritty # Alacritty is the default terminal in the config
-      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
     ];
   };
 
@@ -134,6 +138,7 @@
     keybase  # Install keybase
     keybase-gui
     kbfs
+    ssh-askpass-fullscreen
   ];
 
 #  environment.systemPackages = [
