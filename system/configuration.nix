@@ -34,9 +34,7 @@
   security.apparmor.killUnconfinedConfinables = true;
 
   # Change the sudo askpass program
-  security.sudo.extraConfig = ''
-Path askpass "/nix/store/5x5y8amldf8p1llwsv60jalmfy51aq51-ssh-askpass-fullscreen-1.2/bin/ssh-askpass-fullscreen"
-  '';
+  security.sudo.extraConfig = "Path askpass /nix/store/5x5y8amldf8p1llwsv60jalmfy51aq51-ssh-askpass-fullscreen-1.2/bin/ssh-askpass-fullscreen";
 
   # Set your time zone.
   time.timeZone = "Europe/London";
