@@ -133,7 +133,7 @@
     keybase  # Install keybase
     keybase-gui
     kbfs
-    polkit_gnome
+    polkit mate.mate-polkit
   ];
 
 #  environment.systemPackages = [
