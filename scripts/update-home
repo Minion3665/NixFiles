@@ -1,6 +1,6 @@
 #!/bin/sh
 
 cd "$(dirname ${BASH_SOURCE[0]})/.."
-nix build .#homeManagerConfigurations.minion.activationPackage
+nix build .#homeManagerConfigurations.minion.activationPackage --impure
 ./result/activate
 scripts/commit home

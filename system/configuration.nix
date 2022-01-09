@@ -50,8 +50,8 @@
       xterm.enable = false;
       # xfce.enable = true;
     };
-    displayManager.startx.enable = true;
-    # displayManager.sddm.enable = true;
+    # displayManager.startx.enable = true;
+    displayManager.sddm.enable = true;
   };
 
   # And wayland
@@ -170,6 +170,7 @@
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.containerd.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

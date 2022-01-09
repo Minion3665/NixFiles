@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -19,6 +19,15 @@
     pinentryFlavor = "qt";
   };
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball {
+      url = "https://github.com/nix-community/NUR/archive/e78eb8016f2b1b20298367804085d6d147557ba0.tar.gz";
+      sha256 = "1v2nk8zclpk3r4x9nmi1vsyflwv91a31pchjjhy3gsqs1xcd72kd";
+    }) {
+      inherit pkgs;
+    };
+  };
+
   home.packages = with pkgs; [
     steam-tui steam-run
     minecraft
@@ -29,6 +38,9 @@
     neovim
     qemu
     bind
+    file
+    nur.repos.kira-bruneau.rofi-wayland
+    rofimoji
   ];
 
   programs.git = {
