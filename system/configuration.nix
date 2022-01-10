@@ -21,6 +21,21 @@
     '';
   };
 
+  # Overlay the overlays
+  nixpkgs.overlays = [
+    (self: super: {
+      # Fix polkit
+      polkit = super.polkit.overrideAttrs (oldAttrs: {
+        patches = oldAttrs.patches ++ [
+          (super.fetchpatch {
+            url = "https://gitlab.freedesktop.org/polkit/polkit/-/commit/716a273ce0af467968057f3e107156182bd290b0.patch";
+            sha256 = "sha256-hOJJhUmxXm87W1ZU9Y1NJ8GCyKvPjbIVtCHlhRGlN8k=";
+          })
+        ];
+      });
+    })
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -133,7 +148,7 @@
     keybase  # Install keybase
     keybase-gui
     kbfs
-    polkit mate.mate-polkit
+    bluez
   ];
 
 #  environment.systemPackages = [
