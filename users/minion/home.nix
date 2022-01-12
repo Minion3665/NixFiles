@@ -35,7 +35,7 @@
     spotify
     keepassxc
     grim slurp
-    neovim
+    neovim helix
     qemu
     bind
     file
