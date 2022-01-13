@@ -4,6 +4,7 @@
     # Prepend default nixPath values.
     options.nix.nixPath.default ++
     # Append our nixpkgs-overlays.
-    [ "nixpkgs-overlays=/etc/nixos/overlays/" ]
-  ;
+    [ "nixpkgs-overlays=/etc/nixos/overlays/" ];
+
+  imports = [ ./cachix.nix ];
 }

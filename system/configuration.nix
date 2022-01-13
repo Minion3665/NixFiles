@@ -149,6 +149,7 @@
     keybase-gui
     kbfs
     bluez
+    cachix
   ];
 
 #  environment.systemPackages = [
