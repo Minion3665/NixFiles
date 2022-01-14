@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ../secrets/networking-configuration.nix
       ./packaging-configuration.nix
-#      ./eduroam.nix
+      ./containerd.nix
     ];
 
   # Prepare nix flakes
@@ -136,7 +136,6 @@
     keybase-gui
     kbfs
     bluez
-    polkit_gnome
   ];
 
 #  environment.systemPackages = [
@@ -173,7 +172,6 @@
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
   virtualisation.docker.enable = true;
-  virtualisation.containerd.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
