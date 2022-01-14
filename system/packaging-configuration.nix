@@ -5,6 +5,4 @@
     options.nix.nixPath.default ++
     # Append our nixpkgs-overlays.
     [ "nixpkgs-overlays=/etc/nixos/overlays/" ];
-
-  imports = [ ./cachix.nix ];
 }

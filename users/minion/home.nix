@@ -1,10 +1,13 @@
 { config, pkgs, nixpkgs, ... }:
-
-{
+let
+  username = "minion";
+  homedir = "/home/${username}";
+  confdir = "${homedir}/Nix/home";
+in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "minion";
-  home.homeDirectory = "/home/minion";
+  home.username = username;
+  home.homeDirectory = homedir;
 
   programs.vscode.enable = true;
   programs.vscode.package = pkgs.vscode-fhs;
@@ -18,6 +21,8 @@
     enable = true;
     pinentryFlavor = "qt";
   };
+
+  nixpkgs.overlays = [ (import "${confdir}/overlays/anytype.nix") ];
 
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball {
@@ -41,6 +46,7 @@
     file
     nur.repos.kira-bruneau.rofi-wayland
     rofimoji
+    anytype
   ];
 
   programs.git = {
