@@ -46,6 +46,7 @@ in {
     nur.repos.kira-bruneau.rofi-wayland
     rofimoji
     anytype
+    htop
   ];
 
   programs.git = {

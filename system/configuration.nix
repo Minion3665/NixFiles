@@ -173,6 +173,18 @@
   services.i2p.enable = true;
   virtualisation.docker.enable = true;
 
+  nixpkgs.overlays = [
+    (self: super: {
+      polkit = super.polkit.overrideAttrs (oldAttrs: {
+        patches = oldAttrs.patches ++ [
+          (super.fetchpatch {
+            url = "https://gitlab.freedesktop.org/polkit/polkit/-/commit/716a273ce0af467968057f3e107156182bd290b0.patch";
+            sha256 = "sha256-hOJJhUmxXm87W1ZU9Y1NJ8GCyKvPjbIVtCHlhRGlN8k=";
+          })];
+      });
+    })
+  ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
