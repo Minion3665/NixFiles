@@ -136,6 +136,7 @@
     keybase-gui
     kbfs
     bluez
+    mate.mate-polkit
   ];
 
 #  environment.systemPackages = [
