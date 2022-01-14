@@ -136,7 +136,7 @@
     keybase-gui
     kbfs
     bluez
-    mate.mate-polkit
+    polkit_gnome
   ];
 
 #  environment.systemPackages = [
