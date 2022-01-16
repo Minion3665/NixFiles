@@ -132,9 +132,7 @@
     firefox
     chromium  # Install chromium if needed
     texlive.combined.scheme-full
-    keybase  # Install keybase
     keybase-gui
-    kbfs
     bluez
   ];
 
@@ -169,6 +167,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.keybase.enable = true;
+  services.kbfs.enable = true;
+  services.kbfs.enableRedirector = true;
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
   virtualisation.docker.enable = true;

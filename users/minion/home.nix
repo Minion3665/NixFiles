@@ -47,6 +47,7 @@ in {
     rofimoji
     anytype
     htop
+    hue-cli
   ];
 
   programs.git = {
