@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git commit -am "Committed after $1 build"
