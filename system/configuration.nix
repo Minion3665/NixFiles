@@ -174,7 +174,7 @@
   virtualisation.docker.enable = true;
 
   services.openvpn.servers = {
-    clicks = { config = '' config ../secrets/clicks/client.ovpn ''; };
+    clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; };
   };
 
   nixpkgs.overlays = [
