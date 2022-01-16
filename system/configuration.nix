@@ -173,6 +173,10 @@
   services.i2p.enable = true;
   virtualisation.docker.enable = true;
 
+  services.openvpn.servers = {
+    clicks = { config = '' config ../secrets/clicks/client.ovpn ''; };
+  };
+
   nixpkgs.overlays = [
     (self: super: {
       polkit = super.polkit.overrideAttrs (oldAttrs: {
