@@ -134,6 +134,7 @@
     texlive.combined.scheme-full
     keybase-gui
     bluez
+    macchanger
   ];
 
 #  environment.systemPackages = [
