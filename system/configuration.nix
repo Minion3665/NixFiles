@@ -135,6 +135,7 @@
     keybase-gui
     bluez
     macchanger
+    comic-relief
   ];
 
 #  environment.systemPackages = [
