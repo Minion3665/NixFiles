@@ -1,4 +1,4 @@
-{ config, pkgs, lib, environment, ... }: {
+{ config, pkgs, lib, ... }: rec {
   virtualisation.containerd.enable = true;
 
   virtualisation.containerd.settings = {

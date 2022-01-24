@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, ... }:
 
-{
+rec {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -136,7 +136,7 @@
     bluez
     macchanger
     comic-relief
-  ];
+  ] ++ environment.systemPackages;
 
 #  environment.systemPackages = [
 #    import /scripts/jetbrains.rider.nix
