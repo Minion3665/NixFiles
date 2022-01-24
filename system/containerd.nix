@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: rec {
+{ config, pkgs, lib, ... }: {
   virtualisation.containerd.enable = true;
 
   virtualisation.containerd.settings = {
@@ -8,8 +8,8 @@
 #    };
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages ++= with pkgs; [
     cni
     cni-plugins
-  ] ++ environment.systemPackages;
+  ];
 }

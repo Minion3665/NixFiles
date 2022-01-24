@@ -4,7 +4,7 @@
 
 { config, pkgs, lib, ... }:
 
-rec {
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -122,7 +122,7 @@ rec {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages ++= with pkgs; [
     vim  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
@@ -136,7 +136,7 @@ rec {
     bluez
     macchanger
     comic-relief
-  ] ++ environment.systemPackages;
+  ];
 
 #  environment.systemPackages = [
 #    import /scripts/jetbrains.rider.nix
