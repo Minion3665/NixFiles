@@ -13,7 +13,7 @@ final: prev: let
 
   appimageContents = final.appimageTools.extractType2 { inherit name src; };
 in {
-  anytype = prev.anytype.overrideAttrs (old: {
+  anytype-latest = prev.anytype.overrideAttrs (old: {
     version = build;
     inherit name src;
 

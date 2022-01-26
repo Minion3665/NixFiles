@@ -39,7 +39,7 @@ in {
     file
     nur.repos.kira-bruneau.rofi-wayland
     rofimoji
-    anytype
+    anytype-latest
     htop
     hue-cli
   ];
