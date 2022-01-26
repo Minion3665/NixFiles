@@ -11,7 +11,7 @@ final: prev: let
     name = "AnyType-${build}.AppImage";
   };
 
-  appimageContents = final.appimageTools.extractType2 { inherit name src; };
+  contents = final.appimageTools.extractType2 { inherit name src; };
 in {
   anytype-latest = prev.anytype.overrideAttrs (old: {
     version = build;
@@ -19,10 +19,10 @@ in {
 
     extraInstallCommands = ''
       mv $out/bin/${name} $out/bin/${pname}
-      install -m 444 -D ${appimageContents}/anytype2.desktop -t $out/share/applications
+      install -m 444 -D ${contents}/anytype2.desktop -t $out/share/applications
       substituteInPlace $out/share/applications/anytype2.desktop \
-        --replace 'Exec=AppRun' 'Exec=${pname}'
-      install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/0x0/apps/anytype2.png \
+        --replace 'Exec=AppRun' 'Exec=${name}'
+      install -m 444 -D ${contents}/usr/share/icons/hicolor/0x0/apps/anytype2.png \
         $out/share/icons/hicolor/512x512/apps/anytype2.png
     '';
   });
