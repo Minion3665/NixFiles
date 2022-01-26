@@ -1,6 +1,6 @@
 final: prev: let
-  build = "53899467";
-  sha = "sha256-53DyT8tunk0s1VGrlj6qQLOKNPN4Haqdyd8ozPi5z8w=";
+  build = "54367901";
+  sha = "sha256-kVM/F0LsIgMtur8jHZzUWkFIcfHe0i8y9Zxe3z5SkVM=";
 
   pname = "anytype";
   name = "${pname}-${build}";
@@ -13,7 +13,7 @@ final: prev: let
 
   appimageContents = final.appimageTools.extractType2 { inherit name src; };
 in {
-  anytype = prev.anytype.overrideAttrs (old: rec {
+  anytype = prev.anytype.overrideAttrs (old: {
     version = build;
     inherit name src;
 
