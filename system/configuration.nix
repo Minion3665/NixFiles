@@ -173,6 +173,7 @@
   services.kbfs.enableRedirector = true;
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
+  services.tlp.enable = true;
   virtualisation.docker.enable = true;
 
   services.openvpn.servers = {
