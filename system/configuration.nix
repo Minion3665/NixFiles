@@ -178,7 +178,7 @@
   services.tlp.enable = true;
   virtualisation.docker.enable = true;
 
-  virtualisation.libvirtd.qemu.package = pkgs.qemu;
+  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
   virtualisation.kvmgt.enable = true;
 
   services.openvpn.servers = {
