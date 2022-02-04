@@ -117,7 +117,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.minion = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "kvm" "docker" "containerd" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -177,6 +177,9 @@
   services.i2p.enable = true;
   services.tlp.enable = true;
   virtualisation.docker.enable = true;
+
+  virtualisation.libvirtd.qemu.package = pkgs.qemu;
+  virtualisation.kvmgt.enable = true;
 
   services.openvpn.servers = {
     clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; };
