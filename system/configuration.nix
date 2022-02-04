@@ -136,6 +136,7 @@
     bluez
     macchanger
     comic-relief
+    qemu_kvm
   ];
 
 #  environment.systemPackages = [
