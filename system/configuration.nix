@@ -181,6 +181,8 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
   virtualisation.kvmgt.enable = true;
 
