@@ -160,6 +160,7 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
+  programs.kdeconnect.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -178,6 +179,7 @@
   services.i2p.enable = true;
   services.tlp.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = false;
 
   virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
   virtualisation.kvmgt.enable = true;
