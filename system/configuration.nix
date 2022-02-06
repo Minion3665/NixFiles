@@ -146,7 +146,7 @@
     gtk_engines
     gsettings-desktop-schemas
     lxappearance
-  ] ++ (import ./containerd/systemPackages.nix pkgs).systemPackages;
+  ] ++ (import ./containerd/systemPackages.nix { pkgs } ).systemPackages;
 
 #  environment.systemPackages = [
 #    import /scripts/jetbrains.rider.nix
