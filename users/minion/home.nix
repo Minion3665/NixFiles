@@ -2,6 +2,14 @@
 let
   username = "minion";
   homedir = "/home/${username}";
+
+  comma = import ( pkgs.fetchFromGitHub {
+      owner = "nix-community";
+      repo = "comma";
+      rev = "02e3e5545b0c62595a77f3d5de1223c536af0614";
+      sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
+  }) {};
+
 in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
