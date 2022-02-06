@@ -44,6 +44,27 @@ in {
     hue-cli
   ];
 
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "zsh-autosuggestions" "zsh-syntax-highlighting" "git" "thefuck" ];
+      theme = "crunch";
+    };
+    history = {
+      size = 10000;
+      path = "${config.xdg.dataHome}/zsh/history";
+      expireDuplicatesFirst = true;
+      extended = true;
+    };
+    initExtra = ''
+      bindkey "\'\'$\{key[Up]}" up-line-or-search
+    '';
+    enableSyntaxHighlighting = true;
+    autocd = true;
+    dotDir = "${config.xdg.dataHome}/zsh";
+  };
+
   programs.git = {
     enable = true;
 
