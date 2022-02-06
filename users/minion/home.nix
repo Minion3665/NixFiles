@@ -72,20 +72,20 @@ in {
 
       command_not_found_handler ()
       {
-           echo "Command '$1' not found, searching for it in the Nix store..."
-           , $@
-      #    local p='/nix/store/ycclzpk99snlrk8sg9n4j8pm1927gavw-command-not-found/bin/command-not-found';
-      #    if [ -x "$p" ] && [ -f '/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' ]; then
-      #        "$p" "$@";
-      #        if [ $? = 126 ]; then
-      #            "$@";
-      #        else
-      #            return 127;
-      #        fi;
-      #    else
-      #        echo "$1: command not found" 1>&2;
-      #        return 127;
-      #    fi
+      #     echo "Command '$1' not found, searching for it in the Nix store..."
+      #     , $@
+          local p='/nix/store/ycclzpk99snlrk8sg9n4j8pm1927gavw-command-not-found/bin/command-not-found';
+          if [ -x "$p" ] && [ -f '/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' ]; then
+              "$p" "$@";
+             if [ $? = 126 ]; then
+                  "$@";
+              else
+                  return 127;
+              fi;
+          else
+              echo "$1: command not found" 1>&2;
+              return 127;
+          fi
       }
     '';
     enableSyntaxHighlighting = true;
