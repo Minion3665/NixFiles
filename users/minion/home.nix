@@ -51,6 +51,7 @@ in {
     htop
     hue-cli
     thefuck
+    comma
   ];
 
   programs.zsh = {
