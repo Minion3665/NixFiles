@@ -142,6 +142,10 @@
     comic-relief
     qemu_kvm
     polkit_gnome
+    gtk-engine-murrine
+    gtk_engines
+    gsettings-desktop-schemas
+    lxappearance
   ];
 
 #  environment.systemPackages = [

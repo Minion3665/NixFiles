@@ -51,10 +51,6 @@ in {
     htop
     hue-cli
     comma
-    gtk-engine-murrine
-    gtk_engines
-    gsettings-desktop-schemas
-    lxappearance
   ];
 
   programs.zsh = {
