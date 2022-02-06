@@ -42,13 +42,14 @@ in {
     anytype-latest
     htop
     hue-cli
+    thefuck
   ];
 
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "zsh-autosuggestions" "zsh-syntax-highlighting" "git" "thefuck" ];
+      plugins = [ "git" "thefuck" ];
       theme = "crunch";
     };
     history = {
@@ -61,6 +62,7 @@ in {
       bindkey "\'\'$\{key[Up]}" up-line-or-search
     '';
     enableSyntaxHighlighting = true;
+    enableAutosuggestions = true;
     autocd = true;
     dotDir = ".local/share/zsh";
   };
