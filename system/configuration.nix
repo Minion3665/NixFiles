@@ -140,6 +140,7 @@
     macchanger
     comic-relief
     qemu_kvm
+    polkit_gnome
   ];
 
 #  environment.systemPackages = [
@@ -184,7 +185,7 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
 
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/zsh" "/libexec" ];
 
   virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
   virtualisation.kvmgt.enable = true;
