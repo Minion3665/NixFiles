@@ -50,15 +50,20 @@ in {
     anytype-latest
     htop
     hue-cli
-    thefuck
     comma
+    gtk-engine-murrine
+    gtk_engines
+    gsettings-desktop-schemas
+    lxappearance
   ];
+
+  programs.qt5ct.enable = true;
 
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "thefuck" ];
+       enable = true;
+      plugins = [ "git" ];
       theme = "crunch";
     };
     history = {

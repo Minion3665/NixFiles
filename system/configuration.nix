@@ -67,6 +67,8 @@
     ];
   };
 
+  programs.waybar.enable = false; # true;
+
   # Get screensharing to work
   xdg = {
     portal = {
