@@ -70,7 +70,7 @@ in {
     initExtra = ''
       bindkey "\'\'$\{key[Up]}" up-line-or-search
 
-      command_not_found_handle ()
+      command_not_found_handler ()
       {
           local p='/nix/store/ycclzpk99snlrk8sg9n4j8pm1927gavw-command-not-found/bin/command-not-found';
           if [ -x "$p" ] && [ -f '/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' ]; then
