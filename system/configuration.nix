@@ -67,6 +67,7 @@
     ];
   };
 
+  programs.qt5ct.enable = true;
   programs.waybar.enable = false; # true;
 
   # Get screensharing to work

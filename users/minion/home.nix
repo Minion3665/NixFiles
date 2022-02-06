@@ -57,8 +57,6 @@ in {
     lxappearance
   ];
 
-  programs.qt5ct.enable = true;
-
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
