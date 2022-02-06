@@ -7,7 +7,7 @@ let
       owner = "nix-community";
       repo = "comma";
       rev = "02e3e5545b0c62595a77f3d5de1223c536af0614";
-      sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
+      sha256 = "sha256-WBIQmwlkb/GMoOq+Dnyrk8YmgiM/wJnc5HYZP8Uw72E=";
   }) {};
 
 in {
@@ -69,6 +69,22 @@ in {
     };
     initExtra = ''
       bindkey "\'\'$\{key[Up]}" up-line-or-search
+
+      command_not_found_handle ()
+      {
+          local p='/nix/store/ycclzpk99snlrk8sg9n4j8pm1927gavw-command-not-found/bin/command-not-found';
+          if [ -x "$p" ] && [ -f '/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' ]; then
+              "$p" "$@";
+              if [ $? = 126 ]; then
+                  "$@";
+              else
+                  return 127;
+              fi;
+          else
+              echo "$1: command not found" 1>&2;
+              return 127;
+          fi
+      }
     '';
     enableSyntaxHighlighting = true;
     enableAutosuggestions = true;
