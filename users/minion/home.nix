@@ -16,8 +16,6 @@ in {
   home.username = username;
   home.homeDirectory = homedir;
 
-  shell = pkgs.zsh;
-
   programs.vscode.enable = true;
   programs.vscode.package = pkgs.vscode-fhs;
 

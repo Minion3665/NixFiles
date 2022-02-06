@@ -118,6 +118,7 @@
   users.users.minion = {
     isNormalUser = true;
     extraGroups = [ "wheel" "kvm" "docker" "containerd" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
