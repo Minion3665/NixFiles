@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ../secrets/networking-configuration.nix
       ./packaging-configuration.nix
-      ./containerd.nix
+      ./containerd/containerd.nix
     ];
 
   # Prepare nix flakes
@@ -146,7 +146,7 @@
     gtk_engines
     gsettings-desktop-schemas
     lxappearance
-  ];
+  ] ++ (import ./containerd/systemPackages.nix pkgs).systemPackages;
 
 #  environment.systemPackages = [
 #    import /scripts/jetbrains.rider.nix

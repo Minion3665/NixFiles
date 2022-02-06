@@ -7,9 +7,4 @@
 #      uid = 1000;
 #    };
   };
-
-  environment.systemPackages = with pkgs; [
-    cni
-    cni-plugins
-  ];
 }
