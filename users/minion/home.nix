@@ -62,7 +62,7 @@ in {
     '';
     enableSyntaxHighlighting = true;
     autocd = true;
-    dotDir = "../..${config.xdg.dataHome}/zsh";
+    dotDir = ".local/share/zsh";
   };
 
   programs.git = {
