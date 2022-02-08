@@ -2,19 +2,19 @@ final: prev: let
   version = "v135";
   depversion = "v116";
 
-  Mindustry = fetchFromGitHub {
+  Mindustry = final.fetchFromGitHub {
     owner = "Anuken";
     repo = "Mindustry";
     rev = "v${version}";
     sha256 = "URmjmfzQAVVl6erbh3+FVFdN7vGTNwYKPtcrwtt9vkg=";
   };
-  Arc = fetchFromGitHub {
+  Arc = final.fetchFromGitHub {
     owner = "Anuken";
     repo = "Arc";
     rev = "v${depversion}";
     sha256 = "pUUak5P9t4RmSdT+/oH/8oo6l7rjIN08XDJ06TcUn8I=";
   };
-  soloud = fetchFromGitHub {
+  soloud = final.fetchFromGitHub {
     owner = "Anuken";
     repo = "soloud";
     # this is never pinned in upstream, see https://github.com/Anuken/Arc/issues/39
