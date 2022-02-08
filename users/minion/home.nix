@@ -31,6 +31,7 @@ in {
 
   nixpkgs.overlays = [ 
     (import ./overlays/anytype.nix)
+    (import ./overlays/mindustry.nix)
     (import ./overlays/nur.nix)
   ];
 
@@ -51,6 +52,7 @@ in {
     htop
     hue-cli
     comma
+    zip
   ];
 
   programs.zsh = {
