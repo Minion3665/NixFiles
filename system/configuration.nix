@@ -190,6 +190,8 @@
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
 
+  hardware.bluetooth.enable = true;
+
   environment.pathsToLink = [ "/share/zsh" "/libexec" ];
 
   virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
