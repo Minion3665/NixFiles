@@ -53,6 +53,7 @@ in {
     hue-cli
     comma
     zip
+    mindustry-alpha-wayland
   ];
 
   programs.zsh = {
