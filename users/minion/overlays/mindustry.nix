@@ -30,9 +30,8 @@ final: prev: let
     cp -r ${soloud} Arc/arc-core/csrc/soloud
     chmod -R u+w -- Arc
   '';
-
 in {
   mindustry-alpha-wayland = prev.mindustry-wayland.overrideAttrs (old: {
     inherit version unpackPhase;
-  };
+  });
 }
