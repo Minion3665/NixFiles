@@ -2,4 +2,4 @@
 
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 nix flake update
-sudo scripts/update-nix
+scripts/update-nix
