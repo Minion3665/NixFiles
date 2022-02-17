@@ -54,6 +54,7 @@ in {
     comma
     zip
     mindustry-alpha-wayland
+    nodejs-17_x
   ];
 
   programs.zsh = {
