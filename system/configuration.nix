@@ -120,7 +120,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.minion = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "kvm" "docker" "containerd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "kvm" "docker" "containerd" "dialout" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
