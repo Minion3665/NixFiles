@@ -112,7 +112,16 @@
       support32Bit = true;
     };
     pulse.enable = true;
+    config.pipewire = {
+      "context.exec" = [
+        {
+          path = "/usr/bin/pipewire";
+          args = "-c /etc/pipewire/7.1-surround-sound.conf";
+        }
+      ];
+    };
   };
+  environment.etc."pipewire/7.1-surround-sound.conf".source = ./pipewire/7.1-surround-sound.conf;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
