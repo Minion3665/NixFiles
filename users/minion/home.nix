@@ -116,6 +116,7 @@ in {
       init.defaultBranch = "development";
       color.ui = "auto";
       core.autocrlf = "input";
+      pull.rebase = false;
     };
   };
 
