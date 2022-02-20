@@ -112,7 +112,7 @@
       support32Bit = true;
     };
     pulse.enable = true;
-    config.pipewire = {
+    /*config.pipewire = {
       "context.modules" = [
         {
           name = "libpipewire-module-filter-chain";
@@ -131,7 +131,7 @@
               { type = "builtin"; label = "copy"; name = "copySR";  }
               { type = "builtin"; label = "copy"; name = "copyLFE"; }
 
-              # apply hrir - HeSuVi 14-channel WAV (not the *-.wav variants) (note: */44/* in HeSuVi are the same, but resampled to 44100)
+              # apply hrir - HeSuVi 14-channel WAV (not the *-.wav variants) (note: 44 in HeSuVi are the same, but resampled to 44100)
               { type = "builtin"; label = "convolver"; name = "convFL_L"; config = { filename = "hrir_hesuvi/hrir.wav"; channel =  0; }; }
               { type = "builtin"; label = "convolver"; name = "convFL_R"; config = { filename = "hrir_hesuvi/hrir.wav"; channel =  1; }; }
               { type = "builtin"; label = "convolver"; name = "convSL_L"; config = { filename = "hrir_hesuvi/hrir.wav"; channel =  2; }; }
@@ -207,7 +207,7 @@
           };
         }
       ];
-    };
+    };*/
   };
   environment.etc."pipewire/7.1-surround-sound.conf".source = ./pipewire/7.1-surround-sound.conf;
 
