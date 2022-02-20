@@ -211,6 +211,9 @@
   };
   environment.etc."pipewire/7.1-surround-sound.conf".source = ./pipewire/7.1-surround-sound.conf;
 
+  hardware.openrazer.enable = true;
+  hardware.openrazer.users = [ "minion" ];
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
