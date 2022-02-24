@@ -1,6 +1,6 @@
 final: prev: let
-  build = "54367901";
-  sha = "sha256-kVM/F0LsIgMtur8jHZzUWkFIcfHe0i8y9Zxe3z5SkVM=";
+  build = "24";
+  sha = "sha256-QyexUZNn7QGHjXYO/+1kUebTmAzdVpwG9Ile8Uh3i8Q=";
 
   pname = "anytype";
   name = "${pname}-${build}";
