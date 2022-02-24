@@ -283,7 +283,7 @@
   services.kbfs.enable = true;
   services.kbfs.enableRedirector = true;
   security.wrappers.keybase-redirector.owner = "root";
-  security.wrappers.keybase-redirector.group = "root";
+  security.wrappers.keybase-redirector.group = "users";
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
   services.tlp.enable = true;
