@@ -6,7 +6,8 @@ final: prev: let
   name = "${pname}-${build}";
 
   src = final.fetchurl {
-    url = "https://download.anytype.io/?action=download&key=desktop&id=${build}";
+#    url = "https://download.anytype.io/?action=download&key=desktop&id=${build}";
+    url = "https://at9412003.fra1.digitaloceanspaces.com/Anytype-0.24.0.AppImage";
     sha256 = sha;
     name = "AnyType-${build}.AppImage";
   };
