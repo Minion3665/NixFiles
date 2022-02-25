@@ -321,8 +321,10 @@
     "x-scheme-handler/unknown" = "chromium-browser.desktop";
   };
 
-  environment.sessionsVariables.DEFAULT_BROWSER = "${pkgs.chromium}/bin/chromium";
+  # environment.sessionsVariables.DEFAULT_BROWSER = "${pkgs.chromium}/bin/chromium";
 
+
+  boot.supportedFilesystems = [ "kbfs" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
