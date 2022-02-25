@@ -128,8 +128,6 @@ in {
     "x-scheme-handler/unknown" = "chromium-browser.desktop";
   };
 
-  environment.sessionsVariables.DEFAULT_BROWSER = "${pkgs.chromium}/bin/chromium";
-
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
