@@ -56,7 +56,7 @@ in {
     mindustry-alpha-wayland
     nodejs-17_x
     element
-    telegram-cli
+    tdesktop
   ];
 
   programs.zsh = {
