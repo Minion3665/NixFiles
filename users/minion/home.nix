@@ -55,6 +55,7 @@ in {
     zip
     mindustry-alpha-wayland
     nodejs-17_x
+    telegram
   ];
 
   programs.zsh = {

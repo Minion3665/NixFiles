@@ -54,6 +54,15 @@
     displayManager.sddm.enable = true;
   };
 
+  services = {
+    syncthing = {
+        enable = true;
+        user = "minion";
+        dataDir = "/home/minion/Documents";    # Default folder for new synced folders
+        configDir = "/home/minion/.config/syncthing";   # Folder for Syncthing's settings and keys
+    };
+  };
+
   # And wayland
   programs.sway = {
     enable = true;
