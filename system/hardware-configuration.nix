@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
+#  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];  # Broken in nixpkgs; seems to be mountable and usable anyway
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
