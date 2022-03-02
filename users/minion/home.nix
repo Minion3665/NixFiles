@@ -81,7 +81,7 @@ in {
       #     , $@
           local p='/nix/store/ycclzpk99snlrk8sg9n4j8pm1927gavw-command-not-found/bin/command-not-found';
           if [ -x "$p" ] && [ -f '/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' ]; then
-              "$p" "$@";
+              "$p" "$@" 2>&1 | sed -r 's/nix-shell -p (\S+)/nix shell nixpkgs#\1/g' 1>&2;
              if [ $? = 126 ]; then
                   "$@";
               else

@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1646011258,
+        "narHash": "sha256-+aen4zu5uVp52arEcgL2maCS0zQDuG1t+Azwd/O1gN4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a25df4c2b79c4343bcc72ad671200e5a3e286c41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "src": "src"
+      }
+    },
+    "src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642747836,
+        "narHash": "sha256-/ucpa+jyvU0+Ow46YwBfQ8+DCsnZXRPtT3zv5hEuCLg=",
+        "owner": "AndroidDumps",
+        "repo": "Firmware_extractor",
+        "rev": "8a7561d5d3751618d0a9865a5ac61578c6ebc40d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AndroidDumps",
+        "repo": "Firmware_extractor",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
