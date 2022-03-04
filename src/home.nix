@@ -1,18 +1,12 @@
-{ config, pkgs, nixpkgs }:
+{ pkgs, lib, ... }:
 let
     variables = import ./common/variables.nix;
-    personalPackages = let
-      toPkg = file: {
-        name = builtins.replaceStrings [ ".nix" ] [ "" ] file;
-        value = "./apps/personal/${file}";
-      };
-    in pkgs.lib.mapAttrs' toPkg (builtins.readDir (./. + "/apps/personal/"));
+    personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
+    overlays = import ./utils/nixFilesIn.nix lib ./apps/personal/overlays;
 in {
-    import = personalPackages;
+    imports = personalPackages;
 
-    nixpkgs.overlays = [
-        (import ./overlays/anytype.nix)
-    ];
+    nixpkgs.overlays = map (f: import f) overlays;
 
     home.packages = with pkgs; [  # New apps should be on new lines
         anytype
@@ -28,15 +22,11 @@ in {
         file
         nur.repos.kira-bruneau.rofi-wayland
         rofimoji
-        anytype-latest
         htop
         hue-cli
         zip
-        mindustry-alpha-wayland
         element
         tdesktop
     ];  # Use *only* for packages that need no configuration;
     # other packages should go in ./apps/personal/
-
-    home.stateVersion = variables.stateVersion;
 }

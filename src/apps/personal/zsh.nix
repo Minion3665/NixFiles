@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs }: {
+{ config, ... }: {
     programs.zsh = {
         enable = true;
         oh-my-zsh = {

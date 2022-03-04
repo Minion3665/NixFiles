@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs }: {
+{ pkgs, ... }: {
     home.packages = with pkgs; [
         spotify
     ];

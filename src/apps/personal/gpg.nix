@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs }: {
+{ pkgs, ... }: {
     programs.gpg.enable = true;
     services.gpg-agent = {
         enable = true;

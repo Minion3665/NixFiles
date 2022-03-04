@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs, ... }:
+{ pkgs, ... }:
 let
     comma = import ( pkgs.fetchFromGitHub {
         owner = "nix-community";

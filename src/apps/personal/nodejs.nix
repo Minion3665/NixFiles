@@ -1,7 +1,5 @@
-{ config, pkgs, nixpkgs }: {
+{ pkgs, ... }: {
     home.packages = with pkgs; [
         nodejs-17_x
     ];
-
-    programs.steam.enable = true;
 }
