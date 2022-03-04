@@ -7,39 +7,38 @@
     };
 
     outputs = { self, nixpkgs, home-manager }:
-        let
-            system = "x86_64-linux";  # TOOD: Add options for MacOS
+    let
+        system = "x86_64-linux";  # TOOD: Add options for MacOS
 
-            pkgs = nixpkgs {
+        pkgs = nixpkgs {
+            inherit system;
+
+            config = { allowUnfree = true; };
+        };
+
+        variables = import ./src/common/variables.nix;
+    in {
+        nixosConfigurations = {
+            default = pkgs.lib.nixosSystem {
                 inherit system;
 
-                config = { allowUnfree = true; };
+                modules = [
+                    src/system.nix
+                ];
             };
+        };
 
-            variables = import ./src/common/variables.nix;
-        in {
-            nixosConfigurations = {
-                default = pkgs.lib.nixosSystem {
-                    inherit system;
+        homeManagerConfiguration = {
+            minion = home-manager.lib.homeManagerConfiguration rec {
+                inherit system pkgs;
 
-                    modules = [
-                        src/system.nix
+                username = variables.username;
+                homeDirectory = "/home/${username}";
+
+                configuration = {
+                    imports = [
+                        src/home.nix
                     ];
-                };
-            };
-
-            homeManagerConfiguration = {
-                minion = home-manager.lib.homeManagerConfiguration rec {
-                    inherit system pkgs;
-
-                    username = variables.username;
-                    homeDirectory = "/home/${username}";
-
-                    configuration = {
-                        imports = [
-                            src/home.nix
-                        ];
-                    };
                 };
             };
         };
