@@ -31,7 +31,6 @@ in {
         anytype-latest
         htop
         hue-cli
-        comma
         zip
         mindustry-alpha-wayland
         element
