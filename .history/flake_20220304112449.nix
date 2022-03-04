@@ -15,8 +15,6 @@
 
                 config = { allowUnfree = true; };
             };
-
-            variables = import ./src/common/variables.nix;
         in {
             nixosConfigurations = {
                 default = pkgs.lib.nixosSystem {
@@ -29,18 +27,7 @@
             };
 
             homeManagerConfiguration = {
-                minion = home-manager.lib.homeManagerConfiguration rec {
-                    inherit system pkgs;
-
-                    username = variables.username;
-                    homeDirectory = "/home/${username}";
-
-                    configuration = {
-                        imports = [
-                            src/home.nix
-                        ];
-                    }
-                }
+                minion = home-manager.lib
             }
         };
     };

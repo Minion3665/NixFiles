@@ -32,7 +32,7 @@
                 minion = home-manager.lib.homeManagerConfiguration rec {
                     inherit system pkgs;
 
-                    username = variables.username;
+                    username = "minion";
                     homeDirectory = "/home/${username}";
 
                     configuration = {
@@ -40,6 +40,8 @@
                             src/home.nix
                         ];
                     }
+
+                    stateVersion = "21.11";
                 }
             }
         };

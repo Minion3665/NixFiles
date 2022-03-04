@@ -6,7 +6,7 @@
         home-manager.url = "github:nix-community/home-manager/release-21.11";
     };
 
-    outputs = { self, nixpkgs, home-manager }: {
+    outputs = { self, nixpkgs, home-manager, }: {
         let
             system = "x86_64-linux";  # TOOD: Add options for MacOS
 
@@ -15,8 +15,6 @@
 
                 config = { allowUnfree = true; };
             };
-
-            variables = import ./src/common/variables.nix;
         in {
             nixosConfigurations = {
                 default = pkgs.lib.nixosSystem {
@@ -32,7 +30,7 @@
                 minion = home-manager.lib.homeManagerConfiguration rec {
                     inherit system pkgs;
 
-                    username = variables.username;
+                    username = "minion";
                     homeDirectory = "/home/${username}";
 
                     configuration = {
@@ -40,6 +38,8 @@
                             src/home.nix
                         ];
                     }
+
+                    stateVersion = "21.11";
                 }
             }
         };

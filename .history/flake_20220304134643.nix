@@ -16,7 +16,7 @@
                 config = { allowUnfree = true; };
             };
 
-            variables = import ./src/common/variables.nix;
+            variables = import ./common/
         in {
             nixosConfigurations = {
                 default = pkgs.lib.nixosSystem {
@@ -32,7 +32,7 @@
                 minion = home-manager.lib.homeManagerConfiguration rec {
                     inherit system pkgs;
 
-                    username = variables.username;
+                    username = "minion";
                     homeDirectory = "/home/${username}";
 
                     configuration = {
@@ -40,6 +40,8 @@
                             src/home.nix
                         ];
                     }
+
+                    stateVersion = "21.11";
                 }
             }
         };
