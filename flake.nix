@@ -28,7 +28,7 @@
             };
         };
 
-        homeManagerConfiguration = {
+        homeManagerConfigurations = {
             minion = home-manager.lib.homeManagerConfiguration rec {
                 inherit system pkgs;
 
