@@ -10,7 +10,7 @@
     let
         system = "x86_64-linux";  # TOOD: Add options for MacOS
 
-        pkgs = nixpkgs {
+        pkgs = import nixpkgs {
             inherit system;
 
             config = { allowUnfree = true; };
