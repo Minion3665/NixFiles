@@ -25,7 +25,7 @@
                     modules = [
                         src/system.nix
                     ];
-                }
+                };
             };
 
             homeManagerConfiguration = {
@@ -39,9 +39,9 @@
                         imports = [
                             src/home.nix
                         ];
-                    }
-                }
-            }
+                    };
+                };
+            };
         };
     };
 }
