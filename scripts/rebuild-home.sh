@@ -4,6 +4,7 @@ cd "$(dirname ${BASH_SOURCE[0]})/.."
 
 if [[ $(git diff --stat) != '' ]]; then
     read -ep "What did you change?: " changes
+    git add .
     /bin/env git commit -am "$changes"
 fi
 

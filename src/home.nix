@@ -2,9 +2,10 @@
 let
     variables = import ./common/variables.nix;
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
+    personalScripts = import ./utils/nixFilesIn.nix lib ./scripts/personal;
     overlays = import ./utils/nixFilesIn.nix lib ./apps/personal/overlays;
 in {
-    imports = personalPackages;
+    imports = personalPackages ++ personalScripts;
 
     nixpkgs.overlays = map (f: import f) overlays;
 
@@ -27,6 +28,5 @@ in {
         zip
         element
         tdesktop
-    ];  # Use *only* for packages that need no configuration;
-    # other packages should go in ./apps/personal/
+    ];  # Legacy field; please don't add new packages here, instead create a file in ./apps/personal
 }
