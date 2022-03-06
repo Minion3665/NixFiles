@@ -8,7 +8,7 @@
         swaylock
         swayidle
         wl-clipboard
-    ]
+    ];
 
     systemd.user.targets.sway-session = {
         description = "Sway compositor session";
