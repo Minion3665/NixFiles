@@ -17,7 +17,7 @@
         wl-clipboard
     ];
 
-    systemd.user.targets.sway-session.Units = {
+    systemd.user.targets.sway-session.Unit = {
         description = "Sway compositor session";
         documentation = [ "man:systemd.special(7)" ];
         bindsTo = [ "graphical-session.target" ];
