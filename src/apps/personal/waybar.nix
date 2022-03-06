@@ -1,5 +1,12 @@
 { ... }: {
-    programs.waybar.enable = true;
-    programs.waybar.settings = [];  # TODO: Make settings
-    programs.waybar.style = null;  # TODO: Style waybar
+    programs.waybar = {
+        enable = true;
+        settings = [];  # TODO: Make settings
+        style = null;  # TODO: Style waybar
+
+        systemd = {
+            enable = true;
+            target = "sway-session.target";
+        };
+    };
 }
