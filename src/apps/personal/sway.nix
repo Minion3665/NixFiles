@@ -7,8 +7,8 @@
             assigns = {};
             bars = [];
             colors = {};
-            
-        }
+
+        };
     };
 
     home.packages = with pkgs; [
