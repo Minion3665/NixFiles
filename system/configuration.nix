@@ -50,8 +50,8 @@
       xterm.enable = false;
       # xfce.enable = true;
     };
-    # displayManager.startx.enable = true;
-    displayManager.sddm.enable = true;
+    displayManager.startx.enable = true;
+    # displayManager.sddm.enable = true;
   };
 
   services = {
@@ -64,7 +64,7 @@
   };
 
   # And wayland
-  programs.sway = {
+/*  programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
     extraPackages = with pkgs; [
@@ -74,10 +74,10 @@
       mako # notification daemon
       alacritty # Alacritty is the default terminal in the config
     ];
-  };
+  };*/
 
   programs.qt5ct.enable = true;
-  programs.waybar.enable = false; # true;
+#  programs.waybar.enable = false; # true;
 
   # Get screensharing to work
   xdg = {
