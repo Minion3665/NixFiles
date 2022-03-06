@@ -18,11 +18,11 @@
     ];
 
     systemd.user.targets.sway-session.Unit = {
-        description = "Sway compositor session";
-        documentation = [ "man:systemd.special(7)" ];
-        bindsTo = [ "graphical-session.target" ];
-        wants = [ "graphical-session-pre.target" ];
-        after = [ "graphical-session-pre.target" ];
+        Description = "Sway compositor session";
+        Documentation = [ "man:systemd.special(7)" ];
+        BindsTo = [ "graphical-session.target" ];
+        Wants = [ "graphical-session-pre.target" ];
+        After = [ "graphical-session-pre.target" ];
     };
 
     programs.zsh.profileExtra = ''
