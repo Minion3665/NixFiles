@@ -24,4 +24,10 @@
         wants = [ "graphical-session-pre.target" ];
         after = [ "graphical-session-pre.target" ];
     };
+
+    programs.zsh.profileExtra = ''
+        if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+            exec systemd-cat -t sway sway
+        fi
+    '';
 }
