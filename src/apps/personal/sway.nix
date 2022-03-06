@@ -2,6 +2,13 @@
     wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
+
+        config = {
+            assigns = {};
+            bars = [];
+            colors = {};
+            
+        }
     };
 
     home.packages = with pkgs; [
