@@ -10,5 +10,5 @@
         };
     };
 
-    systemd.user.targets.waybar.enable = true;
+    systemd.user.targets.sway.Unit.Wants = [ "waybar.service" ];
 }
