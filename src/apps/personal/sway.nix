@@ -91,14 +91,14 @@
                     background = "#ffffff99";
                     border-bottom = "#00000000";
                     button-background = "#ffffffcc";
-                    button-padding = 5;
+                    button-padding = 10;
                     button-border-size = 0;
                 };
 
                 warning = {
                     background = "#ffffff99";
                     border-bottom = "#00000000";
-                    button-background = "#ffdf00cc";
+                    button-background = "#e6c900cc";
                 };
             };
         };
