@@ -3,17 +3,18 @@
         enable = true;
         settings = [
             {
-                modules-left = ["sway/mode" "sway/workspaces"];
+                modules-left = ["sway/workspaces"];
 
                 modules-center = ["sway/window"];
 
-                modules-right = ["battery" "clock"];
+                modules-right = ["backlight" "pulseaudio" "network" "battery" "clock"];
 
                 modules = {
                     battery.bat = "BAT0";
                     "sway/window" = {
                         max-length = 50;
                     };
+                    clock.format = "{%H:%M:%S}";
                 };
             }
         ];
