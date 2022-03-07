@@ -45,7 +45,7 @@
             }
 
             #window {
-                width: 50em;
+                min-width: 50em;
             }
         '';
 
