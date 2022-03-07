@@ -116,7 +116,7 @@
                 blue = {
                     background = "#ffffff99";
                     border-bottom = "#00000000";
-                    button-background = "#0000ff";
+                    button-background = "#6767ff";
                 };
             };
         };
