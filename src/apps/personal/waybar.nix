@@ -13,7 +13,7 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 border-radius: 5px;
-                margin: 10px;
+                margin: 10px 5px;
             }
 
             window#waybar * * * * * {
