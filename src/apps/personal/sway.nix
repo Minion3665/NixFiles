@@ -98,7 +98,25 @@
                 warning = {
                     background = "#ffffff99";
                     border-bottom = "#00000000";
+                    button-background = "#ffff00";
+                };
+
+                error = {
+                    background = "#ffffff99";
+                    border-bottom = "#00000000";
                     button-background = "#ff0000";
+                };
+
+                green = {
+                    background = "#ffffff99";
+                    border-bottom = "#00000000";
+                    button-background = "#00ff00";
+                };
+
+                blue = {
+                    background = "#ffffff99";
+                    border-bottom = "#00000000";
+                    button-background = "#0000ff";
                 };
             };
         };
