@@ -83,6 +83,10 @@
                 background: alpha(red, 0.5);
             }
 
+            #workspaces button:active {
+                background: alpha(@theme_base_color, 1);
+            }
+
         '';
 
         systemd = {
