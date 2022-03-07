@@ -8,7 +8,10 @@
                 modules-center = ["sway/window"];
 
                 modules-right = ["battery" "clock"];
-                battery.bat = "BAT0";
+
+                modules = {
+                    battery.bat = "BAT0";
+                };
             }
         ];
         style = ''
