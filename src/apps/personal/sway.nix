@@ -22,7 +22,7 @@
                     dwt = "enabled";
                     tap = "enabled";
                     natural_scroll = "enabled";
-                    middle_emulation = "enabled";
+                    middle_emulation = "enabledD";
                     events = "disabled_on_external_mouse";
                 };
                 "type:keyboard" = {

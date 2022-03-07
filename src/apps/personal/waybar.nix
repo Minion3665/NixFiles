@@ -2,7 +2,11 @@
     programs.waybar = {
         enable = true;
         settings = [];  # TODO: Make settings
-        style = null;  # TODO: Style waybar
+        style = ''
+            window#waybar {
+                background-color: red;
+            }
+        '';
 
         systemd = {
             enable = true;
