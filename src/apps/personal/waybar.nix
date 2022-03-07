@@ -51,6 +51,11 @@
             #window {
                 min-width: 50em;
             }
+
+            #tray menu {
+                background: alpha(@theme_base_color, 0.6);
+                color: @theme_text_color;
+            }
         '';
 
         systemd = {
