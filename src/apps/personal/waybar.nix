@@ -14,7 +14,7 @@
                     "sway/window" = {
                         max-length = 50;
                     };
-                    clock.format = "{%H:%M:%S}";
+                    clock.format = "{:%T}";
                 };
             }
         ];
