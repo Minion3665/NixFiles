@@ -5,7 +5,11 @@
         style = ''
             window#waybar {
                 background: rgba(0, 0, 0, 0);
-                color: white;
+            }
+
+            window#waybar * {
+                background: @theme_base_color;
+                color: @theme_text_color;
             }
         '';
 
