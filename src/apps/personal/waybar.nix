@@ -33,7 +33,7 @@
                 padding-right: 10px;
                 border-radius: 5px;
                 margin: 10px 5px;
-                transition: all 0.5s ease-in-out;
+                transition: all 0.2s ease-in-out;
             }
 
             window#waybar * * *:first-child * {
