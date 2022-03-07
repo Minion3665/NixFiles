@@ -110,13 +110,13 @@
                 green = {
                     background = "#ffffff99";
                     border-bottom = "#00000000";
-                    button-background = "#00ff00";
+                    button-background = "#00b300";
                 };
 
                 blue = {
                     background = "#ffffff99";
                     border-bottom = "#00000000";
-                    button-background = "#6767ff";
+                    button-background = "#0000ff";
                 };
             };
         };
