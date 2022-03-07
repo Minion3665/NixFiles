@@ -7,7 +7,7 @@
 
                 modules-center = ["sway/window"];
 
-                modules-right = ["backlight" "pulseaudio" "network" "battery" "clock" "wlr/taskbar"];
+                modules-right = ["backlight" "pulseaudio" "network" "battery" "clock" "tray"];
 
                 modules = {
                     battery.bat = "BAT0";
