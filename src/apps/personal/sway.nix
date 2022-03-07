@@ -13,8 +13,8 @@
             focus = {};
             fonts = {};
             gaps = {
-                inner = 3;
-                outer = 6;
+                inner = 10;
+                outer = 10;
                 smartGaps = true;
             };
             input = {
