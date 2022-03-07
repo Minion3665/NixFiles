@@ -10,7 +10,8 @@
             window#waybar * * * {
                 background: @theme_base_color;
                 color: @theme_text_color;
-                padding: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
                 border-radius: 5px;
             }
         '';
