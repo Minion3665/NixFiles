@@ -9,6 +9,8 @@
             colors = {};
 
         };
+
+        systemdIntegration = true;
     };
 
     home.packages = with pkgs; [
@@ -16,14 +18,6 @@
         swayidle
         wl-clipboard
     ];
-
-    systemd.user.targets.sway-session.Unit = {
-        Description = "sway compositor session";
-        Documentation = [ "man:systemd.special(7)" ];
-        BindsTo = [ "graphical-session.target" ];
-        Wants = [ "graphical-session-pre.target" ];
-        After = [ "graphical-session-pre.target" ];
-    };
 
     programs.zsh.profileExtra = ''
         if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
