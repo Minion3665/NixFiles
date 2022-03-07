@@ -85,8 +85,13 @@
         '';
 
         swaynag = {
-            enable = false; # TODO: Configure swaynag to fit with waybar
-            settings = {};
+            enable = true;
+            settings = {
+                background = "#ffffff99";
+                border-bottom = "#00000000";
+                button-background = "#ffffffcc";
+                button-border-size = 0;
+            };
         };
 
         systemdIntegration = true;
