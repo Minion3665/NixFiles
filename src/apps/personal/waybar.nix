@@ -13,7 +13,16 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 border-radius: 5px;
-                margin: 10px 5px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            window#waybar * * * *:first-child {
+                margin-left: 10px;
+            }
+
+            window#waybar * * * *:last-child {
+                margin-right: 10px;
             }
 
             window#waybar * * * * * {
