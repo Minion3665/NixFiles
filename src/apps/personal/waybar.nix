@@ -13,9 +13,9 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 border-radius: 5px;
-                margin-top: 5px;
-                margin-left: 5px;
-                margin-right: 5px;
+                margin-top: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
             }
 
             window#waybar * * * * * {
