@@ -14,6 +14,7 @@
             fonts = {};
             gaps = {
                 inner = 10;
+                top = -10;
                 outer = 0;
                 smartGaps = true;
             };
