@@ -98,7 +98,7 @@
                 warning = {
                     background = "#ffffff99";
                     border-bottom = "#00000000";
-                    button-background = "#e6c900cc";
+                    button-background = "#ff0000";
                 };
             };
         };
