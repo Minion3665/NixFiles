@@ -1,14 +1,16 @@
 { ... }: {
     programs.waybar = {
         enable = true;
-        settings = {
-            modules-left = ["sway/mode" "sway/workspaces"];
+        settings = [
+            {
+                modules-left = ["sway/mode" "sway/workspaces"];
 
-            modules-center = ["sway/window"];
+                modules-center = ["sway/window"];
 
-            modules-right = ["battery" "clock"];
-            battery.bat = "BAT0";
-        };
+                modules-right = ["battery" "clock"];
+                battery.bat = "BAT0";
+            }
+        ];
         style = ''
             window#waybar {
                 background: rgba(0, 0, 0, 0);
