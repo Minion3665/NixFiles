@@ -57,6 +57,27 @@
                 color: @theme_text_color;
                 border: 0;
             }
+
+            #workspaces button.focused {
+                background: alpha(@theme_base_color, 0.8);
+            }
+
+            #workspaces button.focused:hover {
+                background: alpha(@theme_base_color, 0.9);
+            }
+
+            #workspaces button:hover {
+                background: alpha(@theme_base_color, 0.7);
+            }
+
+            #workspaces button.persistent {
+                background: alpha(yellow, 0.3);
+            }
+
+            #workspaces button.urgent {
+                background: alpha(red, 0.3);
+            }
+
         '';
 
         systemd = {
