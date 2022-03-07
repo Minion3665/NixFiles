@@ -59,6 +59,10 @@
                 border: 0;
             }
 
+            #workspaces button {
+                border: 0;
+            }
+
             #workspaces button.focused {
                 background: alpha(@theme_base_color, 0.8);
             }
