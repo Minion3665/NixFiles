@@ -7,7 +7,15 @@
             assigns = {};
             bars = [];
             colors = {};
-
+            defaultWorkspace = null;
+            down = "j";
+            floating = {};
+            focus = {};
+            fonts = {};
+            gaps = {
+                inner = 2.5;
+                outer = 5;
+            };
         };
 
         systemdIntegration = true;
