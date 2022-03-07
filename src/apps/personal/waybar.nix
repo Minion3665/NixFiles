@@ -7,7 +7,7 @@
                 background: rgba(0, 0, 0, 0);
             }
 
-            window#waybar * * * {
+            window#waybar * * * * {
                 background: @theme_base_color;
                 color: @theme_text_color;
                 padding-left: 10px;
