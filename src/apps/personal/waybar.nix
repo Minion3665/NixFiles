@@ -27,6 +27,7 @@
 
             window#waybar * * * * * {
                 margin: 0;
+                background: rgba(0, 0, 0, 0);
             }
         '';
 
