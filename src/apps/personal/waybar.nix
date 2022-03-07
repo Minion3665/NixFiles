@@ -44,7 +44,7 @@
                 background: rgba(0, 0, 0, 0);
             }
 
-            #-window {
+            #window {
                 width: 50em;
             }
         '';
