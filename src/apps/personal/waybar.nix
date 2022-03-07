@@ -4,7 +4,7 @@
         settings = [];  # TODO: Make settings
         style = ''
             window#waybar {
-                opacity: 0;
+                background: rgba(0, 0, 0, 0);
             }
         '';
 
