@@ -87,10 +87,12 @@
         swaynag = {
             enable = true;
             settings = {
-                background = "#ffffff99";
-                border-bottom = "#00000000";
-                button-background = "#ffffffcc";
-                button-border-size = 0;
+                "<config>" = {
+                    background = "#ffffff99";
+                    border-bottom = "#00000000";
+                    button-background = "#ffffffcc";
+                    button-border-size = 0;
+                };
             };
         };
 
