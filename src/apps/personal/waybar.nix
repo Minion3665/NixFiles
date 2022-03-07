@@ -33,6 +33,7 @@
                 padding-right: 10px;
                 border-radius: 5px;
                 margin: 10px 5px;
+                transition: all 0.5s ease-in-out;
             }
 
             window#waybar * * *:first-child * {
@@ -71,11 +72,11 @@
             }
 
             #workspaces button.persistent {
-                background: alpha(yellow, 0.3);
+                background: alpha(yellow, 0.5);
             }
 
             #workspaces button.urgent {
-                background: alpha(red, 0.3);
+                background: alpha(red, 0.5);
             }
 
         '';
