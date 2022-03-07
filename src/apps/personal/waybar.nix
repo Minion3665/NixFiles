@@ -59,6 +59,10 @@
                 border: 0;
             }
 
+            #tray menu *:hover {
+                background: alpha(@theme_base_color, 1);
+            }
+
             #workspaces button {
                 border: 0;
             }
