@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   systemPackages = with pkgs; [
-    cni
+    (lowPrio cni)
     cni-plugins
   ];
 }
