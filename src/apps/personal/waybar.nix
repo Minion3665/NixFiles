@@ -53,8 +53,9 @@
             }
 
             #tray menu {
-                background: alpha(@theme_base_color, 0.6);
+                background: alpha(@theme_base_color, 0.8);
                 color: @theme_text_color;
+                border: 0;
             }
         '';
 
