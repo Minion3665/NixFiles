@@ -15,7 +15,68 @@
             gaps = {
                 inner = 3;
                 outer = 6;
+                smartGaps = true;
             };
+            input = {
+                # TODO: Make my keyboard british
+            };
+            keybindings = lib.mkOptionDefault {};
+            keycodebindings = {};
+            left = "h";
+            menu = "/usr/bin/env rofi -show combi";
+            modes = {
+                resize = {
+                    Down = "resize grow height 10 px";
+                    Escape = "mode default";
+                    Left = "resize shrink width 10 px";
+                    Return = "mode default";
+                    Right = "resize grow width 10 px";
+                    Up = "resize shrink height 10 px";
+                    h = "resize shrink width 10 px";
+                    j = "resize grow height 10 px";
+                    k = "resize shrink height 10 px";
+                    l = "resize grow width 10 px";
+                };
+            };
+            modifier = "Mod4";
+            output = {
+                HDMI-A-2 = {
+                    resolution = "3840x2160";
+                    position = "1920,0";
+                };
+                eDP-1 = {
+                    resolution = "1920x1080";
+                    position = "0,1522";
+                };
+            };
+            right = "l";
+            seat = {
+                "*" = {
+                    hide_cursor = "when-typing enable";
+                };
+            };
+            startup = [];
+            terminal = "alacritty";
+            up = "k";
+            window = {};
+            workspaceAutoBackAndForth = true;
+            workspaceLayout = "default";
+            workspaceOutputAssign = [];
+        };
+
+        extraSessionCommands = ''
+        export SDL_VIDEODRIVER=wayland
+        # needs qt5.qtwayland in systemPackages
+        export QT_QPA_PLATFORM=wayland
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+        # Fix for some Java AWT applications (e.g. Android Studio),
+        # use this if they aren't displayed properly:
+        export _JAVA_AWT_WM_NONREPARENTING=1
+        '';
+
+        swaynag = {
+            enable = false; # TODO: Configure swaynag to fit with waybar
+            settings = {};
         };
 
         systemdIntegration = true;
