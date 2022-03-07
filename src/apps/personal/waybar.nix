@@ -80,7 +80,7 @@
             }
 
             #workspaces button.persistent {
-                background: alpha(yellow, 0.5);
+                background: alpha(#cccc00, 0.5);
             }
 
             #workspaces button.urgent {
