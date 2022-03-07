@@ -1,7 +1,14 @@
 { ... }: {
     programs.waybar = {
         enable = true;
-        settings = [];  # TODO: Make settings
+        settings = {
+            modules-left = ["sway/mode" "sway/workspaces"];
+
+            modules-center = ["sway/window"];
+
+            modules-right = ["battery" "clock"];
+            battery.bat = "BAT0";
+        };
         style = ''
             window#waybar {
                 background: rgba(0, 0, 0, 0);
@@ -14,7 +21,6 @@
                 padding-right: 10px;
                 border-radius: 5px;
                 margin: 10px 0;
-                transition: all 0.5s;
             }
 
             window#waybar * * *:first-child * {
