@@ -93,6 +93,10 @@
                     button-background = "#ffffffcc";
                     button-border-size = 0;
                 };
+
+                warning = {
+                    background = "#ffff0099";
+                };
             };
         };
 
