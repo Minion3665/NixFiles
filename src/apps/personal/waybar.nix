@@ -8,7 +8,7 @@
             }
 
             window#waybar * * * * {
-                background: alpha(@theme_base_color, 0.5);
+                background: alpha(@theme_base_color, 0.6);
                 color: @theme_text_color;
                 padding-left: 10px;
                 padding-right: 10px;
