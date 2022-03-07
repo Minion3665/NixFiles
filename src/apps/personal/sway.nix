@@ -19,10 +19,10 @@
             };
             input = {
                 "type:touchpad" = {
-                    dwt = true;
-                    tap = true;
-                    natural_scroll = true;
-                    middle_emulation = true;
+                    dwt = "enabled";
+                    tap = "enabled";
+                    natural_scroll = "enabled";
+                    middle_emulation = "enabled";
                     events = "disabled_on_external_mouse";
                 };
                 "type:keyboard" = {
