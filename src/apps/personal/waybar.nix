@@ -7,7 +7,7 @@
                 background: rgba(0, 0, 0, 0);
             }
 
-            window#waybar * * * {
+            window#waybar * * * * {
                 background: @theme_base_color;
                 color: @theme_text_color;
                 padding-left: 10px;
@@ -17,15 +17,15 @@
                 transition: all 0.5s;
             }
 
-            window#waybar * * *:first-child {
+            window#waybar * * *:first-child * {
                 margin-left: 10px;
             }
 
-            window#waybar * * *:last-child {
+            window#waybar * * *:last-child * {
                 margin-right: 10px;
             }
 
-            window#waybar * * * * {
+            window#waybar * * * * * {
                 margin: 0;
             }
         '';
