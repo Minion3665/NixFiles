@@ -11,6 +11,9 @@
 
                 modules = {
                     battery.bat = "BAT0";
+                    "sway/window" = {
+                        max-length = 50;
+                    };
                 };
             }
         ];
@@ -39,6 +42,10 @@
             window#waybar * * * * * {
                 margin: 0;
                 background: rgba(0, 0, 0, 0);
+            }
+
+            #-window {
+                width: 50em;
             }
         '';
 
