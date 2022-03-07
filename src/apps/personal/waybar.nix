@@ -9,4 +9,6 @@
             # target = "sway-session.target";
         };
     };
+
+    systemd.user.targets.waybar.enable = true;
 }
