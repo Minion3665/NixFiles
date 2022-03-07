@@ -13,8 +13,8 @@
             focus = {};
             fonts = {};
             gaps = {
-                inner = 2.5;
-                outer = 5;
+                inner = 3;
+                outer = 6;
             };
         };
 
