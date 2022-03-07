@@ -18,7 +18,16 @@
                 smartGaps = true;
             };
             input = {
-                # TODO: Make my keyboard british
+                "type:touchpad" = {
+                    dwt = true;
+                    tap = true;
+                    natural_scroll = true;
+                    middle_emulation = true;
+                    events = "disabled_on_external_mouse";
+                };
+                "type:keyboard" = {
+                    xkb_layout = "gb";
+                };
             };
             keybindings = lib.mkOptionDefault {};
             keycodebindings = {};
