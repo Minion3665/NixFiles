@@ -106,7 +106,7 @@
             }
 
             #backlight, #pulseaudio, #network, #battery {
-                min-width: 4em;
+                min-width: 3em;
             }
         '';
 
