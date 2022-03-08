@@ -73,12 +73,12 @@
             }
 
             window#waybar #workspaces {
-                margin: 0;
+                padding: 0;
             }
 
             window#waybar #workspaces button {
                 border: 0;
-                margin: 10px 5px;
+                margin: 0;
             }
 
             window#waybar #workspaces button.focused {
