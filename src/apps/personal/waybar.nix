@@ -52,14 +52,11 @@
 
             window#waybar.solo,window#waybar.empty {
                 background: alpha(@theme_base_color, 0.6);
-                transition: background 0.2s ease-in-out;
             }
 
             window#waybar.solo *,window#waybar.empty * {
-                background: rgba(0, 0, 0, 0);
-                transition: background 0s;
+                background: rgba(0, 0, 0, 0); 
             }
-
             #window {
                 min-width: 50em;
             }
