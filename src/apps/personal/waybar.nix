@@ -49,6 +49,14 @@
                 background: rgba(0, 0, 0, 0);
             }
 
+            window#waybar.solo,window#waybar.empty {
+                background: alpha(@theme_base_color, 0.6);
+            }
+
+            window#waybar.solo *,window#waybar.empty * {
+                background: rgba(0, 0, 0, 0);
+            }
+
             #window {
                 min-width: 50em;
             }
@@ -63,31 +71,32 @@
                 background: alpha(@theme_base_color, 1);
             }
 
-            #workspaces button {
+            window#waybar #workspaces button {
                 border: 0;
+                background: alpha(@theme_base_color, 0.6);
             }
 
-            #workspaces button.focused {
+            window#waybar #workspaces button.focused {
                 background: alpha(@theme_base_color, 0.8);
             }
 
-            #workspaces button.focused:hover {
+            window#waybar #workspaces button.focused:hover {
                 background: alpha(@theme_base_color, 0.9);
             }
 
-            #workspaces button:hover {
+            window#waybar #workspaces button:hover {
                 background: alpha(@theme_base_color, 0.7);
             }
 
-            #workspaces button.persistent {
+            window#waybar #workspaces button.persistent {
                 background: alpha(#ffdf00, 0.5);
             }
 
-            #workspaces button.urgent {
+            window#waybar #workspaces button.urgent {
                 background: alpha(red, 0.5);
             }
 
-            #workspaces button:active {
+            window#waybar #workspaces button:active {
                 background: alpha(@theme_base_color, 1);
             }
 
