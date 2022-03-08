@@ -105,6 +105,9 @@
                 background: alpha(@theme_base_color, 1);
             }
 
+            #backlight, #pulseaudio, #network, #battery {
+                min-width: 4em;
+            }
         '';
 
         systemd = {
