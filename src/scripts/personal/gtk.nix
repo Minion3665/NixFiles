@@ -1,7 +1,9 @@
 { pkgs, ... }: {
     gtk = {
         enable = true;
-        gtk.theme.package = pkgs.juno-theme;
-        gtk.theme.name = "Juno";
+        theme = {
+            package = pkgs.juno-theme;
+            name = "Juno";
+        };
     };
 }
