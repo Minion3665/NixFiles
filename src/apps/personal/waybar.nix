@@ -57,11 +57,12 @@
             window#waybar.solo *,window#waybar.empty * {
                 background: rgba(0, 0, 0, 0); 
             }
+
             #window {
                 min-width: 50em;
             }
 
-            #tray menu {
+            window#waybar * * * #tray menu {
                 background: alpha(@theme_base_color, 0.8);
                 color: @theme_text_color;
                 border: 0;
