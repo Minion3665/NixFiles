@@ -96,7 +96,7 @@
   # Configure keymap in X11
   services.xserver.layout = "gb";
   # services.xserver.xkbOptions = "eurosign:e";
- 
+  services.upower.enable = true;
 
   # Permit and install steam
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
