@@ -72,8 +72,13 @@
                 background: alpha(@theme_base_color, 1);
             }
 
-            window#waybar #workspaces button, window#waybar #workspaces button {
+            window#waybar #workspaces {
+                margin: 0;
+            }
+
+            window#waybar #workspaces button {
                 border: 0;
+                margin: 10px 5px;
             }
 
             window#waybar #workspaces button.focused {
