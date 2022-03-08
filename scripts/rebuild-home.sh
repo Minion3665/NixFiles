@@ -2,9 +2,10 @@
 
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 
+git add .
+
 if [[ $(git diff --stat HEAD) != '' ]]; then
     read -ep "What did you change?: " changes
-    git add .
     /usr/bin/env git commit -am "$changes"
 fi
 
