@@ -1,5 +1,3 @@
 { pkgs, ... }: {
-    home.packages = with pkgs; [
-        dconf
-    ];
+    programs.dconf.enable = true;
 }
