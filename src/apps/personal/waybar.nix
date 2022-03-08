@@ -73,7 +73,7 @@
 
             window#waybar #workspaces button, window#waybar #workspaces button {
                 border: 0;
-                background: alpha(@theme_base_color, 0.3);
+                # background: alpha(@theme_base_color, 0.3);
             }
 
             window#waybar #workspaces button.focused {
