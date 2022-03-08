@@ -34,6 +34,7 @@
                 border-radius: 5px;
                 margin: 10px 5px;
                 transition: all 0.2s ease-in-out;
+                transition: background 0s;
             }
 
             window#waybar * * *:first-child * {
@@ -51,10 +52,12 @@
 
             window#waybar.solo,window#waybar.empty {
                 background: alpha(@theme_base_color, 0.6);
+                transition: background 0.2s ease-in-out;
             }
 
             window#waybar.solo *,window#waybar.empty * {
                 background: rgba(0, 0, 0, 0);
+                transition: background 0s;
             }
 
             #window {
@@ -71,7 +74,7 @@
                 background: alpha(@theme_base_color, 1);
             }
 
-            window#waybar #workspaces button {
+            window#waybar.solo #workspaces button, window#waybar.empty #workspaces button {
                 border: 0;
                 background: alpha(@theme_base_color, 0.6);
             }
