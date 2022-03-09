@@ -79,6 +79,7 @@
             window#waybar #workspaces button {
                 border: 0;
                 margin: 0;
+                padding: 5px;
             }
 
             window#waybar #workspaces button.focused {
