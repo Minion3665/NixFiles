@@ -318,6 +318,15 @@
     clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; };
   };
 
+  environment.etc = {
+    "pam.d/swaylock" = {
+      mode = "0777";
+      text = ''
+        auth include login
+      '';
+    };
+  };
+
   nixpkgs.overlays = [
     (self: super: {
       polkit = super.polkit.overrideAttrs (oldAttrs: {
