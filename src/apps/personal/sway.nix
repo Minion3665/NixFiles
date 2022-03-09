@@ -58,6 +58,9 @@
                     resolution = "1920x1080";
                     position = "0,1522";
                 };
+                "*" = {
+                    bg = "./sway/background.png fill"
+                };
             };
             right = "l";
             seat = {
