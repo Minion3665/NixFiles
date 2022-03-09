@@ -320,7 +320,7 @@
 
   environment.etc = {
     "pam.d/swaylock" = {
-      mode = "0777";
+      mode = "0644";
       text = ''
         auth include login
       '';
