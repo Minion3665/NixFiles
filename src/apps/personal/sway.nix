@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ self, pkgs, lib, ... }: {
     wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
@@ -59,7 +59,7 @@
                     position = "0,1522";
                 };
                 "*" = {
-                    bg = "./sway/background.png fill";
+                    bg = "${self}/background.png fill";
                 };
             };
             right = "l";
