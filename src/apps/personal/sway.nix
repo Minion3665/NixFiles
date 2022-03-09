@@ -59,7 +59,7 @@
                     position = "0,1522";
                 };
                 "*" = {
-                    bg = "./sway/background.png fill"
+                    bg = "./sway/background.png fill";
                 };
             };
             right = "l";
