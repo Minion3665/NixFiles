@@ -93,6 +93,12 @@
     };
   };
 
+  systemd.user.services.xdg-desktop-portal = {
+    unitConfig = {
+      After = "graphical-session.target";
+    };
+  };
+
   # Configure keymap in X11
   services.xserver.layout = "gb";
   # services.xserver.xkbOptions = "eurosign:e";
