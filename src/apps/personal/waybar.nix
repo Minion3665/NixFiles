@@ -62,6 +62,10 @@
                 min-width: 50em;
             }
 
+            window#waybar * * * #tray {
+                padding: 5px;
+            }
+
             window#waybar * * * #tray menu {
                 background: alpha(@theme_base_color, 0.8);
                 color: @theme_text_color;
