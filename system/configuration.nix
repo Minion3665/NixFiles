@@ -237,7 +237,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.minion = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "kvm" "docker" "containerd" "dialout" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
@@ -306,6 +306,8 @@
   services.tlp.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.onBoot = "ignore";
 
   hardware.bluetooth.enable = true;
 
