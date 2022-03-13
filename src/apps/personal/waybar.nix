@@ -62,6 +62,10 @@
                 min-width: 50em;
             }
 
+            window#waybar * * * #tray * {
+                padding: 0;
+            }
+
             window#waybar * * * #tray {
                 padding: 5px;
             }
