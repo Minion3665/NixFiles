@@ -66,6 +66,23 @@
                 padding: 0;
             }
 
+            window#waybar * * * #tray menu *:first-child {
+                margin-top: 5px;
+            }            
+
+            window#waybar * * * #tray menu *:last-child {
+                margin-bottom: 5px;
+            }
+
+            window#waybar * * * #tray menu * {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            window#waybar * * * #tray menu * * {
+                margin: 5px;
+            }
+
             window#waybar * * * #tray {
                 padding: 5px;
             }
