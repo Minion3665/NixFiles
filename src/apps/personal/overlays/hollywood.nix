@@ -8,11 +8,11 @@ final: prev: let
       sha256 = "4a0e4d499bd00da76f17c35518dee56c5eecd6c9a582f26bd52d119505e3f61a";
     };
 
-    buildInputs = [ makeWrapper ];
+    buildInputs = [ final.makeWrapper ];
 
     patchPhase = ''
       substituteInPlace bin/hollywood \
-        --replace /bin/bash ${bash}/bin/bash
+        --replace /bin/bash ${final.bash}/bin/bash
     '';
 
     installPhase = ''
