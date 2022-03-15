@@ -2,7 +2,7 @@ final: prev: let
   hollywood = final.stdenv.mkDerivation {
     name = "hollywood-1.7";
 
-    src = fetchgit {
+    src = final.fetchgit {
       url = https://github.com/dustinkirkland/hollywood.git;
       rev = "58e1e15e6f02cb05c2cad8163c27dabc98e3f19f";
       sha256 = "4a0e4d499bd00da76f17c35518dee56c5eecd6c9a582f26bd52d119505e3f61a";
