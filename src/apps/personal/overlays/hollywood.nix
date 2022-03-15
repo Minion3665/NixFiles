@@ -37,7 +37,7 @@ final: prev: let
       wrapProgram $out/bin/hollywood \
         --suffix-each PATH : "${final.apg}/bin ${final.bmon}/bin ${final.byobu}/bin ${final.ccze}/bin ${final.cmatrix}/bin ${final.htop}/bin ${final.mplayer}/bin ${final.openssh}/bin ${final.tmux}/bin ${final.tree}/bin"
     '';
-  }
+  };
 in {
   hollywood = hollywood;
 }
