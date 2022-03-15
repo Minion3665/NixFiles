@@ -151,7 +151,7 @@
     '';
 
     systemd.user.services.avizo = {
-        Install.WantedBy = "graphical-session.target";
+        Install.WantedBy = [ "graphical-session.target" ];
         Service = {
             ExecReload = "kill -SIGUSR2 \$MAINPID";
             ExecStart = "${pkgs.avizo}/bin/avizo-service";
