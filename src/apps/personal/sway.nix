@@ -31,7 +31,7 @@
                 };
             };
             keybindings = lib.mkOptionDefault {
-                "Mod4+l" = "/usr/bin/env swaylock -c 000000";
+                "Mod4+l" = "exec /usr/bin/env swaylock -c 000000";
             };
             keycodebindings = {};
             left = "h";
