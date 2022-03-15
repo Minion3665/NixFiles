@@ -305,10 +305,6 @@
   services.i2p.enable = true;
   services.tlp.enable = true;
 
-  services.udev.extraRules = ''
-      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="plugdev"
-  '';
-
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
   virtualisation.libvirtd.enable = true;
