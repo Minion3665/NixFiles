@@ -1,5 +1,5 @@
 final: prev: let
-  hollywood = stdenv.mkDerivation {
+  hollywood = final.stdenv.mkDerivation {
     name = "hollywood-1.7";
 
     src = fetchgit {
