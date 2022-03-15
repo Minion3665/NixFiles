@@ -3,7 +3,7 @@
         enable = true;
         wrapperFeatures.gtk = true;
 
-        config = {
+        config = rec {
             assigns = {};
             bars = [];
             colors = {};
@@ -31,7 +31,13 @@
                 };
             };
             keybindings = lib.mkOptionDefault {
-                "Mod4+l" = "exec /usr/bin/env swaylock -c 000000";
+                "${modifier}+l" = "exec /usr/bin/env swaylock -c 000000";
+                "XF86AudioRaiseVolume" = "exec volumectl -u up";
+                "XF86AudioLowerVolume" = "exec volumectl -u down";
+                "XF86AudioMute" = "exec volumectl toggle-mute";
+                "XF86AudioMicMute" = "exec volumectl -m toggle-mute";
+                "XF86MonBrightnessUp" = "exec lightctl up";
+                "XF86MonBrightnessDown" = "exec lightctl down";
             };
             keycodebindings = {};
             left = "h";
@@ -133,6 +139,9 @@
         swaylock
         swayidle
         wl-clipboard
+        avizo
+        pamixer
+        brightnessctl
     ];
 
     programs.zsh.profileExtra = ''
@@ -140,4 +149,21 @@
             exec systemd-cat -t sway sway
         fi
     '';
+
+    systemd.user.services.avizo = {
+        Install.WantedBy = "graphical-session.target";
+        Service = {
+            ExecReload = "kill -SIGUSR2 \$MAINPID";
+            ExecStart = "${pkgs.avizo}/bin/avizo-service";
+            KillMode = "mixed";
+            Restart = "on-failure";
+        };
+        Unit = {
+            After = "graphical-session.target";
+            Description = "Notification daemon to show volume & brightness changes";
+            Documentation = "N/A (src/apps/personal/sway.nix)";
+            PartOf= "graphical-session.target";
+        };
+    };
 }
+
