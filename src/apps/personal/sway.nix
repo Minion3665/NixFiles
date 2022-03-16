@@ -29,6 +29,9 @@
                 "type:keyboard" = {
                     xkb_layout = "gb";
                 };
+                "type:tablet_pad" = {
+                    map_to_output = "eDP-1";
+                };
             };
             keybindings = lib.mkOptionDefault {
                 "${modifier}+l" = "exec /usr/bin/env swaylock -c 000000";
