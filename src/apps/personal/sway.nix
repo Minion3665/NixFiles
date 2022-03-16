@@ -29,7 +29,7 @@
                 "type:keyboard" = {
                     xkb_layout = "gb";
                 };
-                "type:tablet_pad" = {
+                "type:tablet_tool" = {
                     map_to_output = "eDP-1";
                 };
             };
