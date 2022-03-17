@@ -10,5 +10,6 @@ in {
     name = "hubfs";
     inherit src;
     vendorSha256 = "sha256-Fpa+wanlMIqxkEZ3JQdCT4ixuNBj7AquG2+wLuO5TQU=";
+    runVend = true;
   };
 }
