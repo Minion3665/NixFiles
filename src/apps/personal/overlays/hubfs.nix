@@ -10,7 +10,7 @@ final: prev: let
 in {
   hubfs = final.stdenv.mkDerivation {
     name = "hubfs";
-    inherit src, version;
+    inherit src version;
     rev = version;
 
     buildInputs = with final; [
