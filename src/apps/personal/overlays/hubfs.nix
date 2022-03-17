@@ -7,5 +7,5 @@ final: prev: let
 in {
   hubfs = buildGoModule {
     inherit src;
-  }
+  };
 }
