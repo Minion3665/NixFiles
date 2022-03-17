@@ -7,5 +7,6 @@ final: prev: let
 in {
   hubfs = final.buildGoModule {
     inherit src;
+    vendorSha256 = null;
   };
 }
