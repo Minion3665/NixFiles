@@ -20,6 +20,10 @@ in {
         cmake
     ];
 
+    configurePhase = ''
+      cmake .
+    '';
+
     buildPhase = ''
       make
     '';
