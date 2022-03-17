@@ -17,12 +17,8 @@ in {
         fuse
         fuse-common
         go
-        cmake
+        gnumake
     ];
-
-    configurePhase = ''
-      cmake .
-    '';
 
     buildPhase = ''
       make
