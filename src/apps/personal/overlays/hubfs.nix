@@ -9,7 +9,7 @@ in {
   hubfs = final.buildGoModule {
     name = "hubfs";
     buildInputs = with final; [
-        fuse3
+        fuse
     ];
     inherit src;
     vendorSha256 = "sha256-Fpa+wanlMIqxkEZ3JQdCT4ixuNBj7AquG2+wLuO5TQU=";
