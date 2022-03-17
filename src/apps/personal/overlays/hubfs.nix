@@ -11,6 +11,7 @@ in {
     buildInputs = with final; [
         fuse
     ];
+    checkPhase = ":"; # Bit of a hack here; we need to disable tests as we can't get FUSE inside the build derivation to test the package
     inherit src;
     vendorSha256 = "sha256-Fpa+wanlMIqxkEZ3JQdCT4ixuNBj7AquG2+wLuO5TQU=";
     runVend = true;
