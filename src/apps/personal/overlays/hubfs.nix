@@ -6,6 +6,7 @@ final: prev: let
   } + "/src";
 in {
   hubfs = final.buildGoModule {
+    name = "hubfs";
     inherit src;
     vendorSha256 = null;
   };
