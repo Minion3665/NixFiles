@@ -5,7 +5,7 @@ final: prev: let
     rev = "1ba013d3fe54de01c52bd74d98037fe4c0029d6e";
   } + "/src";
 in {
-  hubfs = buildGoModule {
+  hubfs = final.buildGoModule {
     inherit src;
   };
 }
