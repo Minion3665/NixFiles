@@ -33,9 +33,9 @@ in {
     ];
 
     postInstall = ''
-      wrapProgram $out/bin/gocryptfs \
+      wrapProgram $out/bin/hubfs \
         --suffix PATH : ${final.lib.makeBinPath [ final.fuse final.fuse3 ]}
-      ln -s $out/bin/gocryptfs $out/bin/mount.fuse.gocryptfs
+      ln -s $out/bin/hubfs $out/bin/mount.fuse.hubfs
     '';
 
     meta = with final.lib; {
