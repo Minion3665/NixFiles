@@ -1,5 +1,5 @@
 final: prev:  {
-  lib = prev.lib // {
+  lib = prev.lib.recursiveUpdate prev.lib {
     maintainers.minion3665 = {
       email = "skyler3665@gmail.com";
       github = "minion3665";
