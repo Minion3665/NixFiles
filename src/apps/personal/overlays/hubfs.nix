@@ -17,6 +17,7 @@ in {
         fuse3
         fuse
         fuse-common
+        makeWrapper
     ];
 
     checkPhase = ":"; # Bit of a hack here; we need to disable tests as we can't get FUSE inside the build derivation to test the package
