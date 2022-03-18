@@ -6,5 +6,5 @@ final: prev:  {
       githubId = 34243578;
       name = "Skyler Grey";
     };
-  }
+  };
 }
