@@ -1,4 +1,4 @@
-{ pkgs, lib, stdenv, unzip, fetchurl, makeDesktopItem, buildFHSUserEnv, alsaLib
+{ pkgs, lib, stdenv, unzip, fetchurl, makeDesktopItem, buildFHSUserEnv 
 # Specify any font packages to include
 # e.g. figma.override { fonts = [ noto-fonts fira-code ]; }
 , fonts ? [ ]
@@ -64,7 +64,7 @@ let
   };
   figma-fhs = buildFHSUserEnv {
     name = "figma-fhs";
-    targetPkgs = pkgs: [
+    targetPkgs = pkgs: with pkgs; [
       figma-exec
       alsaLib
       at_spi2_atk
