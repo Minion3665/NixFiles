@@ -1,4 +1,4 @@
-{ pkgs, lib, stdenv, unzip, fetchurl
+{ pkgs, lib, stdenv, unzip, fetchurl, makeDesktopItem
 # Specify any font packages to include
 # e.g. figma.override { fonts = [ noto-fonts fira-code ]; }
 , fonts ? [ ]
