@@ -27,7 +27,6 @@ discord
 gcc
 gnumake
 helvum
-home-manager-path
 libfprint
 libtool
 pulsemixer
