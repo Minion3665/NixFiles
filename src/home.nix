@@ -2,9 +2,7 @@
 , pcre, oniguruma, gnulib, tre, glibc, sqlite, openssl, expat
 , autoreconfHook, gnum4
 , postgresql, cyrus_sasl
-, fetchFromGitHub, which, writeText
-, pkgs
-, lib, ... }:
+, fetchFromGitHub, which, writeText, ... }:
 let
     variables = import ./common/variables.nix;
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
