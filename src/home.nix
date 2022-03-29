@@ -13,7 +13,7 @@ in {
             let 
                 callPackage = pkgs.newScope self;
             in map (f: {
-                name = elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1; 
+                name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1; 
                 value = callPackage (import f) { };
             }) packages
         )))
