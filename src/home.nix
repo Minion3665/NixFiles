@@ -9,7 +9,7 @@ in {
     imports = personalPackages ++ personalScripts;
 
     nixpkgs.overlays = map (f: import f) overlays ++ [
-        (super: (self: listToAttrs (
+        (super: (self: builtins.listToAttrs (
             let 
                 callPackage = pkgs.newScope self;
             in map (f: {
