@@ -9,14 +9,14 @@ in {
     imports = personalPackages ++ personalScripts;
 
     nixpkgs.overlays = map (f: import f) overlays ++ [
-        super: self: listToAttrs (
+        (super: (self: listToAttrs (
             let 
                 callPackage = pkgs.newScope self;
             in map (f: {
                 name = (match "(.*)\.nix" f)[0]; 
                 value = callPackage (import f) { };
             }) packages
-        )
+        )))
     ];
 
     home.packages = with pkgs; [  # New apps should be on new lines
