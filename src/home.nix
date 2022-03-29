@@ -21,7 +21,23 @@ in {
         anytype
         minecraft
         nodejs-17_x
-
+binutils
+cmake
+discord
+gcc
+gnumake
+helvum
+home-manager-path
+libfprint
+libtool
+pulsemixer
+spotifyd
+steam
+swaybg
+teams
+xdg-desktop-portal
+xdg-desktop-portal-wlr
+zoom
         git-crypt
         keepassxc
         grim slurp
