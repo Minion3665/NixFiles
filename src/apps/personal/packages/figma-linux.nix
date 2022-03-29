@@ -89,7 +89,7 @@ let
       ffmpeg
       libdrm
       libGL
-      nss_3_53
+      nss
       nspr
       udev
       xorg.libXdamage
