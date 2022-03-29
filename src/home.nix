@@ -12,7 +12,7 @@ in {
         (super: (self: builtins.listToAttrs (
             map (f: {
                 name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1; 
-                value = import f args // { inherit pkgs, lib; };
+                value = import f args // { inherit pkgs lib; };
             }) packages
         )))
     ];
