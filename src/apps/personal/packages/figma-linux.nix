@@ -1,4 +1,4 @@
-{ pkgs, lib, stdenv, unzip
+{ pkgs, lib, stdenv, unzip, fetchurl
 # Specify any font packages to include
 # e.g. figma.override { fonts = [ noto-fonts fira-code ]; }
 , fonts ? [ ]
