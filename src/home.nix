@@ -1,4 +1,4 @@
-args@{ pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
     variables = import ./common/variables.nix;
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
@@ -9,10 +9,10 @@ in {
     imports = personalPackages ++ personalScripts;
 
     nixpkgs.overlays = map (f: import f) overlays ++ [
-        (super: (self: builtins.listToAttrs (
+        (self: (super: builtins.listToAttrs (
             map (f: {
                 name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1; 
-                value = import f args // { inherit pkgs lib; };
+                value = super.callPackageWith (self) (import f);
             }) packages
         )))
     ];
