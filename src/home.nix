@@ -1,8 +1,4 @@
-{ pkgs, lib, fetchurl, stdenv, lua, unzip, pkg-config
-, pcre, oniguruma, gnulib, tre, glibc, sqlite, openssl, expat
-, autoreconfHook, gnum4
-, postgresql, cyrus_sasl
-, fetchFromGitHub, which, writeText, ... }:
+args@{ pkgs, lib, ... }:
 let
     variables = import ./common/variables.nix;
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
@@ -14,11 +10,9 @@ in {
 
     nixpkgs.overlays = map (f: import f) overlays ++ [
         (super: (self: builtins.listToAttrs (
-            let 
-                callPackage = pkgs.newScope self;
-            in map (f: {
+            map (f: {
                 name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1; 
-                value = callPackage (import f) { };
+                value = import f args // { inherit pkgs, lib; };
             }) packages
         )))
     ];
