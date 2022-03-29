@@ -4,10 +4,20 @@ let
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
     personalScripts = import ./utils/nixFilesIn.nix lib ./scripts/personal;
     overlays = import ./utils/nixFilesIn.nix lib ./apps/personal/overlays;
+    packages = import ./utils/nixFilesIn.nix lib ./apps/personal/packages;
 in {
     imports = personalPackages ++ personalScripts;
 
-    nixpkgs.overlays = map (f: import f) overlays;
+    nixpkgs.overlays = map (f: import f) overlays ++ [
+        super: self: listToAttrs (
+            let 
+                callPackage = pkgs.newScope self;
+            in map (f: {
+                name = (match "(.*)\.nix" f)[0]; 
+                value = callPackage (import f) { };
+            }) packages
+        )
+    ];
 
     home.packages = with pkgs; [  # New apps should be on new lines
         anytype
