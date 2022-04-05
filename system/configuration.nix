@@ -76,7 +76,9 @@
     ];
   };*/
 
-  programs.qt5ct.enable = true;
+  programs.qt5ct = {
+    enable = true;
+  };
 #  programs.waybar.enable = false; # true;
 
   # Get screensharing to work
@@ -266,6 +268,7 @@
     gtk_engines
     gsettings-desktop-schemas
     lxappearance
+    libsForQt5.qt5.qtwayland
   ] ++ (import ./containerd/systemPackages.nix pkgs).systemPackages;
 
 #  environment.systemPackages = [
