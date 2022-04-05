@@ -230,6 +230,8 @@
   hardware.openrazer.enable = true;
   hardware.openrazer.users = [ "minion" ];
 
+  hardware.steam-hardware.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
