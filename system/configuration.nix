@@ -246,7 +246,7 @@
     shell = pkgs.zsh;
   };
 
-  pkgs.zsh.enable = true;
+  packages.zsh.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
