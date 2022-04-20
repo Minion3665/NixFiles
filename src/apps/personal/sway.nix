@@ -63,11 +63,13 @@
             output = {
                 HDMI-A-2 = {
                     resolution = "3840x2160";
-                    position = "1920,0";
+                    #position = "1920,0";
+                    position = "0,0";
                 };
                 eDP-1 = {
                     resolution = "1920x1080";
-                    position = "0,1522";
+                    #position = "0,1522";
+                    position = "0,2160";
                 };
                 "*" = {
                     bg = "${./sway/background.png} fill";
