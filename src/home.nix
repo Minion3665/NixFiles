@@ -23,7 +23,6 @@ in {
         nodejs-17_x
 binutils
 cmake
-discord
 gcc
 gnumake
 helvum
