@@ -1,5 +1,5 @@
-{ pkgs, ... }: pkgs.appimageTools.wrapType2 {
-  name = "patchwork";
+{ pkgs, ... }: pkgs.appimageTools.wrapType1 {
+  name = "OneShot";
   src = ./oneshot-game/OneShot.AppImage;
-#  extraPkgs = pkgs: with pkgs; [ ];
+  extraPkgs = pkgs: with pkgs; [ ];
 }
