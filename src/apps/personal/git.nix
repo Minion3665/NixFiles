@@ -19,6 +19,7 @@
             color.ui = "auto";
             core.autocrlf = "input";
             pull.rebase = false;
+            credential.helper = "store";
         };
     };
 }

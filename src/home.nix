@@ -21,21 +21,21 @@ in {
         anytype
         minecraft
         nodejs-17_x
-binutils
-cmake
-gcc
-gnumake
-helvum
-libfprint
-libtool
-pulsemixer
-spotifyd
-steam
-swaybg
-teams
-xdg-desktop-portal
-xdg-desktop-portal-wlr
-zoom
+	binutils
+	cmake
+	gcc
+	gnumake
+	helvum
+	libfprint
+	libtool
+	pulsemixer
+	spotifyd
+	steam
+	swaybg
+	teams
+	xdg-desktop-portal
+	xdg-desktop-portal-wlr
+	zoom
         git-crypt
         keepassxc
         grim slurp
