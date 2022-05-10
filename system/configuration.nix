@@ -278,6 +278,7 @@
 #  ];
 
   services.mongodb = {
+    package = pkgs.mongodb-5_0;
     enable = true;
     dbpath = "/tmp/mongodb";
   };
