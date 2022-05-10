@@ -114,6 +114,7 @@ in
     "steam"
     "steam-original"
     "steam-runtime"
+    "mongodb"
   ];
 
   programs.steam.enable = true;
