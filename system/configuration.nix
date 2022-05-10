@@ -280,7 +280,7 @@ in
 #  ];
 
   services.mongodb = {
-    package = unstable-pkgs.mongodb-4_4;
+    package = pkgs.mongodb-4_2;
     enable = true;
     dbpath = "/tmp/mongodb";
   };
