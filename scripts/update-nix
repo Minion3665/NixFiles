@@ -2,5 +2,5 @@
 
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 
-sudo nixos-rebuild switch --flake .# $1
+sudo nixos-rebuild switch --impure --flake .# $1
 scripts/commit system
