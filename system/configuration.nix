@@ -277,6 +277,11 @@
 #    import /scripts/jetbrains.rider.nix
 #  ];
 
+  services.mongodb = {
+    enable = true;
+    dbpath = "/tmp/mongodb";
+  };
+
   fonts.fonts = with pkgs; [
     nerdfonts
     noto-fonts
