@@ -274,6 +274,9 @@ in
     gsettings-desktop-schemas
     lxappearance
     libsForQt5.qt5.qtwayland
+    lyx
+    wlogout
+    wob
   ] ++ (import ./containerd/systemPackages.nix pkgs).systemPackages;
 
 #  environment.systemPackages = [
