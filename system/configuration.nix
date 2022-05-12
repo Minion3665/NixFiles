@@ -31,6 +31,8 @@ in
   # Enable emulated systems
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
 
+  boot.resumeDevice = "/dev/nvme0n1p5";
+
   # Enable apparmor
   security.apparmor.enable = true;
   security.apparmor.killUnconfinedConfinables = true;
