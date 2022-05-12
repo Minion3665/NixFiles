@@ -277,6 +277,7 @@ in
     lyx
     wlogout
     wob
+    wlsunset
   ] ++ (import ./containerd/systemPackages.nix pkgs).systemPackages;
 
 #  environment.systemPackages = [
