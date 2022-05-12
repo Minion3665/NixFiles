@@ -34,7 +34,7 @@
                 };
             };
             keybindings = lib.mkOptionDefault {
-                "${modifier}+l" = "exec /usr/bin/env swaylock -c 000000";
+                "${modifier}+l" = "exec /usr/bin/env wlogout -c 5 -r 5 -p layer-shell -l ${./sway/wlogout-layout.layout}"; # "exec /usr/bin/env swaylock -c 000000";
                 "XF86AudioRaiseVolume" = "exec volumectl -u up";
                 "XF86AudioLowerVolume" = "exec volumectl -u down";
                 "XF86AudioMute" = "exec volumectl toggle-mute";
