@@ -276,7 +276,7 @@ in
     gsettings-desktop-schemas
     lxappearance
     libsForQt5.qt5.qtwayland
-    lyx
+    texworks
     wlogout
     wob
     wlsunset
