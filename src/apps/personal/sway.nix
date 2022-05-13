@@ -81,7 +81,9 @@
                     hide_cursor = "when-typing enable";
                 };
             };
-            startup = [];
+            startup = [
+                { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
+            ];
             terminal = "alacritty";
             up = "k";
             window = {};
