@@ -41,6 +41,7 @@
                 "XF86AudioMicMute" = "exec volumectl -m toggle-mute";
                 "XF86MonBrightnessUp" = "exec lightctl up";
                 "XF86MonBrightnessDown" = "exec lightctl down";
+                "${modifier}+Shift+s" = "grim -g \"$(slurp)\"";
             };
             keycodebindings = {};
             left = "h";
