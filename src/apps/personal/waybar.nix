@@ -135,13 +135,12 @@
                 min-width: 3em;
             }
 
-            window#waybar * .modules-right #clock * {
+            window#waybar * .modules-right #clock {
                 margin-right: 10px;
             }
 
-            window#waybar * .modules-right #tray * {
+            window#waybar * .modules-right #tray {
                 margin-left: 0px;
-                padding-left: 10px
             }
         '';
 
