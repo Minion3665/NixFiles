@@ -2,7 +2,7 @@
     programs.git = {
         enable = true;
 
-        userName = "Skyler Turner";
+        userName = "Skyler Grey";
         userEmail = "skyler@clicksminuteper.net";
 
         signing = {
