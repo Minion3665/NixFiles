@@ -58,6 +58,8 @@ in
     # displayManager.sddm.enable = true;
   };
 
+  services.zeronet.enable = true;
+
   services = {
     syncthing = {
         enable = true;
@@ -117,6 +119,8 @@ in
     "steam-original"
     "steam-runtime"
     "mongodb"
+    "nvidia-x11"
+    "nvidia-settings"
   ];
 
   programs.steam.enable = true;
