@@ -274,7 +274,8 @@ in {
     wlogout
     wob
     wlsunset
-  ] ++ (import ./containerd/systemPackages.nix pkgs).systemPackages;
+    cni-plugins
+  ];
 
 #  environment.systemPackages = [
 #    import /scripts/jetbrains.rider.nix
