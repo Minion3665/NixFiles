@@ -21,12 +21,14 @@
 
         variables = import ./src/common/variables.nix;
     in {
-        systemConfiguration = pkgs.lib.nixosSystem {
-            inherit system;
+        nixosConfigurations = {
+            default = pkgs.lib.nixosSystem {
+                inherit system;
 
-            modules = [
-                src/system.nix
-            ];
+                modules = [
+                    src/system.nix
+                ];
+            };
         };
 
         homeManagerConfigurations = {
