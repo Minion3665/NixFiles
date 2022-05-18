@@ -22,7 +22,7 @@
         variables = import ./src/common/variables.nix;
     in {
         nixosConfigurations = {
-            default = pkgs.lib.nixosSystem {
+            default = nixpkgs.lib.nixosSystem {
                 inherit system;
 
                 modules = [
