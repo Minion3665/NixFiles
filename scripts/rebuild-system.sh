@@ -10,5 +10,3 @@ if [[ $(git diff --stat HEAD) != '' ]]; then
 fi
 
 sudo nixos-rebuild switch --impure --flake .#default $1
-./result/activate
-unlink ./result

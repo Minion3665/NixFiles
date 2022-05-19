@@ -1,8 +1,8 @@
 { pkgs, lib, modulesPath, config, ... }:
 let
-    nixScripts = import ./utils/nixFilesIn.nix lib ./nix/system;
+    #nixScripts = import ./utils/nixFilesIn.nix lib ./nix/system;
 in {
-    imports = nixScripts ++ [ (modulesPath + "/installer/scan/not-detected.nix") ];
+    #imports = nixScripts ++ [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
 
   # Prepare nix flakes
@@ -348,17 +348,17 @@ in {
     };
   };
 
-  nixpkgs.overlays = [
-    (self: super: {
-      polkit = super.polkit.overrideAttrs (oldAttrs: {
-        patches = oldAttrs.patches ++ [
-          (super.fetchpatch {
-            url = "https://gitlab.freedesktop.org/polkit/polkit/-/commit/716a273ce0af467968057f3e107156182bd290b0.patch";
-            sha256 = "sha256-hOJJhUmxXm87W1ZU9Y1NJ8GCyKvPjbIVtCHlhRGlN8k=";
-          })];
-      });
-    })
-  ];
+#  nixpkgs.overlays = [
+#    (self: super: {
+#      polkit = super.polkit.overrideAttrs (oldAttrs: {
+#        patches = oldAttrs.patches ++ [
+#          (super.fetchpatch {
+#            url = "https://gitlab.freedesktop.org/polkit/polkit/-/commit/716a273ce0af467968057f3e107156182bd290b0.patch";
+#            sha256 = "sha256-hOJJhUmxXm87W1ZU9Y1NJ8GCyKvPjbIVtCHlhRGlN8k=";
+#          })];
+#      });
+#    })
+#  ];
 
   xdg.mime.defaultApplications = {
     "text/html" = "chromium-browser.desktop";
