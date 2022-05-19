@@ -23,7 +23,7 @@
     in {
         nixosConfigurations = {
             default = nixpkgs.lib.nixosSystem {
-                inherit system;
+                inherit system, nixpkgs;
 
                 modules = [
                     src/system.nix
