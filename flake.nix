@@ -27,7 +27,7 @@
 
                 extraArgs = {
                   inherit nixpkgs;
-                }
+                };
 
                 modules = [
                     src/system.nix
