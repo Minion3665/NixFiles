@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  nix.registry.nixpkgs.flake = pkgs;
+{ nixpkgs, ... }: {
+  nix.registry.nixpkgs.flake = nixpkgs;
 }
