@@ -1,2 +1,3 @@
 .history/
 *.AppImage
+newrelic_agent.log
