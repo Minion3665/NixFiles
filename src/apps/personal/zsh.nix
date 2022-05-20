@@ -30,6 +30,8 @@
                     return 127;
                 fi
             }
+
+            ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=243';
         '';
         enableSyntaxHighlighting = true;
         enableAutosuggestions = true;
