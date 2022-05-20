@@ -366,8 +366,13 @@ in {
     };
   };
 
-#  nixpkgs.overlays = [
-#    (self: super: {
+  nixpkgs.overlays = [
+    (self: super: {
+       steam = super.steam.override {
+         extraPkgs = pkgs: with pkgs; [
+           cups
+         ];
+       };
 #      polkit = super.polkit.overrideAttrs (oldAttrs: {
 #        patches = oldAttrs.patches ++ [
 #          (super.fetchpatch {
@@ -375,8 +380,8 @@ in {
 #            sha256 = "sha256-hOJJhUmxXm87W1ZU9Y1NJ8GCyKvPjbIVtCHlhRGlN8k=";
 #          })];
 #      });
-#    })
-#  ];
+    })
+  ];
 
   xdg.mime.defaultApplications = {
     "text/html" = "chromium-browser.desktop";
