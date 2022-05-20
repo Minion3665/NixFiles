@@ -1,12 +1,12 @@
 {
     "label" : "lock",
-    "action" : "swaylock -c 000000",
+    "action" : "swaylock -c 000000 -i ./lockscreen.png",
     "text" : "Lock",
     "keybind" : "l"
 }
 {
     "label" : "hibernate",
-    "action" : "swaylock -c 000000 -f && systemctl hibernate",
+    "action" : "swaylock -c 000000 -i ./lockscreen.png -f && systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
@@ -24,7 +24,7 @@
 }
 {
     "label" : "suspend",
-    "action" : "swaylock -c 000000 -f && systemctl suspend",
+    "action" : "swaylock -c 000000 -i ./lockscreen.png -f && systemctl suspend",
     "text" : "Suspend",
     "keybind" : "u"
 }
