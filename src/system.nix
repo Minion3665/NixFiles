@@ -287,19 +287,35 @@ in {
     dbpath = "/tmp/mongodb";
   };
 
-  fonts.fonts = with pkgs; [
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts
-    dina-font
-    proggyfonts
-    roboto
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      nerdfonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      mplus-outline-fonts
+      dina-font
+      proggyfonts
+      roboto
+      roboto-mono
+      roboto-slab
+      twemoji-color-font
+      ubuntu_font_family
+    ];
+
+    enableDefaultFonts = true;
+
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Ubuntu" ];
+        sansSerif = [ "Roboto" "Ubuntu" ];
+        monospace = [ "Ubuntu" ];  
+      };
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
