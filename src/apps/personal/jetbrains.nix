@@ -1,8 +1,8 @@
 { pkgs, ... }: with pkgs; let 
   webstorm = [
     (jetbrains.webstorm.override { jdk = jdk11; })
-    nodejs-17_x
-    nodePackages.yarn
+#    nodejs-17_x (already installed in nodejs.nix)
+#    nodePackages.yarn (already installed in nodejs.nix)
   ];
 
   pycharm = [
