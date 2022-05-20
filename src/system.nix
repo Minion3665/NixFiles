@@ -310,9 +310,9 @@ in {
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Ubuntu" ];
-        sansSerif = [ "Roboto" "Ubuntu" ];
-        monospace = [ "Ubuntu" ];  
+        serif = [ "Twitter Color Emoji" "Fira Code Symbol" "Roboto Slab" ];
+        sansSerif = [ "Twitter Color Emoji" "Fira Code Symbol" "Roboto" "Ubuntu" ];
+        monospace = [ "Twitter Color Emoji" "Fira Code Symbol" "Roboto Mono" "Ubuntu Mono" ];
       };
     };
   };
