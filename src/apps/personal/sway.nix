@@ -85,7 +85,7 @@
             startup = [
                 { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
             ];
-            terminal = "alacritty";
+            terminal = "kitty";
             up = "k";
             window = {};
             workspaceAutoBackAndForth = true;

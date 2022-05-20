@@ -307,12 +307,14 @@ in {
     ];
 
     enableDefaultFonts = true;
+    fontDir.enable = true;
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Twitter Color Emoji" "Fira Code Symbol" "Roboto Slab" ];
-        sansSerif = [ "Twitter Color Emoji" "Fira Code Symbol" "Roboto" "Ubuntu" ];
-        monospace = [ "Twitter Color Emoji" "Fira Code Symbol" "Roboto Mono" "Ubuntu Mono" ];
+        serif = [ "Roboto Slab" ];
+        sansSerif = [ "Roboto" "Ubuntu" ];
+        monospace = [ "Roboto Mono" "Ubuntu Mono" ];
+        emoji = [ "Twitter Color Emoji" ];
       };
     };
   };
