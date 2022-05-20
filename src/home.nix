@@ -11,7 +11,7 @@ in {
     nixpkgs.overlays = map (f: import f) overlays ++ [
         (self: (super: builtins.listToAttrs (
             map (f: {
-                name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1; 
+                name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1;
                 value = super.lib.callPackageWith (self) (import f) {};
             }) packages
         )))
