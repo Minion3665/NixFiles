@@ -38,7 +38,7 @@
     }
   ];
   wlogoutJson = (builtins.toJSON wlogoutConfig);
-  wlogoutConfigFile = pkgs.writeText "wlogout-layout.layout" (builtins.substring 1 ((builtins.stringLength wlogoutJson) - 1) wlogoutJson);
+  wlogoutConfigFile = pkgs.writeText "wlogout-layout.layout" (builtins.substring 1 ((builtins.stringLength wlogoutJson) - 2) wlogoutJson);
 in {
     wayland.windowManager.sway = {
         enable = true;
