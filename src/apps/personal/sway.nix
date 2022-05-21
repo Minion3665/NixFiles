@@ -80,9 +80,10 @@ in {
                 "XF86AudioLowerVolume" = "exec volumectl -u down";
                 "XF86AudioMute" = "exec volumectl toggle-mute";
                 "XF86AudioMicMute" = "exec volumectl -m toggle-mute";
-                "XF86MonBrightnessUp" = "exec lightctl up";
-                "XF86MonBrightnessDown" = "exec lightctl down";
+                "XF86MonBrightnessUp" = "exec lightctl up -s 200";
+                "XF86MonBrightnessDown" = "exec lightctl down -s 200";
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
+                "${modifier}+g" = "sticky toggle";
             };
             keycodebindings = {};
             left = "h";
@@ -191,6 +192,9 @@ in {
         avizo
         pamixer
         brightnessctl
+        lightctl
+        light
+        bc
     ];
 
     programs.zsh.profileExtra = ''
