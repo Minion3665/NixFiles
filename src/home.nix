@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, nurpkgs, ... }:
 let
     variables = import ./common/variables.nix;
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
@@ -15,6 +15,7 @@ in {
                 value = super.lib.callPackageWith (self) (import f) {};
             }) packages
         )))
+        nurpkgs.overlay
     ];
 
     home.packages = with pkgs; [  # New apps should be on new lines

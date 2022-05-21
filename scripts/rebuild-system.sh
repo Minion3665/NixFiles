@@ -9,4 +9,4 @@ if [[ $(git diff --stat HEAD) != '' ]]; then
     /usr/bin/env git commit -am "$changes"
 fi
 
-sudo nixos-rebuild switch --impure --flake .#default $1
+sudo nixos-rebuild switch --flake .#default $1
