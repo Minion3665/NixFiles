@@ -192,7 +192,6 @@ in {
         avizo
         pamixer
         brightnessctl
-        lightctl
         light
         bc
     ];
