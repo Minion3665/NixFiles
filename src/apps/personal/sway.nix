@@ -37,7 +37,7 @@
       keybind = "r";
     }
   ];
-  wlogoutConfigFile = writeText "wlogout-layout.layout" (builtins.toJSON wlogoutConfig);
+  wlogoutConfigFile = pkgs.writeText "wlogout-layout.layout" (builtins.toJSON wlogoutConfig);
 in {
     wayland.windowManager.sway = {
         enable = true;
