@@ -1,4 +1,44 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }: let 
+  wlogoutConfig = [
+    {
+      label = "lock";
+      action = "swaylock -c 000000 -i ${./sway/lockscreen.png}";
+      text = "Lock";
+      keybind = "l";
+    }
+    {
+      label = "hibernate";
+      action = "swaylock -c 000000 -i ${./sway/lockscreen.png} -f && systemctl hibernate";
+      text = "Hibernate";
+      keybind = "h";
+    }
+    {
+      label = "logout";
+      action = "loginctl terminate-user $USER";
+      text = "Logout";
+      keybind = "e";
+    }
+    {
+      label = "shutdown";
+      action = "systemctl poweroff";
+      text = "Shutdown";
+      keybind = "s";
+    }
+    {
+      label = "suspend";
+      action = "swaylock -c 000000 -i ${./sway/lockscreen.png} -f && systemctl suspend";
+      text = "Suspend";
+      keybind = "u";
+    }
+    {
+      label = "reboot";
+      action = "systemctl reboot";
+      text = "Reboot";
+      keybind = "r";
+    }
+  ];
+  wlogoutConfigFile = writeText "wlogout-layout.layout" (builtins.toJSON wlogoutConfig);
+in {
     wayland.windowManager.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
@@ -34,7 +74,7 @@
                 };
             };
             keybindings = lib.mkOptionDefault {
-                "${modifier}+l" = "exec /usr/bin/env wlogout -c 5 -r 5 -p layer-shell -l ${./sway/wlogout-layout.layout}"; # "exec /usr/bin/env swaylock -c 000000";
+                "${modifier}+l" = "exec /usr/bin/env wlogout -c 5 -r 5 -p layer-shell -l ${wlogoutConfigFile}"; # "exec /usr/bin/env swaylock -c 000000";
                 "XF86AudioRaiseVolume" = "exec volumectl -u up";
                 "XF86AudioLowerVolume" = "exec volumectl -u down";
                 "XF86AudioMute" = "exec volumectl toggle-mute";
