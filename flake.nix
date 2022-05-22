@@ -38,7 +38,7 @@
         };
 
         homeConfigurations = {
-            "${username}" = home-manager.lib.homeManagerConfiguration rec {
+            "${variables.username}" = home-manager.lib.homeManagerConfiguration rec {
                 inherit system pkgs;
 
                 extraSpecialArgs = extraInputs;
