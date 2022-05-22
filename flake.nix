@@ -37,8 +37,8 @@
             };
         };
 
-        homeManagerConfigurations = {
-            minion = home-manager.lib.homeManagerConfiguration rec {
+        homeConfigurations = {
+            "${username}" = home-manager.lib.homeManagerConfiguration rec {
                 inherit system pkgs;
 
                 extraSpecialArgs = extraInputs;
