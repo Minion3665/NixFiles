@@ -3,10 +3,10 @@
         enable = true;
 
         userName = "Skyler Grey";
-        userEmail = "skyler@clicksminuteper.net";
+        userEmail = "skyler3665@gmail.com";
 
         signing = {
-            key = "24D31D3B1B986F33";
+            key = "D520 AC8D 7C96 9212 5B2B  BD3A 1AFD 1025 6B3C 714D";
             signByDefault = true;
             gpgPath = "gpg2";
         };
