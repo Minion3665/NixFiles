@@ -6,7 +6,7 @@
         userEmail = "skyler3665@gmail.com";
 
         signing = {
-            key = "D520 AC8D 7C96 9212 5B2B  BD3A 1AFD 1025 6B3C 714D";
+            key = "A773 0F0B 1D2C 7E65 DFCB  C536 8BE7 C115 369E 52A1";
             signByDefault = true;
             gpgPath = "gpg2";
         };
