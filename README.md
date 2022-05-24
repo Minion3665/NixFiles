@@ -1,4 +1,4 @@
-* Licensing
+#### Licensing
 Unless otherwise specified, all files in this repo while this message is in the readme were written or otherwise created by me, 
 Skyler Grey, and are released under [GNUAGPLv3](https://www.gnu.org/licenses/agpl-3.0.html). A full copy of this license may be 
 found at the provided URL or in [the license file](./LICENSE).
