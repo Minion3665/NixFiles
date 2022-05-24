@@ -12,7 +12,7 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = extraInputs@{ self, nixpkgs, home-manager, ... }:
+    outputs = extraInputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
         system = "x86_64-linux";  # TOOD: Add options for MacOS
 
