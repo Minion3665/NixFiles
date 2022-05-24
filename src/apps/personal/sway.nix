@@ -136,11 +136,12 @@ in {
             workspaceAutoBackAndForth = true;
             workspaceLayout = "default";
             workspaceOutputAssign = [];
-            extraConfig = ''
-                set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-                exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
-            '';
         };
+
+        extraConfig = ''
+        set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+        exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+        '';
 
         extraSessionCommands = ''
         export SDL_VIDEODRIVER=wayland
