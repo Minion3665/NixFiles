@@ -32,6 +32,7 @@
             }
 
             ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=243';
+            ZSH_HIGHLIGHT_STYLES[comment]='fg=243';
         '';
         enableSyntaxHighlighting = true;
         enableAutosuggestions = true;
