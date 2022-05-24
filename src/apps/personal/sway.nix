@@ -195,6 +195,7 @@ in {
         brightnessctl
         light
         bc
+        jq
     ];
 
     programs.zsh.profileExtra = ''
