@@ -34,3 +34,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+The src/apps/personal/overlays/electron-screenshare.nix file is also licensed under MIT, although this time from github user gytis-ivaskevicius.
+It was originally adapted from https://github.com/gytis-ivaskevicius/nixfiles/blob/5439c8f4d7ccaeed57150846b1ed8afa0b7063ed/overlays/default.nix
