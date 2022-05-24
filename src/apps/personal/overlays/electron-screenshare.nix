@@ -28,7 +28,7 @@ SOFTWARE.
 final: prev: {
   discord = final.makeDesktopItem {
     name = "Discord";
-    desktopName = "Discord new";
+    desktopName = "Discord";
     genericName = "All-in-one cross-platform voice and text chat for gamers";
     exec = "${final.chromium}/bin/chromium --app=\"https://discord.com/channels/@me\"";
     icon = "discord";
