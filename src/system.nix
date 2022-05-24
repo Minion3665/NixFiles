@@ -73,6 +73,8 @@ in {
     ];
   };*/
 
+  programs.light.enable = true; # Needs udev rules to properly work
+
   programs.qt5ct = {
     enable = true;
   };
