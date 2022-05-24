@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: let 
+{ pkgs, pkgs-unstable, lib, ... }: let 
   wlogoutConfig = [
     {
       label = "lock";
@@ -144,6 +144,7 @@ in {
         '';
 
         extraSessionCommands = ''
+        ${pkgs-unstable.swaynotificationcenter}/bin/swaync
         export SDL_VIDEODRIVER=wayland
         # needs qt5.qtwayland in systemPackages
         export QT_QPA_PLATFORM=wayland
