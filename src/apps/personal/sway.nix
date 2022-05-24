@@ -85,6 +85,8 @@ in {
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
                 "${modifier}+g" = "sticky toggle";
                 "${modifier}+minus" = "exec ${./sway/show-menu.sh}";
+                "Print" = "exec grim - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
+                "${modifier}+Print" = "exec ${./sway/toggle-backlight.sh}";
             };
             keycodebindings = {};
             left = "h";
