@@ -9,7 +9,7 @@ if [[ $(git diff --stat HEAD) != '' ]]; then
     /usr/bin/env git commit -am "$changes"
 fi
 
-nix build .#homeConfigurations.${USER}.activationPackage $1
+nix build .#homeConfigurations.${USER}.activationPackage $1 || exit 1
 
 nix profile list \
   | { grep 'home-manager-path$' || test $? = 1; } \
