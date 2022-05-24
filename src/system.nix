@@ -282,6 +282,8 @@ in {
 #    import /scripts/jetbrains.rider.nix
 #  ];
 
+  nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer --enable-gpu";
+
   services.mongodb = {
     package = pkgs.mongodb-4_2;
     enable = true;

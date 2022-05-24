@@ -129,6 +129,7 @@ in {
             };
             startup = [
                 { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
+                { command = "pkill swaync; ${pkgs-unstable.swaynotificationcenter}/bin/swaync"; always = true; }
             ];
             terminal = "kitty";
             up = "k";
@@ -144,7 +145,6 @@ in {
         '';
 
         extraSessionCommands = ''
-        ${pkgs-unstable.swaynotificationcenter}/bin/swaync
         export SDL_VIDEODRIVER=wayland
         # needs qt5.qtwayland in systemPackages
         export QT_QPA_PLATFORM=wayland
