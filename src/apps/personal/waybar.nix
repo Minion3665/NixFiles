@@ -7,7 +7,7 @@
 
                 modules-center = ["sway/window"];
 
-                modules-right = ["backlight" "pulseaudio" "network" "battery" "clock" "tray"];
+                modules-right = ["backlight" "pulseaudio" "network" "battery" "clock" "custom/notification" "tray"];
 
                 modules = {
                     battery.bat = "BAT0";
@@ -18,12 +18,32 @@
                         format = "{:%T}";
                         interval = 1;
                     };
+                    "custom/notification" = {
+                        tooltip = false;
+                        format = "{icon}";
+                        format-icons = {
+                            notification = "<span foreground='red'><sup></sup></span>";
+                            none = "";
+                            dnd-notification = "<span foreground='red'><sup></sup></span>";
+                            dnd-none = "";
+                        };
+                        "return-type" = "json";
+                        "exec-if" = "which swaync-client";
+                        "exec" = "swaync-client -swb";
+                        on-click = "swaync-client -t -sw";
+                        on-click-right = "swaync-client -d -sw";
+                        escape = true;
+                    };
                 };
             }
         ];
         style = ''
             window#waybar {
                 background: rgba(0, 0, 0, 0);
+            }
+
+            #custom-notification {
+                font-family: "NotoSansMono Nerd Font";
             }
 
             window#waybar * * * * {
@@ -135,7 +155,7 @@
                 min-width: 3em;
             }
 
-            window#waybar * .modules-right #clock {
+            window#waybar * .modules-right #custom-notification {
                 margin-right: 10px;
             }
 
