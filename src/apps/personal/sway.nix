@@ -76,12 +76,12 @@ in {
             };
             keybindings = lib.mkOptionDefault {
                 "${modifier}+l" = "exec /usr/bin/env wlogout -c 5 -r 5 -p layer-shell -l ${wlogoutConfigFile}"; # "exec /usr/bin/env swaylock -c 000000";
-                "XF86AudioRaiseVolume" = "exec volumectl raise";
-                "XF86AudioLowerVolume" = "exec volumectl lower";
-                "XF86AudioMute" = "exec volumectl mute";
-                "XF86AudioMicMute" = "exec volumectl --mic mute";
-                "XF86MonBrightnessUp" = "exec lightctl up -s 200";
-                "XF86MonBrightnessDown" = "exec lightctl down -s 200";
+                "XF86AudioRaiseVolume" = "exec pamixer -ui 5 && pamixer --get-volume > $WOBSOCK";
+                "XF86AudioLowerVolume" = "exec pamixer -ud 5 && pamixer --get-volume > $WOBSOCK";
+                "XF86AudioMute" = "exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK";
+                "XF86AudioMicMute" = "exec pamixer --toggle-mute --default-source && ( pamixer --get-mute --default-source && echo 0 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
+                "XF86MonBrightnessUp" = "exec light -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK";
+                "XF86MonBrightnessDown" = "exec light -U 5 && light -G | cut -d'.' -f1 > $WOBSOCK";
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
                 "${modifier}+g" = "sticky toggle";
                 "${modifier}+minus" = "exec ${./sway/show-menu.sh}";
@@ -136,6 +136,10 @@ in {
             workspaceAutoBackAndForth = true;
             workspaceLayout = "default";
             workspaceOutputAssign = [];
+            extraConfig = ''
+                set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+                exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+            '';
         };
 
         extraSessionCommands = ''
@@ -192,8 +196,6 @@ in {
         swaylock
         swayidle
         wl-clipboard
-        avizo
-        brightnessctl
         bc
         jq
         pulseaudio
