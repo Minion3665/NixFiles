@@ -38,7 +38,7 @@ final: prev: {
     mimeType="x-scheme-handler/discord";
   };
 
-  element-desktop = final.makeDesktopItem {
+  element-desktop-wayland = final.makeDesktopItem {
     name = "Element";
     desktopName = "Element";
     genericName = "Secure and independent communication, connected via Matrix";
