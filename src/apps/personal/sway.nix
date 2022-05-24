@@ -76,10 +76,10 @@ in {
             };
             keybindings = lib.mkOptionDefault {
                 "${modifier}+l" = "exec /usr/bin/env wlogout -c 5 -r 5 -p layer-shell -l ${wlogoutConfigFile}"; # "exec /usr/bin/env swaylock -c 000000";
-                "XF86AudioRaiseVolume" = "exec volumectl -u up";
-                "XF86AudioLowerVolume" = "exec volumectl -u down";
-                "XF86AudioMute" = "exec volumectl toggle-mute";
-                "XF86AudioMicMute" = "exec volumectl -m toggle-mute";
+                "XF86AudioRaiseVolume" = "exec volumectl raise";
+                "XF86AudioLowerVolume" = "exec volumectl lower";
+                "XF86AudioMute" = "exec volumectl mute";
+                "XF86AudioMicMute" = "exec volumectl --mic mute";
                 "XF86MonBrightnessUp" = "exec lightctl up -s 200";
                 "XF86MonBrightnessDown" = "exec lightctl down -s 200";
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
