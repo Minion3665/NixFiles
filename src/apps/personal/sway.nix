@@ -84,7 +84,7 @@ in {
                 "XF86MonBrightnessDown" = "exec lightctl down -s 200";
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
                 "${modifier}+g" = "sticky toggle";
-                "${modifier}+minus" = "exec swaymsg -t get_tree | jq -r '.nodes[].nodes[] | select(.name == \"__i3_scratch\").floating_nodes[] | ((.id | tostring) + \"\t\" + (.app_id // .window_properties.class) + \"\t\" + .name)' | rofi -dmenu | { read -r id name && swaymsg \"[con_id=$id]\" focus }";
+                "${modifier}+minus" = "exec ${./sway/show-menu.sh}";
             };
             keycodebindings = {};
             left = "h";
