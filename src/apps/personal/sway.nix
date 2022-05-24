@@ -193,10 +193,11 @@ in {
         swayidle
         wl-clipboard
         avizo
-        pamixer
         brightnessctl
         bc
         jq
+        pulseaudio
+        pamixer
     ];
 
     programs.zsh.profileExtra = ''
