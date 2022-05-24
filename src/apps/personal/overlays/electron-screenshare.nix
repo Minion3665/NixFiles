@@ -30,7 +30,7 @@ final: prev: {
     name = "Discord";
     desktopName = "Discord";
     genericName = "All-in-one cross-platform voice and text chat for gamers";
-    exec = "${final.chromium}/bin/chromium --app=\"https://discord.com/channels/@me\"";
+    exec = "${final.chromium}/bin/chromium --app=\"https://discord.com/channels/@me\" --incognito --disable-pinch --overscroll-history-navigation=0";
     icon = "discord";
     type = "Application";
     categories = "Network;InstantMessaging;";
@@ -42,7 +42,7 @@ final: prev: {
     name = "Element";
     desktopName = "Element";
     genericName = "Secure and independent communication, connected via Matrix";
-    exec = "${final.chromium}/bin/chromium --app=\"https://app.element.io/#/home\"";
+    exec = "${final.chromium}/bin/chromium --app=\"https://app.element.io/#/home\" --incognito --disable-pinch --overscroll-history-navigation=0";
     icon = "element";
     type = "Application";
     categories = "Network;InstantMessaging;";
