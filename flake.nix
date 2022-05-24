@@ -22,6 +22,12 @@
             config = { allowUnfree = true; };
         };
 
+        pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+
+            config = { allowUnfree = true; };
+        };
+
         variables = import ./src/common/variables.nix;
     in {
         nixosConfigurations = {
@@ -42,7 +48,7 @@
             "${variables.username}" = home-manager.lib.homeManagerConfiguration rec {
                 inherit system pkgs;
 
-                extraSpecialArgs = extraInputs;
+                extraSpecialArgs = extraInputs // { inherit pkgs-unstable; };
 
                 username = variables.username;
                 homeDirectory = "/home/${username}";

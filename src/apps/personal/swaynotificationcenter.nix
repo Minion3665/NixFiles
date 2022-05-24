@@ -1,5 +1,5 @@
-{ nixpkgs-unstable, ... }: {
-  home.packages = with nixpkgs-unstable; [
-    swaynotificationcenter 
+{ pkgs-unstable, ... }: {
+  home.packages = with pkgs-unstable; [
+    swaynotificationcenter
   ]; 
 }
