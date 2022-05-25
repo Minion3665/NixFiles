@@ -29,9 +29,9 @@ void main( void ) {
 	float g = 0.0;
 	float b = 0.0;
 
-	float sampleSqrt = 10.0;
+	float sampleSqrt = 3.0;
 
-	for (float x = 0.0; x <= sampleSqrt; x++) {
+	for (float x = 0.0; x < sampleSqrt; x++) {
 		for (float y = 0.0; y <= sampleSqrt; y++) {
 			vec3 color = color_for_position(
 				vec2(
