@@ -164,10 +164,10 @@
             }
         '';
 
-        systemd = {
-            enable = true;
-            # target = "sway-session.target";
-        };
+        # systemd = {
+        #    enable = true;  ## Now started in sway.nix
+        #    # target = "sway-session.target";
+        #};
     };
 
     systemd.user.targets.sway.Unit.Wants = [ "waybar.service" ];

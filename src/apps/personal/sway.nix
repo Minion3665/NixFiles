@@ -129,7 +129,7 @@ in {
             };
             startup = [
                 { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
-                { command = "pkill swaync; ${pkgs-unstable.swaynotificationcenter}/bin/swaync"; always = true; }
+                { command = "pkill swaync; pkill waybar; ${pkgs-unstable.swaynotificationcenter}/bin/swaync && waybar"; always = true; }
                 { command = "pkill glpaper; ${pkgs.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080"; always = true; }
             ];
             terminal = "kitty";
@@ -211,21 +211,4 @@ in {
             exec systemd-cat -t sway sway
         fi
     '';
-
-    systemd.user.services.avizo = {
-        Install.WantedBy = [ "graphical-session.target" ];
-        Service = {
-            ExecReload = "kill -SIGUSR2 \$MAINPID";
-            ExecStart = "${pkgs.avizo}/bin/avizo-service";
-            KillMode = "mixed";
-            Restart = "on-failure";
-        };
-        Unit = {
-            After = "graphical-session.target";
-            Description = "Notification daemon to show volume & brightness changes";
-            Documentation = "N/A (src/apps/personal/sway.nix)";
-            PartOf= "graphical-session.target";
-        };
-    };
 }
-
