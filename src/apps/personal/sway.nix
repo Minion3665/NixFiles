@@ -111,6 +111,7 @@ in {
                     resolution = "3840x2160";
                     #position = "1920,0";
                     position = "0,0";
+                    bg = "${./sway/background.png} fill";
                 };
                 eDP-1 = {
                     resolution = "1920x1080";
@@ -118,7 +119,6 @@ in {
                     position = "0,2160";
                 };
                 "*" = {
-                    # bg = "${./sway/background.png} fill";
                 };
             };
             right = "l";
@@ -130,7 +130,7 @@ in {
             startup = [
                 { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
                 { command = "pkill swaync; ${pkgs-unstable.swaynotificationcenter}/bin/swaync"; always = true; }
-                { command = "pkill glpaper; ${pkgs.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080 && ${pkgs.glpaper}/bin/glpaper HDMI-A-2 ${./sway/shader.glsl} -F -W 1920 -H 1080"; always = true; }
+                { command = "pkill glpaper; ${pkgs.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080"; always = true; }
             ];
             terminal = "kitty";
             up = "k";
