@@ -25,16 +25,18 @@ vec3 color_for_position (vec2 position) {
 void main( void ) {
 	vec2 position = ( gl_FragCoord.xy / resolution.xy );
 
-/*	float r = 0.0;
+	float r = 0.0;
 	float g = 0.0;
 	float b = 0.0;
 
-	for (float x = -10.0; x <= 10.0; x++) {
-		for (float y = -5.0; y <= 5.0; y++) {
+	float sampleSqrt = 10.0;
+
+	for (float x = 0.0; x <= sampleSqrt; x++) {
+		for (float y = 0.0; y <= sampleSqrt; y++) {
 			vec3 color = color_for_position(
 				vec2(
-					(x / resolution.x) + position.x, 
-					(y / resolution.y) + position.y
+					(x / (resolution.x * sampleSqrt)) + position.x, 
+					(y / (resolution.y * sampleSqrt)) + position.y
 				)
 			);
 			r += color.x;
@@ -43,13 +45,9 @@ void main( void ) {
 		}
 	}
 
-        float blur = 11.0 * 21.0;
-
-	r /= blur;
-	g /= blur;
-	b /= blur;
+	r /= sampleSqrt * sampleSqrt;
+	g /= sampleSqrt * sampleSqrt;
+	b /= sampleSqrt * sampleSqrt;
 
 	gl_FragColor = vec4(vec3(r, g, b), 1.0);
-*/
-	gl_FragColor = vec4(color_for_position(position), 1.0);
 }
