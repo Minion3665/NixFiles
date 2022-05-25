@@ -118,7 +118,7 @@ in {
                     position = "0,2160";
                 };
                 "*" = {
-                    bg = "${./sway/background.png} fill";
+                    # bg = "${./sway/background.png} fill";
                 };
             };
             right = "l";
@@ -130,6 +130,7 @@ in {
             startup = [
                 { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
                 { command = "pkill swaync; ${pkgs-unstable.swaynotificationcenter}/bin/swaync"; always = true; }
+                { command = "pkill glpaper; ${pkgs.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F && ${pkgs.glpaper}/bin/glpaper HDMI-A-2 ${./sway/shader.glsl} -F"; always = true; }
             ];
             terminal = "kitty";
             up = "k";
@@ -202,6 +203,7 @@ in {
         jq
         pulseaudio
         pamixer
+        glpaper
     ];
 
     programs.zsh.profileExtra = ''
