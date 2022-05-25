@@ -10,18 +10,46 @@ vec3 white = vec3(1, 1, 1);
 vec3 amaranth_pink = vec3(0.945, 0.612, 0.733);
 vec3 maya_blue = vec3(0.298, 0.624, 0.886);
 
-void main( void ) {
-
-	vec2 position = ( gl_FragCoord.xy / resolution.xy );
-
+vec3 color_for_position (vec2 position) {
 	vec3 color = white;
 	
-	if (sin(position.x + time / 10.0) / 2.0 - position.y + 0.7 < 0.0) {
+	if (sin(position.x + time / 30.0) / 2.0 - position.y + 0.4 < 0.0) {
 		color = amaranth_pink;
-	} else if (sin(position.x + time / 7.0 + 20.0) / 2.0 - position.y + 0.7 < 0.0) {
+	} else if (sin(position.x / 5.0 + time / 21.0 + 20.0) / 2.0 - position.y + 0.5 < 0.0) {
 		color = maya_blue;
 	}
 
-	gl_FragColor = vec4(color, 1.0);
+	return color;
+}
 
+void main( void ) {
+	vec2 position = ( gl_FragCoord.xy / resolution.xy );
+
+/*	float r = 0.0;
+	float g = 0.0;
+	float b = 0.0;
+
+	for (float x = -10.0; x <= 10.0; x++) {
+		for (float y = -5.0; y <= 5.0; y++) {
+			vec3 color = color_for_position(
+				vec2(
+					(x / resolution.x) + position.x, 
+					(y / resolution.y) + position.y
+				)
+			);
+			r += color.x;
+			g += color.y;
+			b += color.z;
+		}
+	}
+
+        float blur = 11.0 * 21.0;
+
+	r /= blur;
+	g /= blur;
+	b /= blur;
+
+	gl_FragColor = vec4(vec3(r, g, b), 1.0);
+*/
+	gl_FragColor = vec4(color_for_position(position), 1.0);
 }
