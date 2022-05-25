@@ -142,7 +142,7 @@ in {
 
         extraConfig = ''
         set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-        exec_always pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+        exec_always pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob -O *
         '';
 
         extraSessionCommands = ''
