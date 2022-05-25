@@ -82,6 +82,11 @@ in {
                 "XF86AudioMicMute" = "exec pamixer --toggle-mute --default-source && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
                 "XF86MonBrightnessUp" = "exec light -A 3 && light -G | cut -d'.' -f1 > $WOBSOCK";
                 "XF86MonBrightnessDown" = "exec light -U 3 && light -G | cut -d'.' -f1 > $WOBSOCK";
+                "${modifier}+XF86AudioRaiseVolume" = "exec pamixer --default-source -ui 5 && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
+                "${modifier}+XF86AudioLowerVolume" = "exec pamixer --default-source -ud 5 && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume --default-source > $WOBSOCK";
+                "${modifier}+XF86AudioMute" = "exec pamixer --toggle-mute --default-source && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
+                "${modifier}+XF86MonBrightnessUp" = "exec light -A 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
+                "${modifier}+XF86MonBrightnessDown" = "exec light -U 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
                 "${modifier}+g" = "sticky toggle";
                 "${modifier}+minus" = "exec ${./sway/show-menu.sh}";
