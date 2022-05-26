@@ -134,9 +134,10 @@ in {
             };
             startup = [
                 { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
-                { command = "pkill swaync; pkill waybar; ${pkgs-unstable.swaynotificationcenter}/bin/swaync & waybar"; always = true; }
-                { command = "pkill glpaper; ${pkgs.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080"; always = true; }
+                { command = "\"pkill swaync; pkill waybar; ${pkgs-unstable.swaynotificationcenter}/bin/swaync & waybar\""; always = true; }
+                { command = "\"pkill glpaper; ${pkgs.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080\""; always = true; }
                 { command = "light -N 1"; always = false; }
+                { command = "\"pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --output='*'\""; always = true; }
             ];
             terminal = "kitty";
             up = "k";
@@ -148,7 +149,6 @@ in {
 
         extraConfig = ''
         set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-        exec_always pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --output='*'
         '';
 
         extraSessionCommands = ''
