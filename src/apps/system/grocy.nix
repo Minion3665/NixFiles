@@ -13,6 +13,6 @@
 
     hostName = "grocy.services.local";
     dataDir = "/var/lib/grocy";
-    enableSSL = true;
+    nginx.enableSSL = false; # must be false as we are hosting locally
   };
 }
