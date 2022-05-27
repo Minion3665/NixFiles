@@ -1,8 +1,9 @@
 { pkgs, lib, modulesPath, config, ... }:
 let
     nixScripts = import ./utils/nixFilesIn.nix lib ./nix/system;
+    nixApps = import ./utils/nixFilesIn.nix lib ./apps/system;
 in {
-    imports = nixScripts ++ [ (modulesPath + "/installer/scan/not-detected.nix") ];
+    imports = nixScripts ++ nixApps ++ [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
 
   # Prepare nix flakes
