@@ -89,6 +89,7 @@ in {
                 "${modifier}+XF86MonBrightnessDown" = "exec light -U 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
                 "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
                 "${modifier}+g" = "sticky toggle";
+                "${modifier}+k" = "exec wl-copy -c";
                 "${modifier}+minus" = "exec ${./sway/show-menu.sh}";
                 "Print" = "exec grim - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
                 "${modifier}+Print" = "exec ${./sway/toggle-backlight.sh}";
