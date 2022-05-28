@@ -15,4 +15,6 @@
     dataDir = "/var/lib/grocy";
     nginx.enableSSL = false; # must be false as we are hosting locally
   };
+
+  networking.firewall.allowedTCPPorts = [ 80 ];
 }
