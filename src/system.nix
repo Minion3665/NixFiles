@@ -301,7 +301,7 @@ in {
       liberation_ttf
       fira-code
       fira-code-symbols
-      mplus-outline-fonts
+      mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
       roboto
