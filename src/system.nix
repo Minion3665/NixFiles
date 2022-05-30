@@ -287,7 +287,7 @@ in {
   nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer --enable-gpu";
 
   services.mongodb = {
-    package = pkgs.mongodb-4_2;
+    package = pkgs.mongodb-5_0;
     enable = true;
     dbpath = "/tmp/mongodb";
   };
