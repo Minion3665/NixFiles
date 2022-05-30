@@ -51,6 +51,7 @@ in {
   };
 
   services.zeronet.enable = true;
+  services.zeronet.package = pkgs.zeronet-conservancy;
 
   services = {
     syncthing = {
