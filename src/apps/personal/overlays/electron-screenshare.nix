@@ -34,7 +34,7 @@ final: prev: {
     icon = "discord";
     type = "Application";
     categories = [ "Network" "InstantMessaging" ];
-    terminal = "false";
+    terminal = false;
     mimeTypes=["x-scheme-handler/discord"];
   };
 
@@ -46,6 +46,6 @@ final: prev: {
     icon = "element";
     type = "Application";
     categories = [ "Network" "InstantMessaging" ];
-    terminal = "false";
+    terminal = false;
   };
 }
