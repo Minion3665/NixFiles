@@ -215,7 +215,7 @@ in {
 
     programs.zsh.profileExtra = ''
         if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-            exec systemd-cat -t sway sway
+            exec systemd-cat -t sway sway --unsupported-gpu
         fi
     '';
 }
