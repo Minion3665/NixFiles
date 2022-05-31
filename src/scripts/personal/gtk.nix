@@ -6,7 +6,7 @@
         # gtk4.extraConfig = { gtk-application-prefer-dark-theme = true; }; # Does not exist in my version of home-manager
         theme = {
             name = "Adwaita-dark";
-            package = pkgs.gnome.gnome_themes_standard;
+            package = pkgs.gnome.gnome-themes-extra;
         };
     };
 }
