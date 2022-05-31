@@ -35,7 +35,7 @@ final: prev: {
     type = "Application";
     categories = "Network;InstantMessaging;";
     terminal = "false";
-    mimeType="x-scheme-handler/discord";
+    mimeTypes=["x-scheme-handler/discord"];
   };
 
   element-desktop-wayland = final.makeDesktopItem {
