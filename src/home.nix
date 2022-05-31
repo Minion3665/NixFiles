@@ -40,7 +40,7 @@ in {
         keepassxc
         grim slurp
         neovim helix
-        qemu
+#        qemu
         bind
         file
         nur.repos.kira-bruneau.rofi-wayland
