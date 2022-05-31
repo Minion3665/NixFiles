@@ -342,7 +342,7 @@ in {
   services.kbfs.enableRedirector = true;
   security.wrappers.keybase-redirector.owner = "root";
   security.wrappers.keybase-redirector.group = "root";
-  security.wrappers.keybase-redirector.capabilities = "CAP_SETUID";
+  security.wrappers.keybase-redirector.setuid = true;
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
   services.tlp.enable = true;
