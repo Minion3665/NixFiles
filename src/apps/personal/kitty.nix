@@ -3,6 +3,11 @@
     enable = true;
 
     theme = "One Half";
+
+    settings = {
+      enable_audio_bell = "no";
+      visual_bell_duration = "0.1";
+    };
   };
 
   programs.zsh.initExtra = ''
