@@ -22,7 +22,7 @@ in {
 
     checkPhase = ":"; # Bit of a hack here; we need to disable tests as we can't get FUSE inside the build derivation to test the package
 
-    vendorSha256 = "sha256-Fpa+wanlMIqxkEZ3JQdCT4ixuNBj7AquG2+wLuO5TQU=";
+    vendorSha256 = "sha256-sT3H1iFSakLHWKhzRcJz2RXf2Owm+8DQy3h3O8MO2nY=";
 
     proxyVendor = true;
 
