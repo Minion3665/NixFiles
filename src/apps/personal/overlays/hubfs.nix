@@ -24,7 +24,7 @@ in {
 
     vendorSha256 = "sha256-Fpa+wanlMIqxkEZ3JQdCT4ixuNBj7AquG2+wLuO5TQU=";
 
-    runVend = true;
+    proxyVendor = true;
 
     ldflags = [
       "-X main.GitVersion=${version}"
