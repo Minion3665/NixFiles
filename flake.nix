@@ -34,7 +34,7 @@
             default = nixpkgs.lib.nixosSystem {
                 inherit system;
 
-                specialArgs = {
+                specialArgs = extraInputs // {
                   inherit nixpkgs;
                 };
 
