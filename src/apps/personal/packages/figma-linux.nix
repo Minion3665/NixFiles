@@ -5,7 +5,7 @@
 }:
 
 let
-  version = "0.8.1";
+  version = "0.10.0";
   # Figma executable.
   # Currently won't run outside of FHS even with autopatching - needs help.
   figma-exec = stdenv.mkDerivation rec {
@@ -57,9 +57,9 @@ let
       genericName = "Vector Graphics Designer";
       comment = "Unofficial desktop application for linux";
       type = "Application";
-      categories = "Graphics;";
-      mimeType = "application/figma;x-scheme-handler/figma;";
-      extraDesktopEntries = { StartupWMClass = "figma-linux"; };
+      categories = [ "Graphics" ];
+      mimeTypes = [ "application/figma" "x-scheme-handler/figma" ];
+      extraConfig = { StartupWMClass = "figma-linux"; };
     };
   };
   figma-fhs = buildFHSUserEnv {
@@ -67,8 +67,8 @@ let
     targetPkgs = pkgs: with pkgs; [
       figma-exec
       alsaLib
-      at_spi2_atk
-      at_spi2_core
+      at-spi2-atk
+      at-spi2-core
       atk
       avahi
       brotli
@@ -81,7 +81,7 @@ let
       gcc
       glib
       glibc
-      gdk_pixbuf
+      gdk-pixbuf
       gtk3
       icu
       libxkbcommon
