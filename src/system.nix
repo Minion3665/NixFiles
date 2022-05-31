@@ -284,7 +284,7 @@ in {
 #    import /scripts/jetbrains.rider.nix
 #  ];
 
-  nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer --enable-gpu";
+  nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer"; # --enable-gpu";
 
   services.mongodb = {
     package = pkgs.mongodb-5_0;
@@ -359,7 +359,7 @@ in {
   virtualisation.kvmgt.enable = true;
 
   services.openvpn.servers = {
-    clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; };
+    clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; autoStart = false; };
   };
 
   environment.etc = {
