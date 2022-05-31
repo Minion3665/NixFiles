@@ -21,7 +21,6 @@ in {
     home.packages = with pkgs; [  # New apps should be on new lines
         anytype
         minecraft
-        nodejs-17_x
 	binutils
 	cmake
 	gcc
