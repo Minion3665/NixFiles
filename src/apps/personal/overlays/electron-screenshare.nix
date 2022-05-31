@@ -33,7 +33,7 @@ final: prev: {
     exec = "${final.chromium}/bin/chromium --app=\"https://discord.com/channels/@me\" --autoplay-policy=no-user-gesture-required --enable-features=WebUIDarkMode --force-dark-mode";
     icon = "discord";
     type = "Application";
-    categories = "Network;InstantMessaging;";
+    categories = [ "Network" "InstantMessaging" ];
     terminal = "false";
     mimeTypes=["x-scheme-handler/discord"];
   };
@@ -45,7 +45,7 @@ final: prev: {
     exec = "${final.chromium}/bin/chromium --app=\"https://app.element.io/#/home\" --autoplay-policy=no-user-gesture-required --enable-features=WebUIDarkMode --force-dark-mode";
     icon = "element";
     type = "Application";
-    categories = "Network;InstantMessaging;";
+    categories = [ "Network" "InstantMessaging" ];
     terminal = "false";
   };
 }
