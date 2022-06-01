@@ -339,10 +339,6 @@ in {
   services.openssh.enable = true;
   services.keybase.enable = true;
   services.kbfs.enable = true;
-  services.kbfs.enableRedirector = true;
-  security.wrappers.keybase-redirector.owner = "root";
-  security.wrappers.keybase-redirector.group = "root";
-  security.wrappers.keybase-redirector.permissions = "4555";
   services.gnome.gnome-keyring.enable = true;
   services.i2p.enable = true;
   services.tlp.enable = true;
