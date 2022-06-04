@@ -4,6 +4,6 @@
   ];
 
   home.shellAliases = {
-    ls = "${pkgs.exa}/bin/exa --icons -laghF --git --group-directories-first --color always $@ | less --quit-if-one-screen";
+    ls = "${pkgs.exa}/bin/exa --icons -lghF --git --group-directories-first --color always $@ | less --quit-if-one-screen";
   };
 }
