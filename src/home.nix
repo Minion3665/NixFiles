@@ -43,7 +43,7 @@ in {
 #        qemu
         bind
         file
-        nur.repos.kira-bruneau.rofi-wayland
+        rofi-wayland
         rofimoji
         htop
         hue-cli
