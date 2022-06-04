@@ -4,6 +4,6 @@
   ];
 
   home.shellAliases = {
-    cat = "${pkgs.bat}/bin/bat $@";
+    cat = "${pkgs.bat}/bin/bat --wrap never --pager \"less -+S\"";
   };
 }
