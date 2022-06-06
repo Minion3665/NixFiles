@@ -1,7 +1,9 @@
-{ pkgs, lib, modulesPath, config, ... }:
+{ pkgs, nurpkgs, lib, modulesPath, config, ... }:
 let
     nixScripts = import ./utils/nixFilesIn.nix lib ./nix/system;
     nixApps = import ./utils/nixFilesIn.nix lib ./apps/system;
+    overlays = import ./utils/nixFilesIn.nix lib ./overlays;
+    packages = import ./utils/nixFilesIn.nix lib ./packages;
 in {
     imports = nixScripts ++ nixApps ++ [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -286,11 +288,6 @@ in {
 
   nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer"; # --enable-gpu";
 
-  services.mongodb = {
-    package = pkgs.mongodb-5_0;
-    enable = false;
-    dbpath = "/tmp/mongodb";
-  };
 
   fonts = {
     fonts = with pkgs; [
@@ -383,6 +380,14 @@ in {
 #          })];
 #      });
     })
+  ] ++ map (f: import f) overlays ++ [
+    (self: (super: builtins.listToAttrs (
+      map (f: {
+        name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1;
+        value = super.lib.callPackageWith (self) (import f) {};
+      }) packages
+    )))
+    nurpkgs.overlay
   ];
 
   xdg.mime.defaultApplications = {

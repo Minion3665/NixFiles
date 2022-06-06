@@ -3,8 +3,8 @@ let
     variables = import ./common/variables.nix;
     personalPackages = import ./utils/nixFilesIn.nix lib ./apps/personal;
     personalScripts = import ./utils/nixFilesIn.nix lib ./scripts/personal;
-    overlays = import ./utils/nixFilesIn.nix lib ./apps/personal/overlays;
-    packages = import ./utils/nixFilesIn.nix lib ./apps/personal/packages;
+    overlays = import ./utils/nixFilesIn.nix lib ./overlays;
+    packages = import ./utils/nixFilesIn.nix lib ./packages;
 in {
     imports = personalPackages ++ personalScripts;
 
