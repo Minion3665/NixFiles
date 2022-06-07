@@ -96,6 +96,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-mongodb-fix": {
+      "locked": {
+        "lastModified": 1652288027,
+        "narHash": "sha256-d3s0kKrxFHrURFoE79rhzoC0VwAzlvY671uziQJVcfc=",
+        "owner": "bryanasdev000",
+        "repo": "nixpkgs",
+        "rev": "5f33996bd186702a3fbe55a92589f407edf11696",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bryanasdev000",
+        "ref": "mongodb-fixes",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1654230545,
@@ -148,6 +164,7 @@
         "comma": "comma",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-mongodb-fix": "nixpkgs-mongodb-fix",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nurpkgs": "nurpkgs"
       }
