@@ -46,8 +46,7 @@ root: ~/
 
 windows:
   - editor:
-      main-pane-width: 75%
-      layout: main-vertical
+      layout: 0e34,210x55,0,0{140x55,0,0,9,69x55,141,0,11}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
