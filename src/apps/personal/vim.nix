@@ -1,5 +1,9 @@
-{ pkgs, ... }: {
-  home.packages = [
-    pkgs.neovim
-  ];
+{ ... }: {
+  programs.neovim = {
+    enable = true;
+    coc.enable = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
 }
