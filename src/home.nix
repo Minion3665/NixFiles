@@ -39,7 +39,7 @@ in {
         git-crypt
         keepassxc
         grim slurp
-        neovim helix
+        helix
 #        qemu
         bind
         file
