@@ -88,11 +88,11 @@ in {
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-kde
-      ];
-      gtkUsePortal = true;
+    #  extraPortals = with pkgs; [
+    #    xdg-desktop-portal-gtk
+    #    xdg-desktop-portal-kde
+    #  ];
+    #  gtkUsePortal = true;
       wlr.enable = true;     
     };
   };
