@@ -17,6 +17,7 @@
     '';
     plugins = [
       pkgs.vimPlugins.vim-nix
+      pkgs.vimPlugins.copilot-vim
     ];
   };
 
