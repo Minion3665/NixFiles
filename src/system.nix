@@ -252,6 +252,16 @@ in {
 
   programs.zsh.enable = true;
 
+  environment.variables = {
+    EDITOR = "${pkgs.vim}/bin/vim";
+  };
+  environment.defaultPackages = [
+    pkgs.perl
+    pkgs.rsync
+    pkgs.strace
+    pkgs.vim  # I'm installing vim here even though it isn't normally a default package, as I've removed nano
+  ];  # The basic default packages, although without nano
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
