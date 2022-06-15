@@ -10,6 +10,7 @@
 
   home.packages = [
     pkgs.elinks
+    pkgs.zellij
   ];
 
   home.file.".config/tmuxinator/ide.yml".source = ./tmux/ide.yml;
