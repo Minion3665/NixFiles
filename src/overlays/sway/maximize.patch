@@ -1,0 +1,392 @@
+From e8a5fe93ef657399fa98bd69be71dbfbc14aa6d2 Mon Sep 17 00:00:00 2001
+From: Ford Smith <ford.smith@case.edu> and Skyler Grey
+<skyler3665@gmail.com>
+Date: Sat, 2 Apr 2022 20:21:47 -0400
+Subject: [PATCH] Add maximize support to sway & fix for latest version
+
+---
+ include/sway/commands.h       |   1 +
+ include/sway/tree/container.h |   4 +
+ include/sway/tree/view.h      |   1 +
+ sway/commands.c               |   2 +
+ sway/commands/maximize.c      |  59 ++++++++++
+ sway/desktop/xdg_shell.c      |   8 ++
+ sway/meson.build              |   1 +
+ sway/tree/container.c         | 201 ++++++++++++++++++++++++++++++++++
+ 8 files changed, 277 insertions(+)
+ create mode 100644 sway/commands/maximize.c
+
+diff --git a/include/sway/commands.h b/include/sway/commands.h
+index 2746ef28f1..7948be6823 100644
+--- a/include/sway/commands.h
++++ b/include/sway/commands.h
+@@ -150,6 +150,7 @@ sway_cmd cmd_kill;
+ sway_cmd cmd_layout;
+ sway_cmd cmd_log_colors;
+ sway_cmd cmd_mark;
++sway_cmd cmd_maximize;
+ sway_cmd cmd_max_render_time;
+ sway_cmd cmd_mode;
+ sway_cmd cmd_mouse_warping;
+diff --git a/include/sway/tree/container.h b/include/sway/tree/container.h
+index 751612e2c3..0a3404157b 100644
+--- a/include/sway/tree/container.h
++++ b/include/sway/tree/container.h
+@@ -257,6 +257,10 @@ void container_end_mouse_operation(struct sway_container *container);
+ void container_set_fullscreen(struct sway_container *con,
+ 		enum sway_fullscreen_mode mode);
+ 
++void container_set_maximize(struct sway_container *con,
++		enum sway_fullscreen_mode mode);
++
++
+ /**
+  * Convenience function.
+  */
+diff --git a/include/sway/tree/view.h b/include/sway/tree/view.h
+index 95708a049c..fd186c7386 100644
+--- a/include/sway/tree/view.h
++++ b/include/sway/tree/view.h
+@@ -43,6 +43,7 @@ struct sway_view_impl {
+ 	void (*set_activated)(struct sway_view *view, bool activated);
+ 	void (*set_tiled)(struct sway_view *view, bool tiled);
+ 	void (*set_fullscreen)(struct sway_view *view, bool fullscreen);
++	void (*set_maximized)(struct sway_view *view, bool maximized);
+ 	void (*set_resizing)(struct sway_view *view, bool resizing);
+ 	bool (*wants_floating)(struct sway_view *view);
+ 	void (*for_each_surface)(struct sway_view *view,
+diff --git a/sway/commands.c b/sway/commands.c
+index 5a1fd32ef9..b33788db17 100644
+--- a/sway/commands.c
++++ b/sway/commands.c
+@@ -74,6 +74,7 @@ static const struct cmd_handler handlers[] = {
+ 	{ "gaps", cmd_gaps },
+ 	{ "hide_edge_borders", cmd_hide_edge_borders },
+ 	{ "input", cmd_input },
++	{ "maximize", cmd_maximize },
+ 	{ "mode", cmd_mode },
+ 	{ "mouse_warping", cmd_mouse_warping },
+ 	{ "new_float", cmd_new_float },
+@@ -119,6 +120,7 @@ static const struct cmd_handler command_handlers[] = {
+ 	{ "kill", cmd_kill },
+ 	{ "layout", cmd_layout },
+ 	{ "mark", cmd_mark },
++	{ "maximize", cmd_maximize },
+ 	{ "max_render_time", cmd_max_render_time },
+ 	{ "move", cmd_move },
+ 	{ "nop", cmd_nop },
+diff --git a/sway/commands/maximize.c b/sway/commands/maximize.c
+new file mode 100644
+index 0000000000..5fa29f79c1
+--- /dev/null
++++ b/sway/commands/maximize.c
+@@ -0,0 +1,59 @@
++#include <strings.h>
++#include "log.h"
++#include "sway/commands.h"
++#include "sway/config.h"
++#include "sway/tree/arrange.h"
++#include "sway/tree/container.h"
++#include "sway/tree/view.h"
++#include "sway/tree/workspace.h"
++#include "util.h"
++
++// maximize [enable|disable|toggle] [global]
++struct cmd_results *cmd_maximize(int argc, char **argv) {
++	struct cmd_results *error = NULL;
++	if ((error = checkarg(argc, "maximize", EXPECTED_AT_MOST, 2))) {
++		return error;
++	}
++	if (!root->outputs->length) {
++		return cmd_results_new(CMD_FAILURE,
++				"Can't run this command while there's no outputs connected.");
++	}
++	struct sway_container *container = config->handler_context.container;
++
++	if (!container) {
++		// If the focus is not a container, do nothing successfully
++		return cmd_results_new(CMD_SUCCESS, NULL);
++	} else if (!container->pending.workspace) {
++		// If in the scratchpad, operate on the highest container
++		while (container->pending.parent) {
++			container = container->pending.parent;
++		}
++	}
++
++	bool is_fullscreen = container->pending.fullscreen_mode != FULLSCREEN_NONE;
++	bool global = false;
++	bool enable = !is_fullscreen;
++
++	if (argc >= 1) {
++		if (strcasecmp(argv[0], "global") == 0) {
++			global = true;
++		} else {
++			enable = parse_boolean(argv[0], is_fullscreen);
++		}
++	}
++
++	if (argc >= 2) {
++		global = strcasecmp(argv[1], "global") == 0;
++	}
++
++	enum sway_fullscreen_mode mode = FULLSCREEN_NONE;
++	if (enable) {
++		mode = global ? FULLSCREEN_GLOBAL : FULLSCREEN_WORKSPACE;
++	}
++
++	container_set_maximize(container, mode);
++	arrange_root();
++
++	return cmd_results_new(CMD_SUCCESS, NULL);
++}
++
+diff --git a/sway/desktop/xdg_shell.c b/sway/desktop/xdg_shell.c
+index 51168f4c61..f54db21930 100644
+--- a/sway/desktop/xdg_shell.c
++++ b/sway/desktop/xdg_shell.c
+@@ -178,6 +178,13 @@ static void set_fullscreen(struct sway_view *view, bool fullscreen) {
+ 	wlr_xdg_toplevel_set_fullscreen(view->wlr_xdg_toplevel, fullscreen);
+ }
+ 
++static void set_maximized(struct sway_view *view, bool maximized) {
++	if (xdg_shell_view_from_view(view) == NULL) {
++		return;
++	}
++	wlr_xdg_toplevel_set_maximized(view->wlr_xdg_surface, maximized);
++}
++
+ static void set_resizing(struct sway_view *view, bool resizing) {
+ 	if (xdg_shell_view_from_view(view) == NULL) {
+ 		return;
+@@ -257,6 +264,7 @@ static const struct sway_view_impl view_impl = {
+ 	.set_activated = set_activated,
+ 	.set_tiled = set_tiled,
+ 	.set_fullscreen = set_fullscreen,
++	.set_maximized = set_maximized,
+ 	.set_resizing = set_resizing,
+ 	.wants_floating = wants_floating,
+ 	.for_each_surface = for_each_surface,
+diff --git a/sway/meson.build b/sway/meson.build
+index 5f34ce6b01..05f302f49e 100644
+--- a/sway/meson.build
++++ b/sway/meson.build
+@@ -69,6 +69,7 @@ sway_sources = files(
+ 	'commands/inhibit_idle.c',
+ 	'commands/kill.c',
+ 	'commands/mark.c',
++	'commands/maximize.c',
+ 	'commands/max_render_time.c',
+ 	'commands/opacity.c',
+ 	'commands/include.c',
+diff --git a/sway/tree/container.c b/sway/tree/container.c
+index 09766ce5cc..57f65aadb6 100644
+--- a/sway/tree/container.c
++++ b/sway/tree/container.c
+@@ -1266,6 +1266,207 @@ void container_fullscreen_disable(struct sway_container *con) {
+ 	}
+ }
+ 
++static void set_maximized(struct sway_container *con, bool enable) {
++	if (!con->view) {
++		return;
++	}
++	if (con->view->impl->set_maximized) {
++		con->view->impl->set_maximized(con->view, enable);
++		if (con->view->foreign_toplevel) {
++			wlr_foreign_toplevel_handle_v1_set_fullscreen(
++				con->view->foreign_toplevel, enable);
++		}
++	}
++
++	if (!server.linux_dmabuf_v1 || !con->view->surface) {
++		return;
++	}
++	if (!enable) {
++		wlr_linux_dmabuf_v1_set_surface_feedback(server.linux_dmabuf_v1,
++			con->view->surface, NULL);
++		return;
++	}
++
++	if (!con->pending.workspace || !con->pending.workspace->output) {
++		return;
++	}
++
++	struct sway_output *output = con->pending.workspace->output;
++	struct wlr_output *wlr_output = output->wlr_output;
++
++	// TODO: add wlroots helpers for all of this stuff
++
++	const struct wlr_drm_format_set *renderer_formats =
++		wlr_renderer_get_dmabuf_texture_formats(server.renderer);
++	assert(renderer_formats);
++
++	int renderer_drm_fd = wlr_renderer_get_drm_fd(server.renderer);
++	int backend_drm_fd = wlr_backend_get_drm_fd(wlr_output->backend);
++	if (renderer_drm_fd < 0 || backend_drm_fd < 0) {
++		return;
++	}
++
++	dev_t render_dev, scanout_dev;
++	if (!devid_from_fd(renderer_drm_fd, &render_dev) ||
++			!devid_from_fd(backend_drm_fd, &scanout_dev)) {
++		return;
++	}
++
++	const struct wlr_drm_format_set *output_formats =
++		wlr_output_get_primary_formats(output->wlr_output,
++		WLR_BUFFER_CAP_DMABUF);
++	if (!output_formats) {
++		return;
++	}
++
++	struct wlr_drm_format_set scanout_formats = {0};
++	if (!wlr_drm_format_set_intersect(&scanout_formats,
++			output_formats, renderer_formats)) {
++		return;
++	}
++
++	struct wlr_linux_dmabuf_feedback_v1_tranche tranches[] = {
++		{
++			.target_device = scanout_dev,
++			.flags = ZWP_LINUX_DMABUF_FEEDBACK_V1_TRANCHE_FLAGS_SCANOUT,
++			.formats = &scanout_formats,
++		},
++		{
++			.target_device = render_dev,
++			.formats = renderer_formats,
++		},
++	};
++
++	const struct wlr_linux_dmabuf_feedback_v1 feedback = {
++		.main_device = render_dev,
++		.tranches = tranches,
++		.tranches_len = sizeof(tranches) / sizeof(tranches[0]),
++	};
++	wlr_linux_dmabuf_v1_set_surface_feedback(server.linux_dmabuf_v1,
++		con->view->surface, &feedback);
++
++	wlr_drm_format_set_finish(&scanout_formats);
++}
++
++static void container_maximize_workspace(struct sway_container *con) {
++	if (!sway_assert(con->pending.fullscreen_mode == FULLSCREEN_NONE,
++				"Expected a non-fullscreen container")) {
++		return;
++	}
++	set_maximized(con, true);
++	con->pending.fullscreen_mode = FULLSCREEN_WORKSPACE;
++
++	con->saved_x = con->pending.x;
++	con->saved_y = con->pending.y;
++	con->saved_width = con->pending.width;
++	con->saved_height = con->pending.height;
++
++	if (con->pending.workspace) {
++		con->pending.workspace->fullscreen = con;
++		struct sway_seat *seat;
++		struct sway_workspace *focus_ws;
++		wl_list_for_each(seat, &server.input->seats, link) {
++			focus_ws = seat_get_focused_workspace(seat);
++			if (focus_ws == con->pending.workspace) {
++				seat_set_focus_container(seat, con);
++			} else {
++				struct sway_node *focus =
++					seat_get_focus_inactive(seat, &root->node);
++				seat_set_raw_focus(seat, &con->node);
++				seat_set_raw_focus(seat, focus);
++			}
++		}
++	}
++
++	container_end_mouse_operation(con);
++	ipc_event_window(con, "fullscreen_mode");
++}
++
++void container_maximize_disable(struct sway_container *con) {
++	if (!sway_assert(con->pending.fullscreen_mode != FULLSCREEN_NONE,
++				"Expected a fullscreen container")) {
++		return;
++	}
++	set_maximized(con, false);
++
++	if (container_is_floating(con)) {
++		con->pending.x = con->saved_x;
++		con->pending.y = con->saved_y;
++		con->pending.width = con->saved_width;
++		con->pending.height = con->saved_height;
++	}
++
++	if (con->pending.fullscreen_mode == FULLSCREEN_WORKSPACE) {
++		if (con->pending.workspace) {
++			con->pending.workspace->fullscreen = NULL;
++			if (container_is_floating(con)) {
++				struct sway_output *output =
++					container_floating_find_output(con);
++				if (con->pending.workspace->output != output) {
++					container_floating_move_to_center(con);
++				}
++			}
++		}
++	} else {
++		root->fullscreen_global = NULL;
++	}
++
++	// If the container was mapped as fullscreen and set as floating by
++	// criteria, it needs to be reinitialized as floating to get the proper
++	// size and location
++	if (container_is_floating(con) && (con->pending.width == 0 || con->pending.height == 0)) {
++		container_floating_resize_and_center(con);
++	}
++
++	con->pending.fullscreen_mode = FULLSCREEN_NONE;
++	container_end_mouse_operation(con);
++	ipc_event_window(con, "fullscreen_mode");
++
++	if (con->scratchpad) {
++		struct sway_seat *seat;
++		wl_list_for_each(seat, &server.input->seats, link) {
++			struct sway_container *focus = seat_get_focused_container(seat);
++			if (focus == con || container_has_ancestor(focus, con)) {
++				seat_set_focus(seat,
++						seat_get_focus_inactive(seat, &root->node));
++			}
++		}
++	}
++}
++
++void container_set_maximize(struct sway_container *con,
++		enum sway_fullscreen_mode mode) {
++	if (con->pending.fullscreen_mode == mode) {
++		return;
++	}
++
++	switch (mode) {
++	case FULLSCREEN_NONE:
++		container_maximize_disable(con);
++		break;
++	case FULLSCREEN_WORKSPACE:
++		if (root->fullscreen_global) {
++			container_maximize_disable(root->fullscreen_global);
++		}
++		if (con->pending.workspace && con->pending.workspace->fullscreen) {
++			container_maximize_disable(con->pending.workspace->fullscreen);
++		}
++		container_maximize_workspace(con);
++		break;
++	case FULLSCREEN_GLOBAL:
++		//TODO:
++		assert(false);
++		// if (root->fullscreen_global) {
++		// 	container_maximize_disable(root->fullscreen_global);
++		// }
++		// if (con->pending.fullscreen_mode == FULLSCREEN_WORKSPACE) {
++		// 	container_maximize_disable(con);
++		// }
++		// container_fullscreen_global(con);
++		// break;
++	}
++}
++
+ void container_set_fullscreen(struct sway_container *con,
+ 		enum sway_fullscreen_mode mode) {
+ 	if (con->pending.fullscreen_mode == mode) {
