@@ -93,6 +93,7 @@ in {
         "${modifier}+minus" = "exec ${./sway/show-menu.sh}";
         "Print" = "exec grim - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
         "${modifier}+Print" = "exec ${./sway/toggle-backlight.sh}";
+        "${modifier}+f" = "maximize toggle";
         };
         keycodebindings = {};
         left = "h";
