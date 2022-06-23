@@ -19,6 +19,8 @@
       pkgs.vimPlugins.vim-nix
       pkgs.vimPlugins.copilot-vim
       pkgs.vimPlugins.coc-tsserver
+      pkgs.vimPlugins.zoomwintab-vim
+      pkgs.vimPlugins.onehalf
     ];
   };
 
