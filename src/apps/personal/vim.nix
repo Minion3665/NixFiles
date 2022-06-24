@@ -42,6 +42,7 @@
       pkgs.vimPlugins.coc-tsserver
       pkgs.vimPlugins.zoomwintab-vim
       pkgs.vimPlugins.onehalf
+      pkgs.vimPlugins.neorg
     ];
   };
 
