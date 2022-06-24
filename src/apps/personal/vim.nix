@@ -12,6 +12,7 @@
     vimdiffAlias = true;
     extraConfig = ''
       set whichwrap=b,s,<,>,[,]
+      set linebreak
       set wrap
       set number
       set cursorline
@@ -34,7 +35,6 @@
       set statusline+=%c,     "cursor column
       set statusline+=%l/%L   "cursor line/total lines
       set statusline+=\ %P    "percent through file
-
     '';
     plugins = [
       pkgs.vimPlugins.vim-nix
