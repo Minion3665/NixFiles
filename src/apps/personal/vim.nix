@@ -24,6 +24,7 @@
         set termguicolors
       endif
 
+
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
       set statusline+=%{&ff}] "file format
@@ -35,7 +36,16 @@
       set statusline+=%c,     "cursor column
       set statusline+=%l/%L   "cursor line/total lines
       set statusline+=\ %P    "percent through file
+
+      lua << EOF
+        require('neorg').setup {
+          load = {
+            ["core.defaults"] = {}
+          }
+        }
+      EOF
     '';
+
     plugins = [
       pkgs.vimPlugins.vim-nix
       pkgs.vimPlugins.copilot-vim
@@ -43,6 +53,7 @@
       pkgs.vimPlugins.zoomwintab-vim
       pkgs.vimPlugins.onehalf
       pkgs.vimPlugins.neorg
+      pkgs.vimPlugins.nvim-treesitter
     ];
   };
 
