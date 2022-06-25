@@ -25,7 +25,8 @@ SOFTWARE.
 */
 # Therefore, this file is also copyable under MIT as it represents a "substantial portion" of the original code
 
-final: prev: {
+final: prev: {}
+/*
   discord = final.makeDesktopItem {
     name = "Discord";
     desktopName = "Discord";
@@ -48,4 +49,4 @@ final: prev: {
     categories = [ "Network" "InstantMessaging" ];
     terminal = false;
   };
-}
+}*/
