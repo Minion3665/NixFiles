@@ -45,7 +45,7 @@
             ["core.defaults"] = {}
           }
         }
-        
+
         require('orgmode').setup_ts_grammar()
 
         require('nvim-treesitter.configs').setup {
@@ -64,6 +64,7 @@
       pkgs.vimPlugins.vim-nix
       pkgs.vimPlugins.copilot-vim
       pkgs.vimPlugins.coc-tsserver
+      pkgs.vimPlugins.coc-eslint
       pkgs.vimPlugins.zoomwintab-vim
       pkgs.vimPlugins.onehalf
       pkgs.vimPlugins.neorg
