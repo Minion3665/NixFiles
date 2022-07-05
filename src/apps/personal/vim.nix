@@ -16,6 +16,7 @@
       set wrap
       set number
       set cursorline
+      set expandtab
       colorscheme onehalfdark
 
       if exists('+termguicolors')
@@ -26,6 +27,8 @@
 
       highlight ExtraWhitespace ctermbg=red guibg=red
       match ExtraWhitespace /\s\+$/
+      highlight Tab ctermbg=red guibg=red
+      match Tab /\t/
 
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
