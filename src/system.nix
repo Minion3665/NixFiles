@@ -313,6 +313,7 @@ in {
       roboto
       roboto-mono
       roboto-slab
+      twitter-color-emoji
       twemoji-color-font
       ubuntu_font_family
     ];
