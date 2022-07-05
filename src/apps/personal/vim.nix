@@ -27,8 +27,8 @@
 
       highlight ExtraWhitespace ctermbg=red guibg=red
       match ExtraWhitespace /\s\+$/
-      highlight Tab ctermbg=red guibg=red
-      match Tab /\t/
+      " highlight Tab ctermbg=red guibg=red
+      " match Tab /\t/
 
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
