@@ -18,6 +18,7 @@
       set cursorline
       set expandtab
       set mouse=a
+      set clipboard=unnamedplus
       colorscheme onehalfdark
 
       if exists('+termguicolors')
