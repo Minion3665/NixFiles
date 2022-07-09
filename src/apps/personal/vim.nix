@@ -71,6 +71,8 @@
             enable = true,
           },
         }
+
+        require('git-conflict').setup()
       EOF
     '';
 
