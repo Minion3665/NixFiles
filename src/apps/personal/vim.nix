@@ -17,6 +17,7 @@
       set number
       set cursorline
       set expandtab
+      set mouse=a
       colorscheme onehalfdark
 
       if exists('+termguicolors')
@@ -42,6 +43,16 @@
       set statusline+=%l/%L   "cursor line/total lines
       set statusline+=\ %P    "percent through file
 
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+          execute 'h '.expand('<cword>')
+        else
+          call CocAction('doHover')
+        endif
+      endfunction
+
       lua << EOF
         require('neorg').setup {
           load = {
@@ -64,6 +75,7 @@
     '';
 
     plugins = [
+      pkgs.vimPlugins.git-conflict-nvim
       pkgs.vimPlugins.vim-nix
       pkgs.vimPlugins.copilot-vim
       pkgs.vimPlugins.coc-tsserver
