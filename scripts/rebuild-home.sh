@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 cd /home/minion/Nix
 
