@@ -18,6 +18,7 @@
       set cursorline
       set expandtab
       set mouse=a
+      set splitright
       set clipboard=unnamedplus
       colorscheme onehalfdark
 
