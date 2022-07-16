@@ -381,6 +381,7 @@ in {
        steam = super.steam.override {
          extraPkgs = pkgs: with pkgs; [
            cups
+           libxml2
          ];
        };
 #      polkit = super.polkit.overrideAttrs (oldAttrs: {
