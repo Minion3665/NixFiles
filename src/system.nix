@@ -284,6 +284,7 @@ in {
     gsettings-desktop-schemas
     lxappearance
     libsForQt5.qt5.qtwayland
+    qt6.qtwayland
     texworks
     wlogout
     wob
