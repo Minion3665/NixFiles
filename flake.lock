@@ -98,16 +98,16 @@
     },
     "nixpkgs-mongodb-fix": {
       "locked": {
-        "lastModified": 1656911438,
-        "narHash": "sha256-iqaaJg/Fh1aHzm1X9K4aVUxXdS3XzQ22vBO/GtAuRJU=",
-        "owner": "bryanasdev000",
+        "lastModified": 1656040086,
+        "narHash": "sha256-4otcCIQOB1IeBKgRziPo3UQDNcRomU4UsShHAzCdwNQ=",
+        "owner": "Et7f3",
         "repo": "nixpkgs",
-        "rev": "f627a6fa08f6e743df4e37ea43f52dfd9e6e856c",
+        "rev": "d78bbbe41ab7bfa5c1b8770713fd93164a74dd78",
         "type": "github"
       },
       "original": {
-        "owner": "bryanasdev000",
-        "ref": "mongodb-fixes",
+        "owner": "Et7f3",
+        "ref": "fix-mongodb",
         "repo": "nixpkgs",
         "type": "github"
       }

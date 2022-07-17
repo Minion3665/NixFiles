@@ -1,7 +1,7 @@
 { nixpkgs-mongodb-fix, system, ... }: {
   services.mongodb = {
-    package = (import nixpkgs-mongodb-fix { inherit system; config = { allowUnfree = true; }; }).mongodb-5_0;
-    enable = true;
+    package = (import nixpkgs-mongodb-fix { inherit system; config = { allowUnfree = true; }; }).mongodb-4_4;
+    enable = false;
     dbpath = "/tmp/mongodb";
   };
 }
