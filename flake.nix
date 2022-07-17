@@ -4,7 +4,7 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-        nixpkgs-mongodb-fix.url = "github:bryanasdev000/nixpkgs/mongodb-fixes";
+        nixpkgs-mongodb-fix.url = "github:Et7f3/nixpkgs/fix-mongodb";
         home-manager.url = "github:nix-community/home-manager/release-22.05";
         nurpkgs.url = "github:nix-community/NUR";
         comma.url = "github:nix-community/comma";
