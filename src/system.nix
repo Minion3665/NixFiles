@@ -1,4 +1,4 @@
-{ pkgs, nurpkgs, lib, modulesPath, config, ... }:
+{ pkgs, pkgs-unstable, nurpkgs, lib, modulesPath, config, ... }:
 let
     nixScripts = import ./utils/nixFilesIn.nix lib ./nix/system;
     nixApps = import ./utils/nixFilesIn.nix lib ./apps/system;
@@ -10,7 +10,7 @@ in {
 
   # Prepare nix flakes
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs-unstable.nix;
     extraOptions = ''
       experimental-features = nix-command flakes
       auto-optimise-store = true

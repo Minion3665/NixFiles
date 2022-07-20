@@ -36,7 +36,7 @@
                 inherit system;
 
                 specialArgs = extraInputs // {
-                  inherit nixpkgs system;
+                  inherit nixpkgs nixpkgs-unstable home-manager pkgs-unstable system;
                 };
 
                 modules = [
@@ -49,7 +49,7 @@
             "${variables.username}" = home-manager.lib.homeManagerConfiguration rec {
                 inherit system pkgs;
 
-                extraSpecialArgs = extraInputs // { inherit pkgs-unstable system; };
+                extraSpecialArgs = extraInputs // { inherit nixpkgs nixpkgs-unstable home-manager pkgs-unstable system; };
 
                 username = variables.username;
                 homeDirectory = "/home/${username}";
