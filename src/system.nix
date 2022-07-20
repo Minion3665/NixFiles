@@ -10,7 +10,7 @@ in {
 
   # Prepare nix flakes
   nix = {
-    package = pkgs-unstable.nix;
+    package = pkgs-unstable.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
       auto-optimise-store = true
@@ -93,7 +93,7 @@ in {
         xdg-desktop-portal-kde
       ];
       gtkUsePortal = true;
-      wlr.enable = true;     
+      wlr.enable = true;
     };
   };
 

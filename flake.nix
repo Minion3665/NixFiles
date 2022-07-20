@@ -17,6 +17,8 @@
     let
         system = "x86_64-linux";  # TOOD: Add options for MacOS
 
+        unstable-overlays = import ./src/utils/nixFilesIn.nix nixpkgs-unstable.lib ./src/unstable-overlays;
+
         pkgs = import nixpkgs {
             inherit system;
 
@@ -26,6 +28,7 @@
         pkgs-unstable = import nixpkgs-unstable {
             inherit system;
 
+            overlays = map (f: import f) unstable-overlays;
             config = { allowUnfree = true; };
         };
 
