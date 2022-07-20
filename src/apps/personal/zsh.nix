@@ -33,6 +33,10 @@
 
             ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=243';
             ZSH_HIGHLIGHT_STYLES[comment]='fg=248';
+
+            if [[ $SHLVL != "1" ]]; then
+                export prompt="($SHLVL) $prompt"
+            fi
         '';
         enableSyntaxHighlighting = true;
         enableAutosuggestions = true;
