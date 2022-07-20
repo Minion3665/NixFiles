@@ -89,6 +89,7 @@
       pkgs.vimPlugins.onehalf
       pkgs.vimPlugins.neorg
       pkgs.vimPlugins.orgmode
+      pkgs.vimPlugins.vim-sleuth
       pkgs.vimPlugins.vim-visual-multi
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: [
         pkgs.tree-sitter-grammars.tree-sitter-go
