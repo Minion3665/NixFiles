@@ -35,7 +35,7 @@
             ZSH_HIGHLIGHT_STYLES[comment]='fg=248';
 
             if [[ $SHLVL != "1" ]]; then
-                export prompt="($SHLVL) $prompt"
+                export RPS1=$'%{\033[38;5;248m%}(%{$fg[red]%}L$SHLVL%{\033[38;5;248m%})%{\033[39m\033[49m%}'
             fi
         '';
         enableSyntaxHighlighting = true;
