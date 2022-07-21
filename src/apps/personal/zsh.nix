@@ -36,7 +36,12 @@
 
             if [[ $SHLVL != "1" ]]; then
                 export RPS1=$'%{\033[38;5;248m%}(%{$fg[red]%}L$SHLVL%{\033[38;5;248m%})%{\033[39m\033[49m%}'
-            fi
+                fi
+
+            function TRAPINT {
+                print -n "%{$fg_bold[red]%}^C%{$fg_no_bold[default]%}"
+                return $(( 128 + $1 ))
+            }
         '';
         enableSyntaxHighlighting = true;
         enableAutosuggestions = true;

@@ -11,10 +11,12 @@ in {
   # Prepare nix flakes
   nix = {
     package = pkgs-unstable.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      auto-optimise-store = true
-    '';
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      keep-outputs = true;
+      flake-registry = ./flake-registry.json;
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
