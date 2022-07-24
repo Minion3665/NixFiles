@@ -2,6 +2,10 @@
     description = "Minion3665's NixFiles (since 2022-03-24)";
 
     inputs = {
+        registry = {
+            url = "github:nixos/flake-registry";
+            flake = false;
+        };
         nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
         home-manager.url = "github:nix-community/home-manager/release-22.05";

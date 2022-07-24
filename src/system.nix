@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, nurpkgs, lib, modulesPath, config, ... }:
+{ pkgs, pkgs-unstable, nurpkgs, registry, lib, modulesPath, config, ... }:
 let
     nixScripts = import ./utils/nixFilesIn.nix lib ./nix/system;
     nixApps = import ./utils/nixFilesIn.nix lib ./apps/system;
@@ -15,7 +15,7 @@ in {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
       keep-outputs = true;
-      flake-registry = ./flake-registry.json;
+      flake-registry = "${registry}/flake-registry.json";
     };
   };
 
