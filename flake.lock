@@ -96,22 +96,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-mongodb-fix": {
-      "locked": {
-        "lastModified": 1656040086,
-        "narHash": "sha256-4otcCIQOB1IeBKgRziPo3UQDNcRomU4UsShHAzCdwNQ=",
-        "owner": "Et7f3",
-        "repo": "nixpkgs",
-        "rev": "d78bbbe41ab7bfa5c1b8770713fd93164a74dd78",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Et7f3",
-        "ref": "fix-mongodb",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1658290795,
@@ -164,7 +148,6 @@
         "comma": "comma",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-mongodb-fix": "nixpkgs-mongodb-fix",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nurpkgs": "nurpkgs"
       }

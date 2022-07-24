@@ -1,7 +1,7 @@
-{ nixpkgs-mongodb-fix, system, ... }: {
+{ system, pkgs-unstable, ... }: {
   services.mongodb = {
-    package = (import nixpkgs-mongodb-fix { inherit system; config = { allowUnfree = true; }; }).mongodb-4_4;
-    enable = false;
+    package = pkgs-unstable.mongodb-4_2;
+    enable = true;
     dbpath = "/tmp/mongodb";
   };
 }
