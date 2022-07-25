@@ -25,14 +25,14 @@
         pkgs = import nixpkgs {
             inherit system;
 
-            config = { allowUnfree = true; };
+            config = { allowUnfree = true; replaceStdenv = { pkgs }: pkgs.ccacheStdenv; };
         };
 
         pkgs-unstable = import nixpkgs-unstable {
             inherit system;
 
             overlays = map (f: import f) unstable-overlays;
-            config = { allowUnfree = true; };
+            config = { allowUnfree = true; replaceStdenv = { pkgs }: pkgs.ccacheStdenv; };
         };
 
         variables = import ./src/common/variables.nix;

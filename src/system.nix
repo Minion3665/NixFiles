@@ -16,8 +16,11 @@ in {
       auto-optimise-store = true;
       keep-outputs = true;
       flake-registry = "${registry}/flake-registry.json";
+      extra-sandbox-paths = [ "/var/cache/ccache" ];
     };
   };
+
+  programs.ccache.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
