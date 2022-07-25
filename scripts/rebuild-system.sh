@@ -1,11 +1,11 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 cd /home/minion/Nix
 
 git add .
 
 if [[ $(git diff --stat HEAD) != '' ]]; then
-    read -ep "What did you change?: " changes
+    read -e -p "What did you change?: " changes
     /usr/bin/env git commit -am "$changes"
 fi
 
