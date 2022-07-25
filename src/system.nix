@@ -295,6 +295,7 @@ in {
     wob
     wlsunset
     cni-plugins
+    ccache
   ];
 
 #  environment.systemPackages = [
