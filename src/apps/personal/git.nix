@@ -20,6 +20,7 @@
             core.autocrlf = "input";
             pull.rebase = false;
             credential.helper = "store";
+            commit.signOff = true;
         };
     };
 }
