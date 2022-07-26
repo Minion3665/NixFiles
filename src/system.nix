@@ -16,11 +16,15 @@ in {
       auto-optimise-store = true;
       keep-outputs = true;
       flake-registry = "${registry}/flake-registry.json";
-      extra-sandbox-paths = [ "/var/cache/ccache" ];
+      extra-sandbox-paths = [ "/homeless-shelter/.ccache" ];
     };
   };
 
-  programs.ccache.enable = true;
+  programs.ccache = {
+    enable = true;
+#    packageNames = [ "nix" ];
+    cacheDir = "/homeless-shelter/.ccache";
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
