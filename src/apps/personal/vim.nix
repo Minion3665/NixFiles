@@ -21,6 +21,7 @@
       set splitright
       set splitbelow
       set clipboard=unnamedplus
+      set smartcase
       colorscheme onehalfdark
 
       if exists('+termguicolors')
