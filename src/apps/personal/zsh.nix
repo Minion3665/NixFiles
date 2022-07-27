@@ -40,7 +40,7 @@
                 fi
 
             function TRAPINT {
-                print -n "%{$fg_bold[red]%}^C%{$fg_no_bold[default]%}"
+                print -n "$fg_bold[red]^C$fg_no_bold[default]"
                 return $(( 128 + $1 ))
             }
 
@@ -49,7 +49,7 @@
             # set descriptions format to enable group support
             zstyle ':completion:*:descriptions' format '[%d]'
             # set list-colors to enable filename colorizing
-            zstyle ':completion:*' list-colors $\{(s.:.)LS_COLORS}
+            zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
             # preview directory's content with exa when completing cd
             zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -l --color=always $realpath'
             # switch group using `,` and `.`
