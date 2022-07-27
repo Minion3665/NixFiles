@@ -11,6 +11,10 @@
         home-manager.url = "github:nix-community/home-manager/release-22.05";
         nurpkgs.url = "github:nix-community/NUR";
         comma.url = "github:nix-community/comma";
+        fzf-tab = {
+            url = "github:Aloxaf/fzf-tab";
+            flake = false;
+        };
 
         # Make sure flakes we depend on use the same version of nixpkgs as we do
         home-manager.inputs.nixpkgs.follows = "nixpkgs";

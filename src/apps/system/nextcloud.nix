@@ -2,6 +2,10 @@
     services.nextcloud = {
         enable = true;
         hostName = "nextcloud.python.local";
+        package = pkgs.nextcloud24;
+        config = {
+            adminpassFile = "/home/minion/Private/nextcloud-adminpassFile";
+        };
     };
 
     networking.hosts = {
