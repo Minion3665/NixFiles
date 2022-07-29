@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
     programs.git = {
         enable = true;
 
@@ -23,4 +23,8 @@
             commit.signOff = true;
         };
     };
+
+    home.packages = [
+        pkgs.git-review
+    ];
 }
