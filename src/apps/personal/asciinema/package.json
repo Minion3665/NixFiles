@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "asciicast2gif": "^0.2.1"
+  },
+  "name": "asciicast2gif-nix",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}

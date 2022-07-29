@@ -64,6 +64,11 @@ in {
   services.zeronet.enable = true;
   services.zeronet.package = pkgs.zeronet-conservancy;
 
+  services.arbtt = {
+    enable = true;
+    sampleRate = 30;
+  };
+
   services = {
     syncthing = {
         enable = true;
