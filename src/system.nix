@@ -483,4 +483,7 @@ in {
       AlwaysRandomizeAddress = true;
     };
   };
+  networking.search = [
+    "python.local"
+  ];
 }
