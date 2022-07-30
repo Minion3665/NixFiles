@@ -18,7 +18,7 @@
             init.defaultBranch = "development";
             color.ui = "auto";
             core.autocrlf = "input";
-            pull.rebase = false;
+            pull.rebase = "preserve";
             credential.helper = "store";
             commit.signOff = true;
         };
