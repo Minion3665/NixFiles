@@ -18,6 +18,8 @@ in {
       flake-registry = "${registry}/flake-registry.json";
       extra-sandbox-paths = [ "/homeless-shelter/.ccache" ];
     };
+    gc.automatic = true;
+    gc.options = "--delete-older-than 7d";
   };
 
   programs.ccache = {
