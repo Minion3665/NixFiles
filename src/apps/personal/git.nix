@@ -21,6 +21,9 @@
             pull.rebase = "merges";
             credential.helper = "store";
             commit.signOff = true;
+            core.splitIndex = true;
+            core.untrackedCache = true;
+            core.fsmonitor = true;
         };
     };
 
