@@ -22,7 +22,7 @@ nix profile list \
   | xargs -t $DRY_RUN_CMD nix profile remove $VERBOSE_ARG
 # ^ Remove old profiles; from https://github.com/nix-community/home-manager/blob/8d38ca886880265d523a66fe3da4d42e92ab0748/modules/home-environment.nix#L582
 
-echo "Activating"
+echo "Activating..."
 
 result/activate
 unlink result
