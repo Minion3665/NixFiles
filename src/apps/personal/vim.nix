@@ -107,23 +107,9 @@
       pkgs.vimPlugins.vim-sleuth
       pkgs.vimPlugins.vim-visual-multi
       pkgs.vimPlugins.vim-better-whitespace
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: [
-        pkgs.tree-sitter-grammars.tree-sitter-go
-        pkgs.tree-sitter-grammars.tree-sitter-nix
-        pkgs.tree-sitter-grammars.tree-sitter-tsx
-        pkgs.tree-sitter-grammars.tree-sitter-rust
-        pkgs.tree-sitter-grammars.tree-sitter-css
-        pkgs.tree-sitter-grammars.tree-sitter-norg
-        pkgs.tree-sitter-grammars.tree-sitter-json
-        pkgs.tree-sitter-grammars.tree-sitter-glsl
-        pkgs.tree-sitter-grammars.tree-sitter-regex
-        pkgs.tree-sitter-grammars.tree-sitter-latex
-        pkgs.tree-sitter-grammars.tree-sitter-python
-        pkgs.tree-sitter-grammars.tree-sitter-comment
-        pkgs.tree-sitter-grammars.tree-sitter-markdown
-        pkgs.tree-sitter-grammars.tree-sitter-org-nvim
-        pkgs.tree-sitter-grammars.tree-sitter-typescript
-        pkgs.tree-sitter-grammars.tree-sitter-javascript
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
+      (builtins.filter (x: builtins.typeOf x == "set") (builtins.attrValues pkgs.tree-sitter-grammars)) ++
+      [
         pkgs.vimPlugins.nvim-ts-rainbow
       ]))
     ];
