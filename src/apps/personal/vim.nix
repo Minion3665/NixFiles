@@ -30,10 +30,13 @@
         set termguicolors
       endif
 
-      highlight ExtraWhitespace ctermbg=red guibg=red
-      match ExtraWhitespace /\s\+$/
-      " highlight Tab ctermbg=red guibg=red
-      " match Tab /\t/
+      let g:better_whitespace_enabled=1
+      let g:strip_whitespace_on_save=1
+      let g:strip_only_modified_lines=1
+      let g:strip_whitelines_at_eof=1
+      let g:show_spaces_that_precede_tabs=1
+      nnoremap ]w :NextTrailingWhitespace<CR>
+      nnoremap [w :PrevTrailingWhitespace<CR>
 
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
@@ -46,6 +49,12 @@
       set statusline+=%c,     "cursor column
       set statusline+=%l/%L   "cursor line/total lines
       set statusline+=\ %P    "percent through file
+
+      let g:VM_theme_set_by_colorscheme = 1
+      highlight VM_Extend ctermfg=NONE guifg=NONE    ctermbg=239 guibg=#474e5d
+      highlight VM_Cursor ctermfg=188  guifg=#dcdfe4 ctermbg=168 guibg=#e06c75
+      highlight VM_Insert ctermfg=236  guifg=#282c34 ctermbg=176 guibg=#c678dd
+      highlight VM_Mono   ctermfg=236  guifg=#282c34 ctermbg=75  guibg=#61afef
 
       nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -71,6 +80,11 @@
             enable = true,
             additional_vim_regex_highlighting = {'org'},
           },
+          rainbow = {
+            enable = true,
+            extended_mode = true,
+            max_file_lines = nil,
+          },
           indent = {
             enable = true,
           },
@@ -92,6 +106,7 @@
       pkgs.vimPlugins.orgmode
       pkgs.vimPlugins.vim-sleuth
       pkgs.vimPlugins.vim-visual-multi
+      pkgs.vimPlugins.vim-better-whitespace
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: [
         pkgs.tree-sitter-grammars.tree-sitter-go
         pkgs.tree-sitter-grammars.tree-sitter-nix
@@ -109,6 +124,7 @@
         pkgs.tree-sitter-grammars.tree-sitter-org-nvim
         pkgs.tree-sitter-grammars.tree-sitter-typescript
         pkgs.tree-sitter-grammars.tree-sitter-javascript
+        pkgs.vimPlugins.nvim-ts-rainbow
       ]))
     ];
   };
