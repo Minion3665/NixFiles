@@ -104,6 +104,11 @@
 
       set foldmethod=expr
       set foldexpr=nvim_treesitter#foldexpr()
+
+      set viewoptions-=options
+      autocmd BufWinLeave ?* mkview!
+      autocmd BufWinEnter ?* normal zR
+      autocmd BufWinEnter ?* silent! loadview
     '';
 
     plugins = [
