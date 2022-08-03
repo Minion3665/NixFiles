@@ -33,8 +33,6 @@ in {
 	steam
 	swaybg
 	teams
-	xdg-desktop-portal
-	xdg-desktop-portal-wlr
 	zoom
         git-crypt
         keepassxc

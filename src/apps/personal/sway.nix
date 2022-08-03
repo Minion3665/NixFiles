@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, lib, ... }: let 
+{ pkgs, pkgs-unstable, lib, ... }: let
   wlogoutConfig = [
     {
       label = "lock";
