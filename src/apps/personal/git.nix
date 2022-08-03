@@ -14,6 +14,10 @@
         lfs.enable = true;
         delta.enable = true;
 
+        aliases = {
+            recommit = "!git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
+        };
+
         extraConfig = {
             init.defaultBranch = "development";
             color.ui = "auto";
