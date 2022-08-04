@@ -39,6 +39,9 @@
       nnoremap ]w :NextTrailingWhitespace<CR>
       nnoremap [w :PrevTrailingWhitespace<CR>
 
+      nmap <silent> [c :call CocAction('diagnosticNext')<cr>
+      nmap <silent> ]c :call CocAction('diagnosticPrevious')<cr>
+
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
       set statusline+=%{&ff}] "file format
