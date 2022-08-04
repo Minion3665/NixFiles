@@ -53,6 +53,22 @@
         "type": "github"
       }
     },
+    "git-confirm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1640097757,
+        "narHash": "sha256-QcyiBUXwfgwdfguYGd9l+oBABrA/DiXOxBnwY+FHnFA=",
+        "owner": "pimterry",
+        "repo": "git-confirm",
+        "rev": "5be23c254e5d8f959499ef2981854f9321de03e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pimterry",
+        "repo": "git-confirm",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -195,6 +211,7 @@
       "inputs": {
         "comma": "comma",
         "fzf-tab": "fzf-tab",
+        "git-confirm": "git-confirm",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-21-11": "nixpkgs-21-11",

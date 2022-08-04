@@ -28,6 +28,7 @@
             core.splitIndex = true;
             core.untrackedCache = true;
             core.fsmonitor = true;
+            hooks.confirm.match = [ "TODO" "FIXME" "HACK" "BUG" "XXX" "LAZY" ];
         };
     };
 
