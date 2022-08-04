@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, git-confirm, ... }: {
     programs.git = {
         enable = true;
 
@@ -30,6 +30,8 @@
             core.fsmonitor = true;
         };
     };
+
+    home.file.".config/git/hooks/pre-commit".source = "${git-confirm}/hook.sh";
 
     home.packages = [
         pkgs.git-review

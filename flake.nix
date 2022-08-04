@@ -16,6 +16,10 @@
             url = "github:Aloxaf/fzf-tab";
             flake = false;
         };
+        git-confirm = {
+            url = "github:pimterry/git-confirm";
+            flake = false;
+        };
 
         # Make sure flakes we depend on use the same version of nixpkgs as we do
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
