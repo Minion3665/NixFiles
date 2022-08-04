@@ -14,6 +14,7 @@
             extended = true;
         };
         initExtra = ''
+            bindkey -v
             bindkey "\'\'$\{key[Up]}" up-line-or-search
 
             command_not_found_handler ()

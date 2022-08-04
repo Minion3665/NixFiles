@@ -29,6 +29,7 @@
             core.untrackedCache = true;
             core.fsmonitor = true;
             hooks.confirm.match = [ "TODO" "FIXME" "HACK" "BUG" "XXX" "LAZY" ];
+            core.hooksPath = ".config/git/hooks/";
         };
     };
 
