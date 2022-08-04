@@ -124,11 +124,8 @@
       pkgs.vimPlugins.vim-sleuth
       pkgs.vimPlugins.vim-visual-multi
       pkgs.vimPlugins.vim-better-whitespace
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
-      (builtins.filter (x: builtins.typeOf x == "set") (builtins.attrValues pkgs.tree-sitter-grammars)) ++
-      [
-        pkgs.vimPlugins.nvim-ts-rainbow
-      ]))
+      pkgs.vimPlugins.nvim-ts-rainbow
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
     ];
   };
 
