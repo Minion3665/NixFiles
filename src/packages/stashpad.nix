@@ -1,5 +1,5 @@
 { pkgs, ... }: pkgs.appimageTools.wrapType1 {
-  name = "ShashPad";
-  src = "./shashpad/ShashPad.AppImage";
+  name = "StashPad";
+  src = "./stashpad/StashPad.AppImage";
   extraPkgs = pkgs: with pkgs; [ ];
 }
