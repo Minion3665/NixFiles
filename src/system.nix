@@ -437,8 +437,11 @@ in {
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "usbcore" ];
 #  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];  # Broken in nixpkgs; seems to be mountable and usable anyway
+  boot.extraModprobeConfig = ''
+    options usbcore use_both_schemes=y
+  '';
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
