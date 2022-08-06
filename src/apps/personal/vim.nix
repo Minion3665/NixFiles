@@ -39,8 +39,8 @@
       nnoremap ]w :NextTrailingWhitespace<CR>
       nnoremap [w :PrevTrailingWhitespace<CR>
 
-      nmap <silent> [c :call CocAction('diagnosticNext')<cr>
-      nmap <silent> ]c :call CocAction('diagnosticPrevious')<cr>
+      nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
+      nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
       nmap <silent> t <Plug>(coc-codeaction-selected)
       nmap me <Cmd>CocCommand explorer<CR>
 
