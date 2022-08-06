@@ -73,10 +73,10 @@
 
       nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-      autocmd BufWritePre *.js Neoformat
-      autocmd BufWritePre *.ts Neoformat
-      autocmd BufWritePre *.jsx Neoformat
-      autocmd BufWritePre *.tsx Neoformat
+      autocmd BufWritePre * Neoformat
+      autocmd BufWritePre * Neoformat
+      autocmd BufWritePre * Neoformat
+      autocmd BufWritePre * Neoformat
 
       let g:neoformat_try_node_exe = 1
 
