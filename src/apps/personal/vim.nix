@@ -60,6 +60,11 @@
       highlight VM_Insert ctermfg=236  guifg=#282c34 ctermbg=176 guibg=#c678dd
       highlight VM_Mono   ctermfg=236  guifg=#282c34 ctermbg=75  guibg=#61afef
 
+      highlight Pmenu      ctermfg=188 guifg=#dcdfe4 ctermbg=239 guibg=#474e5d
+      highlight PmenuSel   ctermfg=236 guifg=#282c34 ctermbg=75  guibg=#61afef
+      highlight PmenuSbar  ctermfg=237 guifg=#313640 ctermbg=237 guibg=#313640
+      highlight PmenuThumb ctermfg=188 guifg=#dcdfe4 ctermbg=188 guibg=#dcdfe4
+
       nnoremap <silent> K :call <SID>show_documentation()<CR>
 
       function! s:show_documentation()
