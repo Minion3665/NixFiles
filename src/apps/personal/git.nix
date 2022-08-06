@@ -16,6 +16,12 @@
 
         aliases = {
             recommit = "!git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
+            stash-working = ''
+            !f() {
+                git commit --quiet --no-verify -m \"temp for stash-working\" && \
+                git stash push \"$@\" && \
+                git reset --quiet --soft HEAD~1;
+            }; f'';  # https://stackoverflow.com/a/60875082/12293760
         };
 
         extraConfig = {
