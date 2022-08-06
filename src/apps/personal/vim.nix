@@ -65,6 +65,10 @@
       highlight PmenuSbar  ctermfg=237 guifg=#313640 ctermbg=237 guibg=#313640
       highlight PmenuThumb ctermfg=188 guifg=#dcdfe4 ctermbg=188 guibg=#dcdfe4
 
+      highlight CocErrorSign   ctermfg=168 guifg=#e06c75 ctermbg=NONE guibg=NONE
+      highlight CocInfoSign    ctermfg=75  guifg=#61afef ctermbg=NONE guibg=NONE
+      highlight CocWarningSign ctermfg=180 guifg=#e5c07b ctermbg=NONE guibg=NONE
+
       nnoremap <silent> K :call <SID>show_documentation()<CR>
 
       function! s:show_documentation()
