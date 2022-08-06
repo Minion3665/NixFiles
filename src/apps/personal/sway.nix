@@ -61,20 +61,20 @@ in {
       };
       input = {
         "type:touchpad" = {
-        dwt = "enabled";
-        tap = "enabled";
-        natural_scroll = "enabled";
-        middle_emulation = "enabled";
-        events = "disabled_on_external_mouse";
+          dwt = "enabled";
+          tap = "enabled";
+          natural_scroll = "enabled";
+          middle_emulation = "enabled";
+          events = "disabled_on_external_mouse";
         };
         "type:keyboard" = {
-        xkb_layout = "gb";
+          xkb_layout = "gb";
         };
         "type:tablet_tool" = {
-        map_to_output = "eDP-1";
+          map_to_output = "eDP-1";
         };
-        };
-        keybindings = lib.mkOptionDefault {
+      };
+      keybindings = lib.mkOptionDefault {
         "${modifier}+l" = "exec /usr/bin/env wlogout -c 5 -r 5 -p layer-shell -l ${wlogoutConfigFile}"; # "exec /usr/bin/env swaylock -c 000000";
         "XF86AudioRaiseVolume" = "exec pamixer -ui 5 && ( pamixer --get-mute && expr \"$(pamixer --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK";
         "XF86AudioLowerVolume" = "exec pamixer -ud 5 && ( pamixer --get-mute && expr \"$(pamixer --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK";
@@ -94,129 +94,129 @@ in {
         "Print" = "exec grim - | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | wl-copy";
         "${modifier}+Print" = "exec ${./sway/toggle-backlight.sh}";
         "${modifier}+f" = "maximize toggle";
+      };
+      keycodebindings = {};
+      left = "h";
+      menu = "/usr/bin/env rofi -show combi";
+      modes = {
+        resize = {
+          Down = "resize grow height 10 px";
+          Escape = "mode default";
+          Left = "resize shrink width 10 px";
+          Return = "mode default";
+          Right = "resize grow width 10 px";
+          Up = "resize shrink height 10 px";
+          h = "resize shrink width 10 px";
+          j = "resize grow height 10 px";
+          k = "resize shrink height 10 px";
+          l = "resize grow width 10 px";
         };
-        keycodebindings = {};
-        left = "h";
-            menu = "/usr/bin/env rofi -show combi";
-            modes = {
-                resize = {
-                    Down = "resize grow height 10 px";
-                    Escape = "mode default";
-                    Left = "resize shrink width 10 px";
-                    Return = "mode default";
-                    Right = "resize grow width 10 px";
-                    Up = "resize shrink height 10 px";
-                    h = "resize shrink width 10 px";
-                    j = "resize grow height 10 px";
-                    k = "resize shrink height 10 px";
-                    l = "resize grow width 10 px";
-                };
-            };
-            modifier = "Mod4";
-            output = {
-                HDMI-A-2 = {
-                    resolution = "3840x2160";
-                    #position = "1920,0";
-                    position = "0,0";
-                    bg = "${./sway/background.png} fill";
-                  };
-                  eDP-1 = {
-                    resolution = "1920x1080";
-                    #position = "0,1522";
-                    position = "0,2160";
-                  };
-                  "*" = {
-                  };
-                };
-                right = "l";
-                seat = {
-                  "*" = {
-                    hide_cursor = "when-typing enable";
-                  };
-                };
-                startup = [
-                  { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
-                  { command = "\"pkill swaync; pkill waybar; ${pkgs-unstable.swaynotificationcenter}/bin/swaync & waybar\""; always = true; }
-                  { command = "\"pkill glpaper; ${pkgs-unstable.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080\""; always = true; }
-                  { command = "light -N 1"; always = false; }
-                  { command = "\"pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --output='*'\""; always = true; }
-                ];
-                terminal = "kitty";
-                up = "k";
-                window = {};
-                workspaceAutoBackAndForth = true;
-                workspaceLayout = "default";
-                workspaceOutputAssign = [];
-              };
+      };
+      modifier = "Mod4";
+      output = {
+        HDMI-A-2 = {
+          resolution = "3840x2160";
+          #position = "1920,0";
+          position = "0,0";
+          bg = "${./sway/background.png} fill";
+        };
+        eDP-1 = {
+          resolution = "1920x1080";
+          #position = "0,1522";
+          position = "0,2160";
+        };
+        "*" = {
+        };
+      };
+      right = "l";
+      seat = {
+        "*" = {
+          hide_cursor = "when-typing enable";
+        };
+      };
+      startup = [
+        { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
+        { command = "\"pkill swaync; pkill waybar; ${pkgs-unstable.swaynotificationcenter}/bin/swaync & waybar\""; always = true; }
+        { command = "\"pkill glpaper; ${pkgs-unstable.glpaper}/bin/glpaper eDP-1 ${./sway/shader.glsl} -F -W 1920 -H 1080\""; always = true; }
+        { command = "light -N 1"; always = false; }
+        { command = "\"pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --output='*'\""; always = true; }
+      ];
+      terminal = "kitty";
+      up = "k";
+      window = {};
+      workspaceAutoBackAndForth = true;
+      workspaceLayout = "default";
+      workspaceOutputAssign = [];
+    };
 
-              extraConfig = ''
-                set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-              '';
+    extraConfig = ''
+    set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+    '';
 
-              extraSessionCommands = ''
-                export SDL_VIDEODRIVER=wayland
-        # needs qt5.qtwayland in systemPackages
-                export QT_QPA_PLATFORM=wayland
-                export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        # Fix for some Java AWT applications (e.g. Android Studio),
-        # use this if they aren't displayed properly:
-                export _JAVA_AWT_WM_NONREPARENTING=1
-              '';
+    extraSessionCommands = ''
+    export SDL_VIDEODRIVER=wayland
+    # needs qt5.qtwayland in systemPackages
+    export QT_QPA_PLATFORM=wayland
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+    # Fix for some Java AWT applications (e.g. Android Studio),
+    # use this if they aren't displayed properly:
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
 
-              swaynag = {
-                enable = true;
-                settings = {
-                  "<config>" = {
-                    background = "#ffffff99";
-                    border-bottom = "#00000000";
-                    button-background = "#ffffffcc";
-                    button-padding = 10;
-                    button-border-size = 0;
-                  };
+    swaynag = {
+      enable = true;
+      settings = {
+        "<config>" = {
+          background = "#ffffff99";
+          border-bottom = "#00000000";
+          button-background = "#ffffffcc";
+          button-padding = 10;
+          button-border-size = 0;
+        };
 
-                  warning = {
-                    background = "#ffffff99";
-                    border-bottom = "#00000000";
-                    button-background = "#ffff00";
-                  };
+        warning = {
+          background = "#ffffff99";
+          border-bottom = "#00000000";
+          button-background = "#ffff00";
+        };
 
-                  error = {
-                    background = "#ffffff99";
-                    border-bottom = "#00000000";
-                    button-background = "#ff0000";
-                  };
+        error = {
+          background = "#ffffff99";
+          border-bottom = "#00000000";
+          button-background = "#ff0000";
+        };
 
-                  green = {
-                    background = "#ffffff99";
-                    border-bottom = "#00000000";
-                    button-background = "#00b300";
-                  };
+        green = {
+          background = "#ffffff99";
+          border-bottom = "#00000000";
+          button-background = "#00b300";
+        };
 
-                  blue = {
-                    background = "#ffffff99";
-                    border-bottom = "#00000000";
-                    button-background = "#0000ff";
-                  };
-                };
-              };
+        blue = {
+          background = "#ffffff99";
+          border-bottom = "#00000000";
+          button-background = "#0000ff";
+        };
+      };
+    };
 
-              systemdIntegration = true;
-            };
+    systemdIntegration = true;
+  };
 
-            home.packages = with pkgs; [
-              swaylock
-              swayidle
-              wl-clipboard
-              bc
-              jq
-              pulseaudio
-              pamixer
-              pkgs-unstable.glpaper
-            ];
+  home.packages = with pkgs; [
+    swaylock
+    swayidle
+    wl-clipboard
+    bc
+    jq
+    pulseaudio
+    pamixer
+    pkgs-unstable.glpaper
+  ];
 
-            programs.zsh.profileExtra = ''
-              if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-              exec systemd-cat -t sway sway --unsupported-gpu
-              fi
-            '';
-          }
+  programs.zsh.profileExtra = ''
+  if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec systemd-cat -t sway sway --unsupported-gpu
+  fi
+  '';
+}
