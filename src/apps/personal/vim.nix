@@ -41,6 +41,8 @@
 
       nmap <silent> [c :call CocAction('diagnosticNext')<cr>
       nmap <silent> ]c :call CocAction('diagnosticPrevious')<cr>
+      nmap <silent> t <Plug>(coc-codeaction-selected)
+      nmap me <Cmd>CocCommand explorer<CR>
 
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
@@ -130,6 +132,13 @@
       pkgs.vimPlugins.copilot-vim
       pkgs.vimPlugins.coc-tsserver
       pkgs.vimPlugins.coc-eslint
+      pkgs.vimPlugins.coc-rust-analyzer
+      pkgs.vimPlugins.coc-spell-checker
+      pkgs.vimPlugins.coc-json
+      pkgs.vimPlugins.coc-jest
+      pkgs.vimPlugins.coc-css
+      pkgs.vimPlugins.coc-explorer
+      pkgs.vimPlugins.neoformat
       pkgs.vimPlugins.zoomwintab-vim
       pkgs.vimPlugins.onehalf
       pkgs.vimPlugins.neorg
