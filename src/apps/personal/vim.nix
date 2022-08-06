@@ -73,6 +73,13 @@
 
       nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+      autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
+      autocmd BufWritePre,TextChanged,InsertLeave *.ts Neoformat
+      autocmd BufWritePre,TextChanged,InsertLeave *.jsx Neoformat
+      autocmd BufWritePre,TextChanged,InsertLeave *.tsx Neoformat
+
+      let g:neoformat_try_node_exe = 1
+
       function! s:show_documentation()
         if (index(['vim','help'], &filetype) >= 0)
           execute 'h '.expand('<cword>')
