@@ -154,6 +154,7 @@
       pkgs.vimPlugins.vim-visual-multi
       pkgs.vimPlugins.vim-better-whitespace
       pkgs.vimPlugins.nvim-ts-rainbow
+      pkgs.vimPlugins.editorconfig-nvim
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
     ];
   };
