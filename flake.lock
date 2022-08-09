@@ -191,6 +191,22 @@
         "type": "github"
       }
     },
+    "nushell-066": {
+      "locked": {
+        "lastModified": 1659703690,
+        "narHash": "sha256-kZdajsxISDBGmK/HZBTb+gVUHFBve9Cbc7BXhgzc5+A=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "19091dedfef6f3211c27b2e970cf24921b4212e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "19091dedfef6f3211c27b2e970cf24921b4212e3",
+        "type": "github"
+      }
+    },
     "registry": {
       "flake": false,
       "locked": {
@@ -217,6 +233,7 @@
         "nixpkgs-21-11": "nixpkgs-21-11",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nurpkgs": "nurpkgs",
+        "nushell-066": "nushell-066",
         "registry": "registry"
       }
     },

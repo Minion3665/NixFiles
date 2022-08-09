@@ -12,6 +12,7 @@
         home-manager.url = "github:nix-community/home-manager/release-22.05";
         nurpkgs.url = "github:nix-community/NUR";
         comma.url = "github:nix-community/comma";
+        nushell-066.url = "github:nixos/nixpkgs/19091dedfef6f3211c27b2e970cf24921b4212e3";
         fzf-tab = {
             url = "github:Aloxaf/fzf-tab";
             flake = false;
@@ -35,6 +36,10 @@
             inherit system;
 
             config = { allowUnfree = true; };
+
+            overlays = [
+                (final: prev: { nushell = prev.callPackage "${extraInputs.nushell-066}/pkgs/shells/nushell" { inherit (prev.darwin.apple_sdk.frameworks) AppKit Security; }; })
+            ];
         };
 
         pkgs-unstable = import nixpkgs-unstable {
