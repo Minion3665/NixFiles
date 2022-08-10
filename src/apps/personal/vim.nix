@@ -59,7 +59,7 @@
       nmap <silent> <Leader>fs <Plug>(coc-codeaction-selected)
       nmap <silent> <Leader>fg <Plug>(coc-codeaction-cursor)
       nmap <silent> <Leader>ff <Plug>(coc-codeaction)
-      nmap <Leader>e <Cmd>CocCommand explorer<CR>
+      nmap <Leader>fe <Cmd>CocCommand explorer<CR>
 
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
