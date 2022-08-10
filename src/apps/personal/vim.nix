@@ -11,6 +11,7 @@
     vimAlias = true;
     vimdiffAlias = true;
     extraConfig = ''
+      let mapleader = ","
       set whichwrap=b,s,<,>,[,]
       set linebreak
       set wrap
@@ -24,6 +25,8 @@
       set smartcase
       set scrolloff=5
       colorscheme onehalfdark
+
+      let g:camelcasemotion_key = '<leader>'
 
       if exists('+termguicolors')
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
