@@ -56,6 +56,9 @@
             # switch group using `,` and `.`
             zstyle ':fzf-tab:*' switch-group ',' '.'
             enable-fzf-tab
+
+            alias compinit="true"
+            source ${./zsh/completions}/*
         '';
         enableSyntaxHighlighting = true;
         enableAutosuggestions = true;
