@@ -26,6 +26,17 @@
       set scrolloff=5
       colorscheme onehalfdark
 
+      command W w
+      command Wq wq
+
+      fun! SetupCommandAlias(from, to)
+        exec 'cnoreabbrev <expr> '.a:from
+              \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+              \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+      endfun
+
+      call SetupCommandAlias("git","Git")
+
       let g:camelcasemotion_key = '<leader>'
 
       if exists('+termguicolors')
