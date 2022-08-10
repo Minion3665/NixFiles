@@ -56,7 +56,7 @@
       nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
       nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
       nmap <silent> t <Plug>(coc-codeaction-selected)
-      nmap me <Cmd>CocCommand explorer<CR>
+      nmap <Leader>e <Cmd>CocCommand explorer<CR>
 
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
