@@ -22,6 +22,7 @@
       set splitright
       set splitbelow
       set clipboard=unnamedplus
+      set ignorecase
       set smartcase
       set scrolloff=5
       colorscheme onehalfdark
