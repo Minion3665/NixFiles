@@ -56,8 +56,8 @@
       nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
       nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
       nmap <silent> <Leader>fs <Plug>(coc-codeaction-selected)
-      nmap <silent> <Leader>ff <Plug>(coc-codeaction-cursor)
-      nmap <silent> <Leader>fg <Plug>(coc-codeaction)
+      nmap <silent> <Leader>fg <Plug>(coc-codeaction-cursor)
+      nmap <silent> <Leader>ff <Plug>(coc-codeaction)
       nmap <Leader>e <Cmd>CocCommand explorer<CR>
 
       set statusline=%t       "tail of the filename
