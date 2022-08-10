@@ -156,6 +156,7 @@
       pkgs.vimPlugins.nvim-ts-rainbow
       pkgs.vimPlugins.editorconfig-nvim
       pkgs.vimPlugins.camelcasemotion
+      pkgs.vimPlugins.fugitive
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
     ];
   };
