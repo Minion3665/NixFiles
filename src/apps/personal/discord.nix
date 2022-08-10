@@ -3,7 +3,7 @@
         discord
     ];
 
-    home.file.".config/discord/settings.json" = builtins.toJSON {
+    home.file.".config/discord/settings.json".text = builtins.toJSON {
         IS_MAXIMIZED = true;
         IS_MINIMIZED = false;
         BACKGROUND_COLOR = "#202225";
