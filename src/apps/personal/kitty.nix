@@ -17,5 +17,9 @@
       kitty-integration
       unfunction kitty-integration
     fi
-  '';
+    '';
+
+    home.shellAliases = {
+        "icat" = "${pkgs.kitty}/bin/kitty +kitten icat";
+    };
 }
