@@ -5,5 +5,6 @@ in {
         node
         node2nix
         (yarn.override { nodejs = node; })
+        bun
     ];
 }

@@ -144,7 +144,16 @@
       set viewoptions-=options
       autocmd BufWinLeave ?* mkview!
       autocmd BufWinEnter ?* normal zR
-      autocmd BufWinEnter ?* silent! loadview
+
+      function! s:loadViewOrUnfold()
+        try
+          loadview
+        catch
+          folddoclosed foldopen
+        endtry
+      endfunction
+
+      autocmd BufWinEnter ?* silent! call loadViewOrUnfold
     '';
 
     plugins = [
