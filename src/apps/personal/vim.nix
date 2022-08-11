@@ -155,7 +155,7 @@
         endtry
       endfunction
 
-      autocmd BufWinEnter ?* silent! call loadViewOrUnfold
+      autocmd BufWinEnter ?* call s:loadViewOrUnfold()
     '';
 
     plugins = [
