@@ -61,6 +61,8 @@
       nmap <silent> <Leader>ff <Plug>(coc-codeaction)
       nmap <Leader>fe <Cmd>CocCommand explorer<CR>
 
+      vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
       set statusline=%t       "tail of the filename
       set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
       set statusline+=%{&ff}] "file format
