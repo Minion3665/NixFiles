@@ -45,6 +45,10 @@
                 return $(( 128 + $1 ))
             }
 
+            function tempd {
+                cd "$(mktemp -d)"
+            }
+
             # disable sort when completing `git checkout`
             zstyle ':completion:*:git-checkout:*' sort false
             # set descriptions format to enable group support
