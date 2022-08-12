@@ -22,6 +22,15 @@
                 git stash push \"$@\" && \
                 git reset --quiet --soft HEAD~1;
             }; f'';  # https://stackoverflow.com/a/60875082/12293760
+            gui = ''
+            !f() {
+                export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+                lazygit "$@"
+                if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+                    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+                    rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+                fi
+            }; f'';
         };
 
         extraConfig = {
@@ -42,5 +51,6 @@
 
     home.packages = [
         pkgs.git-review
+        pkgs.lazygit
     ];
 }

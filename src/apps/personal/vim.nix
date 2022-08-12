@@ -64,6 +64,8 @@
         let g:airline#extensions#hunks#coc_git = 1
         let g:airline#extensions#whitespace#enabled = 1
 
+        nnoremap <silent> <leader>gg :LazyGit<CR>
+
         let g:airline#extensions#tabline#buffer_idx_mode = 1
         nmap <leader>1 <Plug>AirlineSelectTab1
         nmap <leader>2 <Plug>AirlineSelectTab2
@@ -222,6 +224,7 @@
             pkgs.vimPlugins.ctrlp-vim
             pkgs.vimPlugins.vim-airline-clock
             pkgs.vimPlugins.vim-airline-themes
+            pkgs.vimPlugins.lazygit-nvim
             (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
         ];
     };
