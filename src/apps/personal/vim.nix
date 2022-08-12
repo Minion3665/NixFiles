@@ -78,9 +78,7 @@
         nmap <leader>- <Plug>AirlineSelectPrevTab
         nmap <leader>+ <Plug>AirlineSelectNextTab
         let airline#extensions#tabline#middle_click_preserves_windows = 1
-        let g:airline#extensions#scrollbar#minwidth = 100
         let g:airline_skip_empty_sections = 1
-        let g:airline#extensions#scrollbar#enabled = 1
 
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_cmd = 'CtrlP'
