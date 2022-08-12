@@ -329,6 +329,7 @@ in {
       twitter-color-emoji
       twemoji-color-font
       ubuntu_font_family
+      powerline-symbols
     ];
 
     enableDefaultFonts = true;
