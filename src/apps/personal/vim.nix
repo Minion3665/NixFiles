@@ -192,45 +192,46 @@
         autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
         '';
 
-        plugins = [
-            pkgs.vimPlugins.git-conflict-nvim
-            pkgs.vimPlugins.vim-nix
-            pkgs.vimPlugins.copilot-vim
-            pkgs.vimPlugins.coc-tsserver
-            pkgs.vimPlugins.coc-eslint
-            pkgs.vimPlugins.coc-rust-analyzer
-            pkgs.vimPlugins.coc-spell-checker
-            pkgs.vimPlugins.coc-json
-            pkgs.vimPlugins.coc-jest
-            pkgs.vimPlugins.coc-css
-            pkgs.vimPlugins.coc-explorer
-            pkgs.vimPlugins.coc-git
-            pkgs.vimPlugins.neoformat
-            pkgs.vimPlugins.zoomwintab-vim
-            pkgs.vimPlugins.onehalf
-            pkgs.vimPlugins.neorg
-            pkgs.vimPlugins.orgmode
-            pkgs.vimPlugins.vim-sleuth
-            pkgs.vimPlugins.vim-visual-multi
-            pkgs.vimPlugins.vim-better-whitespace
-            pkgs.vimPlugins.nvim-ts-rainbow
-            pkgs.vimPlugins.editorconfig-nvim
-            pkgs.vimPlugins.camelcasemotion
-            pkgs.vimPlugins.fugitive
-            pkgs.vimPlugins.vim-flog
-            pkgs.vimPlugins.airline
-            pkgs.vimPlugins.vista-vim
-            pkgs.vimPlugins.vim-gitgutter
-            pkgs.vimPlugins.ctrlp-vim
-            pkgs.vimPlugins.vim-airline-clock
-            pkgs.vimPlugins.vim-airline-themes
-            pkgs.vimPlugins.lazygit-nvim
-            (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
+        plugins = with pkgs.vimPlugins; [
+            git-conflict-nvim
+            vim-nix
+            copilot-vim
+            coc-tsserver
+            coc-eslint
+            coc-rust-analyzer
+            coc-spell-checker
+            coc-json
+            coc-jest
+            coc-css
+            coc-explorer
+            coc-git
+            neoformat
+            zoomwintab-vim
+            onehalf
+            neorg
+            orgmode
+            vim-sleuth
+            vim-visual-multi
+            vim-better-whitespace
+            nvim-ts-rainbow
+            editorconfig-nvim
+            camelcasemotion
+            fugitive
+            vim-flog
+            airline
+            vista-vim
+            vim-gitgutter
+            ctrlp-vim
+            vim-airline-clock
+            vim-airline-themes
+            lazygit-nvim
+            (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
         ];
     };
 
-    home.packages = [
-        pkgs.universal-ctags
+    home.packages = with pkgs; [
+        universal-ctags
+        nodePackages.cspell
     ];
 
     home.sessionVariables.EDITOR = "${pkgs.neovim}/bin/nvim";
