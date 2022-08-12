@@ -1,22 +1,23 @@
 { pkgs, ... }: {
-  programs.kitty = {
-    enable = true;
+    programs.kitty = {
+        enable = true;
 
-    theme = "One Half";
+        theme = "One Half";
 
-    settings = {
-      enable_audio_bell = "no";
-      visual_bell_duration = "0.1";
-      symbol_map = "U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols";
+        settings = {
+            enable_audio_bell = "no";
+            visual_bell_duration = "0.1";
+            symbol_map = "U+E0A0-U+E0A3,U+E0C0-U+E0C7 PowerlineSymbols";
+            disable_ligatures = "cursor";
+        };
     };
-  };
 
-  programs.zsh.initExtra = ''
+    programs.zsh.initExtra = ''
     if test -n "$KITTY_INSTALLATION_DIR"; then
-      export KITTY_SHELL_INTEGRATION="enabled"
-      autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-      kitty-integration
-      unfunction kitty-integration
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
     fi
     '';
 
