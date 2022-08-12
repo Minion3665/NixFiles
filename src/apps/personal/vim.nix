@@ -5,6 +5,7 @@
             enable = true;
             settings = {
                 "suggest.noselect" = false;
+                "cSpell.checkOnlyEnabledFileTypes" = false;
             };
         };
         viAlias = true;
