@@ -55,6 +55,8 @@
         nnoremap ]w :NextTrailingWhitespace<CR>
         nnoremap [w :PrevTrailingWhitespace<CR>
 
+        let g:airline#extensions#tabline#enabled = 1
+
         nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
         nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
         nmap <silent> <Leader>fs <Plug>(coc-codeaction-selected)
@@ -183,6 +185,7 @@
             pkgs.vimPlugins.editorconfig-nvim
             pkgs.vimPlugins.camelcasemotion
             pkgs.vimPlugins.fugitive
+            pkgs.vimPlugins.airline
             (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
         ];
     };
