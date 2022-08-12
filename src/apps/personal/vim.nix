@@ -25,6 +25,9 @@
         set clipboard=unnamedplus
         set ignorecase
         set smartcase
+        set nocompatible
+        set hidden
+        set encoding=utf-8
         set scrolloff=5
         colorscheme onehalfdark
 
@@ -56,6 +59,11 @@
         nnoremap [w :PrevTrailingWhitespace<CR>
 
         let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+        let g:airline_powerline_fonts = 1
+
+        let g:ctrlp_map = '<c-p>'
+        let g:ctrlp_cmd = 'CtrlP'
 
         nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
         nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
@@ -159,6 +167,9 @@
         endfunction
 
         autocmd BufWinEnter ?* call s:loadViewOrUnfold()
+
+
+        :let g:airline_highlighting_cache = 1
         '';
 
         plugins = [
@@ -173,6 +184,7 @@
             pkgs.vimPlugins.coc-jest
             pkgs.vimPlugins.coc-css
             pkgs.vimPlugins.coc-explorer
+            pkgs.vimPlugins.coc-git
             pkgs.vimPlugins.neoformat
             pkgs.vimPlugins.zoomwintab-vim
             pkgs.vimPlugins.onehalf
@@ -185,10 +197,18 @@
             pkgs.vimPlugins.editorconfig-nvim
             pkgs.vimPlugins.camelcasemotion
             pkgs.vimPlugins.fugitive
+            pkgs.vimPlugins.vim-flog
             pkgs.vimPlugins.airline
+            pkgs.vimPlugins.tagbar
+            pkgs.vimPlugins.vim-gitgutter
+            pkgs.vimPlugins.ctrlp-vim
             (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
         ];
     };
+
+    home.packages = [
+        pkgs.universal-ctags
+    ];
 
     home.sessionVariables.EDITOR = "${pkgs.neovim}/bin/nvim";
 }
