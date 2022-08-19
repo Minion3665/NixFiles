@@ -22,9 +22,9 @@
                         tooltip = false;
                         format = "{icon}";
                         format-icons = {
-                            notification = "<span foreground='red'><sup></sup></span>";
+                            notification = "<span foreground='red'><sup>*</sup></span>";
                             none = "";
-                            dnd-notification = "<span foreground='red'><sup></sup></span>";
+                            dnd-notification = "<span foreground='red'><sup>*</sup></span>";
                             dnd-none = "";
                         };
                         "return-type" = "json";

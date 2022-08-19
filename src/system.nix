@@ -10,22 +10,22 @@ in {
 
   # Prepare nix flakes
   nix = {
-    package = pkgs-unstable.nixFlakes;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-      keep-outputs = true;
-      flake-registry = "${registry}/flake-registry.json";
-      extra-sandbox-paths = [ "/homeless-shelter/.ccache" ];
-    };
-    gc.automatic = true;
-    gc.options = "--delete-older-than 7d";
+      package = pkgs-unstable.nixFlakes;
+      settings = {
+          experimental-features = [ "nix-command" "flakes" ];
+          auto-optimise-store = true;
+          keep-outputs = true;
+          flake-registry = "${registry}/flake-registry.json";
+          extra-sandbox-paths = [ "/homeless-shelter/.ccache" ];
+      };
+      gc.automatic = true;
+      gc.options = "--delete-older-than 7d";
   };
 
   programs.ccache = {
-    enable = true;
+      enable = true;
 #    packageNames = [ "nix" ];
-    cacheDir = "/homeless-shelter/.ccache";
+cacheDir = "/homeless-shelter/.ccache";
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -48,70 +48,70 @@ in {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
-    keyMap = "uk";
+      font = "Lat2-Terminus16";
+      keyMap = "uk";
   };
 
   # Enable the X11 windowing system.
   services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
+      enable = true;
+      desktopManager = {
+          xterm.enable = false;
       # xfce.enable = true;
-    };
-    displayManager.startx.enable = true;
-    # displayManager.sddm.enable = true;
   };
+  displayManager.startx.enable = true;
+    # displayManager.sddm.enable = true;
+};
 
-  services.zeronet.enable = true;
-  services.zeronet.package = pkgs.zeronet-conservancy;
+services.zeronet.enable = true;
+services.zeronet.package = pkgs.zeronet-conservancy;
 
-  services.arbtt = {
+services.arbtt = {
     enable = true;
     sampleRate = 30;
-  };
+};
 
-  services = {
+services = {
     syncthing = {
         enable = true;
         user = "minion";
         dataDir = "/home/minion/Documents";    # Default folder for new synced folders
         configDir = "/home/minion/.config/syncthing";   # Folder for Syncthing's settings and keys
     };
-  };
+};
 
   # And wayland
-/*  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      mako # notification daemon
-      alacritty # Alacritty is the default terminal in the config
-    ];
+  /*  programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true; # so that gtk works properly
+      extraPackages = with pkgs; [
+          swaylock
+          swayidle
+          wl-clipboard
+          mako # notification daemon
+          alacritty # Alacritty is the default terminal in the config
+      ];
   };*/
 
   programs.light.enable = true; # Needs udev rules to properly work
 
   programs.qt5ct = {
-    enable = true;
+      enable = true;
   };
 #  programs.waybar.enable = false; # true;
 
   # Get screensharing to work
   xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-    };
+      portal = {
+          enable = true;
+          wlr.enable = true;
+      };
   };
 
   systemd.user.services.xdg-desktop-portal = {
-    unitConfig = {
-      After = "graphical-session.target";
-    };
+      unitConfig = {
+          After = "graphical-session.target";
+      };
   };
 
   # Configure keymap in X11
@@ -121,12 +121,12 @@ in {
 
   # Permit and install steam
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-runtime"
-    "mongodb"
-    "nvidia-x11"
-    "nvidia-settings"
+      "steam"
+      "steam-original"
+      "steam-runtime"
+      "mongodb"
+      "nvidia-x11"
+      "nvidia-settings"
   ];
 
   programs.steam.enable = true;
@@ -139,21 +139,21 @@ in {
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
-    enable = true;
-    alsa = {
       enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-    /*config.pipewire = {
-      "context.modules" = [
-        {
-          name = "libpipewire-module-filter-chain";
-          args = {
-            "node.name"        = "effect_output.virtual-surround-7.1-hesuvi";
-            "node.description" = "Virtual Surround Sink";
-            "media.name"       = "Virtual Surround Sink";
-            nodes = [
+      alsa = {
+          enable = true;
+          support32Bit = true;
+      };
+      pulse.enable = true;
+      /*config.pipewire = {
+          "context.modules" = [
+              {
+                  name = "libpipewire-module-filter-chain";
+                  args = {
+                      "node.name"        = "effect_output.virtual-surround-7.1-hesuvi";
+                      "node.description" = "Virtual Surround Sink";
+                      "media.name"       = "Virtual Surround Sink";
+                      nodes = [
               # duplicate inputs
               { type = "builtin"; label = "copy"; name = "copyFL";  }
               { type = "builtin"; label = "copy"; name = "copyFR";  }
@@ -187,8 +187,8 @@ in {
               # stereo output
               { type = "builtin"; label = "mixer"; name = "mixR"; }
               { type = "builtin"; label = "mixer"; name = "mixL"; }
-            ];
-            links = [
+          ];
+          links = [
               # input
               { output = "copyFL:Out";  input="convFL_L:In";  }
               { output = "copyFL:Out";  input="convFL_R:In";  }
@@ -224,23 +224,23 @@ in {
               { output = "convRR_L:Out";  input="mixL:In 7"; }
               { output = "convLFE_R:Out"; input="mixR:In 8"; }
               { output = "convLFE_L:Out"; input="mixL:In 8"; }
-            ];
-            inputs  = [ "copyFL:In" "copyFR:In" "copyFC:In" "copyLFE:In" "copyRL:In" "copyRR:In" "copySL:In" "copySR:In" ];
-            outputs = [ "mixL:Out" "mixR:Out" ];
-          };
-          "capture.props" = {
-              "media.class"    = "Audio/Sink";
-              "audio.channels" = 8;
-              "audio.position" = [ "FL" "FR" "FC" "LFE" "RL" "RR" "SL" "SR" ];
-          };
-          "playback.props" = {
-              "node.passive"   = true;
-              "audio.channels" = 2;
-              "audio.position" = [ "FL" "FR" ];
-          };
-        }
+          ];
+          inputs  = [ "copyFL:In" "copyFR:In" "copyFC:In" "copyLFE:In" "copyRL:In" "copyRR:In" "copySL:In" "copySR:In" ];
+          outputs = [ "mixL:Out" "mixR:Out" ];
+      };
+      "capture.props" = {
+          "media.class"    = "Audio/Sink";
+          "audio.channels" = 8;
+          "audio.position" = [ "FL" "FR" "FC" "LFE" "RL" "RR" "SL" "SR" ];
+      };
+      "playback.props" = {
+          "node.passive"   = true;
+          "audio.channels" = 2;
+          "audio.position" = [ "FL" "FR" ];
+      };
+  }
       ];
-    };*/
+  };*/
   };
   environment.etc."pipewire/7.1-surround-sound.conf".source = ./pipewire/7.1-surround-sound.conf;
 
@@ -256,102 +256,107 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.minion = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" "video" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
+      isNormalUser = true;
+      extraGroups = [ "wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" "video" config.users.groups.keys.name ]; # Enable ‘sudo’ for the user.
+      shell = pkgs.zsh;
   };
 
   programs.zsh.enable = true;
 
   environment.variables = {
-    EDITOR = "${pkgs.vim}/bin/vim";
+      EDITOR = "${pkgs.vim}/bin/vim";
   };
   environment.defaultPackages = [
-    pkgs.perl
-    pkgs.rsync
-    pkgs.strace
-    pkgs.vim  # I'm installing vim here even though it isn't normally a default package, as I've removed nano
+      pkgs.perl
+      pkgs.rsync
+      pkgs.strace
+      pkgs.vim  # I'm installing vim here even though it isn't normally a default package, as I've removed nano
   ];  # The basic default packages, although without nano
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
-      epkgs.vterm
-      epkgs.emacsql-sqlite
-    ]))  # Emacs + vterm-module (needed for vterm)
-    wget
-    firefox
-    chromium  # Install chromium if needed
-    texlive.combined.scheme-full
-    keybase-gui
-    bluez
-    macchanger
-    comic-relief
-    qemu_kvm
-    gtk-engine-murrine
-    gtk_engines
-    gsettings-desktop-schemas
-    lxappearance
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    texworks
-    wlogout
-    wob
-    wlsunset
-    cni-plugins
-    ccache
+      vim  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
+          epkgs.vterm
+          epkgs.emacsql-sqlite
+      ]))  # Emacs + vterm-module (needed for vterm)
+      wget
+      firefox
+      chromium  # Install chromium if needed
+      texlive.combined.scheme-full
+      keybase-gui
+      bluez
+      macchanger
+      comic-relief
+      qemu_kvm
+      gtk-engine-murrine
+      gtk_engines
+      gsettings-desktop-schemas
+      lxappearance
+      libsForQt5.qt5.qtwayland
+      qt6.qtwayland
+      texworks
+      wlogout
+      wob
+      wlsunset
+      cni-plugins
+      ccache
+      sops
   ];
 
 #  environment.systemPackages = [
 #    import /scripts/jetbrains.rider.nix
 #  ];
 
-  nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer"; # --enable-gpu";
+nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode --force-dark-mode --enable-features=WebRTCPipeWireCapturer"; # --enable-gpu";
 
 
-  fonts = {
+fonts = {
     fonts = with pkgs; [
-      nerdfonts
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      dina-font
-      proggyfonts
-      roboto
-      roboto-mono
-      roboto-slab
-      twitter-color-emoji
-      twemoji-color-font
-      ubuntu_font_family
-      powerline-symbols
+        font-awesome
+        line-awesome
+        material-design-icons
+        weather-icons
+        emacs-all-the-icons-fonts
+        powerline-symbols
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        liberation_ttf
+        fira-code
+        fira-code-symbols
+        mplus-outline-fonts.githubRelease
+        dina-font
+        proggyfonts
+        roboto
+        roboto-mono
+        roboto-slab
+        twitter-color-emoji
+        twemoji-color-font
+        ubuntu_font_family
     ];
 
     enableDefaultFonts = true;
     fontDir.enable = true;
 
     fontconfig = {
-      defaultFonts = {
-        serif = [ "Roboto Slab" ];
-        sansSerif = [ "Roboto" "Ubuntu" ];
-        monospace = [ "Roboto Mono" "Ubuntu Mono" ];
-        emoji = [ "Twitter Color Emoji" ];
-      };
+        defaultFonts = {
+            serif = [ "Roboto Slab" ];
+            sansSerif = [ "Roboto" "Ubuntu" ];
+            monospace = [ "Roboto Mono" "Ubuntu Mono" ];
+            emoji = [ "Twitter Color Emoji" ];
+        };
     };
-  };
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
   programs.kdeconnect.enable = true;
   programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+      enable = true;
+      enableSSHSupport = true;
   };
 
   # List services that you want to enable:
@@ -377,26 +382,26 @@ in {
   virtualisation.kvmgt.enable = true;
 
   services.openvpn.servers = {
-    clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; autoStart = false; };
+      clicks = { config = '' config /home/minion/Nix/secrets/clicks/client.ovpn ''; autoStart = false; };
   };
 
   environment.etc = {
-    "pam.d/swaylock" = {
-      mode = "0644";
-      text = ''
-        auth include login
-      '';
-    };
+      "pam.d/swaylock" = {
+          mode = "0644";
+          text = ''
+          auth include login
+          '';
+      };
   };
 
   nixpkgs.overlays = [
-    (self: super: {
-       steam = super.steam.override {
-         extraPkgs = pkgs: with pkgs; [
-           cups
-           libxml2
-         ];
-       };
+      (self: super: {
+          steam = super.steam.override {
+              extraPkgs = pkgs: with pkgs; [
+                  cups
+                  libxml2
+              ];
+          };
 #      polkit = super.polkit.overrideAttrs (oldAttrs: {
 #        patches = oldAttrs.patches ++ [
 #          (super.fetchpatch {
@@ -405,23 +410,23 @@ in {
 #          })];
 #      });
     })
-  ] ++ map (f: import f) overlays ++ [
+] ++ map (f: import f) overlays ++ [
     (self: (super: builtins.listToAttrs (
-      map (f: {
-        name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1;
-        value = super.lib.callPackageWith (self) (import f) {};
-      }) packages
-    )))
-    nurpkgs.overlay
-  ];
+        map (f: {
+            name = builtins.elemAt (builtins.match "^(.*/)*(.*)\\.nix$" (toString f)) 1;
+            value = super.lib.callPackageWith (self) (import f) {};
+        }) packages
+        )))
+        nurpkgs.overlay
+    ];
 
-  xdg.mime.defaultApplications = {
-    "text/html" = "chromium-browser.desktop";
-    "x-scheme-handler/http" = "chromium-browser.desktop";
-    "x-scheme-handler/https" = "chromium-browser.desktop";
-    "x-scheme-handler/about" = "chromium-browser.desktop";
-    "x-scheme-handler/unknown" = "chromium-browser.desktop";
-  };
+    xdg.mime.defaultApplications = {
+        "text/html" = "chromium-browser.desktop";
+        "x-scheme-handler/http" = "chromium-browser.desktop";
+        "x-scheme-handler/https" = "chromium-browser.desktop";
+        "x-scheme-handler/about" = "chromium-browser.desktop";
+        "x-scheme-handler/unknown" = "chromium-browser.desktop";
+    };
 
   # environment.sessionsVariables.DEFAULT_BROWSER = "${pkgs.chromium}/bin/chromium";
 
@@ -436,55 +441,65 @@ in {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "usbcore" ];
 #  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];  # Broken in nixpkgs; seems to be mountable and usable anyway
-  boot.extraModprobeConfig = ''
-    options usbcore use_both_schemes=y
-  '';
+boot.extraModprobeConfig = ''
+options usbcore use_both_schemes=y
+'';
 
-  fileSystems."/" =
+fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
-    };
+    fsType = "ext4";
+};
 
-  fileSystems."/boot" =
+fileSystems."/boot" =
     { device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
+    fsType = "vfat";
+};
 
-  swapDevices =
+swapDevices =
     [ { device = "/dev/disk/by-label/swap"; }
-    ];
+];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
 #  hardware.nvidia.modesetting.enable = true;
 #  services.xserver.videoDrivers = [ "nvidia" ];
 
 #  hardware.opentabletdriver.enable = true;
 
-  virtualisation.containerd.enable = true;
+virtualisation.containerd.enable = true;
 
-  virtualisation.containerd.settings = {
+virtualisation.containerd.settings = {
     version = 2;
 #    grpc = {
 #      uid = 1000;
 #    };
   };
 
+  sops.defaultSopsFile = ../secrets/secrets.json;
+
+  sops.secrets = {
+      collabora-password = {
+          mode = "0400";
+          owner = config.users.users.minion.name;
+          group = config.users.users.nobody.group;
+      };
+  };
+
   networking.hostName = "python";
 
   networking.wireless.iwd.enable = true;
   networking.wireless.iwd.settings = {
-    Settings = {
-      AutoConnect = true;
-      AlwaysRandomizeAddress = true;
-    };
+      Settings = {
+          AutoConnect = true;
+          AlwaysRandomizeAddress = true;
+      };
   };
   networking.search = [
-    "python.local"
+      "python.local"
   ];
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, vim-ctrlspace, ... }: {
     home.file.".config/nvim/autoload/airline/themes/onehalf.vim".text = ''
     let g:airline#themes#onehalf#palette = {}
     function! airline#themes#onehalf#refresh()
@@ -31,21 +31,24 @@
     let g:airline#themes#onehalf#palette.visual      = s:generateAirlinePalette(s:purple)
     let g:airline#themes#onehalf#palette.select      = s:generateAirlinePalette(s:purple)
     let g:airline#themes#onehalf#palette.multi       = s:generateAirlinePalette(s:purple)
-    let g:airline#themes#onehalf#palette.insert      = s:generateAirlinePalette(s:blue)
+    let g:airline#themes#onehalf#palette.insert      = s:generateAirlinePalette(s:yellow)
     let g:airline#themes#onehalf#palette.commandline = s:generateAirlinePalette(s:red)
     let g:airline#themes#onehalf#palette.terminal    = s:generateAirlinePalette(s:cyan)
-    let g:airline#themes#onehalf#palette.replace     = s:generateAirlinePalette(s:yellow)
-    let g:airline#themes#onehalf#palette.ctrlp       = s:generateAirlinePalette(s:white)
-    let g:airline#themes#onehalf#palette.inactive    = s:generateAirlinePalette(s:lightgrey)
+    let g:airline#themes#onehalf#palette.replace     = s:generateAirlinePalette(s:blue)
+    let g:airline#themes#onehalf#palette.inactive    = s:generateAirlinePalette(s:white)
     let g:airline#themes#onehalf#palette.normal_modified      = s:generateAirlinePalette(s:green)
     let g:airline#themes#onehalf#palette.visual_modified      = s:generateAirlinePalette(s:purple)
     let g:airline#themes#onehalf#palette.select_modified      = s:generateAirlinePalette(s:purple)
     let g:airline#themes#onehalf#palette.multi_modified       = s:generateAirlinePalette(s:purple)
-    let g:airline#themes#onehalf#palette.insert_modified      = s:generateAirlinePalette(s:blue)
+    let g:airline#themes#onehalf#palette.insert_modified      = s:generateAirlinePalette(s:yellow)
     let g:airline#themes#onehalf#palette.commandline_modified = s:generateAirlinePalette(s:red)
     let g:airline#themes#onehalf#palette.terminal_modified    = s:generateAirlinePalette(s:cyan)
-    let g:airline#themes#onehalf#palette.replace_modified     = s:generateAirlinePalette(s:yellow)
-    let g:airline#themes#onehalf#palette.ctrlp_modified       = s:generateAirlinePalette(s:white)
+    let g:airline#themes#onehalf#palette.replace_modified     = s:generateAirlinePalette(s:blue)
+
+
+    let g:airline#themes#onehalf#palette.tabline = {
+        \ 'airline_tabtype' : [s:white.gui, s:lightgrey.gui, s:white.cterm, s:lightgrey.cterm]}
+
     endfunction
 
     call airline#themes#onehalf#refresh()
@@ -57,7 +60,9 @@
             settings = {
                 "suggest.noselect" = false;
                 "cSpell.checkOnlyEnabledFileTypes" = false;
+                "rust-analyzer.serverPath" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
             };
+
         };
         viAlias = true;
         vimAlias = true;
@@ -80,9 +85,13 @@
         set nocompatible
         set hidden
         set encoding=utf-8
-        set scrolloff=5
+        set scrolloff=3
         set signcolumn=yes
+        set guicursor=v-r-cr:hor50,i:ver50
         colorscheme onehalfdark
+
+        hi clear SpellBad
+        hi SpellBad cterm=undercurl gui=undercurl
 
         command W w
         command Wq wq
@@ -138,8 +147,12 @@
         nmap <leader>+ <Plug>AirlineSelectNextTab
         let g:airline_skip_empty_sections = 1
 
-        let g:ctrlp_map = '<c-p>'
-        let g:ctrlp_cmd = 'CtrlP'
+        let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+        let g:CtrlSpaceGlobCommand = 'rg --color=never --files'
+        let g:CtrlSpaceSearchTiming = 500
+        let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+        let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+        let g:CtrlSpaceSaveWorkspaceOnExit = 1
 
         nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
         nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
@@ -179,7 +192,25 @@
 
         nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-        autocmd BufWritePre * Neoformat
+        function FormatChangedHunks()
+        let formattedLines = 0
+        let formattedHunks = 0
+
+        for hunk in gitgutter#hunk#hunks(bufnr(""))
+            let line1 = hunk[2] - 1
+            let line2 = hunk[2] + hunk[3]
+            let formattedLines = formattedLines + line2 - line1
+            let formattedHunks = formattedHunks + 1
+            silent call neoformat#Neoformat(0, "", line1, line2)
+        endfor
+
+        echomsg "Reformatted " . string(formattedLines) . " changed lines in " . string(formattedHunks) . " hunks"
+        endfunction
+
+        autocmd BufWritePre * undojoin | try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+        " call FormatChangedHunks()
+        autocmd CursorHoldI,CursorHold,BufLeave ?* silent! update
+        let g:cursorhold_updatetime = 1000
 
         let g:neoformat_try_node_exe = 1
 
@@ -191,7 +222,42 @@
         endif
         endfunction
 
+        let s:darkred     = { "gui": "#844C55", "cterm": "167" }
+        let s:darkyellow  = { "gui": "#877658", "cterm": "136" }
+        let s:darkgreen   = { "gui": "#607857", "cterm": "71"  }
+        let s:darkcyan    = { "gui": "#3F717B", "cterm": "31"  }
+        let s:darkblue    = { "gui": "#456E92", "cterm": "31"  }
+        let s:darkpurple  = { "gui": "#775289", "cterm": "127" }
+        let s:white       = { "gui": "#dcdfe4", "cterm": "188" }
+
+        exec "highlight IndentBlanklineContextChar ctermfg=" . s:white.cterm . " guifg=" . s:white.gui . " ctermbg=NONE guibg=NONE"
+        exec "highlight IndentBlanklineContextStart ctermfg=NONE guifg=NONE guisp=white ctermbg=NONE guibg=NONE gui=underline term=underline"
+        exec "highlight IndentBlanklineIndent1 ctermfg=" . s:darkred.cterm . " guifg=" . s:darkred.gui . " ctermbg=NONE guibg=NONE"
+        exec "highlight IndentBlanklineIndent2 ctermfg=" . s:darkyellow.cterm . " guifg=" . s:darkyellow.gui . " ctermbg=NONE guibg=NONE"
+        exec "highlight IndentBlanklineIndent3 ctermfg=" . s:darkgreen.cterm . " guifg=" . s:darkgreen.gui . " ctermbg=NONE guibg=NONE"
+        exec "highlight IndentBlanklineIndent4 ctermfg=" . s:darkcyan.cterm . " guifg=" . s:darkcyan.gui . " ctermbg=NONE guibg=NONE"
+        exec "highlight IndentBlanklineIndent5 ctermfg=" . s:darkblue.cterm . " guifg=" . s:darkblue.gui . " ctermbg=NONE guibg=NONE"
+        exec "highlight IndentBlanklineIndent6 ctermfg=" . s:darkpurple.cterm . " guifg=" . s:darkpurple.gui . " ctermbg=NONE guibg=NONE"
+
         lua << EOF
+        vim.opt.list = true
+        vim.opt.listchars:append "space:⋅"
+        vim.opt.listchars:append "eol:↴"
+
+        require("indent_blankline").setup {
+            space_char_blankline = " ",
+            show_current_context = true,
+            show_current_context_start = true,
+            char_highlight_list = {
+                "IndentBlanklineIndent1",
+                "IndentBlanklineIndent2",
+                "IndentBlanklineIndent3",
+                "IndentBlanklineIndent4",
+                "IndentBlanklineIndent5",
+                "IndentBlanklineIndent6",
+            },
+        }
+
         require('neorg').setup {
             load = {
                 ["core.defaults"] = {}
@@ -209,6 +275,23 @@
                 enable = true,
                 extended_mode = true,
                 max_file_lines = nil,
+                colors = {
+                    "#e06c75",
+                    "#e5c07b",
+                    "#98c379",
+                    "#56b6c2",
+                    "#61afef",
+                    "#c678dd",
+
+                },
+                termcolors = {
+                    "168",
+                    "180",
+                    "114",
+                    "73",
+                    "75",
+                    "176",
+                },
             },
             incremental_selection = {
                 enable = true,
@@ -231,8 +314,7 @@
         set foldexpr=nvim_treesitter#foldexpr()
 
         set viewoptions-=options
-        autocmd BufWinLeave ?* mkview!
-        autocmd BufWinEnter ?* normal zR
+        autocmd BufWinLeave ?* silent! mkview!
 
         function! s:loadViewOrUnfold()
         try
@@ -244,10 +326,41 @@
 
         autocmd BufWinEnter ?* call s:loadViewOrUnfold()
 
-
         let g:airline_highlighting_cache = 1
         let g:airline_theme = "onehalf"
         autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+        let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+
+        let g:hardtime_default_on = 1
+        let g:hardtime_allow_different_key = 1
+        let g:hardtime_motion_with_count_resets = 1
+
+        let g:himalaya_mailbox_picker = 'telescope'
+
+        nnoremap <leader>tf <cmd>Telescope find_files<cr>
+        nnoremap <leader>tc <cmd>Telescope coc<cr>
+        nnoremap <leader>ts <cmd>Telescope ultisnips<cr>
+        nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+        nnoremap <leader>tb <cmd>Telescope buffers<cr>
+        nnoremap <leader>th <cmd>Telescope help_tags<cr>
+
+        lua << EOF
+        require("telescope").setup({
+
+        });
+
+        require("telescope").load_extension("coc");
+        require("telescope").load_extension("ui-select");
+        require("telescope").load_extension("ultisnips");
+        require("telescope").load_extension("zoxide");
+        require("telescope").load_extension("fzf");
+        require("telescope").load_extension("file_browser");
+        EOF
+
+        lua << EOF
+        require("colorizer").setup();
+        EOF
         '';
 
         plugins = with pkgs.vimPlugins; [
@@ -257,7 +370,7 @@
             coc-tsserver
             coc-eslint
             coc-rust-analyzer
-            coc-spell-checker
+            # pkgs-minion.coc-spell-checker
             coc-json
             coc-jest
             coc-css
@@ -279,16 +392,41 @@
             airline
             vista-vim
             vim-gitgutter
-            ctrlp-vim
             vim-airline-clock
             lazygit-nvim
+            FixCursorHold-nvim
+            indent-blankline-nvim
+            vim-hardtime
+            vim-commentary
+            coc-snippets
+            ultisnips
+            vim-surround
+            himalaya-vim
+            telescope-ui-select-nvim
+            telescope-ultisnips-nvim
+            telescope-symbols-nvim
+            telescope-zoxide
+            telescope-fzf-native-nvim
+            telescope-coc-nvim
+            telescope-file-browser-nvim
+            telescope-nvim
+            nvim-colorizer-lua
+            (pkgs.vimUtils.buildVimPlugin {
+                name = "vim-ctrlspace";
+                src = vim-ctrlspace;
+            })
             (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars))
+        ];
+
+        extraPackages = with pkgs; [
+            rust-analyzer
         ];
     };
 
     home.packages = with pkgs; [
         universal-ctags
         nodePackages.cspell
+        fd
     ];
 
     home.sessionVariables.EDITOR = "${pkgs.neovim}/bin/nvim";

@@ -25,7 +25,7 @@ SOFTWARE.
 */
 # Therefore, this file is also copyable under MIT as it represents a "substantial portion" of the original code
 
-final: prev: {}
+final: prev: {
 /*
   discord = final.makeDesktopItem {
     name = "Discord";
@@ -48,5 +48,17 @@ final: prev: {}
     type = "Application";
     categories = [ "Network" "InstantMessaging" ];
     terminal = false;
-  };
-}*/
+    };
+    */
+
+    cinny = final.makeDesktopItem {
+        name = "Cinny";
+        desktopName = "Cinny";
+        genericName = "An alternative matrix client to Element";
+        exec="sh -c \"${final.chromium}/bin/chromium --app=\\\"file://${prev.cinny}/index.html\\\" --autoplay-policy=no-user-gesture-required --enable-features=WebUIDarkMode --force-dark-mode --allow-file-access-from-files --user-data-dir=\\\${XDG_CONFIG_HOME:-\\\$HOME/.config}/cinny\"";
+        icon = "${prev.cinny}/assets/favicon-48x48.png";
+        type = "Application";
+        categories = [ "Network" "InstantMessaging" ];
+        terminal = false;
+    };
+}

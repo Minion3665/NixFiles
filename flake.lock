@@ -144,6 +144,37 @@
         "type": "github"
       }
     },
+    "nixpkgs-22_05": {
+      "locked": {
+        "lastModified": 1660410996,
+        "narHash": "sha256-arkfX1YYFmwMyDTCguzoOI4epABC41FGQU4J1/G3/9M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "70b6236f3cbc815f2cae8d597418c714cf83d1c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-minion": {
+      "locked": {
+        "lastModified": 1654036137,
+        "narHash": "sha256-9qB2rqwRRTWF6QESxhJA9Xs+f9F91CjAddbOS19Khv8=",
+        "owner": "minion3665",
+        "repo": "nixpkgs",
+        "rev": "44aa79022d197f21d1b584a2b445065e5c08fecd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "minion3665",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1658290795,
@@ -215,9 +246,33 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-21-11": "nixpkgs-21-11",
+        "nixpkgs-minion": "nixpkgs-minion",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nurpkgs": "nurpkgs",
-        "registry": "registry"
+        "registry": "registry",
+        "sops-nix": "sops-nix",
+        "vim-ctrlspace": "vim-ctrlspace"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-22_05": "nixpkgs-22_05"
+      },
+      "locked": {
+        "lastModified": 1660540143,
+        "narHash": "sha256-oqeOdJH0ey/UyG1G31BV6Lk8qjI+VKboTpTJB317OhM=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "773365016f5202a199f5aff72cac75c64add4528",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "utils": {
@@ -232,6 +287,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vim-ctrlspace": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649840914,
+        "narHash": "sha256-wQuQTNmU1qujQJ3oU2pSTQaVDa4ZChr1fkjFbILLt+w=",
+        "owner": "vim-ctrlspace",
+        "repo": "vim-ctrlspace",
+        "rev": "05b58e916cea62577462d36bbb88933e8454f2d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vim-ctrlspace",
+        "repo": "vim-ctrlspace",
         "type": "github"
       }
     }

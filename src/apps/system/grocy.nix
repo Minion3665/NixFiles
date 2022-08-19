@@ -17,4 +17,7 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.hosts = {
+    "127.0.0.1" = [ "grocy.services.local" ];
+  };
 }

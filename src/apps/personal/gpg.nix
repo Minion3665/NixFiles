@@ -1,6 +1,6 @@
 { pkgs, ... }: let
     pinentry-multiplexed = pkgs.writeScriptBin "pinentry-multiplexed" ''
-        case $PINENTRY_USER_DATA in
+        case "$${PINENTRY_USER_DATA-}" in
         tty)
             exec ${pkgs.pinentry.tty}/bin/pinentry "$@"
             ;;
