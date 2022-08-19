@@ -4,12 +4,12 @@ a single-user machine. In order to avoid confusion with other modules, all
 user-facing options that I provide will be under the namespace `minion.` and all
 internal options that I provide will be under the namespace `internal.`
 
-All files directly under `/src/` will be `.nix` modules, and related files
-(such as assets) may be contained in `/src/name/` (where `name` is the name
+All files directly under `/modules/` will be `.nix` modules, and related files
+(such as assets) may be contained in `/modules/name/` (where `name` is the name
 of the module with the `.nix` extension omitted). Similarly, any options the
 module provides should be under `minion.name.`. It is expected that related file
 directories will sometimes contain `.nix` files; this is acceptable and no
-particular standard is required of any `.nix` file outside of the main `/src/`
+particular standard is required of any `.nix` file outside of the main `/modules/`
 directory. Some modules with stricter layouts may decide to keep a README in
 their assets directory to ensure a standard is kept.
 
@@ -21,7 +21,8 @@ below.
 ##### Additional options
 | Options | Type | Description |
 | --- | --- | --- |
-| `home` | home-manager configuration || 
+| `home` | home-manager configuration | configuration that will be used for the
+home-manager user; will also be passed as the variable `home` to your modules | 
 
 #### Special directories
 
