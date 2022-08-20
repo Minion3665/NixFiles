@@ -1,0 +1,5 @@
+{
+  config = {
+    powerManagement.cpuFreqGovernor = "ondemand";
+  };
+}

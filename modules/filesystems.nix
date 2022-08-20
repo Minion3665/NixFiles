@@ -13,5 +13,19 @@
       fsType = "tmpfs";
       options = ["defaults" "size=4G" "mode=755"];
     };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-label/boot";
+      fsType = "vfat";
+    };
+
+    fileSystems."/nix" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+    };
+
+    swapDevices = [
+      {device = "/dev/disk/by-label/swap";}
+    ];
   };
 }
