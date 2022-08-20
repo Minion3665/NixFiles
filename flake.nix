@@ -6,6 +6,7 @@
     url = "github:nixos/flake-registry";
     flake = false;
   };
+  inputs.impermanence.url = "github:nix-community/impermanence";
 
   outputs = inputs: let
     inherit (inputs) self nixpkgs flake-utils;
