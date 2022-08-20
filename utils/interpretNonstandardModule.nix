@@ -3,7 +3,7 @@
 # This function takes a list of modules, as well as arguments to import them
 # with, and returns a list of modules, each with the standard NixOS module
 # properties as well as with custom properties as described in /README.md
-modules: args: let
+transformArgs: modules: args: let
   resolver = module: let
     importedModule =
       if builtins.typeOf module == "path"
@@ -13,14 +13,14 @@ modules: args: let
       if builtins.typeOf importedModule == "lambda"
       then
         resolvedModule
-        args
+        (transformArgs args)
       else resolvedModule;
   in {
     home = module.home or {};
     module = {
-        module.config or {};
-        module.imports or {};
-        module.options or {};
+      config = module.config or {};
+      imports = module.imports or {};
+      options = module.options or {};
     };
   };
 in (
