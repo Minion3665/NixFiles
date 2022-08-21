@@ -1,8 +1,12 @@
 lib:
-builtins.listToAttrs builtins.map (path: {
-  name = nixpkgs.lib.pipe path [
-    (nixpkgs.lib.removeSuffix ".nix")
-    (nixpkgs.lib.removePrefix ./.)
-  ];
-  value = import path;
-}) ((import ./nixFilesIn.nix) ./.)
+lib.pipe ./. [
+  (import ./nixFilesInWithName.nix lib)
+  (builtins.map ({
+    name,
+    path,
+  }: {
+    name = lib.removeSuffix ".nix" name;
+    value = import path lib;
+  }))
+  builtins.listToAttrs
+]
