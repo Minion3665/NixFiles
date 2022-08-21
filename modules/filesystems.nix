@@ -20,12 +20,17 @@
     };
 
     fileSystems."/nix" = {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/mapper/nix";
+      fsType = "ext4";
+    };
+
+    fileSystems."/large" = {
+      device = "/dev/mapper/hdd";
       fsType = "ext4";
     };
 
     swapDevices = [
-      {device = "/dev/disk/by-label/swap";}
+      {device = "/dev/mapper/swap";}
     ];
   };
 }

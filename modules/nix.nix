@@ -1,10 +1,12 @@
 {
   pkgs,
   registry,
+  nixpkgs,
   ...
 }: {
   config = {
     nix = {
+      registry.nixpkgs.flake = nixpkgs;
       settings = {
         experimental-features = ["nix-command" "flakes"];
         auto-optimise-store = true;
