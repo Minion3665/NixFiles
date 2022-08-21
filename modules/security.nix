@@ -14,5 +14,6 @@
       nix.device = "/dev/disk/by-label/nix";
       swap.device = "/dev/disk/by-label/swap";
       hdd.device = "/dev/disk/by-label/hdd";
+    };
   };
 }
