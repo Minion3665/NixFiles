@@ -1,9 +1,9 @@
 keys:
-    - &skyler D520 AC8D 7C96 9212 5B2B  BD3A 1AFD 1025 6B3C 714D
-    - &python_laptop 2a81f40686eccb845b763c438a8cf3c0fff331b6
+  - &skyler D520 AC8D 7C96 9212 5B2B  BD3A 1AFD 1025 6B3C 714D
+  - &python_laptop B2EE B25A FB4C 3A2E C7FA  C3A4 3676 C8DC 50D2 4FF6
 creation_rules:
-    - path_regex: secrets/.*
-      key_groups:
-          - pgp:
-              - *skyler
-              - *python_laptop
+  - path_regex: secrets/.*
+    key_groups:
+      - pgp:
+          - *skyler
+          - *python_laptop
