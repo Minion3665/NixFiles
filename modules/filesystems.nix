@@ -8,20 +8,26 @@
       hideMounts = true;
     };
 
+    environment.persistence."/nix/cache" = {
+      hideMounts = true;
+    };
+
     fileSystems."/" = {
       device = "none";
       fsType = "tmpfs";
-      options = ["defaults" "size=4G" "mode=755"];
+      options = ["defaults" "size=20G" "mode=755"];
     };
 
     fileSystems."/boot" = {
-      device = "/dev/disk/by-label/boot";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
     fileSystems."/nix" = {
       device = "/dev/mapper/nix";
       fsType = "ext4";
+      neededForBoot = true;
+      options = ["noatime"];
     };
 
     fileSystems."/large" = {
@@ -32,5 +38,7 @@
     swapDevices = [
       {device = "/dev/mapper/swap";}
     ];
+
+    boot.initrd.availableKernelModules = ["nvme"];
   };
 }
