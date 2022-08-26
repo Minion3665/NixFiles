@@ -1,13 +1,37 @@
-{pkgs, ...}: {
+args @ {
+  pkgs,
+  lib,
+  home,
+  ...
+}: let
+  utils = import ../utils lib;
+in {
   config = {
     environment.variables = {
-      EDITOR = "${pkgs.neovim}/bin/nvim";
+      EDITOR = "nvim";
     };
     environment.defaultPackages = [
       pkgs.perl
       pkgs.rsync
       pkgs.strace
-      pkgs.neovim # I'm installing vim here even though it isn't normally a default package, as I've removed nano
-    ]; # The basic default packages, although without nano
+      pkgs.neovim
+    ]; # The basic default packages, although with nvim replacing nano
+  };
+
+  home = {
+    imports = lib.pipe ./neovim [
+      utils.dirsIn
+      utils.importAll
+      (map (f:
+        if builtins.typeOf f == "lambda"
+        then f args
+        else f))
+    ];
+    programs.neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+    };
   };
 }
