@@ -17,6 +17,7 @@
         automatic = true;
         options = "--delete-older-than 7d";
       };
+      package = pkgs.nix;
     };
 
     # This value determines the NixOS release from which the default
