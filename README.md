@@ -12,7 +12,7 @@ internal options that I provide will be under the namespace `internal.`
 | `modules`   | modules, used to provide user-facing options and configuration                                                                                                                       |
 | `internal`  | internal modules, used to provide configuration-agnostic options to user-facing modules. These should do nothing unless they are triggered by a user-facing module setting an option |
 | `utils`     | internal utilities for writing these modules; intended to be imported by nix files in here, and probably nothing else. These may be refactored into another repo at some point       |
-| `overlays`  | package overlays, each in files named with the package they are intended to overlay                                                                                                  |
+| `overlays`  | package overlays, generally each in files named with the package they are intended to overlay                                                                                        |
 | `patches`   | patch files, each in a directory named with the package that they are intended to patch                                                                                              |
 | `packages`  | package expressions, each named with the package they wish to occupy                                                                                                                 |
 | `switching` | a program for switching on and off options, as well as rebuilding the configuration. Currently A WIP                                                                                 |
@@ -35,11 +35,13 @@ below.
 
 ###### Additional properties
 
-| Options | Type                       | Description                                                                                                           |
-| ------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `home`  | home-manager configuration | configuration that will be used for the home-manager user; will also be passed as the variable `home` to your modules |
+| Options  | Type                       | Description                                                                                                                 |
+| -------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `home`   | home-manager configuration | configuration that will be used for the home-manager user; will also be passed as the variable `home` to your modules       |
+| `traces` | list of string             | [CURRENTLY WIP] A list of config attributes to be "traced" (printed to the console) after evaluation (useful for debugging) |
 
 #### Licensing
+
 Unless otherwise specified, all files in this repo while this message is in the
 readme were written or otherwise created by me, Skyler Grey, and are released
 under [GNUAGPLv3](https://www.gnu.org/licenses/agpl-3.0.html). A full copy of
