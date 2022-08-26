@@ -3,4 +3,4 @@ lib: dir:
 map (name: {
   inherit name;
   path = dir + "/${name}";
-}) (lib.attrNames (lib.filterAttrs (name: type: lib.hasSuffix ".nix" name && type == "regular") (builtins.readDir dir)))
+}) (lib.attrNames (lib.filterAttrs (_: type: type == "directory") (builtins.readDir dir)))

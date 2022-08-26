@@ -20,9 +20,12 @@
     inherit (inputs) self nixpkgs flake-utils;
   in
     flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = import ./overlays nixpkgs.lib;
+      };
 
-      utils = import ./utils/utils.nix nixpkgs.lib;
+      utils = import ./utils nixpkgs.lib;
 
       username = "minion";
     in {
@@ -33,13 +36,15 @@
           modules = [
             (nixpkgs.lib.pipe ./modules [
               utils.nixFilesIn
-              utils.importAll
               (utils.interpretNonstandardModule (args:
                 args
                 // {
-                  home = args.config.home-manager."${username}";
+                  home = args.config.home-manager.users.${username};
                 }))
             ])
+            {
+              minion = import ./config.nix;
+            }
           ];
 
           specialArgs = inputs // {inherit username pkgs;};
