@@ -1,0 +1,55 @@
+From 646bdbd0022d01915ffe2fcbca73b026b835df87 Mon Sep 17 00:00:00 2001
+From: Kovid Goyal <kovid@kovidgoyal.net>
+Date: Fri, 10 Jun 2022 21:38:30 +0530
+Subject: [PATCH] Wayland: Fix a regression in the previous release that caused
+ mouse cursor animation and keyboard repeat to stop working when switching
+ seats
+
+Fixes #5188
+---
+ docs/changelog.rst |  3 +++
+ glfw/wl_init.c     | 10 ++--------
+ 2 files changed, 5 insertions(+), 8 deletions(-)
+
+diff --git a/docs/changelog.rst b/docs/changelog.rst
+index afdf4ecfa4..9d253f5227 100644
+--- a/docs/changelog.rst
++++ b/docs/changelog.rst
+@@ -40,6 +40,9 @@ Detailed list of changes
+ 
+ - Reduce startup latency by ~50 milliseconds when running kittens via key-bindings or remote control (:iss:`5159`)
+ 
++- Wayland: Fix a regression in the previous release that caused mouse cursor
++  animation and keyboard repeat to stop working when switching seats (:iss:`5188`)
++
+ 
+ 0.25.2 [2022-06-07]
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+diff --git a/glfw/wl_init.c b/glfw/wl_init.c
+index eeddcf9f0b..383ed86e10 100644
+--- a/glfw/wl_init.c
++++ b/glfw/wl_init.c
+@@ -573,10 +573,7 @@ static void seatHandleCapabilities(void* data UNUSED,
+     {
+         wl_pointer_destroy(_glfw.wl.pointer);
+         _glfw.wl.pointer = NULL;
+-        if (_glfw.wl.cursorAnimationTimer) {
+-            removeTimer(&_glfw.wl.eventLoopData, _glfw.wl.cursorAnimationTimer);
+-            _glfw.wl.cursorAnimationTimer = 0;
+-        }
++        if (_glfw.wl.cursorAnimationTimer) toggleTimer(&_glfw.wl.eventLoopData, _glfw.wl.cursorAnimationTimer, 0);
+     }
+ 
+     if ((caps & WL_SEAT_CAPABILITY_KEYBOARD) && !_glfw.wl.keyboard)
+@@ -589,10 +586,7 @@ static void seatHandleCapabilities(void* data UNUSED,
+         wl_keyboard_destroy(_glfw.wl.keyboard);
+         _glfw.wl.keyboard = NULL;
+         _glfw.wl.keyboardFocusId = 0;
+-        if (_glfw.wl.keyRepeatInfo.keyRepeatTimer) {
+-            removeTimer(&_glfw.wl.eventLoopData, _glfw.wl.keyRepeatInfo.keyRepeatTimer);
+-            _glfw.wl.keyRepeatInfo.keyRepeatTimer = 0;
+-        }
++        if (_glfw.wl.keyRepeatInfo.keyRepeatTimer) toggleTimer(&_glfw.wl.eventLoopData, _glfw.wl.keyRepeatInfo.keyRepeatTimer, 0);
+     }
+ }
+ 
