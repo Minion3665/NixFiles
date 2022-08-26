@@ -1,24 +1,35 @@
-{
+{username, ...}: {
   config = {
     services.openssh.enable = true;
 
-    environment.persistence."/nix/persist".files = [
-      {
-        file = "/etc/ssh_host_rsa_key";
-        parentDirectory = {mode = "755";};
-      }
-      {
-        file = "/etc/ssh_host_rsa_key.pub";
-        parentDirectory = {mode = "755";};
-      }
-      {
-        file = "/etc/ssh_host_ed25519_key";
-        parentDirectory = {mode = "755";};
-      }
-      {
-        file = "/etc/ssh_host_ed25519_key.pub";
-        parentDirectory = {mode = "755";};
-      }
-    ];
+    environment.persistence."/nix/persist" = {
+      directories = [
+        "/etc/ssh"
+      ];
+      users.${username}.directories = [".ssh"];
+    };
+  };
+
+  home = {
+    programs.ssh = {
+      enable = true;
+      matchBlocks = {
+        logerrit = {
+          hostname = "gerrit.libreoffice.org";
+          identityFile = "~/.ssh/id_rsa";
+          port = 29418;
+          user = "Minion3665";
+        };
+        transplace = {
+          hostname = "95.217.87.112";
+          identityFile = "~/.ssh/id_transplace";
+        };
+      };
+    };
+
+    home.shellAliases = {
+      ssh = "kitty +kitten ssh";
+      s = "kitty +kitten ssh";
+    };
   };
 }
