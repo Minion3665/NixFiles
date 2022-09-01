@@ -3,7 +3,7 @@
 # This function takes a list of modules, as well as arguments to import them
 # with, and returns a list of modules, each with the standard NixOS module
 # properties as well as with custom properties as described in /README.md
-lib: transformArgs: modules: args: let
+lib: transformArgs: modules: args @ {pkgs, ...}: let
   resolver = module: let
     importedModule =
       if builtins.typeOf module == "path"
