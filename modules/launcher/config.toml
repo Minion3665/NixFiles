@@ -1,0 +1,7 @@
+show = drun,run
+prompt = Run application
+allow_images = true
+allow_markup = true
+insensitive = true
+key_expand = Control_L
+line_wrap = word
