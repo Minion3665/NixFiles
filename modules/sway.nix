@@ -1,12 +1,14 @@
 {
   pkgs,
   lib,
+  home,
   ...
 }: {
   home = {
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+      package = pkgs.sway-unwrapped;
 
       config = rec {
         assigns = {};
@@ -61,7 +63,7 @@
         };
         modifier = "Mod4";
         output = {
-          HDMI-A-2 = {
+          HDMI-A-1 = {
             resolution = "3840x2160";
             bg = "#FFD0F9 solid_color";
             position = "0,0";
