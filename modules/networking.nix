@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   config = {
     networking.hostName = "python";
 
@@ -12,5 +12,9 @@
     networking.search = [
       "python.local"
     ];
+
+    hardware.enableRedistributableFirmware = true;
+
+    environment.persistence."/nix/persist".directories = ["/var/lib/iwd"];
   };
 }
