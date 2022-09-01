@@ -8,7 +8,7 @@
       hideMounts = true;
     };
 
-    environment.persistence."/nix/cache" = {
+    environment.persistence."/large/persist" = {
       hideMounts = true;
     };
 
@@ -32,6 +32,7 @@
 
     fileSystems."/large" = {
       device = "/dev/mapper/hdd";
+      neededForBoot = true;
       fsType = "ext4";
     };
 
