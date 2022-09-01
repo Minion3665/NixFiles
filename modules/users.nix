@@ -9,17 +9,15 @@
 
     users.users.${username} = {
       isNormalUser = true;
-      extraGroups = ["wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" "video" config.users.groups.keys.name];
+      extraGroups = ["wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" "video" "tty" config.users.groups.keys.name];
       shell = pkgs.zsh;
+      passwordFile = config.sops.secrets.password.path;
     };
 
-    users.users.root.initialPassword = "hunter2";
-    # TODO: Change this as soon as we know the system boots properly and we make
-    # user passwords persist
-  };
-
-  home.home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
+    environment.persistence."/nix/persist".users.${username}.directories = ["Code" "Documents" "Pictures"];
+    sops.secrets.password = {
+      mode = "0400";
+      neededForUsers = true;
+    };
   };
 }
