@@ -15,6 +15,37 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "gtimelog": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1624374909,
+        "narHash": "sha256-Ls6FpmssAhheVEsi/BQgUb41V7eE7yMdkwt+mPWkRmI=",
+        "ref": "refs/heads/master",
+        "rev": "ae1f65c2088c6ab167b3cf142f80bd04720d1886",
+        "revCount": 459,
+        "type": "git",
+        "url": "https://gitlab.collabora.com/collabora/gtimelog.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.collabora.com/collabora/gtimelog.git"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -32,6 +63,27 @@
       "original": {
         "owner": "nix-community",
         "ref": "release-22.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager-unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1661573386,
+        "narHash": "sha256-pBEg8iY00Af/SAtU2dlmOAv+2x7kScaGlFRDjNoVJO8=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "d89bdff445eadff03fe414e9c30486bc8166b72b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }
@@ -83,6 +135,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1660464579,
+        "narHash": "sha256-kzA9rwh0wS6CwUnFHAQ7dhJCowMPfRbvixVeOKnUmjo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b02538b16f6c5e1dbfce1033b27946e25c019b3b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "registry": {
       "flake": false,
       "locked": {
@@ -102,11 +170,14 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "gtimelog": "gtimelog",
         "home-manager": "home-manager",
+        "home-manager-unstable": "home-manager-unstable",
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
         "registry": "registry",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "vscode-extensions": "vscode-extensions"
       }
     },
     "sops-nix": {
@@ -127,6 +198,40 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1653893745,
+        "narHash": "sha256-0jntwV3Z8//YwuOjzhV2sgJJPt+HY6KhU7VZUL0fKZQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ed9fb1935d260de5fe1c2f7ee0ebaae17ed2fa1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vscode-extensions": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1662019250,
+        "narHash": "sha256-7fLV45jqj0v+q3dUM+iRWv9rJzqKcRimah8MaBe621Q=",
+        "owner": "AmeerTaweel",
+        "repo": "nix-vscode-marketplace",
+        "rev": "6d660610d15ad26be92f1c09725ed67f8d9bf105",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AmeerTaweel",
+        "repo": "nix-vscode-marketplace",
         "type": "github"
       }
     }

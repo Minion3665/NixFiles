@@ -1,0 +1,19 @@
+[gtimelog]
+task_list_expiry = 1 day
+task_list_url = https://chronophage.collabora.com/tasks
+report_to_url = https://chronophage.collabora.com/timesheet
+
+edit_task_list_cmd = kitty nvim
+editor = kitty nvim
+
+virtual_midnight = 03:00
+
+hours = 8
+show_office_hours = True
+
+gtk-completion = True
+
+remind_idle = 10 minutes
+
+show_tray_icon = True
+autoarrival = True
