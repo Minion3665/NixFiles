@@ -30,6 +30,22 @@
         "type": "github"
       }
     },
+    "fzf-tab": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660535318,
+        "narHash": "sha256-xP0IoCeyZyYU+iKUkIoIAMn75r6R3TJYhAKoQgC1dWg=",
+        "owner": "Aloxaf",
+        "repo": "fzf-tab",
+        "rev": "938eef72e93ddb0609205a663bf0783f4e1b5fae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Aloxaf",
+        "repo": "fzf-tab",
+        "type": "github"
+      }
+    },
     "gtimelog": {
       "flake": false,
       "locked": {
@@ -170,6 +186,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "fzf-tab": "fzf-tab",
         "gtimelog": "gtimelog",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",

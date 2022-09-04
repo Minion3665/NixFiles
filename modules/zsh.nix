@@ -2,11 +2,18 @@
   pkgs,
   home,
   username,
+  fzf-tab,
   ...
 }: {
   home = {
     programs.zsh = {
       enable = true;
+      plugins = [
+        {
+          name = "fzf-tab";
+          src = fzf-tab;
+        }
+      ];
       oh-my-zsh = {
         enable = true;
         plugins = ["git"];
@@ -60,7 +67,7 @@
             zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 -l --color=always $realpath'
             # switch group using `,` and `.`
             zstyle ':fzf-tab:*' switch-group ',' '.'
-            # enable-fzf-tab
+            enable-fzf-tab
 
             alias compinit="true"
       '';
@@ -70,8 +77,11 @@
       dotDir = ".config/zsh";
     };
 
-    home.shellAliases = {
-      ":q" = "exit";
+    home = {
+      shellAliases = {
+        ":q" = "exit";
+      };
+      packages = [pkgs.fzf];
     };
   };
   config.environment.persistence."/nix/persist".users.${username}.directories = [".local/share/zsh"];

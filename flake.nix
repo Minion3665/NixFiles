@@ -16,6 +16,10 @@
       url = "git+https://gitlab.collabora.com/collabora/gtimelog.git";
       flake = false;
     };
+    fzf-tab = {
+      url = "github:Aloxaf/fzf-tab";
+      flake = false;
+    };
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
