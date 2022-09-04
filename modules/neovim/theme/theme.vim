@@ -1,22 +1,3 @@
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-colorscheme onehalfdark
-
-highlight Pmenu  ctermfg=188 guifg=#dcdfe4 ctermbg=239 guibg=#474e5d
-highlight PmenuSel   ctermfg=236 guifg=#282c34 ctermbg=75  guibg=#61afef
-highlight PmenuSbar  ctermfg=237 guifg=#313640 ctermbg=237 guibg=#313640
-highlight PmenuThumb ctermfg=188 guifg=#dcdfe4 ctermbg=188 guibg=#dcdfe4
-
-set signcolumn=yes
-set guicursor=v-r-cr:hor50,i:ver50
-set splitright
-set splitbelow
-set scrolloff=3
-set number
-
 " guifg guibg ctermfg ctermbg
 let g:black       = { "gui": "#282c34", "cterm": "236" }
 let g:red         = { "gui": "#e06c75", "cterm": "168" }
@@ -34,4 +15,31 @@ let g:darkcyan    = { "gui": "#3F717B", "cterm": "31"  }
 let g:darkblue    = { "gui": "#456E92", "cterm": "31"  }
 let g:darkpurple  = { "gui": "#775289", "cterm": "127" }
 let g:white       = { "gui": "#dcdfe4", "cterm": "188" }
+let g:transparent = { "gui": "NONE"   , "cterm": "NONE"}
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+colorscheme onehalfdark
+
+function g:Highlight(group, fg, bg)
+  exec ("highlight! " . a:group . " ctermfg=" . a:fg.cterm . " ctermbg=" . a:bg.cterm . " guifg=" . a:fg.gui . " guibg=" . a:bg.gui)
+endfunction
+
+highlight Pmenu  ctermfg=188 guifg=#dcdfe4 ctermbg=239 guibg=#474e5d
+highlight PmenuSel   ctermfg=236 guifg=#282c34 ctermbg=75  guibg=#61afef
+highlight PmenuSbar  ctermfg=237 guifg=#313640 ctermbg=237 guibg=#313640
+highlight PmenuThumb ctermfg=188 guifg=#dcdfe4 ctermbg=188 guibg=#dcdfe4
+
+call g:Highlight("HlSearchLens", g:darkyellow, g:transparent)
+call g:Highlight("HlSearchLensNear", g:white, g:darkyellow)
+
+set signcolumn=yes
+set guicursor=v-r-cr:hor50,i:ver50
+set splitright
+set splitbelow
+set scrolloff=3
+set number
 
