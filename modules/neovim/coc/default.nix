@@ -26,6 +26,7 @@
       coc-json
       coc-jest
       coc-css
+      coc-markdownlint
 
       # Spellchecker
       coc-spell-checker # FIXME: Broken in upstream, needs an overlay

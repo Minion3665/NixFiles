@@ -43,3 +43,6 @@ set splitbelow
 set scrolloff=3
 set number
 
+set textwidth=80
+set colorcolumn=+1
+call g:Highlight("ColorColumn", g:transparent, g:statusline)
