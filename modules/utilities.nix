@@ -3,6 +3,11 @@
   # them
   config.environment.systemPackages = with pkgs; [
     jq
+    (sd.overrideAttrs (oldAttrs: {
+      postInstall = ''
+        mv $out/bin/sd $out/bin/s
+      '';
+    }))
     lnav
   ];
 

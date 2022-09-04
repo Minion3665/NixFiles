@@ -29,7 +29,6 @@
 
     home.shellAliases = {
       ssh = "kitty +kitten ssh";
-      s = "kitty +kitten ssh";
     };
   };
 }
