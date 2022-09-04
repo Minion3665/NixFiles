@@ -58,6 +58,8 @@
             };
             format = "{icon} {capacity}%";
             format-charging = "🔌 {capacity}%";
+            format-plugged = "🔌 {capacity}%";
+            format-full-full = "🔌 Full";
             format-icons = {
               full = "🔋";
               warning = "🪫";
