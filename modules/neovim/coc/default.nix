@@ -11,6 +11,7 @@
       settings = {
         "suggest.noselect" = false;
         "cSpell.checkOnlyEnabledfileTypes" = false;
+        "git.enableGutters" = false;  # We're using another plugin to do this
         "rust-analyzer.serverPath" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         languageserver = {
           nix = {

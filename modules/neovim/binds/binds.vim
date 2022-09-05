@@ -22,6 +22,16 @@ augroup vimrc-auto-mkdir
 augroup END
 " https://stackoverflow.com/a/42872275/12293760
 
+augroup vimrc-auto-neoformat
+  autocmd!
+  autocmd BufWritePre * call s:auto_neoformat(v:cmdbang)
+  function! s:auto_neoformat(force)
+    if a:force
+      Neoformat
+    endif
+  endfunction
+augroup END
+
 command W w
 command Wq wq
 call SetupCommandAlias("git","Git")
@@ -30,3 +40,6 @@ set ignorecase
 set smartcase
 
 set expandtab
+
+let g:cursorhold_updatetime = 1000
+autocmd CursorHoldI,CursorHold,BufLeave ?* silent! update
