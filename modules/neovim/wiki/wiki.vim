@@ -11,3 +11,5 @@ function WikiCreateTransform(name) abort
         \ ? a:name
         \ : a:name . '_' . strftime('%Y%m%d')
 endfunction
+
+nnoremap <silent> <Leader>wf :WikiFzfPages<CR>
