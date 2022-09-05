@@ -2,20 +2,24 @@ args @ {
   pkgs,
   lib,
   home,
+  username,
   ...
 }: let
   utils = import ../utils lib;
 in {
   config = {
-    environment.variables = {
-      EDITOR = "nvim";
+    environment = {
+      variables = {
+        EDITOR = "nvim";
+      };
+      defaultPackages = [
+        pkgs.perl
+        pkgs.rsync
+        pkgs.strace
+        pkgs.neovim
+      ]; # The basic default packages, although with nvim replacing nano
+      persistence."/nix/persist".users.${username}.directories = [".local/share/cspell"];
     };
-    environment.defaultPackages = [
-      pkgs.perl
-      pkgs.rsync
-      pkgs.strace
-      pkgs.neovim
-    ]; # The basic default packages, although with nvim replacing nano
   };
 
   home = {

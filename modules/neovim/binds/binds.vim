@@ -35,6 +35,7 @@ augroup END
 command W w
 command Wq wq
 call SetupCommandAlias("git","Git")
+call SetupCommandAlias("rg","Rg")
 
 set ignorecase
 set smartcase
@@ -43,3 +44,16 @@ set expandtab
 
 let g:cursorhold_updatetime = 1000
 autocmd CursorHoldI,CursorHold,BufLeave ?* silent! update
+
+set viewoptions-=options
+autocmd BufWinLeave ?* silent! mkview!
+
+function! s:loadViewOrUnfold()
+  try
+    loadview
+  catch
+    folddoclosed foldopen
+  endtry
+endfunction
+
+autocmd BufWinEnter ?* call s:loadViewOrUnfold()

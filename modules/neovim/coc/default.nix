@@ -3,6 +3,7 @@
   system,
   lib,
   nixpkgs-minion,
+  home,
   ...
 }: {
   programs.neovim = {
@@ -11,7 +12,14 @@
       settings = {
         "suggest.noselect" = false;
         "cSpell.checkOnlyEnabledfileTypes" = false;
-        "git.enableGutters" = false;  # We're using another plugin to do this
+        "cSpell.dictionaryDefinitions" = [
+          {
+            name = "imperative";
+            path = "${home.home.homeDirectory}/.local/share/cspell/dictionary.txt";
+          }
+        ];
+        "cSpell.dictionaries" = ["imperative"];
+        "git.enableGutters" = false; # We're using another plugin to do this
         "rust-analyzer.serverPath" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         languageserver = {
           nix = {
