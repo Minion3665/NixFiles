@@ -2,6 +2,7 @@
   description = "Minion's NixOS configuration (since 2022-08-19)";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-minion.url = "github:Minion3665/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     vscode-extensions.url = "github:AmeerTaweel/nix-vscode-marketplace";
     registry = {
@@ -21,6 +22,7 @@
       flake = false;
     };
 
+    nixpkgs-minion.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";

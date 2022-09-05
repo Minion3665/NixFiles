@@ -151,6 +151,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-minion": {
+      "locked": {
+        "lastModified": 1662343021,
+        "narHash": "sha256-LN1nNMYYnqQ2hgZkR+E52HU3ctow0lA9AulEp6gQFtc=",
+        "owner": "Minion3665",
+        "repo": "nixpkgs",
+        "rev": "e45a160d5dffe9d464460c0d97fa62aea8bdd013",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Minion3665",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1660464579,
@@ -192,6 +207,7 @@
         "home-manager-unstable": "home-manager-unstable",
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-minion": "nixpkgs-minion",
         "registry": "registry",
         "sops-nix": "sops-nix",
         "vscode-extensions": "vscode-extensions"

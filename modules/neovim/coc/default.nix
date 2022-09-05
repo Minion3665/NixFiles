@@ -1,6 +1,8 @@
 {
   pkgs,
+  system,
   lib,
+  nixpkgs-minion,
   ...
 }: {
   programs.neovim = {
@@ -29,7 +31,7 @@
       coc-markdownlint
 
       # Spellchecker
-      coc-spell-checker # FIXME: Broken in upstream, needs an overlay
+      nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-spell-checker
 
       # File explorer
       coc-explorer
