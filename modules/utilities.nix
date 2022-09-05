@@ -3,6 +3,7 @@
   # them
   config.environment.systemPackages = with pkgs; [
     jq
+    bc
     (sd.overrideAttrs (oldAttrs: {
       postInstall = ''
         mv $out/bin/sd $out/bin/s
