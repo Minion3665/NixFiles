@@ -1,4 +1,8 @@
-{pkgs, username, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   home.home.packages = [pkgs.steam-run];
 
   config = {

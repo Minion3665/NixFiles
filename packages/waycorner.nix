@@ -7,7 +7,7 @@
   fontconfig,
   expat,
   wayland,
-  system
+  system,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "waycorner";
@@ -26,7 +26,7 @@ rustPlatform.buildRustPackage rec {
     cmake
     pkg-config
   ];
-  
+
   buildInputs = [
     freetype
     fontconfig

@@ -31,16 +31,17 @@ in {
   };
 
   home = let
-    lockCommand = lib.pipe ''
-    ${pkgs.sway}/bin/swaymsg output "*" dpms off
-    ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
-    while [ $(${pkgs.sway}/bin/swaymsg -t get_seats | ${pkgs.jq}/bin/jq "[.[] | .capabilities] | max") -eq 0 ]; do ${pkgs.coreutils}/bin/sleep 0.1; done
-    ${pkgs.sway}/bin/swaymsg output "*" dpms on
-    '' [
-      (lib.splitString "\n")
-      (lib.filter (line: line != ""))
-      (lib.concatStringsSep " && ")
-    ];
+    lockCommand =
+      lib.pipe ''
+        ${pkgs.sway}/bin/swaymsg output "*" dpms off
+        ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
+        while [ $(${pkgs.sway}/bin/swaymsg -t get_seats | ${pkgs.jq}/bin/jq "[.[] | .capabilities] | max") -eq 0 ]; do ${pkgs.coreutils}/bin/sleep 0.1; done
+        ${pkgs.sway}/bin/swaymsg output "*" dpms on
+      '' [
+        (lib.splitString "\n")
+        (lib.filter (line: line != ""))
+        (lib.concatStringsSep " && ")
+      ];
   in {
     services.swayidle = {
       enable = true;

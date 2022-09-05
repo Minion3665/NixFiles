@@ -43,7 +43,7 @@
       username = "minion";
 
       isAttrType = type:
-        if builtins.elem type.name ["submodule" ]
+        if builtins.elem type.name ["submodule"]
         then true
         else if type ? nestedTypes.elemType
         then isAttrType type.nestedTypes.elemType
