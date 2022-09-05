@@ -62,12 +62,15 @@
           };
         };
         modifier = "Mod4";
-        output = {
+        output = rec {
           HDMI-A-1 = {
             resolution = "3840x2160";
             bg = "#FFD0F9 solid_color";
             position = "0,0";
           };
+          HDMI-A-2 = HDMI-A-1;
+          # For some reason my monitor sometimes gets one identifier and
+          # sometimes the other, despite being plugged into the same port
           eDP-1 = {
             resolution = "1920x1080";
             position = "0,2160";
