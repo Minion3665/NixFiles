@@ -4,6 +4,9 @@
 
     networking.wireless.iwd.enable = true;
     networking.wireless.iwd.settings = {
+      General = {
+        EnableNetworkConfiguration = true;
+      };
       Settings = {
         AutoConnect = true;
         AlwaysRandomizeAddress = true;
