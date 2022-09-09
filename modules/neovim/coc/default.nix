@@ -37,6 +37,7 @@
       coc-json
       coc-jest
       coc-css
+      coc-go
       coc-markdownlint
 
       # Spellchecker
@@ -54,6 +55,6 @@
       (map builtins.readFile)
       (builtins.concatStringsSep "\n")
     ];
-    extraPackages = [pkgs.nodejs pkgs.rustc];
+    extraPackages = [pkgs.nodejs pkgs.rustc pkgs.go];
   };
 }
