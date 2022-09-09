@@ -13,5 +13,10 @@ set statusline=%t       "tail of the filename
 
 let g:airline#extensions#hunks#coc_git = 1
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#checks = ['indent', 'trailing', 'mixed-indent-file', 'conflicts']
+let g:airline#extensions#whitespace#skip_indent_check_ft =
+  \ {'markdown': ['trailing']}
+
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_skip_empty_sections = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 2
