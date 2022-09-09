@@ -96,7 +96,7 @@
                   home-options =
                     nixpkgs.lib.traceVal (normalizeOptions
                       (args.options.home-manager.users.type.getSubOptions []));
-                  inherit system;
+                  inherit system utils;
                 }))
             ])
             {

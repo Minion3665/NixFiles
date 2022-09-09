@@ -4,6 +4,7 @@
   lib,
   nixpkgs-minion,
   home,
+  utils,
   ...
 }: {
   programs.neovim = {
@@ -57,4 +58,18 @@
     ];
     extraPackages = [pkgs.nodejs pkgs.rustc pkgs.go];
   };
+  home.file = lib.pipe ./snippets [
+    builtins.readDir
+    builtins.attrNames
+    (map
+      (f: {
+        name = ".config/coc/ultisnips/${f}";
+        value = {
+          source = ./snippets + "/${f}";
+          target = ".config/coc/ultisnips/${f}";
+        };
+      }))
+    builtins.listToAttrs
+    lib.traceValSeq
+  ];
 }
