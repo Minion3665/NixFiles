@@ -70,6 +70,8 @@
             enable-fzf-tab
 
             alias compinit="true"
+
+            source "${./zsh/completions/bun.zsh}"
       '';
       enableSyntaxHighlighting = true;
       enableAutosuggestions = true;
