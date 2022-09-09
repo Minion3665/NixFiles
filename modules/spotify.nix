@@ -37,6 +37,17 @@
       owner = config.users.users.${username}.name;
       group = config.users.users.nobody.group;
     };
-    environment.persistence."/nix/persist".users.${username}.directories = [".cache/spotifyd"];
+    sops.secrets.sptConfig = {
+      mode = "0700";
+      owner = config.users.users.${username}.name;
+      group = config.users.users.nobody.group;
+      path = "${home.home.homeDirectory}/.config/spotify-tui/client.yml";
+      sopsFile = ../secrets/spotify-tui.yml.bin;
+      format = "binary";
+    };
+    environment.persistence."/nix/persist".users.${username}.directories = [
+      ".cache/spotifyd"
+      ".config/spotify-tui"
+    ];
   };
 }
