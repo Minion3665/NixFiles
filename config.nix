@@ -1,3 +1,3 @@
 {
-  emacs.enable = true;
+  emacs.enable = false;
 }
