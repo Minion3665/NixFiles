@@ -22,6 +22,10 @@ call wilder#set_option('renderer', wilder#renderer_mux({
       \   'highlighter': s:highlighters,
       \   'highlights': {
       \     'border': 'Normal',
+      \     'default': 'Normal',
+      \     'selected': wilder#make_hl('WilderSelected', 'Normal', [{}, {}, {'background': g:lightgrey.gui}]),
+      \     'accent': wilder#make_hl('WilderAccent', 'Normal', [{}, {}, {'foreground': g:red.gui}]),
+      \     'selected_accent': wilder#make_hl('WilderSelectedAccent', 'WilderSelected', [{}, {}, {'foreground': g:red.gui}]),
       \   },
       \   'border': 'rounded',
       \ })),
