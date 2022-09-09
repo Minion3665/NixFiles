@@ -13,6 +13,10 @@
       shell = pkgs.zsh;
       passwordFile = config.sops.secrets.password.path;
     };
+    users.users.root = {
+      passwordFile = config.sops.secrets.password.path;
+      # Important for physlock + sleep
+    };
 
     environment.persistence."/nix/persist".users.${username}.directories = ["Code" "Documents" "Pictures"];
     sops.secrets.password = {
