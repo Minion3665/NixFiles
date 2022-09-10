@@ -37,5 +37,6 @@ in {
       vimAlias = true;
       vimdiffAlias = true;
     };
+    home.packages = [pkgs.neovide];
   };
 }
