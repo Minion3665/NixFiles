@@ -8,6 +8,7 @@
       font-awesome
       material-design-icons
       powerline-symbols
+      nerdfonts-glyphs
     ];
 
     fontDir.enable = true;
@@ -15,8 +16,8 @@
 
     fontconfig.defaultFonts = {
       serif = ["Roboto Slab"];
-      sansSerif = ["Roboto"];
-      monospace = ["Roboto Mono"];
+      sansSerif = ["Roboto" "Symbols Nerd Font"];
+      monospace = ["Roboto Mono" "Symbols Nerd Font"];
       emoji = ["Twitter Color Emoji"];
     };
   };
