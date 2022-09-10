@@ -46,9 +46,12 @@
         core.fsmonitor = true;
       };
     };
-    home.packages = [
-      pkgs.git-review
-      pkgs.lazygit
-    ];
+    home = {
+      shellAliases.gg = "${pkgs.git}/bin/git gui";
+      packages = [
+        pkgs.git-review
+        pkgs.lazygit
+      ];
+    };
   };
 }
