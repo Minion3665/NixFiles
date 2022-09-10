@@ -4,6 +4,7 @@
   username,
   home-manager-unstable,
   home,
+  lib,
   ...
 }: {
   home = {
@@ -80,6 +81,22 @@
     programs.aerc = {
       enable = true;
       extraConfig.general.unsafe-accounts-conf = true;
+      extraBinds = lib.pipe ./email/aerc-default-binds.toml [builtins.readFile builtins.fromTOML];
+      extraConfig.filters = let
+        defaultFilters = lib.pipe "${pkgs.aerc}/share/aerc/filters" [
+          builtins.readDir
+          builtins.attrNames
+          (builtins.map (f: {
+            name = f;
+            value = "${pkgs.aerc}/share/aerc/filters/${f}";
+          }))
+          builtins.listToAttrs
+        ];
+      in with defaultFilters; {
+        "text/plain" = colorize;
+        "text/calendar" = defaultFilters."show-ics-details.py";
+        "text/html" = html;
+      };
     };
     home.packages = with pkgs; [lynx];
     home.file.".mailcap".text = ''
