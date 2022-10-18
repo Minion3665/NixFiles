@@ -1,15 +1,14 @@
-{
-  pkgs,
-  home,
-  config,
-  username,
-  ...
+{ pkgs
+, home
+, config
+, username
+, ...
 }: {
   home = {
-    home.packages = [pkgs.keepassxc];
+    home.packages = [ pkgs.keepassxc ];
     wayland.windowManager.sway.config.startup = [
       {
-        command = builtins.replaceStrings ["\n"] [" "] ''
+        command = builtins.replaceStrings [ "\n" ] [ " " ] ''
           ${pkgs.coreutils}/bin/cat
           ${config.sops.secrets.keepassPassword.path} |
           ${pkgs.keepassxc}/bin/keepassxc --pw-stdin

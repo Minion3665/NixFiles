@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   config.hardware.openrazer = {
     enable = true;
-    users = ["minion"];
+    users = [ "minion" ];
   };
 
-  home.home.packages = [pkgs.razergenie];
+  home.home.packages = [ pkgs.razergenie ];
 }

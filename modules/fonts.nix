@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   config.fonts = {
     fonts = with pkgs; [
       roboto
@@ -15,10 +15,10 @@
     enableDefaultFonts = true;
 
     fontconfig.defaultFonts = {
-      serif = ["Roboto Slab" "octicons"];
-      sansSerif = ["Roboto" "octicons"];
-      monospace = ["Liga Roboto Mono" "octicons"];
-      emoji = ["Twitter Color Emoji" "octicons"];
+      serif = [ "Roboto Slab" "octicons" ];
+      sansSerif = [ "Roboto" "octicons" ];
+      monospace = [ "Liga Roboto Mono" "octicons" ];
+      emoji = [ "Twitter Color Emoji" "octicons" ];
     };
   };
 }

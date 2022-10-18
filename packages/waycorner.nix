@@ -1,13 +1,13 @@
-{
-  rustPlatform,
-  fetchFromGitHub,
-  cmake,
-  pkg-config,
-  freetype,
-  fontconfig,
-  expat,
-  wayland,
-  system,
+{ rustPlatform
+, fetchFromGitHub
+, cmake
+, pkg-config
+, freetype
+, fontconfig
+, expat
+, wayland
+, system
+,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "waycorner";

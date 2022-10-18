@@ -37,88 +37,96 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs: let
-    inherit (inputs) self nixpkgs flake-utils;
-  in
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = import ./overlays nixpkgs.lib;
-      };
-
-      utils = import ./utils nixpkgs.lib;
-
-      username = "minion";
-
-      isAttrType = type:
-        if builtins.elem type.name ["submodule"]
-        then true
-        else if type ? nestedTypes.elemType
-        then isAttrType type.nestedTypes.elemType
-        else false;
-
-      normalizeOptions = options:
-        if
-          nixpkgs.lib.traceSeqN 2 {
-            inherit options;
-            type = builtins.typeOf options;
-          }
-          builtins.typeOf
-          options
-          == "set"
-        then
-          nixpkgs.lib.mapAttrs (
-            name: value:
-              if
-                nixpkgs.lib.traceSeqN 3 {
-                  inherit name value;
-                  hasGetSubOpts = value ? getSubOptions;
-                  hasType = value ? type;
-                  isAttrType = value ? type && isAttrType value.type;
-                  typeName = value.type.name or "unnamed";
-                  type = builtins.typeOf value;
-                } (builtins.typeOf value)
-                == "set"
-              then
-                nixpkgs.lib.traceVal (normalizeOptions (
-                  if value ? type && isAttrType value.type
-                  then nixpkgs.lib.traceVal (value.type.getSubOptions [])
-                  else nixpkgs.lib.traceVal value
-                ))
-              else value
-          )
-          options
-        else options;
-    in {
-      packages.nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
+  outputs = inputs:
+    let
+      inherit (inputs) self nixpkgs flake-utils;
+    in
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
           inherit system;
-
-          modules = [
-            (nixpkgs.lib.pipe ./modules [
-              utils.nixFilesIn
-              (utils.interpretNonstandardModule (args:
-                args
-                // {
-                  home = args.config.home-manager.users.${username};
-                  home-options =
-                    nixpkgs.lib.traceVal (normalizeOptions
-                      (args.options.home-manager.users.type.getSubOptions []));
-                  inherit system utils;
-                }))
-            ])
-            {
-              minion = import ./config.nix;
-            }
-          ];
-
-          specialArgs = inputs // {inherit inputs username;};
+          overlays = import ./overlays nixpkgs.lib;
         };
-      };
-      devShell = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [nodePackages.prettier alejandra];
-        buildInputs = [];
-      };
-      formatter = pkgs.alejandra;
-    });
+
+        utils = import ./utils nixpkgs.lib;
+
+        username = "minion";
+
+        isAttrType = type:
+          if builtins.elem type.name [ "submodule" ]
+          then true
+          else if type ? nestedTypes.elemType
+          then isAttrType type.nestedTypes.elemType
+          else false;
+
+        normalizeOptions = options:
+          if
+            nixpkgs.lib.traceSeqN 2
+              {
+                inherit options;
+                type = builtins.typeOf options;
+              }
+              builtins.typeOf
+              options
+            == "set"
+          then
+            nixpkgs.lib.mapAttrs
+              (
+                name: value:
+                  if
+                    nixpkgs.lib.traceSeqN 3
+                      {
+                        inherit name value;
+                        hasGetSubOpts = value ? getSubOptions;
+                        hasType = value ? type;
+                        isAttrType = value ? type && isAttrType value.type;
+                        typeName = value.type.name or "unnamed";
+                        type = builtins.typeOf value;
+                      }
+                      (builtins.typeOf value)
+                    == "set"
+                  then
+                    nixpkgs.lib.traceVal
+                      (normalizeOptions (
+                        if value ? type && isAttrType value.type
+                        then nixpkgs.lib.traceVal (value.type.getSubOptions [ ])
+                        else nixpkgs.lib.traceVal value
+                      ))
+                  else value
+              )
+              options
+          else options;
+      in
+      {
+        packages.nixosConfigurations = {
+          default = nixpkgs.lib.nixosSystem {
+            inherit system;
+
+            modules = [
+              (nixpkgs.lib.pipe ./modules [
+                utils.nixFilesIn
+                (utils.interpretNonstandardModule (args:
+                  args
+                  // {
+                    home = args.config.home-manager.users.${username};
+                    home-options =
+                      nixpkgs.lib.traceVal (normalizeOptions
+                        (args.options.home-manager.users.type.getSubOptions [ ]));
+                    inherit system utils;
+                  }))
+              ])
+              {
+                minion = import ./config.nix;
+              }
+            ];
+
+            specialArgs = inputs // { inherit inputs username; };
+          };
+        };
+        devShell = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [ nodePackages.prettier nixpkgs-fmt ];
+          buildInputs = [ ];
+        };
+        formatter = pkgs.nixpkgs-fmt;
+      });
 }

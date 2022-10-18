@@ -1,4 +1,4 @@
-{impermanence, ...}: {
+{ impermanence, ... }: {
   imports = [
     impermanence.nixosModules.impermanence
   ];
@@ -15,7 +15,7 @@
     fileSystems."/" = {
       device = "none";
       fsType = "tmpfs";
-      options = ["defaults" "size=20G" "mode=755"];
+      options = [ "defaults" "size=20G" "mode=755" ];
     };
 
     fileSystems."/boot" = {
@@ -36,9 +36,9 @@
     };
 
     swapDevices = [
-      {device = "/dev/mapper/swap";}
+      { device = "/dev/mapper/swap"; }
     ];
 
-    boot.initrd.availableKernelModules = ["nvme"];
+    boot.initrd.availableKernelModules = [ "nvme" ];
   };
 }

@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.home.packages = [pkgs.pandoc];
+{ pkgs, ... }: {
+  home.home.packages = [ pkgs.pandoc ];
 }

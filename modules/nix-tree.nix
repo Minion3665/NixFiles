@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.home.packages = [pkgs.nix-tree];
+{ pkgs, ... }: {
+  home.home.packages = [ pkgs.nix-tree ];
 }

@@ -1,12 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home = {
     programs.waybar = {
       enable = true;
       settings = [
         {
-          modules-left = ["sway/workspaces"];
+          modules-left = [ "sway/workspaces" ];
 
-          modules-center = ["sway/window"];
+          modules-center = [ "sway/window" ];
 
           modules-right = [
             "backlight"
@@ -113,6 +113,6 @@
         always = true;
       }
     ];
-    home.packages = with pkgs; [libappindicator swaynotificationcenter];
+    home.packages = with pkgs; [ libappindicator swaynotificationcenter ];
   };
 }

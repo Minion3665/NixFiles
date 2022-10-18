@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  home.home.packages = with pkgs; [pulseaudio pulsemixer];
+{ pkgs, ... }: {
+  home.home.packages = with pkgs; [ pulseaudio pulsemixer ];
   config = {
     security.rtkit.enable = true;
     services.pipewire = {

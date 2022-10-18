@@ -1,12 +1,13 @@
-args @ {
-  pkgs,
-  lib,
-  home,
-  username,
-  ...
-}: let
+args @ { pkgs
+, lib
+, home
+, username
+, ...
+}:
+let
   utils = import ../utils lib;
-in {
+in
+{
   config = {
     environment = {
       variables = {
@@ -18,7 +19,7 @@ in {
         pkgs.strace
         pkgs.neovim
       ]; # The basic default packages, although with nvim replacing nano
-      persistence."/nix/persist".users.${username}.directories = [".local/share/cspell"];
+      persistence."/nix/persist".users.${username}.directories = [ ".local/share/cspell" ];
     };
   };
 
@@ -38,7 +39,7 @@ in {
       vimdiffAlias = true;
     };
     home = {
-      packages = [pkgs.neovide];
+      packages = [ pkgs.neovide ];
       sessionVariables = {
         EDITOR = "${home.programs.neovim.finalPackage}/bin/nvim";
       };

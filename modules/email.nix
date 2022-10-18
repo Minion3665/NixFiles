@@ -1,14 +1,13 @@
-{
-  pkgs,
-  config,
-  username,
-  home-manager-unstable,
-  home,
-  lib,
-  ...
+{ pkgs
+, config
+, username
+, home-manager-unstable
+, home
+, lib
+, ...
 }: {
   home = {
-    imports = ["${home-manager-unstable}/modules/programs/aerc.nix"];
+    imports = [ "${home-manager-unstable}/modules/programs/aerc.nix" ];
     accounts.email = {
       maildirBasePath = "Mail";
       accounts = {
@@ -81,25 +80,26 @@
     programs.aerc = {
       enable = true;
       extraConfig.general.unsafe-accounts-conf = true;
-      extraBinds = lib.pipe ./email/aerc-default-binds.toml [builtins.readFile builtins.fromTOML];
-      extraConfig.filters = let
-        defaultFilters = lib.pipe "${pkgs.aerc}/share/aerc/filters" [
-          builtins.readDir
-          builtins.attrNames
-          (builtins.map (f: {
-            name = f;
-            value = "${pkgs.aerc}/share/aerc/filters/${f}";
-          }))
-          builtins.listToAttrs
-        ];
-      in
+      extraBinds = lib.pipe ./email/aerc-default-binds.toml [ builtins.readFile builtins.fromTOML ];
+      extraConfig.filters =
+        let
+          defaultFilters = lib.pipe "${pkgs.aerc}/share/aerc/filters" [
+            builtins.readDir
+            builtins.attrNames
+            (builtins.map (f: {
+              name = f;
+              value = "${pkgs.aerc}/share/aerc/filters/${f}";
+            }))
+            builtins.listToAttrs
+          ];
+        in
         with defaultFilters; {
           "text/plain" = colorize;
           "text/calendar" = defaultFilters."show-ics-details.py";
           "text/html" = html;
         };
     };
-    home.packages = with pkgs; [lynx];
+    home.packages = with pkgs; [ lynx ];
     home.file.".mailcap".text = ''
       text/html; ${pkgs.lynx}/bin/lynx -force_html -dump %s; copiousoutput
       image/*; ${pkgs.kitty}/bin/kitty +kitten icat && read -r -n1 key
@@ -114,6 +114,6 @@
       owner = config.users.users.${username}.name;
       group = config.users.users.nobody.group;
     };
-    environment.persistence."/nix/persist".users.${username}.directories = ["Mail"];
+    environment.persistence."/nix/persist".users.${username}.directories = [ "Mail" ];
   };
 }

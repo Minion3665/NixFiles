@@ -1,11 +1,12 @@
-{
-  lib,
-  fetchFromGitHub,
-  stdenv,
-  fontforge,
-  writeText,
-  useNerdfontsOffset ? true,
-}: let
+{ lib
+, fetchFromGitHub
+, stdenv
+, fontforge
+, writeText
+, useNerdfontsOffset ? true
+,
+}:
+let
   pname = "octicons";
   version = "4.4.0";
   src = fetchFromGitHub {
@@ -56,27 +57,27 @@
     font.generate("${pname}.ttf")
   '';
 in
-  stdenv.mkDerivation rec {
-    inherit version src pname;
+stdenv.mkDerivation rec {
+  inherit version src pname;
 
-    buildPhase = ''
-      fontforge \
-        -lang py \
-        -script ${script} \;
-    '';
+  buildPhase = ''
+    fontforge \
+      -lang py \
+      -script ${script} \;
+  '';
 
-    installPhase = ''
-      mkdir -p $out/bin $out/share/fonts/truetype
-      mv ${pname}.ttf $out/share/fonts/truetype
-      echo $out
-    '';
+  installPhase = ''
+    mkdir -p $out/bin $out/share/fonts/truetype
+    mv ${pname}.ttf $out/share/fonts/truetype
+    echo $out
+  '';
 
-    nativeBuildInputs = [fontforge];
+  nativeBuildInputs = [ fontforge ];
 
-    meta = with lib; {
-      description = "GitHub's Octicons icon pack";
-      homepage = "https://github.com/primer/octicons";
-      license = licenses.mit;
-      maintainers = with maintainers; [minion3665];
-    };
-  }
+  meta = with lib; {
+    description = "GitHub's Octicons icon pack";
+    homepage = "https://github.com/primer/octicons";
+    license = licenses.mit;
+    maintainers = with maintainers; [ minion3665 ];
+  };
+}

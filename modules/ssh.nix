@@ -1,4 +1,4 @@
-{username, ...}: {
+{ username, ... }: {
   config = {
     services.openssh.enable = true;
 
@@ -6,7 +6,7 @@
       directories = [
         "/etc/ssh"
       ];
-      users.${username}.directories = [".ssh"];
+      users.${username}.directories = [ ".ssh" ];
     };
   };
 

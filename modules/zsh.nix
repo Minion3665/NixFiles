@@ -1,9 +1,8 @@
-{
-  pkgs,
-  home,
-  username,
-  fzf-tab,
-  ...
+{ pkgs
+, home
+, username
+, fzf-tab
+, ...
 }: {
   home = {
     programs.zsh = {
@@ -16,7 +15,7 @@
       ];
       oh-my-zsh = {
         enable = true;
-        plugins = ["git"];
+        plugins = [ "git" ];
         theme = "crunch";
       };
       history = {
@@ -74,8 +73,8 @@
         ":q" = "exit";
         "q" = "exit";
       };
-      packages = [pkgs.fzf];
+      packages = [ pkgs.fzf ];
     };
   };
-  config.environment.persistence."/nix/persist".users.${username}.directories = [".local/share/zsh"];
+  config.environment.persistence."/nix/persist".users.${username}.directories = [ ".local/share/zsh" ];
 }

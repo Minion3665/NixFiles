@@ -1,18 +1,17 @@
-{
-  pkgs,
-  registry,
-  nixpkgs,
-  flake-utils-plus,
-  ...
+{ pkgs
+, registry
+, nixpkgs
+, flake-utils-plus
+, ...
 }: {
-  imports = [flake-utils-plus.nixosModules.autoGenFromInputs];
+  imports = [ flake-utils-plus.nixosModules.autoGenFromInputs ];
   config = {
     nix = {
       generateNixPathFromInputs = true;
       linkInputs = true;
       registry.nixpkgs.flake = nixpkgs;
       settings = {
-        experimental-features = ["nix-command" "flakes"];
+        experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
         keep-outputs = true;
         flake-registry = "${registry}/flake-registry.json";

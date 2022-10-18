@@ -1,7 +1,7 @@
-{
-  lib,
-  fetchFromGitHub,
-  stdenv,
+{ lib
+, fetchFromGitHub
+, stdenv
+,
 }:
 stdenv.mkDerivation rec {
   pname = "nerdfonts-glyphs";
@@ -32,6 +32,6 @@ stdenv.mkDerivation rec {
     description = "A nerd-fonts copy that only includes the glyphs (rather than patching)";
     homepage = "https://nerdfonts.com/";
     license = licenses.free;
-    maintainers = with maintainers; [minion3665];
+    maintainers = with maintainers; [ minion3665 ];
   };
 }

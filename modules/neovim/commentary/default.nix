@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  programs.neovim.plugins = [pkgs.vimPlugins.vim-commentary];
+{ pkgs, ... }: {
+  programs.neovim.plugins = [ pkgs.vimPlugins.vim-commentary ];
 }

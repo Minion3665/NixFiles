@@ -1,12 +1,11 @@
-{
-  pkgs,
-  home,
-  lib,
-  ...
+{ pkgs
+, home
+, lib
+, ...
 }: {
   home = {
     home = {
-      packages = [pkgs.rofi-wayland];
+      packages = [ pkgs.rofi-wayland ];
       file.".config/rofi/config.rasi".source = ./launcher/config.rasi;
     };
     wayland.windowManager.sway.config.keybindings = lib.mkOptionDefault {

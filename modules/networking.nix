@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   config = {
     networking = {
@@ -19,7 +18,7 @@
         static routers=10.0.0.1
       '';
       hostName = "python";
-      nameservers = ["1.1.1.1" "1.0.0.1"];
+      nameservers = [ "1.1.1.1" "1.0.0.1" ];
       search = [
         "python.local"
       ];
@@ -62,8 +61,8 @@
     };
 
     environment = {
-      persistence."/nix/persist".directories = ["/var/db/dhcpcd"];
-      systemPackages = [pkgs.bandwidth];
+      persistence."/nix/persist".directories = [ "/var/db/dhcpcd" ];
+      systemPackages = [ pkgs.bandwidth ];
     };
   };
 }

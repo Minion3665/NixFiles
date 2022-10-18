@@ -1,7 +1,7 @@
-{
-  lib,
-  fetchFromGitHub,
-  stdenv,
+{ lib
+, fetchFromGitHub
+, stdenv
+,
 }:
 stdenv.mkDerivation rec {
   pname = "monocraft";
@@ -25,6 +25,6 @@ stdenv.mkDerivation rec {
     description = "A programming font based on the typeface used in Minecraft";
     homepage = "https://github.com/IdreesInc/Monocraft";
     license = licenses.ofl;
-    maintainers = with maintainers; [minion3665];
+    maintainers = with maintainers; [ minion3665 ];
   };
 }

@@ -1,7 +1,6 @@
-{
-  pkgs,
-  username,
-  ...
+{ pkgs
+, username
+, ...
 }: {
   config = {
     programs.steam = {
@@ -10,10 +9,12 @@
     };
     hardware.steam-hardware.enable = true;
 
-    internal.allowUnfree = ["steam" "steam-original" "steam-runtime"];
+    internal.allowUnfree = [ "steam" "steam-original" "steam-runtime" ];
     environment = {
-      persistence."/large/persist".users.${username}.directories = [".local/share/Steam"];
-      systemPackages = with pkgs; [gamescope gamemode /*(
+      persistence."/large/persist".users.${username}.directories = [ ".local/share/Steam" ];
+      systemPackages = with pkgs; [
+        gamescope
+        gamemode /*(
         writeTextDir "share/applications/steam.desktop" ''
           [Desktop Entry]
           Name=Steam
@@ -28,7 +29,8 @@
           PrefersNonDefaultGPU=true
           X-KDE-RunOnDiscreteGpu=true
         ''
-      )*/];
+      )*/
+      ];
     };
     boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = "0";
   };

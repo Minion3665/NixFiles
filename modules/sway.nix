@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  home,
-  ...
+{ pkgs
+, lib
+, home
+, ...
 }: {
   home = {
     wayland.windowManager.sway = {
@@ -11,14 +10,14 @@
       package = pkgs.sway-unwrapped;
 
       config = rec {
-        assigns = {};
-        bars = [];
-        colors = {};
+        assigns = { };
+        bars = [ ];
+        colors = { };
         defaultWorkspace = null;
         down = "j";
-        floating = {};
-        focus = {};
-        fonts = {};
+        floating = { };
+        focus = { };
+        fonts = { };
         gaps = {
           inner = 10;
           top = -10;
@@ -90,8 +89,7 @@
             resolution = "1920x1080";
             position = "0,2160";
           };
-          "*" = {
-          };
+          "*" = { };
         };
         right = "l";
         seat = {
@@ -100,7 +98,7 @@
           };
         };
         startup = [
-          {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
+          { command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"; }
           {
             command = "light -N 1";
             always = false;
@@ -112,10 +110,10 @@
         ];
         terminal = "${pkgs.kitty}/bin/kitty";
         up = "k";
-        window = {};
+        window = { };
         workspaceAutoBackAndForth = true;
         workspaceLayout = "default";
-        workspaceOutputAssign = [];
+        workspaceOutputAssign = [ ];
       };
 
       extraSessionCommands = ''

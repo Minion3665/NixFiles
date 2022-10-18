@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.home = {
     packages = with pkgs; [
       discord
@@ -19,5 +19,5 @@
     };
   };
 
-  config.internal.allowUnfree = ["discord"];
+  config.internal.allowUnfree = [ "discord" ];
 }

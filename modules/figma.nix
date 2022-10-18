@@ -1,4 +1,4 @@
-{pkgs, ...}: {
-  home.home.packages = [pkgs.figma];
-  config.internal.allowUnfree = ["figma"];
+{ pkgs, ... }: {
+  home.home.packages = [ pkgs.figma ];
+  config.internal.allowUnfree = [ "figma" ];
 }

@@ -1,12 +1,13 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{ pkgs
+, lib
+, ...
+}:
+let
   disabledGrammars = [
     "tree-sitter-sql"
   ];
-in {
+in
+{
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter.withPlugins (plugins:

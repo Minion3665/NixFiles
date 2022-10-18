@@ -1,7 +1,6 @@
-{
-  username,
-  config,
-  ...
+{ username
+, config
+, ...
 }: {
   config.environment.persistence."/nix/persist".users.${username}.directories = [
     {

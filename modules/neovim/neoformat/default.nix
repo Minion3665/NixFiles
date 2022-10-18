@@ -1,7 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }: {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
@@ -10,7 +9,7 @@
     extraConfig = builtins.readFile ./setup.vim;
     extraPackages = with pkgs; [
       nodePackages.prettier
-      alejandra
+      nixpkgs-fmt
       rustfmt
       shfmt
       astyle

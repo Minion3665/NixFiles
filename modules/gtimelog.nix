@@ -1,9 +1,8 @@
-{
-  pkgs,
-  username,
-  gtimelog,
-  lib,
-  ...
+{ pkgs
+, username
+, gtimelog
+, lib
+, ...
 }: {
   home.home = {
     packages = [
@@ -15,12 +14,12 @@
               glib-networking
             ])}"
         ];
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.gobject-introspection];
-        buildInputs = oldAttrs.buildInputs ++ [pkgs.glib-networking];
+        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.gobject-introspection ];
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.glib-networking ];
       }))
     ];
     file.".gtimelog/gtimelogrc".source = ./gtimelog/gtimelogrc.toml;
   };
 
-  config.environment.persistence."/nix/persist".users.${username}.directories = [".gtimelog"];
+  config.environment.persistence."/nix/persist".users.${username}.directories = [ ".gtimelog" ];
 }

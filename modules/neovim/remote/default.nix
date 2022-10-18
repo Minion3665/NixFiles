@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs = {
     neovim = {
       extraConfig = builtins.readFile ./remote.vim;

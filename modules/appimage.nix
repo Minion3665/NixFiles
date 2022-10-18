@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.home.packages = [pkgs.appimage-run];
+{ pkgs, ... }: {
+  home.home.packages = [ pkgs.appimage-run ];
 }

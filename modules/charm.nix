@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.home.packages = [pkgs.charm];
+{ pkgs, ... }: {
+  home.home.packages = [ pkgs.charm ];
 }

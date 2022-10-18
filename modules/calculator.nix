@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   R = pkgs.rWrapper.override {
     packages = with pkgs.rPackages; [
       zoo
@@ -9,6 +10,7 @@
       shiny
     ];
   };
-in {
-  home.home.packages = with pkgs; [wcalc R kalgebra];
+in
+{
+  home.home.packages = with pkgs; [ wcalc R kalgebra ];
 }

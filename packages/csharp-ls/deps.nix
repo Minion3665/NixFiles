@@ -1,4 +1,4 @@
-{fetchNuGet}: [
+{ fetchNuGet }: [
   (fetchNuGet {
     pname = "Argu";
     version = "6.1.1";

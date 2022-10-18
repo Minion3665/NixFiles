@@ -1,9 +1,8 @@
-{
-  pkgs,
-  config,
-  home,
-  username,
-  ...
+{ pkgs
+, config
+, home
+, username
+, ...
 }: {
   home = {
     services.spotifyd = {
@@ -24,7 +23,7 @@
         };
       };
     };
-    home.packages = [pkgs.spotify-tui];
+    home.packages = [ pkgs.spotify-tui ];
   };
   config = {
     sops.secrets.spotifyUsername = {

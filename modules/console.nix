@@ -1,7 +1,7 @@
 {
   config = {
     boot = {
-      kernelParams = ["consoleblank=60"];
+      kernelParams = [ "consoleblank=60" ];
       consoleLogLevel = 2;
     };
     console = {

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.qt = {
     enable = true;
     platformTheme = "gnome";

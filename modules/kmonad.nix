@@ -1,5 +1,5 @@
-{kmonad, ...}: {
-  imports = [kmonad.nixosModules.default];
+{ kmonad, ... }: {
+  imports = [ kmonad.nixosModules.default ];
 
   config.services.kmonad = {
     enable = false;

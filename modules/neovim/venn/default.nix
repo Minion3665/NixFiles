@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.neovim = {
     plugins = [
       pkgs.vimPlugins.venn-nvim

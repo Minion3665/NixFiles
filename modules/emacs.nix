@@ -1,16 +1,17 @@
-{
-  pkgs,
-  config,
-  username,
-  lib,
-  ...
-}: let
+{ pkgs
+, config
+, username
+, lib
+, ...
+}:
+let
   cfg = config.minion.emacs;
-in {
+in
+{
   options.minion.emacs.enable = lib.mkEnableOption "Enable emacs";
 
   config = lib.mkIf cfg.enable {
-    environment.persistence."/nix/persist".users.${username}.directories = [".emacs.d"];
+    environment.persistence."/nix/persist".users.${username}.directories = [ ".emacs.d" ];
   };
 
   home.programs.emacs = {

@@ -1,11 +1,12 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{ lib
+, pkgs
+, config
+, ...
+}:
+let
   lockMessage = "This computer has been locked, please enter your password to continue";
-in {
+in
+{
   config = {
     security.apparmor = {
       enable = true;
@@ -30,29 +31,31 @@ in {
     };
   };
 
-  home = let
-    lockCommand =
-      lib.pipe ''
-        ${pkgs.sway}/bin/swaymsg output "*" dpms off
-        ${pkgs.systemd}/bin/systemd-inhibit --why="Already locked" --what=idle --who="lock script" ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
-        while [ $(${pkgs.sway}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq "[.[] | .dpms] | any") = "false" ]; do ${pkgs.coreutils}/bin/sleep 0.1; ${pkgs.sway}/bin/swaymsg output "*" dpms on; done
-      '' [
-        (lib.splitString "\n")
-        (lib.filter (line: line != ""))
-        (lib.concatStringsSep " && ")
-      ];
-  in {
-    services.swayidle = {
-      enable = true;
-      timeouts = [
-        {
-          timeout = 60;
-          command = lockCommand;
-        }
+  home =
+    let
+      lockCommand =
+        lib.pipe ''
+          ${pkgs.sway}/bin/swaymsg output "*" dpms off
+          ${pkgs.systemd}/bin/systemd-inhibit --why="Already locked" --what=idle --who="lock script" ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
+          while [ $(${pkgs.sway}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq "[.[] | .dpms] | any") = "false" ]; do ${pkgs.coreutils}/bin/sleep 0.1; ${pkgs.sway}/bin/swaymsg output "*" dpms on; done
+        '' [
+          (lib.splitString "\n")
+          (lib.filter (line: line != ""))
+          (lib.concatStringsSep " && ")
+        ];
+    in
+    {
+      services.swayidle = {
+        enable = true;
+        timeouts = [
+          {
+            timeout = 60;
+            command = lockCommand;
+          }
+        ];
+      };
+      home.packages = [
+        (pkgs.writeScriptBin "lock" lockCommand)
       ];
     };
-    home.packages = [
-      (pkgs.writeScriptBin "lock" lockCommand)
-    ];
-  };
 }

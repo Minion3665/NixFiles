@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.home.packages = [pkgs.vieb];
+{ pkgs, ... }: {
+  home.home.packages = [ pkgs.vieb ];
 }

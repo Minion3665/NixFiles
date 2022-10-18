@@ -1,11 +1,12 @@
-{ stdenv,
-  #qt5-declarative,
-  libsForQt5,
-  extra-cmake-modules,
-  #kdoctools,
-  eigen,
-  #qt5-tools,
-  fetchurl,
+{ stdenv
+, #qt5-declarative,
+  libsForQt5
+, extra-cmake-modules
+, #kdoctools,
+  eigen
+, #qt5-tools,
+  fetchurl
+,
 }:
 stdenv.mkDerivation {
   pname = "analitza";

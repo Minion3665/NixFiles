@@ -1,10 +1,9 @@
-{
-  pkgs,
-  config,
-  username,
-  ...
+{ pkgs
+, config
+, username
+, ...
 }: {
-  home.home.packages = [pkgs.keybase-gui];
+  home.home.packages = [ pkgs.keybase-gui ];
   config = {
     services = {
       keybase.enable = true;

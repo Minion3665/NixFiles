@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   config.environment.systemPackages = with pkgs.aspellDicts; [
     pkgs.aspell
     en

@@ -1,8 +1,7 @@
-{
-  pkgs,
-  vscode-extensions,
-  system,
-  ...
+{ pkgs
+, vscode-extensions
+, system
+, ...
 }: {
   home.programs.vscode = {
     enable = true;
@@ -20,5 +19,5 @@
       "files.autoSaveDelay" = 100;
     };
   };
-  config.internal.allowUnfree = ["vscode-extension-ms-vsliveshare-vsliveshare"];
+  config.internal.allowUnfree = [ "vscode-extension-ms-vsliveshare-vsliveshare" ];
 }
