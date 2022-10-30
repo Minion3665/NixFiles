@@ -1,11 +1,11 @@
 {pkgs, ...}: {
   home.qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "gnome";
 
     style = {
-      name = "Adwaita-dark";
       package = pkgs.adwaita-qt;
+      name = "adwaita-dark";
     };
   };
 }
