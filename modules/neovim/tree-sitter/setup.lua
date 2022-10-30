@@ -36,29 +36,6 @@ require('nvim-treesitter.configs').setup {
   indent = {
     enable = true,
   },
-  refactor = {
-    highlight_definitions = {
-      enable = true,
-      clear_on_cursor_move = true,
-    },
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "<leader>fr",
-      },
-    },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "<leader>gd",
-        list_definitions = "<leader>gD",
-        list_definitions_toc = "<leader>gDD",
-        goto_next_usage = "<leader>g]",
-        goto_previous_usage = "<leader>g[",
-      },
-    },
-
-  },
 }
 
 require('treesitter-context').setup{

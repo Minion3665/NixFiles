@@ -9,7 +9,6 @@
         (builtins.attrValues plugins)
         ++ (with pkgs.vimPlugins; [
           nvim-ts-rainbow
-          nvim-treesitter-refactor
         ])))
       nvim-treesitter-context
     ];
