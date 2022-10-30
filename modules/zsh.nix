@@ -66,6 +66,7 @@
     home = {
       shellAliases = {
         ":q" = "exit";
+        "q" = "exit";
       };
       packages = [pkgs.fzf];
     };
