@@ -57,3 +57,5 @@ function! s:loadViewOrUnfold()
 endfunction
 
 autocmd BufWinEnter ?* call s:loadViewOrUnfold()
+
+tnoremap <Esc><Esc> <C-\><C-n>
