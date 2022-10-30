@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.neovim = {
-    extraPackages = [pkgs.pandoc];
+    extraPackages = with pkgs; [pandoc unzip];
     extraConfig = builtins.readFile ./filetypes.vim;
   };
 }
