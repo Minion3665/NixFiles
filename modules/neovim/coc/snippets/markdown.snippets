@@ -21,13 +21,58 @@
 #		private readonly ${1} = new Emitter<$2>()
 #		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
 #		endsnippet
-#
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
-snippet dydx "The derivative" w
+snippet latex "A latex block" w
+$${0}$
+endsnippet
+
+snippet dydx "The derivative" i
 \frac{dy}{dx}
 endsnippet
 
-snippet d2ydx2 "The second derivative" w
+snippet dydt "The derivative of `y` WRT `t`" i
+\frac{dy}{dx}
+endsnippet
+
+snippet dydx "The derivative of `x` WRT `t`" i
+\frac{dy}{dx}
+endsnippet
+
+snippet iidx "Integrate indefinitely with respect to x" i
+\int ${0} \text{ d}x
+endsnippet
+
+snippet idx "Integrate definitely with respect to x" i
+\int{${0}}{${1}}${2} \text{ d}x
+endsnippet
+
+snippet ihat "The I vector" i
+\hat{\bm{i}}
+endsnippet
+
+snippet jhat "The J vector" i
+\hat{\bm{j}}
+endsnippet
+
+snippet vec "A vector" i
+\bm{${0}}
+endsnippet
+
+snippet col "A column vector" i
+\begin{bmatrix}${0}\end{bmatrix}
+endsnippet
+
+snippet nl "A latex newline (e.g. for column vectors)" i
+\\\\ 
+endsnippet
+
+snippet d2ydx2 "The second derivative" i
 \frac{d^2y}{dx^2}
+endsnippet
+
+snippet nospell "Disable spellcheck on the visually-selected region"
+<!-- spell-checker:disable -->
+${VISUAL}
+<!-- spell-checker:enable -->
 endsnippet
