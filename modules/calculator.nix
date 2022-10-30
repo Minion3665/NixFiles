@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.home.packages = [pkgs.wcalc];
+  home.home.packages = with pkgs; [wcalc R];
 }
