@@ -2,3 +2,6 @@
 
 let g:shfmt_opt="-ci"
 let g:neoformat_try_node_exe = 1
+
+let g:neoformat_enabled_javascript = ["prettier-eslint", "eslint_d", "prettier"]
+let g:neoformat_enabled_typescript = ["prettier-eslint", "eslint_d", "prettier"]
