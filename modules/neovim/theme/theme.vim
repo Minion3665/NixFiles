@@ -19,6 +19,7 @@ call g:Highlight("HlSearchLensNear", g:white, g:darkyellow)
 
 set signcolumn=yes
 set guicursor=v-r-cr:hor50,i:ver50
+set guifont=Liga\ Roboto\ Mono:h12
 set splitright
 set splitbelow
 set scrolloff=3
