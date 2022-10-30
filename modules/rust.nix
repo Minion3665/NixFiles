@@ -5,6 +5,7 @@
     rustc
     rustfmt
     bacon
+    gcc
   ];
   config.environment.persistence."/nix/persist".users.${username}.directories = [".cargo"];
 }
