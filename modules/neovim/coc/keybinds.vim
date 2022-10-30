@@ -1,8 +1,11 @@
 nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
 nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
 nmap <silent> <Leader>fs <Plug>(coc-codeaction-selected)
-nmap <silent> <Leader>fg <Plug>(coc-codeaction-cursor)
-nmap <silent> <Leader>ff <Plug>(coc-codeaction)
+nmap <silent> <Leader>fb <Plug>(coc-codeaction)
+nmap <silent> <Leader>ff <Plug>(coc-codeaction-cursor)
+nmap <silent> <Leader>fc <Plug>(coc-codeaction-cursor)
+nmap <silent> <Leader>fr <Plug>(coc-rename)
+nmap <silent> <Leader>fi <Plug>(coc-fix-current)
 nmap <Leader>fe <Cmd>CocCommand explorer<CR>
 
 function! s:show_documentation()
