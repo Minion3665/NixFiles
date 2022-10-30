@@ -29,22 +29,6 @@
         bindkey -v
         bindkey "\'\'$\{key[Up]}" up-line-or-search
 
-        command_not_found_handler ()
-        {
-            local p='command-not-found';
-            if [ -x "$p" ] && [ -f '/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite' ]; then
-            "$p" "$@" 2>&1 | sed -r 's/nix-shell -p (\S+)/nix shell nixpkgs#\1/g' 1>&2;
-            if [ $? = 126 ]; then
-            "$@";
-            else
-            return 127;
-            fi;
-            else
-            echo "$1: command not found" 1>&2;
-            return 127;
-            fi
-        }
-
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=243';
         ZSH_HIGHLIGHT_STYLES[comment]='fg=248';
 
