@@ -1,7 +1,47 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   config = {
+    environment.systemPackages = [pkgs.nm-tray];
     networking.hostName = "python";
-    networking.useDHCP = true;
+    networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+
+    services.resolved.enable = true;
+
+    networking.useNetworkd = true;
+    networking.dhcpcd.enable = false;
+    systemd.network.enable = true;
+    /*
+    networking.networkmanager = {
+    */
+    /*
+    enable = false;
+    */
+    /*
+    wifi = {
+    */
+    /*
+    backend = "iwd";
+    */
+    /*
+    powersave = true;
+    */
+    /*
+    };
+    */
+    /*
+    appendNameservers = ["1.1.1.1" "1.0.0.1"];
+    */
+    /*
+    };
+    */
+
+    /*
+    networking.wireless.dbusControlled = true;
+    */
 
     networking.wireless.iwd.enable = true;
     networking.wireless.iwd.settings = {
@@ -10,7 +50,6 @@
       };
       Settings = {
         AutoConnect = true;
-        AlwaysRandomizeAddress = true;
       };
     };
     networking.search = [
@@ -31,5 +70,7 @@
       format = "binary";
       path = "/var/lib/iwd/eduroam.pem";
     };
+
+    systemd.services.systemd-networkd-wait-online.wantedBy = lib.mkForce [];
   };
 }
