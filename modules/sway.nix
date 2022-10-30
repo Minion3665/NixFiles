@@ -35,6 +35,7 @@
           };
           "type:keyboard" = {
             xkb_layout = "gb";
+            xkb_options = "caps:escape";
           };
           "type:tablet_tool" = {
             map_to_output = "eDP-1";
