@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     owner = "IdreesInc";
     repo = "Monocraft";
     rev = "v${version}";
-    sha256 = "sha256-ePBxEVjzAJ7g6iAGIqPfgZ8bwtNILmyEVm0zD+xNN6k=";
+    sha256 = "sha256-frg7LcMv6zWPWxkr6RIl01fC68THELbb45mJVqefXC0=";
   };
 
   dontBuild = true;

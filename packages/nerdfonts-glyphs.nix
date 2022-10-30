@@ -5,7 +5,7 @@
 }:
 stdenv.mkDerivation rec {
   pname = "nerdfonts-glyphs";
-  version = "2.2.2";
+  version = "2.1.0";
 
   # This uses a sparse checkout because the repo is >2GB without it
   src = fetchFromGitHub {
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
     sparseCheckout = ''
       /src/glyphs
     '';
-    sha256 = "sha256-ePBlEVjzAJ7g6iAGIqPfgZ8bwtNILmyEVm0zD+xNN6k=";
+    sha256 = "sha256-boZUd1PM8puc9BTgOwCJpkfk6VMdXLsIyp+fQmW/ZqI=";
   };
 
   dontBuild = true;
@@ -25,6 +25,7 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin $out/share/fonts/opentype
     find . -name "*.ttf" -exec mv {} $out/share/fonts/truetype \;
     find . -name "*.otf" -exec mv {} $out/share/fonts/opentype \;
+    
   '';
 
   meta = with lib; {

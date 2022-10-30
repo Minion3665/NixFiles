@@ -5,9 +5,9 @@
       roboto-mono
       roboto-slab
       twitter-color-emoji
-      font-awesome
-      material-design-icons
+      octicons
       powerline-symbols
+      monocraft
       nerdfonts-glyphs
     ];
 
@@ -15,10 +15,10 @@
     enableDefaultFonts = true;
 
     fontconfig.defaultFonts = {
-      serif = ["Roboto Slab"];
-      sansSerif = ["Roboto" "Symbols Nerd Font"];
-      monospace = ["Roboto Mono" "Symbols Nerd Font"];
-      emoji = ["Twitter Color Emoji"];
+      serif = ["Roboto Slab" "octicons"];
+      sansSerif = ["Roboto" "octicons"];
+      monospace = ["Liga Roboto Mono" "octicons"];
+      emoji = ["Twitter Color Emoji" "octicons"];
     };
   };
 }
