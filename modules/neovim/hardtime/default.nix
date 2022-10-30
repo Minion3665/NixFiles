@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.neovim = {
-    plugins = [pkgs.vim-hardtime];
+    plugins = [pkgs.vimPlugins.vim-hardtime];
     extraConfig = builtins.readFile ./hardtime.vim;
   };
 }
