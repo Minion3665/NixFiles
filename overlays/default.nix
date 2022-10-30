@@ -6,5 +6,5 @@ in
     (builtins.filter ({name, ...}: name != "default.nix"))
     (lib.traceValFn (overlays: "Applying overlays ${builtins.toJSON (map (overlay: overlay.name) overlays)}"))
     (builtins.map ({path, ...}: lib.traceVal path))
-    (map (path: import path lib))
+    (map (path: import path))
   ]

@@ -1,4 +1,4 @@
-lib: final: prev: {
+final: prev: {
   aerc = prev.aerc.overrideAttrs (prevAttrs: rec {
     buildInputs = prevAttrs.buildInputs ++ [final.gawk];
     pythonPath = prevAttrs.pythonPath ++ [final.python3.pkgs.vobject];

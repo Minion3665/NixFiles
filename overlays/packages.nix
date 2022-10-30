@@ -1,4 +1,5 @@
-lib: final: prev: let
+final: prev: let
+  lib = prev.lib;
   utils = import ../utils lib;
 in
   lib.pipe ../packages [
