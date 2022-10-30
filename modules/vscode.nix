@@ -16,6 +16,8 @@
       "update.channel" = "none";
       "workbench.colorTheme" = "onehalf-dark";
       "workbench.startupEditor" = "none";
+      "files.autoSave" = "afterDelay";
+      "files.autoSaveDelay" = 100;
     };
   };
   config.internal.allowUnfree = ["vscode-extension-ms-vsliveshare-vsliveshare"];
