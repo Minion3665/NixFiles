@@ -27,6 +27,11 @@
             command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
             filetypes = ["nix"];
           };
+          cs = {
+            command = "${pkgs.omnisharp-roslyn}/bin/OmniSharp";
+            filetypes = ["cs"];
+            rootPatterns = ["*.csproj" ".vim/" ".git/" ".hg/"];
+          };
         };
       };
     };
@@ -40,6 +45,7 @@
       coc-css
       coc-go
       coc-markdownlint
+      coc-texlab
 
       # Spellchecker
       nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-spell-checker
@@ -56,7 +62,7 @@
       (map builtins.readFile)
       (builtins.concatStringsSep "\n")
     ];
-    extraPackages = [pkgs.nodejs pkgs.rustc pkgs.go];
+    extraPackages = with pkgs; [nodejs rustc go rust-analyzer texlab];
   };
   home.file = lib.pipe ./snippets [
     builtins.readDir
