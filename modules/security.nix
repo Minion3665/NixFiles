@@ -34,7 +34,7 @@ in {
     lockCommand =
       lib.pipe ''
         ${pkgs.sway}/bin/swaymsg output "*" dpms off
-        ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
+        ${pkgs.systemd}/bin/systemd-inhibit --why="Already locked" --what=idle --who="lock script" ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
         while [ $(${pkgs.sway}/bin/swaymsg -t get_seats | ${pkgs.jq}/bin/jq "[.[] | .capabilities] | max") -eq 0 ]; do ${pkgs.coreutils}/bin/sleep 0.1; done
         ${pkgs.sway}/bin/swaymsg output "*" dpms on
       '' [
