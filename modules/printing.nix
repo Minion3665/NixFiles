@@ -1,9 +1,10 @@
 {pkgs, ...}: {
   config = {
+    environment.systemPackages = [pkgs.gtklp];
     services = {
       printing = {
         enable = true;
-        drivers = [pkgs.hplip];
+        drivers = with pkgs; [hplip];
       };
 
       avahi = {
