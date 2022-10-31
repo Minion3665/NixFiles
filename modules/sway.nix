@@ -118,6 +118,9 @@
       };
 
       extraSessionCommands = ''
+        unset __HM_SESS_VARS_SOURCED
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
         export WLR_NO_HARDWARE_CURSORS=1
         # TODO: Check if above is still needed w/ nvidia card enabled
         export SDL_VIDEODRIVER=wayland
