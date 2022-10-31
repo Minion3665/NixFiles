@@ -2,13 +2,13 @@
 let
   config = {
     left = {
-      enter_command = [ ./systemd-inhibit/inhibit-idle.sh ];
+      /* enter_command = [ ./systemd-inhibit/inhibit-idle.sh ]; */
       exit_command = [ ./systemd-inhibit/stop-inhibiting-idle.sh ];
       locations = [ "bottom_right" "bottom_left" ];
       size = 10;
       timeout_ms = 250;
     };
-    "left.output".description = "";
+    left.output.description = "";
   };
 in
 {
