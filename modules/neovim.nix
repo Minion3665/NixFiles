@@ -10,7 +10,7 @@ in {
   config = {
     environment = {
       variables = {
-        EDITOR = "nvim";
+        EDITOR = "${pkgs.neovim}/bin/nvim";
       };
       defaultPackages = [
         pkgs.perl
@@ -37,6 +37,11 @@ in {
       vimAlias = true;
       vimdiffAlias = true;
     };
-    home.packages = [pkgs.neovide];
+    home = {
+      packages = [pkgs.neovide];
+      sessionVariables = {
+        EDITOR = "${home.programs.neovim.finalPackage}/bin/nvim";
+      };
+    };
   };
 }
