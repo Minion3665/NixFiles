@@ -56,6 +56,8 @@
           "${modifier}+XF86MonBrightnessUp" = "exec light -A 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
           "${modifier}+XF86MonBrightnessDown" = "exec light -U 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
           "${modifier}+n" = ''exec wpa_cli select_network $(wpa_cli list_networks | tail -n +3 | rofi -dmenu -window-title "Select Network" | awk '{print $1;}')'';
+          "${modifier}+u" = "output \"*\" dpms on";
+          "${modifier}+t" = "output HDMI-A-2 toggle";
         };
         keycodebindings = {
           "66" = "exec ${pkgs.wtype}/bin/wtype -P F12";
