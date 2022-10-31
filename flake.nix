@@ -22,13 +22,19 @@
       url = "github:Aloxaf/fzf-tab";
       flake = false;
     };
+    omnisharp-language-server = {
+      url = "github:coc-extensions/coc-omnisharp";
+      flake = false;
+    };
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nixpkgs-minion.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    impermanence.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: let
