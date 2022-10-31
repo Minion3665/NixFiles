@@ -3,6 +3,6 @@
   username,
   ...
 }: {
-  home.home.packages = [];
-  config.environment.persistence."/large/persist".users.${username}.directories = [".local/share/PolyMC"];
+  home.home.packages = [pkgs.prismlauncher];
+  config.environment.persistence."/large/persist".users.${username}.directories = [".local/share/PrismLauncher"];
 }
