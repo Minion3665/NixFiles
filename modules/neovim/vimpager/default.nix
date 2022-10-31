@@ -7,7 +7,9 @@
       vimpager = "${pkgs.nvimpager}/bin/nvimpager";
     };
     sessionVariables = {
+      /*
       PAGER = "${pkgs.nvimpager}/bin/nvimpager";
+      */
       MANPAGER = "${pkgs.nvimpager}/bin/nvimpager";
     };
   };

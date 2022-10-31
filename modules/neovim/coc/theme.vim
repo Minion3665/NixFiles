@@ -16,3 +16,7 @@ call g:Highlight("DiagnosticVirtualTextInfo", g:darkblue, g:transparent)
 call g:Highlight("DiagnosticVirtualTextHint", g:darkblue, g:transparent)
 call g:Highlight("DiagnosticVirtualTextWarn", g:darkyellow, g:transparent)
 call g:Highlight("DiagnosticVirtualTextError", g:darkred, g:transparent)
+
+call g:Highlight("CocCodeLens", g:lightgrey, g:transparent)
+call g:Highlight("CocPumVirtualText", g:lightgrey, g:transparent)
+call g:Highlight("CocInlayHint", g:darkpurple, g:transparent)

@@ -32,6 +32,7 @@
         "cSpell.checkOnlyEnabledfileTypes" = false;
         "diagnostic.virtualText" = true;
         "diagnostic.virtualTextCurrentLineOnly" = false;
+        "suggest.virtualText" = true;
         "cSpell.dictionaryDefinitions" = [
           {
             name = "imperative";
@@ -60,6 +61,7 @@
           markdown = ["tex"];
         };
         "snippets.autoTrigger" = false;
+        "codeLens.enable" = true;
       };
     };
     plugins = with pkgs.vimPlugins; [
@@ -74,6 +76,7 @@
       coc-markdownlint
       coc-texlab
       coc-pyright
+      coc-java
 
       # Spellchecker
       nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-spell-checker
@@ -98,6 +101,8 @@
       rust-analyzer
       texlab
       omnisharp-roslyn
+      jdt-language-server
+      jdk
       nodePackages.pyright
       (python3.withPackages (pyPkgs:
         with pyPkgs; [

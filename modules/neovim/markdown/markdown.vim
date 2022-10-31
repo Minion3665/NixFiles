@@ -10,3 +10,5 @@ let g:pandoc#formatting#mode = "h"
 let g:pandoc#spell#enabled = 0
 
 let g:mkdp_auto_close = 0
+
+autocmd FileType markdown call tablemode#Enable()

@@ -4,4 +4,3 @@
     extraConfig = builtins.readFile ./hardtime.vim;
   };
 }
-

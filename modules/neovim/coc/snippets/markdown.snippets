@@ -73,6 +73,10 @@ ${VISUAL}
 <!-- spell-checker:enable -->
 endsnippet
 
+snippet spellwords "Add extra words for spellchecking"
+<!-- spell-checker:words ${1} -->${0}
+endsnippet
+
 snippet normaldistribution "A normal distribution" i
 X\sim N(${1:mean}, ${2:variance})${0}
 endsnippet
@@ -83,4 +87,16 @@ endsnippet
 
 snippet sum "A sum" i
 \sum^{${1:n}}_{${2:r}=${3:1}}${4}${0}
+endsnippet
+
+snippet qed "quod erat demonstrandum - the thing we wanted to prove has been" w
+Q.E.D.
+endsnippet
+
+snippet forallinzplus "For all in the positive integers" i
+\forall ${1:n} \in \\${2:Z}^${3:+}${0}
+endsnippet
+
+snippet piby "By by something" i
+\frac{${1}\pi}{${2}}${0}
 endsnippet

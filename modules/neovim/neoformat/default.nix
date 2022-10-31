@@ -14,6 +14,8 @@
       rustfmt
       shfmt
       astyle
+      uncrustify
     ];
   };
+  home.sessionVariables.UNCRUSTIFY_CONFIG = ./uncrustify.cfg;
 }

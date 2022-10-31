@@ -4,13 +4,13 @@ set whichwrap=b,s,<,>,[,]
 nmap <C-k> :m-2<CR>  
 nmap <C-j> :m+1<CR>
 
-vnoremap <F12> <Esc>
-inoremap <F12> <Esc>
-nnoremap <F12> <Esc>
-tnoremap <F12> <C-C>
-cnoremap <F12> <Esc>
-onoremap <F12> <Esc>
-snoremap <F12> <Esc>
+vmap <F12> <Esc>
+imap <F12> <Esc>
+nmap <F12> <Esc>
+tmap <F12> <C-C>
+cmap <F12> <Esc>
+omap <F12> <Esc>
+smap <F12> <Esc>
 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
