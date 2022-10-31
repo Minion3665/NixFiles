@@ -73,7 +73,7 @@
     targetPkgs = pkgs:
       with pkgs; [
         figma-exec
-        alsaLib
+        alsa-lib
         at-spi2-atk
         at-spi2-core
         atk
