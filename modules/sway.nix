@@ -56,6 +56,7 @@
           "${modifier}+XF86AudioMute" = "exec pamixer --toggle-mute --default-source && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
           "${modifier}+XF86MonBrightnessUp" = "exec light -A 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
           "${modifier}+XF86MonBrightnessDown" = "exec light -U 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
+          "${modifier}+n" = ''exec wpa_cli select_network $(wpa_cli list_networks | tail -n +3 | rofi -dmenu -window-title "Select Network" | awk '{print $1;}')'';
         };
         keycodebindings = {
           "66" = "exec ${pkgs.wtype}/bin/wtype -P F12";
@@ -121,12 +122,12 @@
         unset __HM_SESS_VARS_SOURCED
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-        export WLR_NO_HARDWARE_CURSORS=1
+        # export WLR_NO_HARDWARE_CURSORS=1
         # TODO: Check if above is still needed w/ nvidia card enabled
-        export SDL_VIDEODRIVER=wayland
+        # export SDL_VIDEODRIVER=wayland
         # needs qt5.qtwayland in systemPackages
-        export QT_QPA_PLATFORM=wayland
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+        # export QT_QPA_PLATFORM=wayland
+        # export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
         # Fix for some Java AWT applications (e.g. Android Studio),
         # use this if they aren't displayed properly:
         export _JAVA_AWT_WM_NONREPARENTING=1
