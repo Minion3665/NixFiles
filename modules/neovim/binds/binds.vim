@@ -1,6 +1,14 @@
 set whichwrap=b,s,<,>,[,]
 set mouse=a
 
+vnoremap <F12> <Esc>
+inoremap <F12> <Esc>
+nnoremap <F12> <Esc>
+tnoremap <F12> <C-C>
+cnoremap <F12> <Esc>
+onoremap <F12> <Esc>
+snoremap <F12> <Esc>
+
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 fun! SetupCommandAlias(from, to)
@@ -48,14 +56,7 @@ autocmd CursorHoldI,CursorHold,BufLeave ?* silent! update
 set viewoptions-=options
 autocmd BufWinLeave ?* silent! mkview!
 
-function! s:loadViewOrUnfold()
-  try
-    loadview
-  catch
-    folddoclosed foldopen
-  endtry
-endfunction
-
-autocmd BufWinEnter ?* call s:loadViewOrUnfold()
+set nofoldenable
+autocmd BufWinEnter ?* silent! loadview
 
 tnoremap <Esc><Esc> <C-\><C-n>

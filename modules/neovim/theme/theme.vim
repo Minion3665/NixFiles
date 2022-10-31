@@ -9,10 +9,10 @@ function g:Highlight(group, fg, bg)
   exec ("highlight! " . a:group . " ctermfg=" . a:fg.cterm . " ctermbg=" . a:bg.cterm . " guifg=" . a:fg.gui . " guibg=" . a:bg.gui)
 endfunction
 
-highlight Pmenu  ctermfg=188 guifg=#dcdfe4 ctermbg=239 guibg=#474e5d
-highlight PmenuSel   ctermfg=236 guifg=#282c34 ctermbg=75  guibg=#61afef
 highlight PmenuSbar  ctermfg=237 guifg=#313640 ctermbg=237 guibg=#313640
 highlight PmenuThumb ctermfg=188 guifg=#dcdfe4 ctermbg=188 guibg=#dcdfe4
+call g:Highlight("PmenuSel", g:transparent, g:lightgrey)
+call g:Highlight("Pmenu", g:transparent, g:statusline)
 
 call g:Highlight("HlSearchLens", g:darkyellow, g:transparent)
 call g:Highlight("HlSearchLensNear", g:white, g:darkyellow)

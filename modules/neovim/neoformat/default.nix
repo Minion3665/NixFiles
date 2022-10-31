@@ -13,6 +13,7 @@
       alejandra
       rustfmt
       shfmt
+      astyle
     ];
   };
 }

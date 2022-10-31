@@ -9,7 +9,7 @@ function WikiCreateTransform(name) abort
   " If the file is new, then append the current date
   return filereadable(l:name)
         \ ? a:name
-        \ : a:name . '_' . strftime('%Y%m%d')
+        \ : substitute(a:name, " ", "_", "g") . '_' . strftime('%Y%m%d')
 endfunction
 
 nnoremap <silent> <Leader>wf :WikiFzfPages<CR>
