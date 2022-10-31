@@ -6,9 +6,9 @@
 vimUtils.buildVimPlugin {
   name = "vim-ctrlspace";
   src = fetchFromGitHub {
-    owner = "minion3665";
+    owner = "vim-ctrlspace";
     repo = "vim-ctrlspace";
-    rev = "c1dfc35a208a86256763cbadb6770636b4720b6f";
-    sha256 = "sha256-R3TC56UFEjXNpmmPn5XAw0H07leFt5NR2eKow93NkJI=";
+    rev = "5e444c6af06de58d5ed7d7bd0dcbb958f292cd2e";
+    sha256 = "sha256-EJFaWTVPqQpAewPq7VT0EOgMnL3+6Hl9u5oQZJqItUM=";
   };
 }

@@ -16,8 +16,8 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "Minion3665";
     repo = "waycorner";
-    rev = "4a42d986cffa66c535082b3f8fb1c7e7bf278272";
-    sha256 = "sha256-OjQPYWtR3a9HZ6h1yXutHlMAfK0G2aRCdtSg9LZh1I0=";
+    rev = "ef3bd723a9a8673328c12fc8c7f210864787e5d1";
+    sha256 = "sha256-iPeF84tC3IEYECm04KwmTjOaYVSUMh2dBlijzGnxoyw=";
   };
 
   cargoLock.lockFile = "${src}/Cargo.lock";
