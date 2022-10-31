@@ -18,6 +18,8 @@
         };
         "suggest.noselect" = false;
         "cSpell.checkOnlyEnabledfileTypes" = false;
+        "diagnostic.virtualText" = true;
+        "diagnostic.virtualTextCurrentLineOnly" = false;
         "cSpell.dictionaryDefinitions" = [
           {
             name = "imperative";
@@ -63,9 +65,8 @@
       coc-git # TODO: Check if coc-git is still needed
 
       # Snippet completion
-      ultisnips
       vim-snippets
-      coc-ultisnips
+      coc-snippets
 
       # General utils
       coc-pairs

@@ -12,13 +12,24 @@ let g:UltiSnipsExpandTrigger="<NUL>"
 let g:UltiSnipsJumpForwardTrigger="<NUL>"
 let g:UltiSnipsJumpBackwardTrigger="<NUL>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(0) : UltiSnips#CanJumpForwards() ? "<C-R>=UltiSnips#JumpForwards()<cr>" : "\<Tab>"
-inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(0) : UltiSnips#CanJumpBackwards() ? "<C-R>=UltiSnips#JumpBackwards()<cr>" : "\<S-Tab>"
-xnoremap <silent> <Tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(0) :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackSpace() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(0) : "\<S-Tab>"
+xnoremap <silent> <Tab> <Plug>(coc-snippets-select)
 
 
 snoremap <nowait><silent> <Tab> <Esc>:call UltiSnips#JumpForwards()<cr>
 snoremap <nowait><silent> <S-Tab> <Esc>:call UltiSnips#JumpForwards()<cr>
+inoremap <silent><silent> <C-s> <Esc>l:Snippets<cr>
 
 
 function! s:show_documentation()

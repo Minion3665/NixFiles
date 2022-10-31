@@ -43,7 +43,7 @@ snippet iidx "Integrate indefinitely with respect to x" i
 \int ${0} \text{ d}x
 endsnippet
 
-snippet idx "Integrate definitely with respect to x" i
+snippet iddx "Integrate definitely with respect to x" i
 \int{${0}}{${1}}${2} \text{ d}x
 endsnippet
 
@@ -75,4 +75,8 @@ snippet nospell "Disable spellcheck on the visually-selected region"
 <!-- spell-checker:disable -->
 ${VISUAL}
 <!-- spell-checker:enable -->
+endsnippet
+
+snippet normaldistribution "A normal distribution" w
+X\sim N(${0:mean}, ${1:variance})
 endsnippet
