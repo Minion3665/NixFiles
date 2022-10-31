@@ -92,11 +92,12 @@
           }))
           builtins.listToAttrs
         ];
-      in with defaultFilters; {
-        "text/plain" = colorize;
-        "text/calendar" = defaultFilters."show-ics-details.py";
-        "text/html" = html;
-      };
+      in
+        with defaultFilters; {
+          "text/plain" = colorize;
+          "text/calendar" = defaultFilters."show-ics-details.py";
+          "text/html" = html;
+        };
     };
     home.packages = with pkgs; [lynx];
     home.file.".mailcap".text = ''

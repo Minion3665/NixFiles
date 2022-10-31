@@ -15,8 +15,11 @@ in {
 
   home.programs.emacs = {
     enable = cfg.enable;
-    extraPackages = epkgs: [pkgs.texlive.combined.scheme-full epkgs.citeproc
-    pkgs.pdf2svg];
+    extraPackages = epkgs: [
+      pkgs.texlive.combined.scheme-full
+      epkgs.citeproc
+      pkgs.pdf2svg
+    ];
   };
 
   traces = [

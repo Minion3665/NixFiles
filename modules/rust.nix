@@ -1,4 +1,8 @@
-{username, pkgs, ...}: {
+{
+  username,
+  pkgs,
+  ...
+}: {
   home.home.packages = with pkgs; [
     cargo
     clippy

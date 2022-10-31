@@ -1,4 +1,9 @@
-{ vimUtils, fetchFromGitHub, lib }: vimUtils.buildVimPlugin {
+{
+  vimUtils,
+  fetchFromGitHub,
+  lib,
+}:
+vimUtils.buildVimPlugin {
   name = "vim-ctrlspace";
   src = fetchFromGitHub {
     owner = "minion3665";
