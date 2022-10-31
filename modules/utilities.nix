@@ -1,16 +1,25 @@
 {pkgs, ...}: {
   # Basic shell scripting utilities, they don't deserve their own file but I use
   # them
-  config.environment.systemPackages = with pkgs; [
-    jq
-    bc
-    (sd.overrideAttrs (oldAttrs: {
-      postInstall = ''
-        mv $out/bin/sd $out/bin/s
-      '';
-    }))
-    lnav
-  ];
+  config = {
+    environment.systemPackages = with pkgs; [
+      jq
+      bc
+      (sd.overrideAttrs (oldAttrs: {
+        postInstall = ''
+          mv $out/bin/sd $out/bin/s
+        '';
+      }))
+      lnav
+      dogdns
+      iproute2
+      xcp
+      fd
+      procs
+      grex
+    ];
+    programs.liboping.enable = true;
+  };
 
   home = {
     programs = {
@@ -29,6 +38,15 @@
     };
     home.shellAliases = {
       cat = "${pkgs.bat}/bin/bat --wrap never --pager \"less -+S\"";
+      dig = "${pkgs.dogdns}/bin/dog";
+      ip = "${pkgs.iproute2}/bin/ip -c --brief";
+      ipo = "${pkgs.iproute2}/bin/ip";
+      ping = "noping";
+      p = "noping";
+      pingo = "oping";
+      cp = "${pkgs.xcp}/bin/xcp";
+      cpo = "${pkgs.coreutils}/bin/cp";
+      ps = "${pkgs.procs}/bin/procs";
     };
   };
 }
