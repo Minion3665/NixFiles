@@ -30,7 +30,10 @@
       url = "github:kmonad/kmonad?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fenix.url = "github:nix-community/fenix";
+    prismlauncher.url = "github:PrismLauncher/PrismLauncher";
 
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +48,8 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = import ./overlays nixpkgs.lib;
+          overlays = import ./overlays nixpkgs.lib (inputs // { inherit inputs
+          username; });
         };
 
         utils = import ./utils nixpkgs.lib;
