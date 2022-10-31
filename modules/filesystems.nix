@@ -27,7 +27,6 @@
       device = "/dev/mapper/nix";
       fsType = "ext4";
       neededForBoot = true;
-      options = ["noatime"];
     };
 
     fileSystems."/large" = {
