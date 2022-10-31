@@ -2,21 +2,15 @@
   pkgs,
   username,
   ...
-}: let
-    pinentry-multiplexed = pkgs.writeScriptBin "pinentry" ''
-        #if [[ $- == *i* ]]
-        #then
-            exec ${pkgs.pinentry.curses}/bin/pinentry "$@"
-        #else
-        #    exec ${pkgs.pinentry.gnome3}/bin/pinentry "$@"
-        #fi
-    '';
-in {
+}: {
   home = {
     programs.gpg.enable = true;
     services.gpg-agent = {
       enable = true;
-      pinentryFlavor = "curses";
+      extraConfig = ''
+        pinentry-program ${pkgs.pinentry-rofi}/bin/pinentry-rofi
+      '';
+      pinentryFlavor = null;
     };
   };
 
@@ -28,6 +22,6 @@ in {
   ];
 
   home.home.packages = [
-    pinentry-multiplexed
+    pkgs.pinentry-rofi
   ];
 }
