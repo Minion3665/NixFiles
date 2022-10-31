@@ -6,15 +6,20 @@
 }: {
   config = {
     networking = {
+      dhcpcd.extraConfig = ''
+        timeout 0
+        leasetime -1
+        ipv6 off
+        noipv6rs
+        ipv4only
+        noarp
+
+        ssid eduroam
+        static ip_address=10.0.48.79/8
+        static routers=10.0.0.1
+      '';
       hostName = "python";
       nameservers = ["1.1.1.1" "1.0.0.1"];
-      /* networkmanager = { */
-      /*   enable = true; */
-      /*   wifi.powersave = true; */
-      /*   insertNameservers = ["1.1.1.1" "1.0.0.1"]; */
-      /*   firewallBackend = "nftables"; */
-      /*   unmanaged = ["*"]; */
-      /* }; */
       search = [
         "python.local"
       ];
@@ -52,6 +57,11 @@
     sops.secrets."wireless.env" = {
       sopsFile = ../secrets/wireless.env.bin;
       format = "binary";
+    };
+
+    environment = {
+      persistence."/nix/persist".directories = ["/var/db/dhcpcd"];
+      systemPackages = [pkgs.bandwidth];
     };
   };
 }
