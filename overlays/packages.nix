@@ -1,4 +1,4 @@
-final: prev:
+{ fenix, ...}: final: prev:
 let
   lib = prev.lib;
   utils = import ../utils lib;
@@ -18,7 +18,13 @@ lib.pipe ../packages [
     value = final.callPackage path (
       builtins.intersectAttrs
         (builtins.functionArgs (import path))
-        (lib.fold lib.mergeAttrs { } extraAttrSets)
+        (lib.fold lib.mergeAttrs
+          {
+            packageSets = {
+              fenix = fenix.packages.${prev.system};
+            };
+          }
+          extraAttrSets)
     );
   }))
   builtins.listToAttrs
