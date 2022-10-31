@@ -1,2 +1,7 @@
 configuration {
+  combi-modes: "drun,run,filebrowser,ssh";
+  modes: "filebrowser,combi,ssh,run,drun";
+  font: "Liga Roboto Mono 12";
+  show-icons: true;
 }
+@theme "Arc-Dark"
