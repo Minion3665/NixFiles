@@ -97,7 +97,7 @@
               inhibiting = "☕";
             };
             "return-type" = "json";
-            "exec" = "while sleep 0.1; do ${pkgs.systemd}/bin/systemd-inhibit --list | wc -l | jq '{alt: (if . == 1 then \"none\" else \"inhibiting\" end)} | tostring' -r; done";
+            "exec" = "while sleep 0.1; do ${pkgs.systemd}/bin/systemd-inhibit --list | grep idle | wc -l | jq '{alt: (if . == 0 then \"none\" else \"inhibiting\" end)} | tostring' -r; done";
             on-click = ./systemd-inhibit/stop-inhibiting-idle.sh;
             on-click-right = ./systemd-inhibit/inhibit-idle.sh;
             escape = true;
