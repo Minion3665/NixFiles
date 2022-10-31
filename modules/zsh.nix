@@ -26,6 +26,9 @@
         extended = true;
       };
       initExtra = ''
+        unset __HM_SESS_VARS_SOURCED
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
         bindkey -v
         bindkey "\'\'$\{key[Up]}" up-line-or-search
 
@@ -54,6 +57,8 @@
             enable-fzf-tab
 
             alias compinit="true"
+
+            ulimit -n 131072
 
             source "${./zsh/completions/bun.zsh}"
             source "${./zsh/completions/charm.zsh}"
