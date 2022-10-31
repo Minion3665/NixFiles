@@ -6,7 +6,10 @@
 }: {
   home.home.packages = [pkgs.keybase-gui];
   config = {
-    services.keybase.enable = true;
+    services = {
+      keybase.enable = true;
+      kbfs.enable = true;
+    };
     environment.persistence."/nix/persist".users.${username}.directories = [
       ".config/keybase"
     ];
