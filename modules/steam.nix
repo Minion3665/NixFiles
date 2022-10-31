@@ -9,12 +9,13 @@
     };
     hardware.steam-hardware.enable = true;
 
-    internal.allowUnfree = [ "steam" "steam-original" "steam-runtime" ];
+    internal.allowUnfree = [ "steam" "steam-original" "steam-runtime" "steam-run" ];
     environment = {
       persistence."/large/persist".users.${username}.directories = [ ".local/share/Steam" ];
       systemPackages = with pkgs; [
         gamescope
-        gamemode /*(
+        gamemode
+        sfs-select /*(
         writeTextDir "share/applications/steam.desktop" ''
           [Desktop Entry]
           Name=Steam
