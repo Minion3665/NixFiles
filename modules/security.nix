@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  lockMessage = "This computer has been locked, please enter your password to continue";
+  lockMessage = "This computer has been locked, please authenticate to continue";
 in
 {
   config = {
