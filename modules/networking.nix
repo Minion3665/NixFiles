@@ -47,6 +47,8 @@
             priority = 500;
           };
           robocon-buster_beta.psk = "@roboconProtoboardPass@";
+          "RoboCon2023-Sky".psk = "@robocon2023SkyPass@";
+          "RoboCon2022-Beta_team_4".psk = "@robocon2023Beta4Pass@";
         };
         environmentFile = config.sops.secrets."wireless.env".path;
       };
