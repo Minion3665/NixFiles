@@ -19,8 +19,8 @@
       grex
       btop
       rustscan
+      gping
     ];
-    programs.liboping.enable = true;
   };
 
   home = {
@@ -43,9 +43,6 @@
       dig = "${pkgs.dogdns}/bin/dog";
       ip = "${pkgs.iproute2}/bin/ip -c --brief";
       ipo = "${pkgs.iproute2}/bin/ip";
-      ping = "noping";
-      p = "noping";
-      pingo = "oping";
       cp = "${pkgs.xcp}/bin/xcp";
       cpo = "${pkgs.coreutils}/bin/cp";
       ps = "${pkgs.procs}/bin/procs";
