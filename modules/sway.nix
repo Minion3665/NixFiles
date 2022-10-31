@@ -35,7 +35,7 @@
           };
           "type:keyboard" = {
             xkb_layout = "gb";
-            xkb_options = "caps:escape";
+            xkb_options = "caps:none";
           };
           "type:tablet_tool" = {
             map_to_output = "eDP-1";
@@ -45,8 +45,21 @@
           "${modifier}+g" = "sticky toggle";
           "${modifier}+k" = "exec wl-copy -c";
           "${modifier}+f" = "maximize toggle";
+          "XF86AudioRaiseVolume" = "exec pamixer -ui 5 && ( pamixer --get-mute && expr \"$(pamixer --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK";
+          "XF86AudioLowerVolume" = "exec pamixer -ud 5 && ( pamixer --get-mute && expr \"$(pamixer --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK";
+          "XF86AudioMute" = "exec pamixer --toggle-mute && ( pamixer --get-mute && expr \"$(pamixer --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK";
+          "XF86AudioMicMute" = "exec pamixer --toggle-mute --default-source && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
+          "XF86MonBrightnessUp" = "exec light -A 3 && light -G | cut -d'.' -f1 > $WOBSOCK";
+          "XF86MonBrightnessDown" = "exec light -U 3 && light -G | cut -d'.' -f1 > $WOBSOCK";
+          "${modifier}+XF86AudioRaiseVolume" = "exec pamixer --default-source -ui 5 && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
+          "${modifier}+XF86AudioLowerVolume" = "exec pamixer --default-source -ud 5 && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --get-volume --default-source > $WOBSOCK";
+          "${modifier}+XF86AudioMute" = "exec pamixer --toggle-mute --default-source && ( pamixer --get-mute --default-source && expr \"$(pamixer --default-source --get-volume)\" + 100 > $WOBSOCK ) || pamixer --default-source --get-volume > $WOBSOCK";
+          "${modifier}+XF86MonBrightnessUp" = "exec light -A 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
+          "${modifier}+XF86MonBrightnessDown" = "exec light -U 6 && light -G | cut -d'.' -f1 > $WOBSOCK";
         };
-        keycodebindings = {};
+        keycodebindings = {
+          "66" = "exec ${pkgs.wtype}/bin/wtype -P F12";
+        };
         left = "h";
         modes = {
           resize = {
@@ -87,6 +100,14 @@
         };
         startup = [
           {command = "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
+          {
+            command = "light -N 1";
+            always = false;
+          }
+          {
+            command = "\"pkill wob; rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --output='*'\"";
+            always = true;
+          }
         ];
         terminal = "${pkgs.kitty}/bin/kitty";
         up = "k";
@@ -146,10 +167,17 @@
       };
 
       systemdIntegration = true;
+
+      extraConfig = ''
+        set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+      '';
     };
 
     home.packages = with pkgs; [
       wl-clipboard
+      pamixer
+      wob
+      wtype
     ];
 
     programs.zsh.profileExtra = ''
