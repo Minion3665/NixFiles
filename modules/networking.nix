@@ -46,9 +46,19 @@
             priority = 500;
           };
           robocon-buster_beta.psk = "@roboconProtoboardPass@";
-          "RoboCon2023-Sky".psk = "@robocon2023SkyPass@";
+          "RoboCon3665-Sky".psk = "@robocon3665SkyPass@";
           "RoboCon2022-Beta_team_4".psk = "@robocon2023Beta4Pass@";
-        };
+          "RoboCon2023-Will".psk = "@robocon2023Will@";
+        } // lib.pipe (lib.range 1 21) [
+          (builtins.map builtins.toString)
+          (builtins.map (team: {
+            name = "RoboCon2023-Team${team}";
+            value = {
+              psk = "@robocon2023Team${team}@";
+            };
+          }))
+          builtins.listToAttrs
+        ];
         environmentFile = config.sops.secrets."wireless.env".path;
       };
     };
