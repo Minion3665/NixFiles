@@ -24,27 +24,23 @@
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
 snippet latex "A latex block" w
-$${0}$
+$${VISUAL}${1}$${0}
 endsnippet
 
 snippet dydx "The derivative" i
-\frac{dy}{dx}
+\frac{d${1:y}}{d${2:x}}${0}
 endsnippet
 
-snippet dydt "The derivative of `y` WRT `t`" i
-\frac{dy}{dx}
+snippet derivative "The derivative" i
+\frac{d${1:y}}{d${2:x}}${0}
 endsnippet
 
-snippet dydx "The derivative of `x` WRT `t`" i
-\frac{dy}{dx}
+snippet inti "Integrate indefinitely" i
+\int ${1} \text{ d}${2:x}${0}
 endsnippet
 
-snippet iidx "Integrate indefinitely with respect to x" i
-\int ${0} \text{ d}x
-endsnippet
-
-snippet iddx "Integrate definitely with respect to x" i
-\int{${0}}{${1}}${2} \text{ d}x
+snippet intd "Integrate definitely" i
+\int{${1}}{${2}}${3} \text{ d}${4:x}${0}
 endsnippet
 
 snippet ihat "The I vector" i
@@ -55,12 +51,12 @@ snippet jhat "The J vector" i
 \hat{\bm{j}}
 endsnippet
 
-snippet vec "A vector" i
-\bm{${0}}
+snippet vecbold "A vector" i
+\bm{${1}}${0}
 endsnippet
 
-snippet col "A column vector" i
-\begin{bmatrix}${0}\end{bmatrix}
+snippet veccol2 "A 2-tall column vector" i
+\begin{pmatrix} ${1} \\\\ ${2} \end{pmatrix}${0}
 endsnippet
 
 snippet nl "A latex newline (e.g. for column vectors)" i
@@ -68,7 +64,7 @@ snippet nl "A latex newline (e.g. for column vectors)" i
 endsnippet
 
 snippet d2ydx2 "The second derivative" i
-\frac{d^2y}{dx^2}
+\frac{d^2${1:y}}{d${2:x}^2}${0}
 endsnippet
 
 snippet nospell "Disable spellcheck on the visually-selected region"
@@ -77,6 +73,10 @@ ${VISUAL}
 <!-- spell-checker:enable -->
 endsnippet
 
-snippet normaldistribution "A normal distribution" w
-X\sim N(${0:mean}, ${1:variance})
+snippet normaldistribution "A normal distribution" i
+X\sim N(${1:mean}, ${2:variance})${0}
+endsnippet
+
+snippet 2x2matrix "A 2 by 2 matrix" i
+\begin{bmatrix} ${1} & ${2} \\\\ ${3} & ${4} \end{bmatrix}${0}
 endsnippet

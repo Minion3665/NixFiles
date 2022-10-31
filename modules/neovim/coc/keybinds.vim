@@ -1,5 +1,5 @@
-nmap <silent> ]c :call CocAction('diagnosticNext')<cr>
-nmap <silent> [c :call CocAction('diagnosticPrevious')<cr>
+nmap <silent> ]c :silent! call CocAction('diagnosticNext')<cr>
+nmap <silent> [c :silent! call CocAction('diagnosticPrevious')<cr>
 nmap <silent> <Leader>fs <Plug>(coc-codeaction-selected)
 nmap <silent> <Leader>fb <Plug>(coc-codeaction)
 nmap <silent> <Leader>ff <Plug>(coc-codeaction-cursor)
@@ -29,7 +29,6 @@ xnoremap <silent> <Tab> <Plug>(coc-snippets-select)
 
 snoremap <nowait><silent> <Tab> <Esc>:call UltiSnips#JumpForwards()<cr>
 snoremap <nowait><silent> <S-Tab> <Esc>:call UltiSnips#JumpForwards()<cr>
-inoremap <silent><silent> <C-s> <Esc>l:Snippets<cr>
 
 
 function! s:show_documentation()
@@ -41,3 +40,8 @@ endif
 endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+command Snippets CocFzfList snippets
+
+autocmd FileType tex let b:coc_pairs = [["$", "$"]]
+autocmd FileType markdown let b:coc_pairs = [["$", "$"]]

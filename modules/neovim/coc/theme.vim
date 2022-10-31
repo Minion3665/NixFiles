@@ -11,3 +11,8 @@ highlight DiagnosticUnderlineWarn  guisp=#e5c07b
 call g:Highlight("CocPumMenu", g:transparent, g:black)
 call g:Highlight("CocFloating", g:transparent, g:black)
 call g:Highlight("CocSearch", g:red, g:transparent)
+
+call g:Highlight("DiagnosticVirtualTextInfo", g:darkblue, g:transparent)
+call g:Highlight("DiagnosticVirtualTextHint", g:darkblue, g:transparent)
+call g:Highlight("DiagnosticVirtualTextWarn", g:darkyellow, g:transparent)
+call g:Highlight("DiagnosticVirtualTextError", g:darkred, g:transparent)

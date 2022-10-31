@@ -12,11 +12,23 @@
     coc = {
       enable = true;
       settings = {
+        diagnostic.floatConfig = {
+          border = true;
+          rounded = true;
+        };
+        signature.floatConfig = {
+          border = true;
+          rounded = true;
+        };
+        hover.floatConfig = {
+          border = true;
+          rounded = true;
+        };
         suggest.floatConfig = {
           border = true;
           rounded = true;
         };
-        "suggest.noselect" = false;
+        "suggest.noselect" = true;
         "cSpell.checkOnlyEnabledfileTypes" = false;
         "diagnostic.virtualText" = true;
         "diagnostic.virtualTextCurrentLineOnly" = false;
@@ -35,6 +47,7 @@
             code_blocks = false;
             tables = false;
           };
+          MD024.siblings_only = true;
         };
         languageserver = {
           nix = {
@@ -42,6 +55,10 @@
             filetypes = ["nix"];
           };
         };
+        "snippets.extends" = {
+          markdown = ["tex"];
+        };
+        "snippets.autoTrigger" = false;
       };
     };
     plugins = with pkgs.vimPlugins; [
@@ -55,6 +72,7 @@
       coc-go
       coc-markdownlint
       coc-texlab
+      coc-pyright
 
       # Spellchecker
       nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-spell-checker
@@ -68,7 +86,7 @@
       vim-snippets
       coc-snippets
 
-      # General utils
+      # General utilities
       coc-pairs
     ];
     extraConfig = lib.pipe [./keybinds.vim ./theme.vim] [
@@ -82,22 +100,31 @@
       rust-analyzer
       texlab
       omnisharp-roslyn
+      nodePackages.pyright
+      (python3.withPackages (pyPkgs:
+        with pyPkgs; [
+          pycodestyle
+          black
+          rope
+        ]))
     ];
   };
-  home.file = lib.pipe ./snippets [
-    builtins.readDir
-    builtins.attrNames
-    (map
-      (f: {
-        name = ".config/nvim/UltiSnips/${f}";
-        value = {
-          source = ./snippets + "/${f}";
-          target = ".config/nvim/UltiSnips/${f}";
-        };
-      }))
-    builtins.listToAttrs
-    lib.traceValSeq
-  ] // {
-    ".config/coc/placeholder".text = "";
-  };
+  home.file =
+    lib.pipe ./snippets [
+      builtins.readDir
+      builtins.attrNames
+      (map
+        (f: {
+          name = ".config/nvim/UltiSnips/${f}";
+          value = {
+            source = ./snippets + "/${f}";
+            target = ".config/nvim/UltiSnips/${f}";
+          };
+        }))
+      builtins.listToAttrs
+      lib.traceValSeq
+    ]
+    // {
+      ".config/coc/placeholder".text = "";
+    };
 }

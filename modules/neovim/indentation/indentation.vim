@@ -1,6 +1,5 @@
-set tabstop=4
+set tabstop=2
 set shiftwidth=0
-set ve+=onemore
 
 exec "highlight IndentBlanklineContextChar ctermfg=" . g:white.cterm . " guifg=" . g:white.gui . " ctermbg=NONE guibg=NONE"
 exec "highlight IndentBlanklineContextStart ctermfg=NONE guifg=NONE guisp=white ctermbg=NONE guibg=NONE gui=underline term=underline"
