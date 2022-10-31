@@ -17,6 +17,8 @@
       fd
       procs
       grex
+      btop
+      rustscan
     ];
     programs.liboping.enable = true;
   };
@@ -47,6 +49,7 @@
       cp = "${pkgs.xcp}/bin/xcp";
       cpo = "${pkgs.coreutils}/bin/cp";
       ps = "${pkgs.procs}/bin/procs";
+      htop = "${pkgs.btop}/bin/btop";
     };
   };
 }
