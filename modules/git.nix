@@ -44,13 +44,15 @@
         core.splitIndex = true;
         core.untrackedCache = true;
         core.fsmonitor = true;
+        url."ssh://git@github.com/".insteadOf = "https://github.com/";
       };
     };
     home = {
       shellAliases.gg = "${pkgs.git}/bin/git gui";
-      packages = [
-        pkgs.git-review
-        pkgs.lazygit
+      packages = with pkgs; [
+        git-review
+        lazygit
+        git-crypt
       ];
     };
   };
