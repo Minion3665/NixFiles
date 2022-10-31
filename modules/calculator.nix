@@ -2,6 +2,9 @@
   R = pkgs.rWrapper.override {
     packages = with pkgs.rPackages; [
       zoo
+      ggvenn
+      ggplot2
+      RVenn
     ];
   };
 in {
