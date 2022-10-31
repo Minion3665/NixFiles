@@ -1,7 +1,9 @@
 set whichwrap=b,s,<,>,[,]
-" set mouse=a
+set mouse=
 
-nmap <C-k> :m-2<CR>  
+vmap <C-k> :m-2<CR>
+vmap <C-j> :m+1<CR>
+nmap <C-k> :m-2<CR>
 nmap <C-j> :m+1<CR>
 
 vmap <F12> <Esc>
@@ -24,9 +26,9 @@ augroup vimrc-auto-mkdir
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
   function! s:auto_mkdir(dir, force)
-    if !isdirectory(a:dir)
+    if !isdirectory(a:dir) && !(a:dir =~ "^suda:///.*$")
           \   && (a:force
-          \       || input("'" . a:dir . "' does not exist. Create? [y/N]") =~? '^y\%[es]$')
+          \       || input("'" . a:dir . "' does not exist. Create? [y/N]: ") =~? '^y\%[es]$')
       call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
     endif
   endfunction
@@ -63,3 +65,5 @@ set nofoldenable
 autocmd BufWinEnter ?* silent! loadview
 
 tnoremap <Esc><Esc> <C-\><C-n>
+
+let g:camelcasemotion_key = '<leader>m'

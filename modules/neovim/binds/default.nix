@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.neovim = {
-    plugins = [ pkgs.vimPlugins.FixCursorHold-nvim ];
+    plugins = with pkgs.vimPlugins; [ FixCursorHold-nvim camelcasemotion ];
     extraConfig = builtins.readFile ./binds.vim;
   };
 }

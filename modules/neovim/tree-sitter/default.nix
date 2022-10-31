@@ -1,5 +1,7 @@
 { pkgs
 , lib
+, nixpkgs-minion
+, system
 , ...
 }:
 let
@@ -17,6 +19,7 @@ in
         ])
         ++ (with pkgs.vimPlugins; [
           nvim-ts-rainbow
+          nixpkgs-minion.legacyPackages.${system}.tree-sitter-grammars.tree-sitter-astro
         ])))
       nvim-treesitter-context
     ];

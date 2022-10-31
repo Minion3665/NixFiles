@@ -34,7 +34,7 @@ endfunction
 inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(0) : 
       \ coc#jumpable() ? "\<Esc>:call coc#snippet#prev()\<CR>" :
       \ tablemode#table#IsTable('.') ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('h')\<CR>" . mode() :
-      \ "\<S-Tab>"
+      \ "\<Plug>(PearTreeJump)"
 xnoremap <silent> <Tab> <Plug>(coc-snippets-select)
 
 nnoremap <silent><expr> <CR> coc#jumpable() ?

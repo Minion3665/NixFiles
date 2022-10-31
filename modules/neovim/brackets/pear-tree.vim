@@ -15,3 +15,4 @@ autocmd FileType markdown let b:pear_tree_pairs = extend(deepcopy(g:pear_tree_pa
 
 imap <BS> <Plug>(PearTreeBackspace)
 imap <Esc> <Plug>(PearTreeFinishExpansion)
+

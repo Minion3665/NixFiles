@@ -1,6 +1,5 @@
 let mapleader = ","
 set whichwrap=b,s,<,>,[,]
-set mouse=a
 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
