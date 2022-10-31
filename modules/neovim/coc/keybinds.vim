@@ -8,6 +8,19 @@ nmap <silent> <Leader>fr <Plug>(coc-rename)
 nmap <silent> <Leader>fi <Plug>(coc-fix-current)
 nmap <Leader>fe <Cmd>CocCommand explorer<CR>
 
+let g:UltiSnipsExpandTrigger="<NUL>"
+let g:UltiSnipsJumpForwardTrigger="<NUL>"
+let g:UltiSnipsJumpBackwardTrigger="<NUL>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(0) : UltiSnips#CanJumpForwards() ? "<C-R>=UltiSnips#JumpForwards()<cr>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(0) : UltiSnips#CanJumpBackwards() ? "<C-R>=UltiSnips#JumpBackwards()<cr>" : "\<S-Tab>"
+xnoremap <silent> <Tab> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
+
+
+snoremap <nowait><silent> <Tab> <Esc>:call UltiSnips#JumpForwards()<cr>
+snoremap <nowait><silent> <S-Tab> <Esc>:call UltiSnips#JumpForwards()<cr>
+
+
 function! s:show_documentation()
 if (index(['vim','help'], &filetype) >= 0)
 execute 'h '.expand('<cword>')
