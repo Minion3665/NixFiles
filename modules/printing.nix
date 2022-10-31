@@ -4,12 +4,16 @@
     services = {
       printing = {
         enable = true;
-        drivers = with pkgs; [hplip];
-      };
+        drivers = with pkgs; [foomatic-filters hplip cups-filters];
+        browsing = true;
+        browsedConf = ''
+          BrowseDNSSDSubTypes _cups,_print
+          BrowseLocalProtocols all
+          BrowseRemoteProtocols all
+          CreateIPPPrinterQueues All
 
-      avahi = {
-        enable = true;
-        nssmdns = true;
+          BrowseProtocols all
+        '';
       };
     };
 
