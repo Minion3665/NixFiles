@@ -13,7 +13,6 @@
       lnav
       dogdns
       iproute2
-      xcp
       fd
       procs
       grex
@@ -43,10 +42,10 @@
       dig = "${pkgs.dogdns}/bin/dog";
       ip = "${pkgs.iproute2}/bin/ip -c --brief";
       ipo = "${pkgs.iproute2}/bin/ip";
-      cp = "${pkgs.xcp}/bin/xcp";
-      cpo = "${pkgs.coreutils}/bin/cp";
       ps = "${pkgs.procs}/bin/procs";
       htop = "${pkgs.btop}/bin/btop";
+      ping = "${pkgs.gping}/bin/gping";
+      pingo = "${pkgs.inetutils}/bin/ping";
     };
   };
 }
