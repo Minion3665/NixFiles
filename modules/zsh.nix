@@ -56,6 +56,7 @@
             alias compinit="true"
 
             source "${./zsh/completions/bun.zsh}"
+            source "${./zsh/completions/charm.zsh}"
       '';
       enableSyntaxHighlighting = true;
       enableAutosuggestions = true;
