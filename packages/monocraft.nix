@@ -1,7 +1,7 @@
 {
   lib,
   fetchFromGitHub,
-  stdenv
+  stdenv,
 }:
 stdenv.mkDerivation rec {
   pname = "monocraft";

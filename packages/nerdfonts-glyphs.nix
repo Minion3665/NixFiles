@@ -1,7 +1,7 @@
 {
   lib,
   fetchFromGitHub,
-  stdenv
+  stdenv,
 }:
 stdenv.mkDerivation rec {
   pname = "nerdfonts-glyphs";
@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin $out/share/fonts/opentype
     find . -name "*.ttf" -exec mv {} $out/share/fonts/truetype \;
     find . -name "*.otf" -exec mv {} $out/share/fonts/opentype \;
-    
+
   '';
 
   meta = with lib; {
