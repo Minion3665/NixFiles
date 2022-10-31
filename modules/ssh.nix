@@ -24,6 +24,11 @@
           hostname = "95.217.87.112";
           identityFile = "~/.ssh/id_transplace";
         };
+        tildetown = {
+          hostname = "tilde.town";
+          user = "minion";
+          identityFile = "~/.ssh/id_tildetown";
+        };
       };
     };
 
