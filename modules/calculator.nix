@@ -5,8 +5,10 @@
       ggvenn
       ggplot2
       RVenn
+      networkD3
+      shiny
     ];
   };
 in {
-  home.home.packages = with pkgs; [wcalc R];
+  home.home.packages = with pkgs; [wcalc R kalgebra];
 }
