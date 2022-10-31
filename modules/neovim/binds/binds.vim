@@ -1,5 +1,8 @@
 set whichwrap=b,s,<,>,[,]
-set mouse=a
+" set mouse=a
+
+nmap <C-k> :m-2<CR>  
+nmap <C-j> :m+1<CR>
 
 vnoremap <F12> <Esc>
 inoremap <F12> <Esc>

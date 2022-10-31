@@ -8,3 +8,5 @@ let g:pandoc#filetypes#handled = ["pandoc", "rst", "textile", "markdown"]
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#formatting#mode = "h"
 let g:pandoc#spell#enabled = 0
+
+let g:mkdp_auto_close = 0

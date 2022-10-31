@@ -48,6 +48,7 @@
             tables = false;
           };
           MD024.siblings_only = true;
+          MD037 = false;
         };
         languageserver = {
           nix = {
@@ -85,9 +86,6 @@
       # Snippet completion
       vim-snippets
       coc-snippets
-
-      # General utilities
-      coc-pairs
     ];
     extraConfig = lib.pipe [./keybinds.vim ./theme.vim] [
       (map builtins.readFile)

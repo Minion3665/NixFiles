@@ -40,7 +40,7 @@ snippet inti "Integrate indefinitely" i
 endsnippet
 
 snippet intd "Integrate definitely" i
-\int{${1}}{${2}}${3} \text{ d}${4:x}${0}
+\int^{${1}}_{${2}}${3} \text{ d}${4:x}${0}
 endsnippet
 
 snippet ihat "The I vector" i
@@ -79,4 +79,8 @@ endsnippet
 
 snippet 2x2matrix "A 2 by 2 matrix" i
 \begin{bmatrix} ${1} & ${2} \\\\ ${3} & ${4} \end{bmatrix}${0}
+endsnippet
+
+snippet sum "A sum" i
+\sum^{${1:n}}_{${2:r}=${3:1}}${4}${0}
 endsnippet

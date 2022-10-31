@@ -18,7 +18,14 @@ endfunction
 
 
 function! TemplateFallback(context)
-  call append(0, ['# ' . g:lastWikiOriginalName, ''])
+  echom "Creating new wiki page"
+  echom exists("g:lastWikiOriginalName")
+  if exists("g:lastWikiOriginalName")
+    call append(0, ['# ' . g:lastWikiOriginalName, ''])
+    unlet! g:lastWikiOriginalName
+  else
+    call append(0, ['# ' . context.name, ''])
+  endif
 endfunction
 
 let g:wiki_templates = [
