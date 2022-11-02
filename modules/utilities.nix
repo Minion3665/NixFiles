@@ -46,6 +46,7 @@
       htop = "${pkgs.btop}/bin/btop";
       ping = "${pkgs.gping}/bin/gping";
       pingo = "${pkgs.inetutils}/bin/ping";
+      nix-provider = "${./utilities/nix-provider.sh}";
     };
   };
 }
