@@ -68,6 +68,6 @@ tnoremap <Esc><Esc> <C-\><C-n>
 
 let g:camelcasemotion_key = '<leader>m'
 
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>:redraw!<CR>"
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>:redraw!<CR>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 nnoremap <silent> <C-d> <C-d>:redraw!<CR>
