@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-minion.url = "github:Minion3665/nixpkgs";
+    nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils-plus.url = "github:gytis-ivaskevicius/flake-utils-plus";
     vscode-extensions.url = "github:AmeerTaweel/nix-vscode-marketplace";
@@ -31,7 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fenix.url = "github:nix-community/fenix";
-    prismlauncher.url = "github:PrismLauncher/PrismLauncher";
+    prismlauncher.url = "github:Scrumplex/nixpkgs/update-prismlauncher-5.1";
 
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";

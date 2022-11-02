@@ -21,22 +21,6 @@
         "type": "github"
       }
     },
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650374568,
-        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1659877975,
@@ -198,29 +182,13 @@
         "type": "github"
       }
     },
-    "libnbtplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650031308,
-        "narHash": "sha256-TvVOjkUobYJD9itQYueELJX3wmecvEdCbJ0FinW2mL4=",
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
-        "rev": "2203af7eeb48c45398139b583615134efd8d407f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1666753130,
-        "narHash": "sha256-Wff1dGPFSneXJLI2c0kkdWTgxnQ416KE6X4KnFkgPYQ=",
+        "lastModified": 1667085676,
+        "narHash": "sha256-jPHYYoSdrV3ypWG4oi9SUeI2MU6dLjxM88+9io5Rrx0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f540aeda6f677354f1e7144ab04352f61aaa0118",
+        "rev": "e6e6bad81b7e11f37d893ef39712ce8918ae2338",
         "type": "github"
       },
       "original": {
@@ -261,23 +229,23 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-staging-next": {
       "locked": {
-        "lastModified": 1666057921,
-        "narHash": "sha256-VpQqtXdj6G7cH//SvoprjR7XT3KS7p+tCVebGK1N6tE=",
-        "owner": "nixos",
+        "lastModified": 1667317463,
+        "narHash": "sha256-9MtO36H+F7XpYCKbqF51VPEdg8kSe1f28ekrfcm9YT0=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "88eab1e431cabd0ed621428d8b40d425a07af39f",
+        "rev": "eeca5969b3f42ac943639aaec503816f053e5e53",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
+        "owner": "NixOS",
+        "ref": "staging-next",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1660464579,
         "narHash": "sha256-kzA9rwh0wS6CwUnFHAQ7dhJCowMPfRbvixVeOKnUmjo=",
@@ -310,23 +278,18 @@
       }
     },
     "prismlauncher": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "libnbtplusplus": "libnbtplusplus",
-        "nixpkgs": "nixpkgs_2",
-        "tomlplusplus": "tomlplusplus"
-      },
       "locked": {
-        "lastModified": 1666742985,
-        "narHash": "sha256-AotIXkf9KLI468IT2lkswvJClmT1OgUwQbuvMHLruFo=",
-        "owner": "PrismLauncher",
-        "repo": "PrismLauncher",
-        "rev": "610b9711178d164a41f76106968c3fb511570fd8",
+        "lastModified": 1667299891,
+        "narHash": "sha256-mwVof5mOFiniu2yl5WVFUhpEtH5N+IqVTSK3wXe1y3c=",
+        "owner": "Scrumplex",
+        "repo": "nixpkgs",
+        "rev": "c77f59d15b21965cf495727bfe37a61b986da511",
         "type": "github"
       },
       "original": {
-        "owner": "PrismLauncher",
-        "repo": "PrismLauncher",
+        "owner": "Scrumplex",
+        "ref": "update-prismlauncher-5.1",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -359,6 +322,7 @@
         "kmonad": "kmonad",
         "nixpkgs": "nixpkgs",
         "nixpkgs-minion": "nixpkgs-minion",
+        "nixpkgs-staging-next": "nixpkgs-staging-next",
         "omnisharp-language-server": "omnisharp-language-server",
         "prismlauncher": "prismlauncher",
         "registry": "registry",
@@ -404,22 +368,6 @@
         "type": "github"
       }
     },
-    "tomlplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666091090,
-        "narHash": "sha256-djpMCFPvkJcfynV8WnsYdtwLq+J7jpV1iM4C6TojiyM=",
-        "owner": "marzer",
-        "repo": "tomlplusplus",
-        "rev": "1e4a3833d013aee08f58c5b31c69f709afc69f73",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marzer",
-        "repo": "tomlplusplus",
-        "type": "github"
-      }
-    },
     "utils": {
       "locked": {
         "lastModified": 1659877975,
@@ -438,7 +386,7 @@
     "vscode-extensions": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1665992943,
