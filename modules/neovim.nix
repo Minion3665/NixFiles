@@ -39,7 +39,7 @@ in
       vimdiffAlias = true;
     };
     home = {
-      packages = [ pkgs.neovide ];
+      packages = with pkgs; [ neovide xclip ];
       sessionVariables = {
         EDITOR = "${home.programs.neovim.finalPackage}/bin/nvim";
       };
