@@ -6,7 +6,7 @@
 }:
 let
   disabledGrammars = [
-    "tree-sitter-sql"
+    "sql"
   ];
 in
 {
@@ -14,7 +14,12 @@ in
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter.withPlugins (plugins:
         (lib.pipe plugins [
-          (lib.filterAttrs (name: value: !builtins.elem name disabledGrammars))
+          (lib.filterAttrs (name: value: builtins.substring 0 12 name == "tree-sitter-"))
+          (lib.filterAttrs (name: value: !builtins.elem
+            (builtins.substring 12 (builtins.stringLength name) name)
+            disabledGrammars
+          ))
+          lib.traceVal
           builtins.attrValues
         ])
         ++ (with pkgs.vimPlugins; [

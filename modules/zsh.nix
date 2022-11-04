@@ -32,6 +32,7 @@
         bindkey "\'\'$\{key[Up]}" up-line-or-search
 
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=243';
+        typeset -gA ZSH_HIGHLIGHT_STYLES
         ZSH_HIGHLIGHT_STYLES[comment]='fg=248';
 
 

@@ -11,8 +11,7 @@
       url = "github:nixos/flake-registry";
       flake = false;
     };
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
-    home-manager-unstable.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager";
     sops-nix.url = "github:Mic92/sops-nix";
     impermanence.url = "github:nix-community/impermanence";
     gtimelog = {
@@ -37,7 +36,6 @@
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 

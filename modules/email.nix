@@ -1,13 +1,11 @@
 { pkgs
 , config
 , username
-, home-manager-unstable
 , home
 , lib
 , ...
 }: {
   home = {
-    imports = [ "${home-manager-unstable}/modules/programs/aerc.nix" ];
     accounts.email = {
       maildirBasePath = "Mail";
       accounts = {
