@@ -1,0 +1,105 @@
+diff --git a/src/config.c b/src/config.c
+index d9b2dd9..0eb49de 100644
+--- a/src/config.c
++++ b/src/config.c
+@@ -755,6 +755,7 @@ char *parse_config(options_t *opt, const char *config_file, bool *shadow_enable,
+ 	    .fade_in_step = 0.028,
+ 	    .fade_out_step = 0.03,
+ 	    .fade_delta = 10,
++	    .no_fading_larger_than = 0,
+ 	    .no_fading_openclose = false,
+ 	    .no_fading_destroyed_argb = false,
+ 	    .fade_blacklist = NULL,
+diff --git a/src/config.h b/src/config.h
+index 7259dc1..a555be7 100644
+--- a/src/config.h
++++ b/src/config.h
+@@ -165,6 +165,8 @@ typedef struct options {
+ 	double fade_out_step;
+ 	/// Fading time delta. In milliseconds.
+ 	int fade_delta;
++	/// The maximum opacity change to fade on.
++	double no_fading_larger_than;
+ 	/// Whether to disable fading on window open/close.
+ 	bool no_fading_openclose;
+ 	/// Whether to disable fading on ARGB managed destroyed windows.
+diff --git a/src/config_libconfig.c b/src/config_libconfig.c
+index 461fff3..1e008c2 100644
+--- a/src/config_libconfig.c
++++ b/src/config_libconfig.c
+@@ -351,6 +351,8 @@ char *parse_config_libconfig(options_t *opt, const char *config_file, bool *shad
+ 	// -f (fading_enable)
+ 	if (config_lookup_bool(&cfg, "fading", &ival))
+ 		*fading_enable = ival;
++	// --no-fading-larger-than
++	config_lookup_float(&cfg, "no-fading-larger-than", &opt->no_fading_larger_than);
+ 	// --no-fading-open-close
+ 	lcfg_lookup_bool(&cfg, "no-fading-openclose", &opt->no_fading_openclose);
+ 	// --no-fading-destroyed-argb
+diff --git a/src/dbus.c b/src/dbus.c
+index 8b17b30..59d527e 100644
+--- a/src/dbus.c
++++ b/src/dbus.c
+@@ -1289,6 +1289,15 @@ static bool cdbus_process_opts_set(session_t *ps, DBusMessage *msg) {
+ 		goto cdbus_process_opts_set_success;
+ 	}
+ 
++	// no_fading_larger_than
++	if (!strcmp("no_fading_larger_than", target)) {
++		double val = 0.0;
++		if (!cdbus_msg_get_arg(msg, 1, DBUS_TYPE_DOUBLE, &val))
++			return false;
++		ps->o.no_fading_larger_than = normalize_d(val);
++		goto cdbus_process_opts_set_success;
++	}
++
+ 	// no_fading_openclose
+ 	if (!strcmp("no_fading_openclose", target)) {
+ 		dbus_bool_t val = FALSE;
+diff --git a/src/options.c b/src/options.c
+index ba7485d..69e1a40 100644
+--- a/src/options.c
++++ b/src/options.c
+@@ -175,6 +175,7 @@ static const struct picom_option picom_options[] = {
+                                                                              "you want to attach a debugger to picom"},
+     {"no-ewmh-fullscreen"          , no_argument      , 803, NULL          , "Do not use EWMH to detect fullscreen windows. Reverts to checking if a "
+                                                                              "window is fullscreen based only on its size and coordinates."},
++    {"no-fading-larger-than"       , required_argument, 804, NULL          , "do not fade when the opacity difference would be larger than this value"},
+ };
+ // clang-format on
+ 
+@@ -402,6 +403,7 @@ bool get_cfg(options_t *opt, int argc, char *const *argv, bool shadow_enable,
+ 			// These options are handled by get_early_config()
+ 			break;
+ 		P_CASEINT('D', fade_delta);
++		case 804: opt->no_fading_larger_than = normalize_d(atof(optarg)); break;
+ 		case 'I': opt->fade_in_step = normalize_d(atof(optarg)); break;
+ 		case 'O': opt->fade_out_step = normalize_d(atof(optarg)); break;
+ 		case 'c': shadow_enable = true; break;
+diff --git a/src/picom.c b/src/picom.c
+index fd693fc..1a475c5 100644
+--- a/src/picom.c
++++ b/src/picom.c
+@@ -992,7 +992,6 @@ void force_repaint(session_t *ps) {
+ /** @name DBus hooks
+  */
+ ///@{
+-
+ /**
+  * Set no_fading_openclose option.
+  *
+diff --git a/src/win.c b/src/win.c
+index 370fbfd..baea80b 100644
+--- a/src/win.c
++++ b/src/win.c
+@@ -864,6 +864,10 @@ bool win_should_fade(session_t *ps, const struct managed_win *w) {
+ 	if (w->fade_force != UNSET) {
+ 		return w->fade_force;
+ 	}
++	if (ps->o.no_fading_larger_than &&
++	    ps->o.no_fading_larger_than < fabs(w->opacity - w->opacity_target)) {
++		return false;
++	}
+ 	if (ps->o.no_fading_openclose && w->in_openclose) {
+ 		return false;
+ 	}

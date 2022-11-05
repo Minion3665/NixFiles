@@ -1,11 +1,24 @@
-{ pkgs, home, config, ... }: {
+{ lib, pkgs, home, config, ... }: {
   home = {
     xsession = {
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
         config = ./xmonad/xmonad.hs;
+        libFiles = lib.pipe ./xmonad [
+          builtins.readDir
+          builtins.attrNames
+          (builtins.filter (name: name != "xmonad.hs"))
+          (map (name: {
+            inherit name;
+            value = "${./xmonad}/${name}";
+          }))
+          builtins.listToAttrs
+        ];
         extraPackages = haskellPackages: with haskellPackages; [
+          dbus
+          monad-logger
+          xmonad-contrib
         ];
       };
     };
@@ -15,7 +28,7 @@
       fi
     '';
     home.file.".xinitrc".text = ''
-    ${home.xsession.windowManager.command}
+      ${home.xsession.windowManager.command}
     '';
   };
   config.services.xserver = {
