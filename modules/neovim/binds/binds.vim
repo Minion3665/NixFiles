@@ -16,7 +16,7 @@ smap <F12> <Esc>
 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-fun! SetupCommandAlias(from, to)
+fun! g:SetupCommandAlias(from, to)
     exec 'cnoreabbrev <expr> '.a:from
     \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
     \ .'? ("'.a:to.'") : ("'.a:from.'"))'
@@ -45,10 +45,9 @@ augroup vimrc-auto-neoformat
   endfunction
 augroup END
 
-command W w
-command Wq wq
-call SetupCommandAlias("git","Git")
-call SetupCommandAlias("rg","Rg")
+command! W w
+command! Wq wq
+call g:SetupCommandAlias("rg","Rg")
 
 set ignorecase
 set smartcase
