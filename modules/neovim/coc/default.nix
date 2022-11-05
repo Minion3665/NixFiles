@@ -55,6 +55,29 @@
             command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
             filetypes = [ "nix" ];
           };
+          haskell = {
+            command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+            args = [ "--lsp" ];
+            rootPatterns = [
+              "*.cabal"
+              "stack.yaml"
+              "cabal.project"
+              "package.yaml"
+              "hie.yaml"
+            ];
+            filetypes = [ "haskell" "lhaskell" ];
+            settings = {
+              haskell = {
+                checkParents = "CheckOnSave";
+                checkProject = true;
+                maxCompletions = 40;
+                formattingProvider = "ormolu";
+                plugin = {
+                  stan = { globalOn = true; };
+                };
+              };
+            };
+          };
         };
         "snippets.extends" = {
           markdown = [ "tex" ];
@@ -98,6 +121,13 @@
       rustc
       go
       rust-analyzer
+      stylish-haskell
+      haskell-language-server
+      (haskellPackages.ghcWithPackages (pkgs: with pkgs; [
+        dbus
+        monad-logger
+        xmonad-contrib
+      ]))
       texlab
       omnisharp-roslyn
       jdt-language-server
