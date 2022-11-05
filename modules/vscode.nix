@@ -19,6 +19,7 @@
       "workbench.startupEditor" = "none";
       "files.autoSave" = "afterDelay";
       "files.autoSaveDelay" = 100;
+      "editor.lineNumbers" = "relative";
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };

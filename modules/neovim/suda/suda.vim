@@ -1,3 +1,2 @@
-let g:suda_smart_edit = 1
-
+let g:suda_smart_edit = !exists('g:vscode')
 
