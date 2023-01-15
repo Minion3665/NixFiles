@@ -36,6 +36,7 @@
     };
     fenix.url = "github:nix-community/fenix";
     nps.url = "github:OleMussmann/Nix-Package-Search";
+    lanzaboote.url = "github:nix-community/lanzaboote";
 
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";
@@ -45,6 +46,9 @@
     nps.inputs.flake-utils.follows = "flake-utils";
     crane.inputs.nixpkgs.follows = "nixpkgs";
     crane.inputs.flake-utils.follows = "flake-utils";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+    lanzaboote.inputs.flake-utils.follows = "flake-utils";
+    lanzaboote.inputs.crane.follows = "crane";
   };
 
   outputs = inputs:

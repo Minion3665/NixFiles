@@ -3,7 +3,7 @@
     boot = {
       loader = {
         systemd-boot = {
-          enable = true;
+          /* enable = true; */ # Replaced by secure-boot.nix
           editor = false;
         };
         efi.canTouchEfiVariables = true;
