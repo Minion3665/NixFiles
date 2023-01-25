@@ -19,10 +19,12 @@
         no-fading-larger-than = 0.1;
         blur-background-exclude = [
           "class_g = 'slop'"
+          "WM_NAME@:s *?= 'activate-linux'"
         ];
         rounded-corners-exclude = [
           "class_g = 'Polybar'"
           "class_g = 'slop'"
+          "WM_NAME@:s *?= 'activate-linux'"
         ];
       };
     };
