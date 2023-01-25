@@ -1,10 +1,6 @@
 { lib
 , fetchFromGitHub
 , python3
-, python3Packages
-, lowPrio
-, fetchpatch
-, poetry
 }:
 let
   mouse = python3.pkgs.buildPythonPackage rec {
@@ -25,22 +21,23 @@ python3.pkgs.buildPythonApplication {
 
   format = "pyproject";
 
-  propagatedBuildInputs = with python3Packages; [
+  propagatedBuildInputs = with python3.pkgs; [
     xcffib
+    cffi
     cairocffi
     pyopengl
     screeninfo
     glfw
     scipy
     pillow
-    poetry
+    poetry-core
     mouse
   ];
 
   src = fetchFromGitHub {
     owner = "Minion3665";
     repo = "Show";
-    rev = "24deb2dc992861a3ec4c1c342ce7f85b6953f8b5";
-    sha256 = "sha256-VmtGOmATN38RVXa4N44vtaXT7r2sl0YE2K5q7LKhL7M=";
+    rev = "c6ece51bc5d8cae92b5df34598987fb010614004";
+    sha256 = "sha256-UZtKefTfWkNlhHl0FKTz80okVC0Hv45BFyw0kn7xz9s=";
   };
 }
