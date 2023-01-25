@@ -6,6 +6,10 @@ nmap <silent> <Leader>ff <Plug>(coc-codeaction-cursor)
 nmap <silent> <Leader>fc <Plug>(coc-codeaction-cursor)
 nmap <silent> <Leader>fr <Plug>(coc-rename)
 nmap <silent> <Leader>fi <Plug>(coc-fix-current)
+nmap <silent> <Leader>gd <Plug>(coc-definition)
+nmap <silent> <Leader>gt <Plug>(coc-type-definition)
+nmap <silent> <Leader>gi <Plug>(coc-implementation)
+nmap <silent> <Leader>gr <Plug>(coc-references)
 nmap <Leader>fe <Cmd>CocCommand explorer<CR>
 
 let g:UltiSnipsExpandTrigger="<NUL>"

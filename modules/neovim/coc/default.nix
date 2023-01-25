@@ -2,6 +2,7 @@
 , system
 , lib
 , nixpkgs-minion
+, nixpkgs-coc-spellchecker
 , home
 , utils
 , omnisharp-language-server
@@ -78,6 +79,12 @@
               };
             };
           };
+          ccls = {
+            command = "${pkgs.ccls}/bin/ccls";
+            filetypes = [ "c" "cc" "cpp" "c++" "objc" "objcpp" "C" ];
+            rootPatterns = [ ".ccls" "compile_commands.json" ".git/" ".vim/" ];
+            initializationOptions.cache.directory = "/tmp/ccls";
+          };
         };
         "snippets.extends" = {
           markdown = [ "tex" ];
@@ -101,7 +108,7 @@
       coc-java
 
       # Spellchecker
-      nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-spell-checker
+      nixpkgs-coc-spellchecker.legacyPackages.${system}.vimPlugins.coc-spell-checker
       nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-omnisharp
 
       # File explorer
@@ -139,6 +146,8 @@
           black
           rope
         ]))
+      libclang
+      ccls
     ];
   };
   home.file =
