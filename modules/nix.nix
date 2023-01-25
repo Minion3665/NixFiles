@@ -14,6 +14,7 @@
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
         keep-outputs = true;
+        keep-going = true;
         flake-registry = "${registry}/flake-registry.json";
       };
       gc = {
@@ -21,6 +22,7 @@
         options = "--delete-older-than 7d";
       };
       package = pkgs.nix;
+      nixPath = [ "nixpkgs=${nixpkgs}" ];
     };
 
     # This value determines the NixOS release from which the default
