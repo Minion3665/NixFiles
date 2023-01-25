@@ -6,9 +6,9 @@
 }: {
   home.home.packages = with fenix.packages.${system}.latest; [
     cargo
-    clippy
     rustc
     rustfmt
+    rust-analyzer
     pkgs.bacon
     pkgs.gcc
   ];
