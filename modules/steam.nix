@@ -22,6 +22,7 @@
         proton-caller
         gamescope
         gamemode
+        xboxdrv
         sfs-select /*(
         writeTextDir "share/applications/steam.desktop" ''
           [Desktop Entry]
