@@ -193,6 +193,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-coc-spellchecker": {
+      "locked": {
+        "lastModified": 1667786754,
+        "narHash": "sha256-ifM2LlVGpiXZnKkcgybo0pLVy/879k6zdPH7SH1W3PE=",
+        "owner": "Minion3665",
+        "repo": "nixpkgs",
+        "rev": "cfa25dcd159ac5b6a8d2ec9d30271e3e790bfa74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Minion3665",
+        "ref": "coc-spell-checker-staging",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-minion": {
       "locked": {
         "lastModified": 1666777518,
@@ -299,6 +315,7 @@
         "impermanence": "impermanence",
         "kmonad": "kmonad",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-coc-spellchecker": "nixpkgs-coc-spellchecker",
         "nixpkgs-minion": "nixpkgs-minion",
         "nixpkgs-staging-next": "nixpkgs-staging-next",
         "omnisharp-language-server": "omnisharp-language-server",

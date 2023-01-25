@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-minion.url = "github:Minion3665/nixpkgs";
+    nixpkgs-coc-spellchecker.url = "github:Minion3665/nixpkgs/coc-spell-checker-staging";
     nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils-plus.url = "github:gytis-ivaskevicius/flake-utils-plus";
@@ -47,8 +48,10 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = import ./overlays nixpkgs.lib (inputs // { inherit inputs
-          username; });
+          overlays = import ./overlays nixpkgs.lib (inputs // {
+            inherit inputs
+              username;
+          });
         };
 
         utils = import ./utils nixpkgs.lib;
@@ -99,32 +102,91 @@
               )
               options
           else options;
+
+        evalTrace = config: trace:
+          let
+            lib = nixpkgs.lib;
+            splitTrace = lib.splitString "." trace;
+            traceHead = builtins.head splitTrace;
+            traceTail = builtins.tail splitTrace;
+            resolvedTrace =
+              (
+                if traceHead == "home"
+                then [ "home-manager" "users" username ]
+                else lib.errorIfNot (traceHead == "config") [ ]
+              )
+              ++ traceTail;
+          in
+          (
+            lib.pipe resolvedTrace [
+              (lib.foldl
+                ({ value
+                 , error
+                 ,
+                 }: key:
+                  if builtins.hasAttr key value
+                  then {
+                    value = value.${key};
+                    inherit error;
+                  }
+                  else {
+                    value = { };
+                    error = true;
+                  })
+                {
+                  value = { };
+                  error = false;
+                })
+              (data: lib.warnIf data.error "trace@${moduleName}/${trace} is invalid; the key does not exist" data)
+              ({ value
+               , error
+               ,
+               }: {
+                value = builtins.toJSON value;
+                inherit error;
+              })
+              ({ value
+               , error
+               ,
+               }: {
+                value = "trace@${moduleName}/${trace}: ${value}";
+                inherit error;
+              })
+              ({ value
+               , error
+               ,
+               }:
+                lib.traceIf (!error) value null)
+            ]
+          );
       in
       {
         packages.nixosConfigurations = {
-          default = nixpkgs.lib.nixosSystem {
-            inherit system;
+          default = nixpkgs.lib.traceValFn
+            (nixosSystem: map (evalTrace nixosSystem.config) nixosSystem.config.internal.traces) nixpkgs.lib.nixosSystem
+            {
+              inherit system;
 
-            modules = [
-              (nixpkgs.lib.pipe ./modules [
-                utils.nixFilesIn
-                (utils.interpretNonstandardModule (args:
-                  args
-                  // {
-                    home = args.config.home-manager.users.${username};
-                    home-options =
-                      nixpkgs.lib.traceVal (normalizeOptions
-                        (args.options.home-manager.users.type.getSubOptions [ ]));
-                    inherit system utils;
-                  }))
-              ])
-              {
-                minion = import ./config.nix;
-              }
-            ];
+              modules = [
+                (nixpkgs.lib.pipe ./modules [
+                  utils.nixFilesIn
+                  (utils.interpretNonstandardModule (args:
+                    args
+                    // {
+                      home = args.config.home-manager.users.${username};
+                      home-options =
+                        nixpkgs.lib.traceVal (normalizeOptions
+                          (args.options.home-manager.users.type.getSubOptions [ ]));
+                      inherit system utils;
+                    }))
+                ])
+                {
+                  minion = import ./config.nix;
+                }
+              ];
 
-            specialArgs = inputs // { inherit inputs username; };
-          };
+              specialArgs = inputs // { inherit inputs username; };
+            };
         };
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nodePackages.prettier nixpkgs-fmt ];
