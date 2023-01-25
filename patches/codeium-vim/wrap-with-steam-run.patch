@@ -1,0 +1,21 @@
+From d31c358b1e58cab473593d889fc9b204316a6e57 Mon Sep 17 00:00:00 2001
+From: Skyler <skyler3665@gmail.com>
+Date: Tue, 24 Jan 2023 14:15:42 +0000
+Subject: [PATCH] Wrap codeium with steam-run (for nix)
+
+---
+ autoload/codeium/server.vim | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/autoload/codeium/server.vim b/autoload/codeium/server.vim
+index 2d18adc..08f293a 100644
+--- a/autoload/codeium/server.vim
++++ b/autoload/codeium/server.vim
+@@ -144,6 +144,7 @@ function! codeium#server#Start(timer) abort
+   call mkdir(manager_dir, 'p')
+ 
+   let args = [
++        \ 'steam-run',
+         \ bin,
+         \ '--api_server_host', get(config, 'api_host', 'server.codeium.com'),
+         \ '--api_server_port', get(config, 'api_port', '443'),

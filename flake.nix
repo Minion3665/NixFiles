@@ -3,6 +3,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree";
     nixpkgs-unfree.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -124,7 +127,8 @@
               (
                 if traceHead == "home"
                 then [ "home-manager" "users" username ]
-                else lib.throwIfNot (traceHead == "config") ''You need to trace either home.** or config.** (found "${traceHead}" in "${trace}")'' [ ])
+                else lib.throwIfNot (traceHead == "config") ''You need to trace either home.** or config.** (found "${traceHead}" in "${trace}")'' [ ]
+              )
               ++ traceTail;
           in
           (
@@ -141,9 +145,10 @@
                   }
                   else {
                     value = { };
-                    error = if error == false 
-                            then ''"${key}" does not exist in set "${builtins.toJSON value}"''
-                            else error;
+                    error =
+                      if error == false
+                      then ''"${key}" does not exist in set "${builtins.toJSON value}"''
+                      else error;
                   })
                 {
                   value = config;
@@ -173,38 +178,43 @@
           );
       in
       {
-        packages.nixosConfigurations =
-          let
-            nixosSystem = (nixpkgs.lib.nixosSystem
-              {
-                inherit system;
+        packages = {
+          nixosConfigurations =
+            let
+              nixosSystem = (nixpkgs.lib.nixosSystem
+                {
+                  inherit system;
 
-                modules = [
-                  (nixpkgs.lib.pipe ./modules [
-                    utils.nixFilesIn
-                    (utils.interpretNonstandardModule (args:
-                      args
-                      // {
-                        home = args.config.home-manager.users.${username};
-                        home-options =
-                          nixpkgs.lib.traceVal (normalizeOptions
-                            (args.options.home-manager.users.type.getSubOptions [ ]));
-                        inherit system utils;
-                      }))
-                  ])
-                  {
-                    minion = import ./config.nix;
-                  }
-                ];
+                  modules = [
+                    (nixpkgs.lib.pipe ./modules [
+                      utils.nixFilesIn
+                      (utils.interpretNonstandardModule (args:
+                        args
+                          // {
+                          home = args.config.home-manager.users.${username};
+                          home-options =
+                            nixpkgs.lib.traceVal (normalizeOptions
+                              (args.options.home-manager.users.type.getSubOptions [ ]));
+                          inherit system utils;
+                        }))
+                    ])
+                    {
+                      minion = import ./config.nix;
+                    }
+                  ];
 
-                specialArgs = inputs // { inherit inputs username; };
-              });
-          in
-          {
-            default = builtins.deepSeq
-              (map (evalTrace nixosSystem.config) nixosSystem.config.internal.traces)
-              nixosSystem;
-          };
+                  specialArgs = inputs // { inherit inputs username; };
+                });
+            in
+            {
+              default = builtins.deepSeq
+                (map (evalTrace nixosSystem.config) nixosSystem.config.internal.traces)
+                nixosSystem;
+            };
+        } // (import ./overlays/packages.nix
+          { inherit (inputs) fenix crane; }
+          pkgs
+          pkgs);
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nodePackages.prettier nixpkgs-fmt ];
           buildInputs = [ ];
