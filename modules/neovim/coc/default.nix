@@ -126,9 +126,7 @@
     ];
     extraPackages = with pkgs; [
       nodejs
-      rustc
       go
-      rust-analyzer
       stylish-haskell
       haskell-language-server
       (haskellPackages.ghcWithPackages (pkgs: with pkgs; [

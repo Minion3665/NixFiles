@@ -72,3 +72,31 @@ let g:camelcasemotion_key = '<leader>m'
 
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 nnoremap <silent> <C-d> <C-d>:redraw!<CR>
+
+function! s:start_delete(key)
+    let l:result = a:key
+    if !s:deleting
+        let l:result = "\<C-G>u".l:result
+    endif
+    let s:deleting = 1
+    return l:result
+endfunction
+
+function! s:check_undo_break(char)
+    if s:deleting
+        let s:deleting = 0
+        call feedkeys("\<BS>\<C-G>u".a:char, 'n')
+    endif
+endfunction
+
+augroup smartundo
+    autocmd!
+    autocmd InsertEnter * let s:deleting = 0
+    autocmd InsertCharPre * call s:check_undo_break(v:char)
+augroup END
+
+inoremap <expr> <BS> <SID>start_delete("\<BS>")
+inoremap <expr> <C-W> <SID>start_delete("\<C-W>")
+inoremap <expr> <C-U> <SID>start_delete("\<C-U>")
+
+" Undo stuff from https://vi.stackexchange.com/a/2377/38793
