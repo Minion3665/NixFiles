@@ -6,12 +6,15 @@
 }: {
   home.programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
-    extensions = with vscode-extensions.packages.${system}; [
-      vscode.quandinh.onehalf-dark
-      pkgs.vscode-extensions.ms-vsliveshare.vsliveshare
-      pkgs.vscode-extensions.asvetliakov.vscode-neovim
-    ];
+    package = pkgs.vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions.packages.${system}; [
+        vscode.quandinh.onehalf-dark
+        pkgs.vscode-extensions.ms-vsliveshare.vsliveshare
+        pkgs.vscode-extensions.asvetliakov.vscode-neovim
+      ];
+    } // {
+      pname = "vscode";
+    };
     mutableExtensionsDir = false;
     userSettings = {
       "update.channel" = "none";
@@ -26,5 +29,9 @@
       "vscode-neovim.neovimExecutablePaths.linux" = "${home.programs.neovim.finalPackage}/bin/nvim";
     };
   };
-  config.internal.allowUnfree = [ "vscode-extension-ms-vsliveshare-vsliveshare" ];
+  config.internal.allowUnfree = [
+    "vscode-extension-ms-vsliveshare-vsliveshare"
+    "vscode"
+    "vscode-with-extensions"
+  ];
 }
