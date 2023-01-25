@@ -19,7 +19,11 @@ in
         pkgs.strace
         pkgs.neovim
       ]; # The basic default packages, although with nvim replacing nano
-      persistence."/nix/persist".users.${username}.directories = [ ".local/share/cspell" ];
+      persistence."/nix/persist".users.${username}.directories = [
+        ".local/share/cspell"
+        ".codeium"
+        ".config/nvim/undo"
+      ];
     };
   };
 
