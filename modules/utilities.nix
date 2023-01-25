@@ -21,7 +21,7 @@
       gping
       curlie
       xcolor
-      tcount
+      /* tcount */  # Seems to cause extremely high build times repeatedly: check GC
     ];
   };
 
