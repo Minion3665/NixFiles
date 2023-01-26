@@ -18,8 +18,12 @@
         fade-in-step = 0.005;
         fade-out-step = 0.005;
         no-fading-larger-than = 0.1;
+        blur-background-exclude = [
+          "class_g = 'slop'"
+        ];
         rounded-corners-exclude = [
           "class_g = 'Polybar'"
+          "class_g = 'slop'"
         ];
       };
     };
