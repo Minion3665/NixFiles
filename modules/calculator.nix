@@ -12,5 +12,5 @@ let
   };
 in
 {
-  home.home.packages = with pkgs; [ wcalc R kalgebra ];
+  home.home.packages = with pkgs; [ wcalc R  ];
 }
