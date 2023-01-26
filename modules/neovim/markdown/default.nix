@@ -6,7 +6,12 @@
       markdown-preview-nvim
       vim-table-mode
       vim-pandoc
+      goyo-vim
+      limelight-vim
     ];
-    extraConfig = builtins.readFile ./markdown.vim;
+    extraConfig = ''
+      ${builtins.readFile ./markdown.vim}
+      ${builtins.readFile ./limelight.vim}
+    '';
   };
 }
