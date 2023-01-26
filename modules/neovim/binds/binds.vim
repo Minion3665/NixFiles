@@ -16,12 +16,6 @@ smap <F12> <Esc>
 
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-fun! g:SetupCommandAlias(from, to)
-    exec 'cnoreabbrev <expr> '.a:from
-    \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
-    \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfun
-
 augroup vimrc-auto-mkdir
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
