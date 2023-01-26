@@ -10,6 +10,7 @@ let
   ];
 in
 {
+  home.file.".config/nvim/after/queries/markdown/highlights.scm".source = ./highlights.scm;
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter.withPlugins (plugins:
@@ -24,12 +25,14 @@ in
         ])
         ++ (with pkgs.vimPlugins; [
           nvim-ts-rainbow
+          nvim-ts-context-commentstring
           nixpkgs-minion.legacyPackages.${system}.tree-sitter-grammars.tree-sitter-astro
         ])))
       nvim-treesitter-context
+      playground
     ];
     extraConfig = ''
       source ${./setup.lua}
-    '';
+    '' + builtins.readFile ./highlights.vim;
   };
 }
