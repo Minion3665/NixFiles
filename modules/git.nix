@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home = {
+    home.sessionVariables.CARGO_NET_GIT_FETCH_WITH_CLI = "true";
     programs.git = {
       enable = true;
 
@@ -17,6 +18,8 @@
 
       aliases = {
         recommit = "!git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
+        # Yes, this does need to start with an !. Removing it will make the
+        # expansion in the middle not work
         stash-working = ''
           !f() {
               git commit --quiet --no-verify -m \"temp for stash-working\" && \
@@ -32,6 +35,7 @@
                   rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
               fi
           }; f'';
+        graph = ''log --graph --oneline --decorate'';
       };
 
       extraConfig = {
