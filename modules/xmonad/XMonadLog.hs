@@ -35,10 +35,10 @@ polybarHook dbus =
       purple = "#c678dd"
       red    = "#e06c75"
   in def { ppOutput          = dbusOutput dbus
-         , ppCurrent         = wrapper blue
-         , ppVisible         = wrapper red
+         , ppCurrent         = wrapper red
+         , ppVisible         = wrapper blue
          , ppUrgent          = wrapper orange
-         , ppHidden          = wrapper red
+         , ppHidden          = wrapper blue
          , ppHiddenNoWindows = wrapper grey
          , ppTitle           = shorten 100 . wrapper purple
          }
