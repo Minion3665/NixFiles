@@ -13,6 +13,10 @@
         ipv4only
         noarp
 
+        ssid HRSFC Guest
+        static ip_address=10.0.48.79/8
+        static routers=10.0.0.1
+
         ssid eduroam
         static ip_address=10.0.48.79/8
         static routers=10.0.0.1
@@ -49,6 +53,8 @@
           "RoboCon3665-Sky".psk = "@robocon3665SkyPass@";
           "RoboCon2022-Beta_team_4".psk = "@robocon2023Beta4Pass@";
           "RoboCon2023-Will".psk = "@robocon2023Will@";
+          "robot-HRS69420".psk = "@srRobotPassword@";
+          "newadelie24".psk = "@newadelie24Pass@";
         } // lib.pipe (lib.range 1 21) [
           (builtins.map builtins.toString)
           (builtins.map (team: {
