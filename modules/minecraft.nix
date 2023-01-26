@@ -1,8 +1,7 @@
 { pkgs
 , username
-, prismlauncher
 , ...
 }: {
-  home.home.packages = [ prismlauncher.legacyPackages.x86_64-linux.prismlauncher ];
+  home.home.packages = [ pkgs.prismlauncher ];
   config.environment.persistence."/large/persist".users.${username}.directories = [ ".local/share/PrismLauncher" ];
 }
