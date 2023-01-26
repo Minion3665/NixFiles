@@ -6,13 +6,10 @@
     programs.gpg.enable = true;
     services.gpg-agent = {
       enable = true;
-      /* extraConfig = '' */
-      /*   default-cache-ttl 86400 */
-      /*   max-cache-ttl 86400 */
-      /*   pinentry-program ${pkgs.pinentry-rofi}/bin/pinentry-rofi */
-      /*   auto-expand-secmem */
-      /* ''; */
-      pinentryFlavor = "curses";
+      extraConfig = ''
+        pinentry-program ${pkgs.pinentry-rofi}/bin/pinentry-rofi
+      '';
+      /* pinentryFlavor = "curses"; */
     };
   };
 
