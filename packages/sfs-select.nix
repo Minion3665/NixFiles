@@ -1,4 +1,14 @@
-{ stdenv, p7zip, zip, python3, qt5 }: stdenv.mkDerivation {
+{ stdenv, p7zip, zip, python3, qt5 }: let
+  preExec = ''
+  import os
+  sfs_select_dir = os.path.expanduser('~/.local/share/Steam/sfs-select/runtime')
+  os.makedirs(sfs_select_dir, exist_ok=True)
+  os.chdir(sfs_select_dir)
+
+
+  '';
+  preExecBash = builtins.replaceStrings ["\n"] ["\\n"] preExec;
+in stdenv.mkDerivation {
   pname = "sfs-select";
   version = "0.5.0";
 
@@ -17,7 +27,10 @@
   buildPhase = ''
     runHook preBuild
 
-    mv ./sfs-select/python/sfs-select.py ./sfs-select/python/__main__.py 
+    mv ./sfs-select/python/sfs-select.py ./sfs-select/python/__main__.py
+
+
+    sed -i "1i${preExecBash}" ./sfs-select/python/__main__.py
     ${zip}/bin/zip -rj sfs-select.zip ./sfs-select/python/*
 
     runHook postBuild
