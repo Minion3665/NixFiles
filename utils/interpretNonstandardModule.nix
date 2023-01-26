@@ -37,70 +37,12 @@ let
             home-manager.users."${args.username}".imports =
               (resolvedModule.config.home-manager.users."${args.username}".imports or [ ])
               ++ [ resolvedModule.home or { } ];
+            internal.traces = (resolvedModule.traces or [ ]);
           };
           imports = resolvedModule.imports or [ ];
           options = resolvedModule.options or { };
         }
-      ]
-    ++ (builtins.map
-      (trace:
-        let
-          splitTrace = lib.splitString "." trace;
-          traceHead = builtins.head splitTrace;
-          traceTail = builtins.tail splitTrace;
-          resolvedTrace =
-            (
-              if traceHead == "home"
-              then [ "home-manager" "users" args.username ]
-              else lib.errorIfNot (traceHead == "config") [ ]
-            )
-            ++ traceTail;
-        in
-        { config, ... }: (builtins.seq
-          (
-            lib.pipe resolvedTrace [
-              (lib.foldl
-                ({ value
-                 , error
-                 ,
-                 }: key:
-                  if builtins.hasAttr key value
-                  then {
-                    value = value.${key};
-                    inherit error;
-                  }
-                  else {
-                    value = { };
-                    error = true;
-                  })
-                {
-                  value = { };
-                  error = false;
-                })
-              (data: lib.warnIf data.error "trace@${moduleName}/${trace} is invalid; the key does not exist" data)
-              ({ value
-               , error
-               ,
-               }: {
-                value = builtins.toJSON value;
-                inherit error;
-              })
-              ({ value
-               , error
-               ,
-               }: {
-                value = "trace@${moduleName}/${trace}: ${value}";
-                inherit error;
-              })
-              ({ value
-               , error
-               ,
-               }:
-                lib.traceIf (!error) value null)
-            ]
-          )
-          { }))
-      (resolvedModule.traces or [ ]));
+      ];
 in
 {
   imports = (
