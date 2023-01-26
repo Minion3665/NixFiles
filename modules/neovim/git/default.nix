@@ -9,6 +9,7 @@
       ''
       + lib.pipe [
         ./lazygit.vim
+        ./binds.vim
       ] [
         (map builtins.readFile)
         (builtins.concatStringsSep "\n")
