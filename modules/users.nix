@@ -17,8 +17,14 @@
       # Important for physlock + sleep
     };
 
-    environment.persistence."/nix/persist".users.${username}.directories = [ "Documents" "Pictures" ];
-    environment.persistence."/large/persist".users.${username}.directories = [ "Code" ];
+    environment.persistence."/nix/persist".users.${username}.directories = [
+      "Documents"
+      "Pictures"
+    ];
+    environment.persistence."/large/persist".users.${username}.directories = [
+      "Code"
+      "Programs"
+    ];
     sops.secrets.password = {
       mode = "0400";
       neededForUsers = true;
