@@ -6,6 +6,7 @@ let
   extraAttrSets = with final; [
     libsForQt5
     libsForQt5.qt5
+    qt6
   ];
 in
 lib.pipe ../packages [
