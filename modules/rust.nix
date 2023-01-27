@@ -4,11 +4,8 @@
 , pkgs
 , ...
 }: {
-  home.home.packages = with fenix.packages.${system}.latest; [
-    cargo
-    rustc
-    rustfmt
-    rust-analyzer
+  home.home.packages = [
+    fenix.packages.${system}.latest.toolchain
     pkgs.bacon
     pkgs.gcc
   ];
