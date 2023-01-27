@@ -29,8 +29,6 @@
         };
         "suggest.noselect" = true;
         "cSpell.checkOnlyEnabledfileTypes" = false;
-        "diagnostic.virtualText" = true;
-        "diagnostic.virtualTextCurrentLineOnly" = false;
         "suggest.virtualText" = true;
         "cSpell.dictionaryDefinitions" = [
           {
@@ -102,6 +100,7 @@
       coc-json
       coc-jest
       coc-css
+      lsp_lines-nvim
       coc-go
       coc-markdownlint
       coc-texlab

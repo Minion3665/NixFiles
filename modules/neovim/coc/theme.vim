@@ -20,3 +20,12 @@ call g:Highlight("DiagnosticVirtualTextError", g:darkred, g:transparent)
 call g:Highlight("CocCodeLens", g:lightgrey, g:transparent)
 call g:Highlight("CocPumVirtualText", g:lightgrey, g:transparent)
 call g:Highlight("CocInlayHint", g:darkpurple, g:transparent)
+
+lua << EOF
+local ok, lsp_lines = pcall(require, 'lsp_lines')
+if ok then
+  lsp_lines.setup()
+end
+-- lsp_lines can sometimes fail to load (i.e. in git commits).
+-- We must not crash if it does not exist
+EOF
