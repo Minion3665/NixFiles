@@ -1,17 +1,18 @@
-{ lib, pkgs, home, config, ... }: {
+{ lib, pkgs, home, config, utils, ... }: {
   home = {
+    home.packages = with pkgs; [ xob pamixer ];
     xsession = {
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
-        config = ./xmonad/xmonad.hs;
+        config = utils.interpolateFile ./xmonad/xmonad.hs;
         libFiles = lib.pipe ./xmonad [
           builtins.readDir
           builtins.attrNames
           (builtins.filter (name: name != "xmonad.hs"))
           (map (name: {
             inherit name;
-            value = "${./xmonad}/${name}";
+            value = utils.interpolateFile "${./xmonad}/${name}";
           }))
           builtins.listToAttrs
         ];

@@ -1,6 +1,11 @@
 { pkgs, options, lib, ... }: {
   config = {
+    services.logind.extraConfig = ''
+      HandlePowerKey=Ignore
+      LidSwitchIgnoreInhibited=no
+    '';
     boot = {
+      kernelParams = [ "acpi_backlight=video" ];
       loader = {
         systemd-boot = {
           /* enable = true; */ # Replaced by secure-boot.nix
@@ -24,6 +29,7 @@
         "tap"
         "tun"
         "veth"
+        "hid_sensor_hub"
       ];
     };
   };

@@ -1,4 +1,5 @@
 -- spell-checker:words xmonad
+{-# OPTIONS_GHC -Wno-deferred-out-of-scope-variables #-}
 import           XMonad
 
 import           System.Exit
@@ -14,20 +15,28 @@ import           XMonadLog
 
 import           Blaze.ByteString.Builder     (toByteString)
 import           Foreign.C
-import           XMonad
+import           Graphics.X11.ExtraTypes      (xF86XK_AudioLowerVolume,
+                                               xF86XK_AudioMute,
+                                               xF86XK_AudioRaiseVolume,
+                                               xF86XK_MonBrightnessDown,
+                                               xF86XK_MonBrightnessUp,
+                                               xF86XK_Xfer)
+import qualified XMonad                       as W
 import           XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import           XMonad.Hooks.ManageHelpers   (doFullFloat, doLower,
-                                               isInProperty, doRectFloat)
+                                               doRectFloat, isInProperty)
 import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout.Drawer         (propertyToQuery)
 import           XMonad.Layout.Gaps
 import           XMonad.Layout.Spacing
 import qualified XMonad.StackSet              as W
 import           XMonad.Util.Hacks
-import qualified XMonad as W
-import XMonad.Util.PureX (curScreenId, curScreen)
+import           XMonad.Util.PureX            (curScreen, curScreenId)
+import           XMonad.Util.Run              (safeSpawn, safeSpawnProg)
 
-terminal = "kitty"      -- Kitty, my beloved <3
+volumeChangeCmd = "${{./vol_change.py}}"
+
+terminal = "/usr/bin/env SHLVL=0 kitty"      -- Kitty, my beloved <3
 launcher = "pkill rofi; rofi -show combi"
 networkManager = "wpa_cli select_network $(wpa_cli list_networks | tail -n +3 | awk '!seen[$2]++' | rofi -dmenu -window-title 'Select Network' | awk '{print $1;}')"
 
@@ -36,7 +45,7 @@ selectScreenshot = "mkdir -p ~/Screenshots && maim -s | tee ~/Screenshots/\"$(da
 
 modifierKey = mod4Mask  -- Use Super as our mod key
 
-statusBar = "pkill polybar; polybar"
+statusBar = "pkill polybar; polybar main; polybar dp1; polybar dp2; polybar dp3; polybar dp4"
 compositor = "pkill picom; picom"
 background = "pkill show; show ~/.xmonad/wallpaper.glsl > /dev/null"
 colorSelection = "xcolor | xclip -sel clip"
@@ -44,11 +53,16 @@ keybindings = "setxkbmap -option caps:none && xmodmap ~/.Xmodmap"
 
 shift = shiftMask
 
+-- spell-checker:words xobsock
+xobsock = "$XDG_RUNTIME_DIR/xob.sock"
+
 startupHook = do
   spawn Main.statusBar
   spawn Main.compositor
   spawn background
   spawn keybindings
+  spawn "pgrep keepass || run_keepass"
+  spawn $ "pkill xob; rm -f " ++ xobsock ++ " && mkfifo " ++ xobsock ++ " && tail -f " ++ xobsock ++ " | xob"
 
 
 main :: IO ()
@@ -92,4 +106,15 @@ main' dbus = xmonad
   , ((modifierKey .|. Main.shift, xK_s), spawn selectScreenshot)
   , ((modifierKey .|. Main.shift, xK_h), spawn colorSelection)
   , ((0, xK_Print), spawn screenshot)
+  , ((modifierKey .|. Main.shift, xK_Return), spawn Main.terminal)
+  , ((0, xF86XK_AudioLowerVolume), spawn $ volumeChangeCmd ++ " -d")
+  , ((0, xF86XK_AudioRaiseVolume), spawn $ volumeChangeCmd ++ " -u")
+  , ((0, xF86XK_AudioMute), spawn $ volumeChangeCmd ++ " -m")
+  , ((modifierKey, xF86XK_AudioLowerVolume), spawn $ volumeChangeCmd ++ " -d -i")
+  , ((modifierKey, xF86XK_AudioRaiseVolume), spawn $ volumeChangeCmd ++ " -u -i")
+  , ((modifierKey, xF86XK_AudioMute), spawn $ volumeChangeCmd ++ " -m -i")
+  , ((0, xF86XK_MonBrightnessDown), spawn $ "light -U 6 && light -G | cut -d'.' -f1 > " ++ xobsock)
+  , ((0, xF86XK_MonBrightnessUp), spawn $ "light -A 6 && light -G | cut -d'.' -f1 > " ++ xobsock)
+  , ((modifierKey, xF86XK_MonBrightnessDown), spawn $ "light -U 3 && light -G | cut -d'.' -f1 > " ++ xobsock)
+  , ((modifierKey, xF86XK_MonBrightnessUp), spawn $ "light -A 3 && light -G | cut -d'.' -f1 > " ++ xobsock)
   ]

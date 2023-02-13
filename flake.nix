@@ -68,7 +68,7 @@
           });
         };
 
-        utils = import ./utils nixpkgs.lib;
+        utils = import ./utils pkgs;
 
         username = "minion";
 
