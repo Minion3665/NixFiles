@@ -6,24 +6,20 @@
 }: {
   home = {
     home.packages = [ pkgs.keepassxc ];
-    wayland.windowManager.sway.config.startup = [
-      {
-        command = builtins.replaceStrings [ "\n" ] [ " " ] ''
-          ${pkgs.coreutils}/bin/cat
-          ${config.sops.secrets.keepassPassword.path} |
-          ${pkgs.keepassxc}/bin/keepassxc --pw-stdin
-          ${home.home.homeDirectory}/Sync/KeePass\ Vaults/Passwords.kdbx
-        '';
-      }
-    ];
   };
   config = {
     environment.persistence."/nix/persist".users.${username}.directories = [
       ".config/keepassxc"
     ];
     sops.secrets.keepassPassword = {
-      mode = "0400";
-      owner = config.users.users.${username}.name;
+      mode = "0000";
+      owner = config.users.users.nobody.name;
+      group = config.users.users.nobody.group;
+    };
+    security.wrappers."run_keepass" = {
+      source = "${pkgs.run-keepass}/bin/run_keepass";
+      setuid = true;
+      owner = config.users.users.root.name;
       group = config.users.users.nobody.group;
     };
   };
