@@ -1,3 +1,3 @@
 {
-  config.services.xserver.videoDrivers = [ "intel" "amdgpu" "radeon" "modesetting" ];
+  /* config.services.xserver.videoDrivers = [ "intel" "amdgpu" "radeon" "modesetting" ]; */
 }
