@@ -14,55 +14,55 @@
 #
 
 # general-doesn't-fit stuff
-color normal     color188 color236
-color error      color168 color236
-color markers    color180 color236
-color tilde      color188 color237
-color status     color188 color237
+color normal     white black
+color error      red black
+color markers    yellow black
+color tilde      white black
+color status     white black
 
 # index stuff
-color indicator  color114 color236
-color tree       color31 color237
-color index      color73  color236 ~A
-color index      color73  color236 ~N
-color index      color73  color236 ~O
-color index      color168 color236 ~F
-color index      color168 color236 ~D
+color indicator  black green
+color tree       cyan black
+color index      white  black ~A
+color index      magenta  black ~N
+color index      magenta  black ~O
+color index      red black ~F
+color index      red black ~D
 
 # header stuff
-color hdrdefault color180 color237
-color header     color180 color237 "^Subject"
+color hdrdefault yellow black
+color header     yellow black "^Subject"
 
 # gpg stuff
-color body       color114 color237 "^gpg: Good signature.*"
-color body       color168 color236 "^gpg: BAD signature.*"
-color body       color180 color237 "^gpg: Can't check signature.*"
-color body       color237 color188 "^-----BEGIN PGP SIGNED MESSAGE-----"
-color body       color237 color188 "^-----BEGIN PGP SIGNATURE-----"
-color body       color237 color188 "^-----END PGP SIGNED MESSAGE-----"
-color body       color237 color188 "^-----END PGP SIGNATURE-----"
-color body       color237 color188 "^Version: GnuPG.*"
-color body       color237 color188 "^Comment: .*"
+color body       green black "^gpg: Good signature.*"
+color body       red black "^gpg: BAD signature.*"
+color body       yellow black "^gpg: Can't check signature.*"
+color body       black white "^-----BEGIN PGP SIGNED MESSAGE-----"
+color body       black white "^-----BEGIN PGP SIGNATURE-----"
+color body       black white "^-----END PGP SIGNED MESSAGE-----"
+color body       black white "^-----END PGP SIGNATURE-----"
+color body       black white "^Version: GnuPG.*"
+color body       black white "^Comment: .*"
 
 # url, email and web stuff
-color body       color237 color188 "(finger|ftp|http|https|news|telnet)://[^ >]*"
-color body       color237 color188 "<URL:[^ ]*>"
-color body       color237 color188 "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
-color body       color237 color188 "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
-color body       color237 color188 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body       magenta black "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body       magenta black "<URL:[^ ]*>"
+color body       magenta black "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body       magenta black "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
+color body       magenta black "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
 
 # misc body stuff
-color attachment color237 color188 #Add-ons to the message
-color signature  color237 color188
+color attachment magenta black #Add-ons to the message
+color signature  lightblack black
 
 # quote levels
-color quoted     color167 color236
-color quoted1    color136 color236
-color quoted2    color71  color236
-color quoted3    color31  color236
-color quoted4    color127 color236
-color quoted5    color167 color236
-color quoted6    color136 color236
-color quoted7    color71  color236
-color quoted8    color31  color236
-color quoted9    color127 color236
+color quoted     lightred black
+color quoted1    lightyellow black
+color quoted2    lightgreen  black
+color quoted3    lightcyan  black
+color quoted4    lightmagenta black
+color quoted5    lightred black
+color quoted6    lightyellow black
+color quoted7    lightgreen  black
+color quoted8    lightcyan  black
+color quoted9    lightmagenta black

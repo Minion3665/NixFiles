@@ -74,11 +74,30 @@
       settings = {
         preferred_languages = "en";
       };
+      vimKeys = true;
       extraConfig = ''
         auto_view text/html
+
+        set virtual_spoolfile = yes
+
+        unmailboxes *
+        virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox and not tag:deleted"
+        virtual-mailboxes "Unread" "notmuch://?query=tag:unread and tag:inbox and not tag:deleted&type=threads"
+        virtual-mailboxes "Trash" "notmuch://?query=tag:deleted"
+
+        bind pager,index l modify-tags
+        
+        shutdown-hook "source ${./email/notmuch-new-retag.sh}|"
+        folder-hook ".*" "source ${./email/notmuch-new-retag.sh}|"
+
+        source ${./email/neomutt-theme.muttrc}
       '';
     };
-    programs.notmuch.enable = true;
+    programs.notmuch = {
+      enable = true;
+      new.tags = [ "unread" "new" ];
+      hooks.postNew = builtins.readFile ./email/notmuch-new-retag.sh;
+    };
     programs.aerc = {
       enable = true;
       extraConfig.general.unsafe-accounts-conf = true;
@@ -106,6 +125,8 @@
       text/html; ${pkgs.lynx}/bin/lynx -force_html -dump %s; copiousoutput
       image/*; ${pkgs.kitty}/bin/kitty +kitten icat && read -r -n1 key
     '';
+    home.file.".config/neomutt/themes/one-half-dark.muttrc".text =
+      builtins.readFile ./email/neomutt-theme.muttrc;
     home.shellAliases = {
       mutt = "${pkgs.neomutt}/bin/neomutt";
     };
