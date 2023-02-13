@@ -17,7 +17,7 @@
       delta.enable = true;
 
       aliases = {
-        recommit = "!git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
+        recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
         # Yes, this does need to start with an !. Removing it will make the
         # expansion in the middle not work
         stash-working = ''
