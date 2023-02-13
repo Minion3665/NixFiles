@@ -6,7 +6,7 @@
 }:
 let
   disabledGrammars = [
-    "sql"
+    /* "sql" */
   ];
 in
 {

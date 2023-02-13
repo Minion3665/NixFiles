@@ -20,7 +20,7 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-G>u" . coc#pum#confirm() :
       \ coc#jumpable() ? "\<Esc>:call coc#snippet#next()\<CR>" :
       \ tablemode#table#IsTable('.') && !(tablemode#spreadsheet#GetLastRow(".") == line('.')) && !(tablemode#spreadsheet#GetLastRow(".") == 0) ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('j')\<CR>:call tablemode#spreadsheet#MoveToStartOfCell()\<CR>" . mode() :
       \ tablemode#table#IsTable('.') ? "<Esc>$a<CR>" :
-      \ "\<C-G>u\<Plug>(PearTreeExpand)"
+      \ "\<Plug>(PearTreeExpand)"
 
 inoremap <silent><expr> <S-CR> tablemode#table#IsTable('.') ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('k')\<CR>:call tablemode#spreadsheet#MoveToStartOfCell()\<CR>" . mode() : "\<S-CR>"
 
@@ -28,8 +28,7 @@ let g:codeium_no_map_tab = 1
 let g:codeium_tab_fallback = ""
 inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(0) :
-      \ coc#expandableOrJumpable() ? "\<C-G>u\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ codeium#Accept() != "" ? "\<C-G>u" . codeium#Accept() :
+      \ coc#expandableOrJumpable() ? "\<C-G>u<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ pear_tree#GetSurroundingPair() != [] ? pear_tree#insert_mode#JumpOut() : 
       \ tablemode#table#IsTable('.') ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('l')\<CR>" . mode() :
       \ CheckBackSpace() ? "\<TAB>" : coc#refresh()
@@ -42,13 +41,15 @@ endfunction
 inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(0) : 
       \ coc#jumpable() ? "\<Esc>:call coc#snippet#prev()\<CR>" :
       \ tablemode#table#IsTable('.') ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('h')\<CR>" . mode() :
+      \ codeium#Accept() != "" ? "\<C-G>u" . codeium#Accept() :
       \ "\<Plug>(PearTreeJump)"
+
 xnoremap <silent> <Tab> <Plug>(coc-snippets-select)
 
 nnoremap <silent><expr> <CR> coc#jumpable() ?
       \ ":call coc#snippet#next()\<CR>" :
       \ tablemode#table#IsTable('.') ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('j')\<CR>:call tablemode#spreadsheet#MoveToStartOfCell()\<CR>" :
-      \ "\<C-G>u\<CR>"
+      \ "\<CR>"
 
 nnoremap <silent><expr> <S-CR> tablemode#table#IsTable('.') ? "\<Esc>:call tablemode#spreadsheet#cell#Motion('k')\<CR>:call tablemode#spreadsheet#MoveToStartOfCell()\<CR>" : "\<S-CR>"
 
@@ -65,7 +66,7 @@ nnoremap <silent><expr> <S-Tab> coc#jumpable() ?
 
 snoremap <silent><expr> <CR> coc#jumpable() ?
       \ "\<Esc>:call coc#snippet#next()\<CR>" :
-      \ "\<C-G>u\<CR>"
+      \ "\<CR>"
 
 snoremap <silent><expr> <Tab> coc#jumpable() ?
       \ "\<Esc>:call coc#snippet#next()\<CR>" :

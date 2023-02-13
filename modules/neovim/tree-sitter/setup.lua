@@ -2,7 +2,7 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = {'org'},
-    disable = {'sql', 'lua', 'sh', 'bash'},
+    disable = {'lua', 'sh', 'bash'},
   },
   rainbow = {
     enable = true,

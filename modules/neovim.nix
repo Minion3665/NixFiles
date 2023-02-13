@@ -2,12 +2,9 @@ args @ { pkgs
 , lib
 , home
 , username
+, utils
 , ...
-}:
-let
-  utils = import ../utils lib;
-in
-{
+}: {
   config = {
     environment = {
       variables = {
