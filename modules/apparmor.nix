@@ -18,19 +18,31 @@
           profile default_deny /** { }
           '';
           enforce = false;
-          enable = true;
+          enable = false;
         };
 
         sudo = {
           profile = ''
-          ${config.security.wrapperDir}/sudo {
-            file rwlkUx,
+          ${pkgs.sudo}/bin/sudo {
+            file /** rwlkUx,
           }
           '';
+          enforce = false;
+          enable = false;
+        };
+
+        nix = {
+          profile = ''
+          ${pkgs.nix}/bin/nix {
+            unconfined,
+          }
+          '';
+          enforce = false;
+          enable = false;
         };
       };
     };
 
-    services.dbus.apparmor = "required";
+    services.dbus.apparmor = "disabled";
   };
 }

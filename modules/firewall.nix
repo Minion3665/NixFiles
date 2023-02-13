@@ -1,3 +1,3 @@
 {
-  networking.firewall.enable = true;
+  config.networking.firewall.enable = true;
 }

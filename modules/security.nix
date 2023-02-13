@@ -11,6 +11,12 @@ in
     services.fprintd.enable = true;
     environment.persistence."/nix/persist".directories = [ "/var/lib/fprint" ];
 
+    security.auditd.enable = true;
+    services.syslogd.enable = true;
+    services.syslogd.extraConfig = ''
+      *.*  -/var/log/syslog
+    '';
+    services.journald.forwardToSyslog = true;
     security.apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
