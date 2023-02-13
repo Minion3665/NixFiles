@@ -1,8 +1,8 @@
-{pkgs}: {
+{ pkgs, username, ... }: {
   home.home.packages = [ pkgs.obsidian ];
   config = {
     environment.persistence."/nix/persist".users.${username}.directories = [
-      ".config/Obsidian"
+      ".config/obsidian"
     ];
     internal.allowUnfree = [ "obsidian" ];
   };
