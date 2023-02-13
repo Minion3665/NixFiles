@@ -5,6 +5,26 @@
       settings = {
         "bar/main" = {
           "inherit" = "base";
+          tray.position = "right";
+        };
+        "bar/dp1" = {
+          "inherit" = "dp base";
+          monitor = "DP-1";
+        };
+        "bar/dp2" = {
+          "inherit" = "dp base";
+          monitor = "DP-2";
+        };
+        "bar/dp3" = {
+          "inherit" = "dp base";
+          monitor = "DP-3";
+        };
+        "bar/dp4" = {
+          "inherit" = "dp base";
+          monitor = "DP-4";
+        };
+        dp = {
+          monitor-strict = false;
         };
         base = {
           modules = {
@@ -19,7 +39,6 @@
           padding = 10;
           module.margin = 5;
           margin.bottom = "\${root.padding}";
-          tray.position = "right";
         };
         "module/xmonad" = {
           type = "custom/script";
