@@ -41,7 +41,7 @@ launcher = "pkill rofi; rofi -show combi"
 networkManager = "wpa_cli select_network $(wpa_cli list_networks | tail -n +3 | awk '!seen[$2]++' | rofi -dmenu -window-title 'Select Network' | awk '{print $1;}')"
 
 screenshot = "mkdir -p ~/Screenshots && maim | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | xclip -select clipboard -t image/png"
-selectScreenshot = "mkdir -p ~/Screenshots && maim -s | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | xclip -select clipboard -t image/png"
+selectScreenshot = "mkdir -p ~/Screenshots && maim -us | tee ~/Screenshots/\"$(date --rfc-3339=seconds)\".png | xclip -select clipboard -t image/png"
 
 modifierKey = mod4Mask  -- Use Super as our mod key
 
