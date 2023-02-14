@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  home.home.packages = [ pkgs.freecad ];
+  home.home.packages = [ pkgs.freecad pkgs.openscad ];
 }
