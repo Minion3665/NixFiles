@@ -27,6 +27,7 @@
         "asvetliakov.vscode-neovim" = 1;
       };
       "vscode-neovim.neovimExecutablePaths.linux" = "${home.programs.neovim.finalPackage}/bin/nvim";
+      "security.workspace.trust.enabled" = false;
     };
   };
   config.internal.allowUnfree = [
