@@ -49,6 +49,7 @@
       htop = "${pkgs.btop}/bin/btop";
       ping = "${pkgs.gping}/bin/gping";
       curl = "${pkgs.curlie}/bin/curlie";
+      clip = "${pkgs.xclip}/bin/xclip -selection clip";
       nix-provider = "${./utilities/nix-provider.sh}";
     };
   };
