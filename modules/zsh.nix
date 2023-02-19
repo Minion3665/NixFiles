@@ -62,6 +62,8 @@
 
             source "${./zsh/completions/bun.zsh}"
             source "${./zsh/completions/charm.zsh}"
+
+        setopt HIST_IGNORE_SPACE
       '';
       enableSyntaxHighlighting = true;
       enableAutosuggestions = true;
