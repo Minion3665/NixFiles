@@ -1,5 +1,6 @@
 { pkgs
 , username
+, lib
 , ...
 }: {
   home = {
@@ -9,8 +10,8 @@
       extraConfig = ''
         pinentry-program ${pkgs.pinentry-rofi}/bin/pinentry-rofi
       '';
-      /* pinentryFlavor = "curses"; */
     };
+    systemd.user.sockets.gpg-agent.Install.WantedBy = lib.mkForce [ ];
   };
 
   config.environment.persistence."/nix/persist".users.${username}.directories = [
