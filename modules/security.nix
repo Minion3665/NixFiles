@@ -26,8 +26,23 @@ in
 
     services.physlock = {
       inherit lockMessage;
-      enable = true;
+      enable = false;
       allowAnyUser = true;
+    };
+
+    security.wrappers = {
+      lock = {
+        source = ./security/lock.sh;
+        setuid = true;
+        owner = config.users.users.root.name;
+        group = config.users.users.nobody.group;
+      };
+      _onLock = {
+        source = ./security/onLock.sh;
+        setuid = false;
+        owner = config.users.users.root.name;
+        group = config.users.users.nobody.group;
+      };
     };
   };
 
@@ -35,7 +50,7 @@ in
     let
       lockCommand =
         lib.pipe ''
-          ${pkgs.systemd}/bin/systemd-inhibit --why="Already locked" --what=idle --who="lock script" ${config.security.wrapperDir}/physlock -s -p "${lockMessage}"
+          ${pkgs.systemd}/bin/systemd-inhibit --why="Already locked" --what=idle --who="lock script" ${config.security.wrapperDir}/lock
         '' [
           (lib.splitString "\n")
           (lib.filter (line: line != ""))
@@ -44,7 +59,7 @@ in
     in
     {
       services.swayidle = {
-        enable = true;
+        enable = false;
         timeouts = [
           {
             timeout = 60;
@@ -54,6 +69,7 @@ in
       };
       home.packages = [
         (pkgs.writeScriptBin "lock" lockCommand)
+        pkgs.kbd
       ];
     };
 }
