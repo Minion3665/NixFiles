@@ -1,6 +1,6 @@
 final: prev: let
   programs = [
-    "steam"
+    /* "steam" */
     "prismlauncher"
   ];
 in prev.lib.pipe programs [
