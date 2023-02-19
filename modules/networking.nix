@@ -30,6 +30,7 @@
         enable = true;
         userControlled.enable = true;
         networks = {
+          "HRSFC-LAN".psk = "@hrsfcStaffPass@";
           eduroam = {
             auth = ''
               scan_ssid=1
