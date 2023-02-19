@@ -1,4 +1,9 @@
-{ pkgs, username, ... }: {
+{ pkgs
+, username
+, system
+, nixpkgs-yubioath-flutter
+, ...
+}: {
   config = {
     security.pam.yubico = {
       enable = true;
@@ -15,6 +20,6 @@
   home.home.packages = with pkgs; [
     yubikey-personalization
     yubico-pam
-    yubioath-desktop
+    nixpkgs-yubioath-flutter.legacyPackages.${system}.yubioath-flutter
   ];
 }
