@@ -39,6 +39,7 @@ modifierKey = mod4Mask  -- Use Super as our mod key
 statusBar = "pkill polybar; polybar"
 compositor = "pkill picom; picom"
 background = "pkill show; show ~/.xmonad/wallpaper.glsl > /dev/null"
+colorSelection = "xcolor | xclip -sel clip"
 keybindings = "setxkbmap -option caps:none && xmodmap ~/.Xmodmap"
 
 shift = shiftMask
@@ -89,5 +90,6 @@ main' dbus = xmonad
   , ((modifierKey, xK_q), spawn "xmonad --restart")
   , ((modifierKey .|. Main.shift, xK_c), io exitSuccess)
   , ((modifierKey .|. Main.shift, xK_s), spawn selectScreenshot)
+  , ((modifierKey .|. Main.shift, xK_h), spawn colorSelection)
   , ((0, xK_Print), spawn screenshot)
   ]
