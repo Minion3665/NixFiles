@@ -305,6 +305,23 @@
         "type": "github"
       }
     },
+    "mommy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676484056,
+        "narHash": "sha256-9bW0n7qOETMY8GrOdaCgpZtPWaE6O040U91Ts42cut4=",
+        "owner": "sudofox",
+        "repo": "shell-mommy",
+        "rev": "b4e9f50cecd4ebbf39f8c426315e2040c5623db7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sudofox",
+        "repo": "shell-mommy",
+        "rev": "b4e9f50cecd4ebbf39f8c426315e2040c5623db7",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -553,6 +570,7 @@
         "impermanence": "impermanence",
         "kmonad": "kmonad",
         "lanzaboote": "lanzaboote",
+        "mommy": "mommy",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "nixpkgs-minion": "nixpkgs-minion",

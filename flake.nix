@@ -18,6 +18,10 @@
       url = "github:nixos/flake-registry";
       flake = false;
     };
+    mommy = {
+      url = "github:sudofox/shell-mommy/b4e9f50cecd4ebbf39f8c426315e2040c5623db7";
+      flake = false;
+    };
     home-manager.url = "github:nix-community/home-manager";
     sops-nix.url = "github:Mic92/sops-nix";
     impermanence.url = "github:nix-community/impermanence";
