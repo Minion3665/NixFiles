@@ -12,9 +12,7 @@ stdenv.mkDerivation rec {
     owner = "ryanoasis";
     repo = "nerd-fonts";
     rev = "v${version}";
-    sparseCheckout = ''
-      /src/glyphs
-    '';
+    sparseCheckout = [ "/src/glyphs" ];
     sha256 = "sha256-boZUd1PM8puc9BTgOwCJpkfk6VMdXLsIyp+fQmW/ZqI=";
   };
 
