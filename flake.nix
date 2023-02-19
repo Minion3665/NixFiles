@@ -3,8 +3,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-minion.url = "github:Minion3665/nixpkgs";
-    nixpkgs-coc-spellchecker.url = "github:Minion3665/nixpkgs/coc-spell-checker-staging";
-    nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
+    nixpkgs-yubioath-flutter.url = "github:lukegb/nixpkgs/yubioath-flutter";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils-plus.url = "github:gytis-ivaskevicius/flake-utils-plus";
     vscode-extensions.url = "github:AmeerTaweel/nix-vscode-marketplace";
@@ -32,12 +31,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fenix.url = "github:nix-community/fenix";
-    prismlauncher.url = "github:Scrumplex/nixpkgs/update-prismlauncher-5.1";
+    nps.url = "github:OleMussmann/Nix-Package-Search";
 
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nps.inputs.nixpkgs.follows = "nixpkgs";
+    nps.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = inputs:
@@ -137,7 +138,7 @@
                   value = { };
                   error = false;
                 })
-              (data: lib.warnIf data.error "trace@${moduleName}/${trace} is invalid; the key does not exist" data)
+              (data: lib.warnIf data.error "trace/${trace} is invalid; the key does not exist" data)
               ({ value
                , error
                ,
@@ -149,7 +150,7 @@
                , error
                ,
                }: {
-                value = "trace@${moduleName}/${trace}: ${value}";
+                value = "trace/${trace}: ${value}";
                 inherit error;
               })
               ({ value
@@ -163,30 +164,32 @@
       {
         packages.nixosConfigurations = {
           default = nixpkgs.lib.traceValFn
-            (nixosSystem: map (evalTrace nixosSystem.config) nixosSystem.config.internal.traces) nixpkgs.lib.nixosSystem
-            {
-              inherit system;
+            (nixosSystem: map (evalTrace nixosSystem.config)
+              nixosSystem.config.internal.traces)
+            (nixpkgs.lib.nixosSystem
+              {
+                inherit system;
 
-              modules = [
-                (nixpkgs.lib.pipe ./modules [
-                  utils.nixFilesIn
-                  (utils.interpretNonstandardModule (args:
-                    args
-                    // {
-                      home = args.config.home-manager.users.${username};
-                      home-options =
-                        nixpkgs.lib.traceVal (normalizeOptions
-                          (args.options.home-manager.users.type.getSubOptions [ ]));
-                      inherit system utils;
-                    }))
-                ])
-                {
-                  minion = import ./config.nix;
-                }
-              ];
+                modules = [
+                  (nixpkgs.lib.pipe ./modules [
+                    utils.nixFilesIn
+                    (utils.interpretNonstandardModule (args:
+                      args
+                      // {
+                        home = args.config.home-manager.users.${username};
+                        home-options =
+                          nixpkgs.lib.traceVal (normalizeOptions
+                            (args.options.home-manager.users.type.getSubOptions [ ]));
+                        inherit system utils;
+                      }))
+                  ])
+                  {
+                    minion = import ./config.nix;
+                  }
+                ];
 
-              specialArgs = inputs // { inherit inputs username; };
-            };
+                specialArgs = inputs // { inherit inputs username; };
+              });
         };
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nodePackages.prettier nixpkgs-fmt ];
