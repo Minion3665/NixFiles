@@ -20,6 +20,7 @@
       rustscan
       gping
       curlie
+      xcolor
     ];
   };
 
@@ -46,9 +47,7 @@
       ps = "${pkgs.procs}/bin/procs";
       htop = "${pkgs.btop}/bin/btop";
       ping = "${pkgs.gping}/bin/gping";
-      pingo = "${pkgs.inetutils}/bin/ping";
       curl = "${pkgs.curlie}/bin/curlie";
-      curio = "${pkgs.curl}/bin/curl";
       nix-provider = "${./utilities/nix-provider.sh}";
     };
   };
