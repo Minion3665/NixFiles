@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   config = {
     services.mongodb = {
-      package = pkgs.mongodb-4_2;
-      enable = true;
+      package = pkgs.mongodb-6_0;
+      enable = false;
       dbpath = "/tmp/mongodb";
     };
     internal.allowUnfree = [ "mongodb" "mongodb-compass" ];
