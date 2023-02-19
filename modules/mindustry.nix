@@ -1,8 +1,5 @@
-{ nixpkgs-mindustry
-, system
-, ...
-}: {
+{ pkgs, ... }: {
   home.home.packages = [
-    nixpkgs-mindustry.legacyPackages.${system}.mindustry
+    pkgs.mindustry
   ];
 }
