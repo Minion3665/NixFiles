@@ -2,7 +2,6 @@
 , system
 , lib
 , nixpkgs-minion
-, nixpkgs-coc-spellchecker
 , home
 , utils
 , omnisharp-language-server
@@ -108,7 +107,7 @@
       coc-java
 
       # Spellchecker
-      nixpkgs-coc-spellchecker.legacyPackages.${system}.vimPlugins.coc-spell-checker
+      coc-spell-checker
       nixpkgs-minion.legacyPackages.${system}.vimPlugins.coc-omnisharp
 
       # File explorer
