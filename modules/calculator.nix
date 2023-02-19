@@ -8,6 +8,7 @@ let
       RVenn
       networkD3
       shiny
+      insect
     ];
   };
 in
