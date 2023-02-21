@@ -6,6 +6,15 @@ vnoremap <silent><expr> <C-j> ":m+" . (line("'>") - line("'<") + 1) . "\<CR>gv"
 nnoremap <silent> <C-k> :m-2<CR>
 nnoremap <silent> <C-j> :m+1<CR>
 
+nnoremap <C-d> <C-d>zz
+nnoremap <C-b> <C-b>zz
+
+nnoremap <C-u> <C-u>zz
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>zz:redraw!<CR>"
+
+nnoremap N Nzz
+nnoremap n nzz
+
 vmap <F12> <Esc>
 imap <F12> <Esc>
 nmap <F12> <Esc>
@@ -61,6 +70,5 @@ tnoremap <Esc><Esc> <C-\><C-n>
 
 let g:camelcasemotion_key = '<leader>m'
 
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>:redraw!<CR>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 nnoremap <silent> <C-d> <C-d>:redraw!<CR>
