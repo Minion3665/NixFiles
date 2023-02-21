@@ -3,7 +3,10 @@
 , python3
 , python3Packages
 , lowPrio
-}: let
+, fetchpatch
+, poetry
+}:
+let
   mouse = python3.pkgs.buildPythonPackage rec {
     pname = "mouse";
     version = "0.7.1";
@@ -37,7 +40,7 @@ python3.pkgs.buildPythonApplication {
   src = fetchFromGitHub {
     owner = "Minion3665";
     repo = "Show";
-    rev = "c16b2d2b5bd97fe893ae117b0e50808a3d0c611a";
-    sha256 = "sha256-ny75uG+7OhbZqw+KUtF/Ow66/rXW/EmHAuThdSB154M=";
+    rev = "24deb2dc992861a3ec4c1c342ce7f85b6953f8b5";
+    sha256 = "sha256-VmtGOmATN38RVXa4N44vtaXT7r2sl0YE2K5q7LKhL7M=";
   };
 }
