@@ -1,28 +1,28 @@
 (defsrc
   esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt  ins  del  pgup pgdn home end
-  `     1    2    3    4    5    6    7    8    9    0    -    =    bspc            KeyMedia
-  tab   q    w    e    r    t    y    u    i    o    p    [    ]
-  caps  a    s    d    f    g    h    j    k    l    ;    '         ret
-  lsft  \    z    x    c    v    b    n    m    ,    .    /    rsft up
-  lctl       lmet lalt           spc            ralt rctl left down right
-)
-
-(deflayer dvorak
-  esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt  ins  del  _    _    _    _
-  `     1    2    3    4    5    6    7    8    9    0    [    ]    bspc            @qwe
+  `     1    2    3    4    5    6    7    8    9    0    [    ]    bspc            KeyMedia
   tab   '    ,    .    p    y    f    g    c    r    l    /    =
-  f12   a    o    e    u    i    d    h    t    n    s    -         ret
+  caps   a    o    e    u    i    d    h    t    n    s    -         ret
   lsft  \    ;    q    j    k    x    b    m    w    v    z    rsft up
   lctl       lmet lalt           spc            ralt rmet left down right
 )
 
-(deflayer qwerty
+(deflayer dvorak
   _     _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _    _    _    _
-  _     _    _    _    _    _    _    _    _    _    _    _    _    _               @dvo
+  _     _    _    _    _    _    _    _    _    _    _    _    _    _               @qwe
   _     _    _    _    _    _    _    _    _    _    _    _    _
   f12   _    _    _    _    _    _    _    _    _    _    _         _
   _     _    _    _    _    _    _    _    _    _    _    _    _    _
   _          _    _              _              _    _    _    _    _
+)
+
+(deflayer qwerty
+  esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt  ins  del  _    _    _    _
+  `     1    2    3    4    5    6    7    8    9    0    -    =    bspc            @dvo
+  tab   q    w    e    r    t    y    u    i    o    p    [    ]
+  caps  a    s    d    f    g    h    j    k    l    ;    '         ret
+  lsft  \    z    x    c    v    b    n    m    ,    .    /    rsft up
+  lctl       lmet lalt           spc            ralt rctl left down right
 )
 
 (deflayer empty

@@ -2,12 +2,13 @@
 
 module XMonadLog where
 
-import qualified DBus                      as D
-import qualified DBus.Client               as D
+import qualified DBus                          as D
+import qualified DBus.Client                   as D
 
-import qualified Codec.Binary.UTF8.String  as UTF8
+import qualified Codec.Binary.UTF8.String      as UTF8
+import           XMonad.Actions.WorkspaceNames (workspaceNamesPP)
 import           XMonad.Hooks.StatusBar.PP
-import           XMonad.Util.Replace       (replace)
+import           XMonad.Util.Replace           (replace)
 
 xmonadLog :: IO D.Client
 xmonadLog = let opts = [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]

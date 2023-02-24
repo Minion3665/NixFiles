@@ -34,7 +34,6 @@
   };
   config.services.xserver = {
     enable = true;
-    layout = "gb";
     displayManager.startx.enable = true;
   };
 }

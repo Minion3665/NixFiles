@@ -56,6 +56,8 @@ shift = shiftMask
 -- spell-checker:words xobsock
 xobsock = "$XDG_RUNTIME_DIR/xob.sock"
 
+workspaces = ["7", "5", "3", "1", "9", "0", "2", "4", "6", "8"];
+
 startupHook = do
   spawn Main.statusBar
   spawn Main.compositor
@@ -64,6 +66,17 @@ startupHook = do
   spawn "pgrep keepass || run_keepass"
   spawn $ "pkill xob; rm -f " ++ xobsock ++ " && mkfifo " ++ xobsock ++ " && tail -f " ++ xobsock ++ " | xob"
 
+numRowKeys = [xK_bracketleft
+            , xK_braceleft
+            , xK_braceright
+            , xK_parenleft
+            , xK_equal
+            , xK_asterisk
+            , xK_parenright
+            , xK_plus
+            , xK_bracketright
+            , xK_exclam
+            ]
 
 main :: IO ()
 main = XMonadLog.xmonadLog >>= main'
@@ -77,6 +90,7 @@ main' dbus = xmonad
   { modMask = modifierKey  -- Use Super as our mod key
   , borderWidth = 0
   , XMonad.terminal = Main.terminal
+  , XMonad.workspaces = Main.workspaces
   , XMonad.startupHook = Main.startupHook
   , XMonad.logHook = dynamicLogWithPP (polybarHook dbus)
   , XMonad.layoutHook = avoidStruts
@@ -97,7 +111,7 @@ main' dbus = xmonad
                           <+> (ask >>= \w -> liftX (withDisplay $ \dpy -> io (moveResizeWindow dpy w 0 0 (fromIntegral $ displayWidth dpy $ defaultScreen dpy) (fromIntegral $ displayHeight dpy $ defaultScreen dpy))) >> mempty))
                         ]
                         <+> handleEventHook def
-  } `additionalKeys`
+  } `additionalKeys` (
   [ ((modifierKey, xK_d), spawn launcher)
   , ((modifierKey, xK_n), spawn networkManager)
   , ((modifierKey .|. Main.shift, xK_q), kill)
@@ -117,4 +131,6 @@ main' dbus = xmonad
   , ((0, xF86XK_MonBrightnessUp), spawn $ "light -A 6 && light -G | cut -d'.' -f1 > " ++ xobsock)
   , ((modifierKey, xF86XK_MonBrightnessDown), spawn $ "light -U 3 && light -G | cut -d'.' -f1 > " ++ xobsock)
   , ((modifierKey, xF86XK_MonBrightnessUp), spawn $ "light -A 3 && light -G | cut -d'.' -f1 > " ++ xobsock)
-  ]
+  ] ++ (zip numRowKeys Main.workspaces >>= (\(key, workspace) -> [((modifierKey, key), windows $ W.view workspace)
+                                                                , ((modifierKey .|. Main.shift, key), windows $ W.shift workspace)
+                                                                ])))

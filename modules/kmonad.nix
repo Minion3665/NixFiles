@@ -2,6 +2,11 @@
   imports = [ kmonad.nixosModules.default ];
 
   config = {
+    services.xserver = {
+      layout = "us";
+      xkbVariant = "dvp";
+    };
+
     services.kmonad = {
       enable = true;
       keyboards.laptop-internal = {
