@@ -215,8 +215,9 @@
                 (map (evalTrace nixosSystem.config) nixosSystem.config.internal.traces)
                 nixosSystem;
             };
+          inherit pkgs;
         } // (import ./overlays/packages.nix
-          { inherit (inputs) fenix crane; }
+          { inherit (inputs) fenix crane nixpkgs-minion; }
           pkgs
           pkgs);
         devShell = pkgs.mkShell {

@@ -1,4 +1,4 @@
-{ fenix, crane }: final: prev:
+{ fenix, crane, nixpkgs-minion }: final: prev:
 let
   lib = prev.lib;
   utils = import ../utils lib;
@@ -22,6 +22,7 @@ lib.pipe ../packages [
         (lib.fold lib.mergeAttrs
           {
             packageSets = {
+              minion = nixpkgs-minion.legacyPackages.${prev.system};
               fenix = fenix.packages.${prev.system};
             };
             _tooling = {
