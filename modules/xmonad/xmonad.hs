@@ -1,5 +1,6 @@
 -- spell-checker:words xmonad
-{-# OPTIONS_GHC -Wno-deferred-out-of-scope-variables #-}
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Move brackets to avoid $" #-}
 import           XMonad
 
 import           System.Exit
@@ -26,13 +27,22 @@ import           XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import           XMonad.Hooks.ManageHelpers   (doFullFloat, doLower,
                                                doRectFloat, isInProperty)
 import           XMonad.Hooks.UrgencyHook
+import           XMonad.Layout                (Tall)
 import           XMonad.Layout.Drawer         (propertyToQuery)
 import           XMonad.Layout.Gaps
+import           XMonad.Layout.Grid
+import           XMonad.Layout.MultiToggle    (mkToggle)
+import           XMonad.Layout.NoBorders      (smartBorders, SetsAmbiguous, hiddens, Ambiguity (OnlyScreenFloat, Combine), lessBorders, With (Union), hasBorder)
+import           XMonad.Layout.ResizableTile  (ResizableTall (ResizableTall), MirrorResize (MirrorShrink, MirrorExpand))
 import           XMonad.Layout.Spacing
 import qualified XMonad.StackSet              as W
 import           XMonad.Util.Hacks
 import           XMonad.Util.PureX            (curScreen, curScreenId)
 import           XMonad.Util.Run              (safeSpawn, safeSpawnProg)
+import qualified Data.Map as M
+import XMonad.StackSet (allWindows)
+import Data.Containers
+import Data.List ((\\))
 
 volumeChangeCmd = "${{./vol_change.py}}"
 
@@ -57,6 +67,11 @@ shift = shiftMask
 xobsock = "$XDG_RUNTIME_DIR/xob.sock"
 
 workspaces = ["7", "5", "3", "1", "9", "0", "2", "4", "6", "8"];
+
+data NonFloats = NonFloats deriving (Read, Show)
+
+instance SetsAmbiguous NonFloats where
+    hiddens _ wset _ _ _ = allWindows wset \\ M.keys (W.floating wset)
 
 startupHook = do
   spawn Main.statusBar
@@ -89,24 +104,31 @@ main' dbus = xmonad
            $ docks
            $ def
   { modMask = modifierKey  -- Use Super as our mod key
-  , borderWidth = 0
+  , borderWidth = 2
   , XMonad.terminal = Main.terminal
   , XMonad.workspaces = Main.workspaces
   , XMonad.startupHook = Main.startupHook
   , XMonad.logHook = dynamicLogWithPP (polybarHook dbus)
-  , XMonad.layoutHook = avoidStruts
-                      $ smartSpacing 5
+  , XMonad.layoutHook = lessBorders NonFloats
+                      $ (smartSpacing 5
+
+                      $ avoidStruts
                       $ gaps [(U, 5), (D, 5), (L, 5), (R, 5)]
-                      $ layoutHook def
+                        $ ResizableTall 1 (3/100) (1/2) []
+                             ||| Mirror (ResizableTall 1 (3/100) (1/2) [])
+                             ||| Grid
+                             ||| Full)
+                        ||| gaps [(U, 0), (D, 0), (L, 0), (R, 0)] Full
   , XMonad.manageHook = composeAll
                         [ isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DESKTOP"
-                          --> doIgnore <+> doLower <+> doLower
+                          --> hasBorder False <+> doIgnore <+> doLower <+> doLower
+                        , checkDock --> doLower <+> doLower
                         ] <+> manageHook def
   , XMonad.handleEventHook = composeAll
                         [ windowedFullscreenFixEventHook
                         , dynamicPropertyChange "_NET_WM_WINDOW_TYPE"
                           (isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DESKTOP"
-                          --> doLower
+                          --> hasBorder False <+> doLower
                           <+> (ask >>= \w -> liftX (modifyWindowSet (W.delete w))
                                           >> mempty)
                           <+> (ask >>= \w -> liftX (withDisplay $ \dpy -> io (moveResizeWindow dpy w 0 0 (fromIntegral $ displayWidth dpy $ defaultScreen dpy) (fromIntegral $ displayHeight dpy $ defaultScreen dpy))) >> mempty))
@@ -116,6 +138,8 @@ main' dbus = xmonad
   [ ((modifierKey, xK_d), spawn launcher)
   , ((modifierKey, xK_n), spawn networkManager)
   , ((modifierKey .|. Main.shift, xK_q), kill)
+  , ((modifierKey, xK_o), sendMessage MirrorShrink)
+  , ((modifierKey, xK_e), sendMessage MirrorExpand)
   , ((modifierKey, xK_q), spawn "xmonad --restart")
   , ((modifierKey .|. Main.shift, xK_c), io exitSuccess)
   , ((modifierKey .|. Main.shift, xK_s), spawn selectScreenshot)
