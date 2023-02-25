@@ -63,6 +63,7 @@ startupHook = do
   spawn Main.compositor
   spawn background
   spawn keybindings
+  windows $ W.view "0"
   spawn "pgrep keepass || run_keepass"
   spawn $ "pkill xob; rm -f " ++ xobsock ++ " && mkfifo " ++ xobsock ++ " && tail -f " ++ xobsock ++ " | xob"
 
