@@ -20,7 +20,7 @@ in
             (builtins.substring 12 (builtins.stringLength name) name)
             disabledGrammars
           ))
-          lib.traceVal
+          # lib.traceVal
           builtins.attrValues
         ])
         ++ (with pkgs.vimPlugins; [

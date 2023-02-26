@@ -162,7 +162,7 @@
           };
         }))
       builtins.listToAttrs
-      lib.traceValSeq
+      /* lib.traceValSeq */
     ]
     // {
       ".config/coc/placeholder".text = "";
