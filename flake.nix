@@ -114,8 +114,7 @@
               (
                 if traceHead == "home"
                 then [ "home-manager" "users" username ]
-                else lib.errorIfNot (traceHead == "config") [ ]
-              )
+                else lib.throwIfNot (traceHead == "config") ''You need to trace either home.** or config.** (found "${traceHead}" in "${trace}")'' [ ])
               ++ traceTail;
           in
           (
@@ -132,13 +131,15 @@
                   }
                   else {
                     value = { };
-                    error = true;
+                    error = if error == false 
+                            then ''"${key}" does not exist in set "${builtins.toJSON value}"''
+                            else error;
                   })
                 {
-                  value = { };
+                  value = config;
                   error = false;
                 })
-              (data: lib.warnIf data.error "trace/${trace} is invalid; the key does not exist" data)
+              (data: lib.warnIf (data.error != false) ''trace/${trace} is invalid; the key ${data.error}'' data)
               ({ value
                , error
                ,
@@ -157,16 +158,14 @@
                , error
                ,
                }:
-                lib.traceIf (!error) value null)
+                lib.warnIf (!error) value null)
             ]
           );
       in
       {
-        packages.nixosConfigurations = {
-          default = nixpkgs.lib.traceValFn
-            (nixosSystem: map (evalTrace nixosSystem.config)
-              nixosSystem.config.internal.traces)
-            (nixpkgs.lib.nixosSystem
+        packages.nixosConfigurations =
+          let
+            nixosSystem = (nixpkgs.lib.nixosSystem
               {
                 inherit system;
 
@@ -190,7 +189,12 @@
 
                 specialArgs = inputs // { inherit inputs username; };
               });
-        };
+          in
+          {
+            default = builtins.deepSeq
+              (map (evalTrace nixosSystem.config) nixosSystem.config.internal.traces)
+              nixosSystem;
+          };
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ nodePackages.prettier nixpkgs-fmt ];
           buildInputs = [ ];
