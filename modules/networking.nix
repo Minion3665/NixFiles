@@ -48,7 +48,6 @@
               phase2="auth=MSCHAPV2"
             '';
           };
-          "HRSFC Guest".psk = "@hrsfcGuestPass@";
           "HRSFC Wi-Fi".psk = "@hrsfcGuestPass@";
           adelie10 = {
             psk = "@adelie10Pass@";
