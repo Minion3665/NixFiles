@@ -29,6 +29,9 @@
       fi
     '';
     home.file.".xinitrc".text = ''
+      export XDG_DESKTOP_PORTAL_DIR=${pkgs.xdg-desktop-portal-gnome}/share/xdg-desktop-portal/portals
+      ${pkgs.xdg-desktop-portal-gnome}/libexec/xdg-desktop-portal-gnome &
+      ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal &
       ${home.xsession.windowManager.command}
     '';
   };
