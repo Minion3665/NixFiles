@@ -1,11 +1,9 @@
 { pkgs, ... }: {
   config = {
-    services.tlp.enable = true;
-
-    powerManagement.powertop.enable = true;
+    services.auto-cpufreq.enable = true;
 
     environment = {
-      systemPackages = [ pkgs.powertop ];
+      systemPackages = with pkgs; [ cpufrequtils powertop ];
       persistence."/nix/persist".directories = [ "/var/cache/powertop" ];
     };
   };
