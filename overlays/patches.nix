@@ -13,7 +13,7 @@ lib.pipe ../patches [
     value = prev.${name}.overrideAttrs (prevAttrs: {
       patches =
         (prevAttrs.patches or [ ])
-        ++ lib.traceValFn builtins.toJSON (lib.pipe path [
+        ++ /* lib.traceValFn builtins.toJSON */ (lib.pipe path [
           builtins.readDir
           (lib.filterAttrs (_: type: type == "regular"))
           builtins.attrNames
