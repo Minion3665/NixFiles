@@ -9,35 +9,35 @@ let
   '';
 in
 {
-  config = {
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware = {
-      opengl.enable = true;
-      nvidia = {
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        prime = {
-          offload.enable = true;
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:1:0:0";
-        };
-      };
-    };
+/*   config = { */
+/*     services.xserver.videoDrivers = [ "nvidia" ]; */
+/*     hardware = { */
+/*       opengl.enable = true; */
+/*       nvidia = { */
+/*         modesetting.enable = true; */
+/*         powerManagement.enable = true; */
+/*         prime = { */
+/*           offload.enable = true; */
+/*           intelBusId = "PCI:0:2:0"; */
+/*           nvidiaBusId = "PCI:1:0:0"; */
+/*         }; */
+/*       }; */
+/*     }; */
 
-    specialisation.nvidia-sync.configuration = {
-      system.nixos.tags = [ "nvidia-sync" ];
-      hardware.nvidia.powerManagement.enable = lib.mkForce false;
-      hardware.nvidia.prime.offload.enable = lib.mkForce false;
-      hardware.nvidia.prime.sync.enable = lib.mkForce true;
-      services.xserver.dpi = 96;
+/*     specialisation.nvidia-sync.configuration = { */
+/*       system.nixos.tags = [ "nvidia-sync" ]; */
+/*       hardware.nvidia.powerManagement.enable = lib.mkForce false; */
+/*       hardware.nvidia.prime.offload.enable = lib.mkForce false; */
+/*       hardware.nvidia.prime.sync.enable = lib.mkForce true; */
+/*       services.xserver.dpi = 96; */
 
-      home-manager.users.${username}.home.file.".xinitrc".text = lib.mkBefore ''
-        ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource modesetting NVIDIA-0
-        ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 960x2160 --rotate normal
-      '';
-    };
+/*       home-manager.users.${username}.home.file.".xinitrc".text = lib.mkBefore '' */
+/*         ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource modesetting NVIDIA-0 */
+/*         ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 960x2160 --rotate normal */
+/*       ''; */
+/*     }; */
 
-    internal.allowUnfree = [ "nvidia-x11" "nvidia-settings" "cudatoolkit" ];
-  };
-  home.home.packages = [ pkgs.nvtop prime-run ];
+/*     internal.allowUnfree = [ "nvidia-x11" "nvidia-settings" "cudatoolkit" ]; */
+/*   }; */
+/*   home.home.packages = [ pkgs.nvtop prime-run ]; */
 }
