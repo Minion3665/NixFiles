@@ -41,6 +41,8 @@
         "cSpell.dictionaries" = [ "imperative" ];
         "git.enableGutters" = false; # We're using another plugin to do this
         "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        "rust-analyzer.lens.enable" = false;
+        "rust-analyzer.lens.debug.enable" = false;
         "omnisharp.path" = "${pkgs.omnisharp-roslyn}/bin/OmniSharp";
         "markdownlint.config" = {
           line-length = {
