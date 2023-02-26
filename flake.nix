@@ -2,10 +2,14 @@
   description = "Minion's NixOS configuration (since 2022-08-19)";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree";
+    nixpkgs-unfree.inputs.nixpkgs.follows = "nixpkgs";
+
     nixpkgs-minion.url = "github:Minion3665/nixpkgs";
-    nixpkgs-yubioath-flutter.url = "github:lukegb/nixpkgs/yubioath-flutter";
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils-plus.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    crane.url = "github:ipetkov/crane";
     vscode-extensions.url = "github:AmeerTaweel/nix-vscode-marketplace";
     registry = {
       url = "github:nixos/flake-registry";
@@ -39,6 +43,8 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     nps.inputs.nixpkgs.follows = "nixpkgs";
     nps.inputs.flake-utils.follows = "flake-utils";
+    crane.inputs.nixpkgs.follows = "nixpkgs";
+    crane.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = inputs:

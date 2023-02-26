@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }: {
+{ pkgs, nixpkgs-unfree, system, lib, ... }: {
   config = {
     services.mongodb = {
-      package = pkgs.mongodb-6_0;
+      package = nixpkgs-unfree.legacyPackages.${system}.mongodb-6_0;
       enable = true;
       dbpath = "/tmp/mongodb";
     };
