@@ -23,7 +23,6 @@
         "razermug"
         "tap"
         "tun"
-        "uinput"
         "veth"
       ];
     };
