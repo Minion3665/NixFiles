@@ -1,0 +1,68 @@
+# Screenshot http://trovao.droplinegnome.org/stuff/mutt-zenburnt.png
+#
+# This is a zenburn-based neomutt color scheme that is not (even by far)
+# complete. There's no copyright involved. Do whatever you want with it.
+# Just be aware that I won't be held responsible if the current color-scheme
+# explodes your mail client. ;)
+#
+# Do notice that this color scheme requires a terminal emulator that supports
+# 256 color. Any modern X terminal emulator should have support for that and
+# you can enable it by calling neomutt as "TERM=xterm-256color neomutt" or, if you
+# use screen, by adding "term screen-256color" to your .screenrc.
+#
+# This file is in the public domain.
+#
+
+# general-doesn't-fit stuff
+color normal     color188 color236
+color error      color168 color236
+color markers    color180 color236
+color tilde      color188 color237
+color status     color188 color237
+
+# index stuff
+color indicator  color114 color236
+color tree       color31 color237
+color index      color73  color236 ~A
+color index      color73  color236 ~N
+color index      color73  color236 ~O
+color index      color168 color236 ~F
+color index      color168 color236 ~D
+
+# header stuff
+color hdrdefault color180 color237
+color header     color180 color237 "^Subject"
+
+# gpg stuff
+color body       color114 color237 "^gpg: Good signature.*"
+color body       color168 color236 "^gpg: BAD signature.*"
+color body       color180 color237 "^gpg: Can't check signature.*"
+color body       color237 color188 "^-----BEGIN PGP SIGNED MESSAGE-----"
+color body       color237 color188 "^-----BEGIN PGP SIGNATURE-----"
+color body       color237 color188 "^-----END PGP SIGNED MESSAGE-----"
+color body       color237 color188 "^-----END PGP SIGNATURE-----"
+color body       color237 color188 "^Version: GnuPG.*"
+color body       color237 color188 "^Comment: .*"
+
+# url, email and web stuff
+color body       color237 color188 "(finger|ftp|http|https|news|telnet)://[^ >]*"
+color body       color237 color188 "<URL:[^ ]*>"
+color body       color237 color188 "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body       color237 color188 "mailto: *[^ ]+\(\\i?subject=[^ ]+\)?"
+color body       color237 color188 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+# misc body stuff
+color attachment color237 color188 #Add-ons to the message
+color signature  color237 color188
+
+# quote levels
+color quoted     color167 color236
+color quoted1    color136 color236
+color quoted2    color71  color236
+color quoted3    color31  color236
+color quoted4    color127 color236
+color quoted5    color167 color236
+color quoted6    color136 color236
+color quoted7    color71  color236
+color quoted8    color31  color236
+color quoted9    color127 color236
