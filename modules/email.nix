@@ -21,7 +21,11 @@
               source = "notmuch://~/${home.accounts.email.maildirBasePath}/collabora";
             };
           };
-          himalaya.enable = true;
+          himalaya = {
+            enable = true;
+            backend = "imap";
+            sender = "smtp";
+          };
           neomutt.enable = true;
           mbsync = {
             enable = true;
