@@ -8,14 +8,7 @@ let
 in
 {
   config = {
-    internal.allowUnfree = [ "libfprint-2-tod1-goodix" ];
-    services.fprintd = {
-      enable = true;
-      tod = {
-        enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
-      };
-    };
+    services.fprintd.enable = true;
 
     security.apparmor = {
       enable = true;
@@ -25,12 +18,14 @@ in
     boot.initrd.availableKernelModules = [
       "aesni_intel"
       "cryptd"
+      "uas"
+      "xhci_hcd"
     ];
 
     boot.initrd.luks.devices = {
       nix.device = "/dev/disk/by-label/NIX";
       swap.device = "/dev/disk/by-label/SWAP";
-      hdd.device = "/dev/disk/by-label/HDD";
+      expansion0.device = "/dev/disk/by-label/EXPANSION0";
     };
 
     services.physlock = {
