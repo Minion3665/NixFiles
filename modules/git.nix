@@ -53,6 +53,7 @@
     };
     home = {
       shellAliases.gg = "${pkgs.git}/bin/git gui";
+      shellAliases.gs = "${pkgs.git}/bin/git status";
       packages = with pkgs; [
         git-review
         lazygit
