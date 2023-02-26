@@ -39,6 +39,6 @@
       { device = "/dev/mapper/swap"; }
     ];
 
-    boot.initrd.availableKernelModules = [ "nvme" ];
+    boot.initrd.availableKernelModules = [ "nvme" "aesni-intel" ];
   };
 }
