@@ -30,7 +30,7 @@
     };
 
     fileSystems."/large" = {
-      device = "/dev/mapper/hdd";
+      device = "/dev/mapper/expansion0";
       neededForBoot = true;
       fsType = "ext4";
     };
@@ -39,6 +39,6 @@
       { device = "/dev/mapper/swap"; }
     ];
 
-    boot.initrd.availableKernelModules = [ "nvme" "aesni-intel" ];
+    boot.initrd.availableKernelModules = [ "nvme" "aesni_intel" ];
   };
 }
