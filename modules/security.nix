@@ -9,6 +9,7 @@ in
 {
   config = {
     services.fprintd.enable = true;
+    environment.persistence."/nix/persist".directories = [ "/var/lib/fprint" ];
 
     security.apparmor = {
       enable = true;
