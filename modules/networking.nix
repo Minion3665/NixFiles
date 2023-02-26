@@ -5,22 +5,25 @@
 }: {
   config = {
     networking = {
-      dhcpcd.extraConfig = ''
-        timeout 0
-        leasetime -1
-        ipv6 off
-        noipv6rs
-        ipv4only
-        noarp
+      dhcpcd = {
+        wait = "background";
+        extraConfig = ''
+          timeout 0
+          leasetime -1
+          ipv6 off
+          noipv6rs
+          ipv4only
+          noarp
 
-        ssid HRSFC Guest
-        static ip_address=10.0.48.79/8
-        static routers=10.0.0.1
+          ssid HRSFC Guest
+          static ip_address=10.0.48.79/8
+          static routers=10.0.0.1
 
-        ssid eduroam
-        static ip_address=10.0.48.79/8
-        static routers=10.0.0.1
-      '';
+          ssid eduroam
+          static ip_address=10.0.48.79/8
+          static routers=10.0.0.1
+        '';
+      };
       hostName = "python";
       nameservers = [ "1.1.1.1" "1.0.0.1" ];
       search = [
