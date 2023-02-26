@@ -105,6 +105,8 @@ main' dbus = xmonad
            $ def
   { modMask = modifierKey  -- Use Super as our mod key
   , borderWidth = 2
+  , normalBorderColor = "#61afef"
+  , focusedBorderColor = "#c678dd"
   , XMonad.terminal = Main.terminal
   , XMonad.workspaces = Main.workspaces
   , XMonad.startupHook = Main.startupHook
