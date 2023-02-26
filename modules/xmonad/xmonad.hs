@@ -15,6 +15,9 @@ import           XMonad.Hooks.DynamicLog
 import           XMonadLog
 
 import           Blaze.ByteString.Builder     (toByteString)
+import           Data.Containers
+import           Data.List                    ((\\))
+import qualified Data.Map                     as M
 import           Foreign.C
 import           Graphics.X11.ExtraTypes      (xF86XK_AudioLowerVolume,
                                                xF86XK_AudioMute,
@@ -26,23 +29,25 @@ import qualified XMonad                       as W
 import           XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import           XMonad.Hooks.ManageHelpers   (doFullFloat, doLower,
                                                doRectFloat, isInProperty)
+import           XMonad.Hooks.Place           (fixed, placeHook, underMouse)
 import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout                (Tall)
 import           XMonad.Layout.Drawer         (propertyToQuery)
 import           XMonad.Layout.Gaps
 import           XMonad.Layout.Grid
 import           XMonad.Layout.MultiToggle    (mkToggle)
-import           XMonad.Layout.NoBorders      (smartBorders, SetsAmbiguous, hiddens, Ambiguity (OnlyScreenFloat, Combine), lessBorders, With (Union), hasBorder)
-import           XMonad.Layout.ResizableTile  (ResizableTall (ResizableTall), MirrorResize (MirrorShrink, MirrorExpand))
+import           XMonad.Layout.NoBorders      (Ambiguity (Combine, OnlyScreenFloat),
+                                               SetsAmbiguous, With (Union),
+                                               hasBorder, hiddens, lessBorders,
+                                               smartBorders)
+import           XMonad.Layout.ResizableTile  (MirrorResize (MirrorExpand, MirrorShrink),
+                                               ResizableTall (ResizableTall))
 import           XMonad.Layout.Spacing
 import qualified XMonad.StackSet              as W
+import           XMonad.StackSet              (allWindows)
 import           XMonad.Util.Hacks
 import           XMonad.Util.PureX            (curScreen, curScreenId)
 import           XMonad.Util.Run              (safeSpawn, safeSpawnProg)
-import qualified Data.Map as M
-import XMonad.StackSet (allWindows)
-import Data.Containers
-import Data.List ((\\))
 
 volumeChangeCmd = "${{./vol_change.py}}"
 
@@ -117,14 +122,16 @@ main' dbus = xmonad
                       $ avoidStruts
                       $ gaps [(U, 5), (D, 5), (L, 5), (R, 5)]
                         $ ResizableTall 1 (3/100) (1/2) []
-                             ||| Mirror (ResizableTall 1 (3/100) (1/2) [])
                              ||| Grid
-                             ||| Full)
+                             ||| Full
+                             ||| Mirror (ResizableTall 1 (3/100) (1/2) []))
                         ||| gaps [(U, 0), (D, 0), (L, 0), (R, 0)] Full
   , XMonad.manageHook = composeAll
                         [ isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DESKTOP"
                           --> hasBorder False <+> doIgnore <+> doLower <+> doLower
                         , checkDock --> doLower <+> doLower
+                        , isInProperty "_NET_WM_STATE" "_NET_WM_STATE_MODAL"
+                          --> placeHook (underMouse (0.5, 0.5)) <+> doFloat
                         ] <+> manageHook def
   , XMonad.handleEventHook = composeAll
                         [ windowedFullscreenFixEventHook
