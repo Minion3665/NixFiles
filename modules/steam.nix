@@ -19,6 +19,7 @@
     environment = {
       persistence."/large/persist".users.${username}.directories = [ ".local/share/Steam" ];
       systemPackages = with pkgs; [
+        proton-caller
         gamescope
         gamemode
         sfs-select /*(
