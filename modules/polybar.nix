@@ -38,7 +38,11 @@
           };
           label = "%date% %time%";
         };
-        "module/battery".type = "internal/battery";
+        "module/battery" = {
+          type = "internal/battery";
+          battery = "BAT1";
+          adapter = "ACAD";
+        };
         colors = {
           black = "#282c34";
           red = "#e06c75";
