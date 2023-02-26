@@ -1,4 +1,4 @@
-{ fenix, ...}: final: prev:
+{ fenix, crane }: final: prev:
 let
   lib = prev.lib;
   utils = import ../utils lib;
@@ -23,6 +23,9 @@ lib.pipe ../packages [
           {
             packageSets = {
               fenix = fenix.packages.${prev.system};
+            };
+            _tooling = {
+              inherit crane;
             };
           }
           extraAttrSets)

@@ -1,7 +1,7 @@
 final: prev: let
   programs = [
     /* "steam" */
-    "prismlauncher"
+    /* "prismlauncher" */
   ];
 in prev.lib.pipe programs [
   (map (name: {
