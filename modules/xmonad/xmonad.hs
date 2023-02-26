@@ -121,8 +121,8 @@ main' dbus = xmonad
 
                       $ avoidStruts
                       $ gaps [(U, 5), (D, 5), (L, 5), (R, 5)]
-                        $ ResizableTall 1 (3/100) (1/2) []
-                             ||| Grid
+                        $ Grid
+                             ||| ResizableTall 1 (3/100) (1/2) []
                              ||| Full
                              ||| Mirror (ResizableTall 1 (3/100) (1/2) []))
                         ||| gaps [(U, 0), (D, 0), (L, 0), (R, 0)] Full
