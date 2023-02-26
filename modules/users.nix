@@ -8,7 +8,7 @@
 
     users.users.${username} = {
       isNormalUser = true;
-      extraGroups = [ "netdev" "wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" "video" "tty" config.users.groups.keys.name ];
+      extraGroups = [ "uinput" "input" "netdev" "wheel" "kvm" "docker" "containerd" "dialout" "libvirtd" "video" "tty" config.users.groups.keys.name ];
       shell = pkgs.zsh;
       passwordFile = config.sops.secrets.password.path;
     };
