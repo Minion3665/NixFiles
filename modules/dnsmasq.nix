@@ -4,11 +4,10 @@
       nscd.enableNsncd = true;
       dnsmasq = {
         enable = true;
-        servers = [ "1.1.1.1" "1.0.0.1" ];
-
-        extraConfig = ''
-          conf-file=${config.sops.secrets."dnsmasq-private.conf".path}
-        '';
+        settings = {
+          server = [ "1.1.1.1" "1.0.0.1" ];
+          conf-file = config.sops.secrets."dnsmasq-private.conf".path;
+        };
       };
     };
 
