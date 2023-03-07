@@ -29,7 +29,7 @@ import qualified XMonad                       as W
 import           XMonad.Hooks.DynamicProperty (dynamicPropertyChange)
 import           XMonad.Hooks.ManageHelpers   (doFullFloat, doLower,
                                                doRectFloat, isInProperty)
-import           XMonad.Hooks.Place           (fixed, placeHook, underMouse)
+import           XMonad.Hooks.Place           (fixed, placeHook, underMouse, withGaps)
 import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout                (Tall)
 import           XMonad.Layout.Drawer         (propertyToQuery)
@@ -131,7 +131,7 @@ main' dbus = xmonad
                           --> hasBorder False <+> doIgnore <+> doLower <+> doLower
                         , checkDock --> doLower <+> doLower
                         , isInProperty "_NET_WM_STATE" "_NET_WM_STATE_MODAL"
-                          --> placeHook (underMouse (0.5, 0.5)) <+> doFloat
+                          --> placeHook (withGaps (30, 30, 30, 30) (underMouse (0.5, 0.5))) <+> doFloat
                         ] <+> manageHook def
   , XMonad.handleEventHook = composeAll
                         [ windowedFullscreenFixEventHook
