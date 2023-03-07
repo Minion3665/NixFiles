@@ -1,6 +1,7 @@
 { pkgs
 , registry
 , nixpkgs
+, username
 , flake-utils-plus
 , ...
 }: {
@@ -12,6 +13,7 @@
       registry.nixpkgs.flake = nixpkgs;
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
+        trusted-users = [ username ];
         auto-optimise-store = true;
         keep-outputs = true;
         keep-going = true;
