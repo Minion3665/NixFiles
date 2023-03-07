@@ -11,6 +11,7 @@
         vscode.quandinh.onehalf-dark
         pkgs.vscode-extensions.ms-vsliveshare.vsliveshare
         pkgs.vscode-extensions.asvetliakov.vscode-neovim
+        pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
       ];
     } // {
       pname = "vscode";
@@ -32,6 +33,7 @@
   };
   config.internal.allowUnfree = [
     "vscode-extension-ms-vsliveshare-vsliveshare"
+    "vscode-extension-ms-vscode-remote-remote-ssh"
     "vscode"
     "vscode-with-extensions"
   ];
