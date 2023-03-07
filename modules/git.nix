@@ -43,6 +43,7 @@
         color.ui = "auto";
         core.autocrlf = "input";
         pull.rebase = "merges";
+        push.autoSetupRemote = true;
         credential.helper = "store";
         commit.signOff = true;
         core.splitIndex = true;
