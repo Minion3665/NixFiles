@@ -30,10 +30,10 @@
           identityFile = "~/.ssh/id_tildetown";
         };
         clicks = {
-          hostname = "clicksminuteper.asuscomm.com";
-          port = 5122;
+          hostname = "192.168.89.74";
+          proxyJump = "ssh.coded.codes";
           user = "minion";
-          identityFile = "~/.ssh/clicks_rsa";
+          identityFile = "~/.ssh/id_rsa";
         };
         "sshtron.zachlatta.com" = {
           hostname = "sshtron.zachlatta.com";
