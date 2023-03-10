@@ -4,6 +4,6 @@
     daemon.enable = true;
   };
   config.environment.systemPackages = [ pkgs.clamav ];
-  config.environment.persistence."/large/persist" = "/var/lib/clamav";
+  config.environment.persistence."/large/persist".directories = [ "/var/lib/clamav" ];
 }
 
