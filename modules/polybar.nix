@@ -2,28 +2,23 @@
   home = {
     services.polybar = {
       enable = true;
-      settings = {
+      settings = (builtins.listToAttrs (map
+        (output: {
+          name = "bar/${output}";
+          value = {
+            "inherit" = "docked base";
+            monitor = output;
+          };
+        })
+        ([ "HDMI-A-1" "HDMI-A-1-0" ] ++
+          (map (num: "DP-" + toString num) (lib.range 1 8))
+        ))) //
+      {
         "bar/main" = {
           "inherit" = "base";
           tray.position = "right";
         };
-        "bar/dp1" = {
-          "inherit" = "dp base";
-          monitor = "DP-1";
-        };
-        "bar/dp2" = {
-          "inherit" = "dp base";
-          monitor = "DP-2";
-        };
-        "bar/dp3" = {
-          "inherit" = "dp base";
-          monitor = "DP-3";
-        };
-        "bar/dp4" = {
-          "inherit" = "dp base";
-          monitor = "DP-4";
-        };
-        dp = {
+        docked = {
           monitor-strict = false;
         };
         base = {

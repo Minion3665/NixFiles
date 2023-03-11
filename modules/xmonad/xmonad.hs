@@ -60,7 +60,7 @@ selectScreenshot = "mkdir -p ~/Screenshots && maim -us | tee ~/Screenshots/\"$(d
 
 modifierKey = mod4Mask  -- Use Super as our mod key
 
-statusBar = "pkill polybar; polybar main; polybar dp1; polybar dp2; polybar dp3; polybar dp4"
+statusBar = "pkill polybar; polybar main; ${{builtins.concatStringsSep '' '' (map (num: ''polybar DP-'' + toString num + ''; '')(lib.range 1 8))}} polybar HDMI-A-1-0; polybar HDMI-A-1"
 compositor = "pkill picom; picom"
 background = "pkill show; show ~/.xmonad/wallpaper.glsl > /dev/null"
 colorSelection = "xcolor | xclip -sel clip"
