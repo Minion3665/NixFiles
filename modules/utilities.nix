@@ -18,6 +18,7 @@
       grex
       btop
       rustscan
+      graphicsmagick
       gping
       curlie
       xcolor
@@ -51,6 +52,7 @@
       curl = "${pkgs.curlie}/bin/curlie";
       clip = "${pkgs.xclip}/bin/xclip -selection clip";
       nix-provider = "${./utilities/nix-provider.sh}";
+      gm = "${pkgs.graphicsmagick}/bin/gm";
     };
   };
 }
