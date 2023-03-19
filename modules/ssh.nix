@@ -46,7 +46,7 @@
     };
 
     home.shellAliases = {
-      ssh = "kitty +kitten ssh";
+      ssh = "wezterm ssh";
     };
   };
 }
