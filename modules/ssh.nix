@@ -44,9 +44,5 @@
         };
       };
     };
-
-    home.shellAliases = {
-      ssh = "wezterm ssh";
-    };
   };
 }
