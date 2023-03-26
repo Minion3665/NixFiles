@@ -44,5 +44,9 @@
         };
       };
     };
+
+    home.shellAliases = {
+      ssh = "kitty +kitten ssh";
+    };
   };
 }

@@ -51,7 +51,7 @@ import           XMonad.Util.Run              (safeSpawn, safeSpawnProg)
 
 volumeChangeCmd = "${{./vol_change.py}}"
 
-terminal = "/usr/bin/env SHLVL=0 wezterm"
+terminal = "/usr/bin/env SHLVL=0 kitty"      -- Kitty, my beloved <3
 launcher = "pkill rofi; rofi -show combi"
 networkManager = "wpa_cli select_network $(wpa_cli list_networks | tail -n +3 | awk '!seen[$2]++' | rofi -dmenu -window-title 'Select Network' | awk '{print $1;}')"
 
