@@ -55,6 +55,8 @@
     home = {
       shellAliases.gg = "${pkgs.git}/bin/git gui";
       shellAliases.gs = "${pkgs.git}/bin/git status";
+      shellAliases.grc = "${pkgs.git}/bin/git recommit";
+      shellAliases.grca = "${pkgs.git}/bin/git recommit --amend";
       packages = with pkgs; [
         git-review
         lazygit
