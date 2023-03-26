@@ -189,23 +189,29 @@
                 {
                   inherit system;
 
-                  modules = [
-                    (nixpkgs.lib.pipe ./modules [
-                      utils.nixFilesIn
-                      (utils.interpretNonstandardModule (args:
-                        args
-                          // {
-                          home = args.config.home-manager.users.${username};
-                          home-options =
-                            nixpkgs.lib.traceVal (normalizeOptions
-                              (args.options.home-manager.users.type.getSubOptions [ ]));
-                          inherit system utils;
-                        }))
-                    ])
-                    {
-                      minion = import ./config.nix;
-                    }
-                  ];
+                  modules =
+                    let
+                      modulesIn = folder:
+                        (nixpkgs.lib.pipe folder [
+                          utils.nixFilesIn
+                          (utils.interpretNonstandardModule (args:
+                            args
+                              // {
+                              home = args.config.home-manager.users.${username};
+                              home-options =
+                                nixpkgs.lib.traceVal (normalizeOptions
+                                  (args.options.home-manager.users.type.getSubOptions [ ]));
+                              inherit system utils;
+                            }))
+                        ]);
+                    in
+                    [
+                      (modulesIn ./modules)
+                      (modulesIn ./internal)
+                      {
+                        minion = import ./config.nix;
+                      }
+                    ];
 
                   specialArgs = inputs // { inherit inputs username; };
                 });
