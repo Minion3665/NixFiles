@@ -1,19 +1,8 @@
 { lib, pkgs, ... }: {
-  config = {
-    boot.kernelParams = [
-      "video=eDP-1:2256x1440@60"
-      "video=HDMI-A-1:3840x2160@76"
-    ];
-    services.xserver.config = lib.mkAfter ''
-      Section "Device"
-        Identifier "Device-radeon[1]"
-        Driver     "ati" 
-        BusID      "PCI:06:00.0"
-        Option     "AllowExternalGpus" "True"
-        Option     "AllowEmptyInitialConfiguration"
-      EndSection
-    '';
-  };
+  config.boot.kernelParams = [
+    "video=eDP-1:2256x1440@60"
+    "video=HDMI-A-1:3840x2160@76"
+  ];
   home = {
     services.grobi = {
       enable = true;
