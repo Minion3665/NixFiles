@@ -18,10 +18,6 @@
           ssid HRSFC Guest
           static ip_address=10.0.48.79/8
           static routers=10.0.0.1
-
-          ssid eduroam
-          static ip_address=10.0.48.79/8
-          static routers=10.0.0.1
         '';
       };
       hostName = "python";
@@ -34,21 +30,9 @@
         userControlled.enable = true;
         networks = {
           /* "HRSFC-LAN".psk = "@hrsfcStaffPass@"; */
-          eduroam = {
-            auth = ''
-              scan_ssid=1
-              proto=WPA2
-              key_mgmt=WPA-EAP
-              eap=PEAP
-              pairwise=CCMP
-
-              identity="@eduroamUser@"
-              password="@eduroamPass@"
-
-              phase2="auth=MSCHAPV2"
-            '';
-          };
           "HRSFC Wi-Fi".psk = "@hrsfcGuestPass@";
+          "UniOfCam-Guest" = {};
+          "Premier Inn Free Wi-Fi" = {};
           adelie10 = {
             psk = "@adelie10Pass@";
             priority = 500;
@@ -59,6 +43,7 @@
           "RoboCon2023-Will".psk = "@robocon2023Will@";
           "robot-HRS69420".psk = "@srRobotPassword@";
           "newadelie24".psk = "@newadelie24Pass@";
+          "Lord".psk = "@lordPass@";
         } // lib.pipe (lib.range 1 21) [
           (builtins.map builtins.toString)
           (builtins.map (team: {
