@@ -135,6 +135,8 @@
       ]))
       texlab
       omnisharp-roslyn
+      msbuild
+      dotnet-sdk
       jdt-language-server
       jdk
       nodePackages.pyright
