@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  home.home.packages = [pkgs.libreoffice];
+  /* home.home.packages = [pkgs.libreoffice]; */
 }

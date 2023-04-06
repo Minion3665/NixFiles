@@ -4,6 +4,7 @@
 , fzf-tab
 , ...
 }: {
+  config.programs.zsh.enable = true;
   home = {
     programs.zsh = {
       enable = true;

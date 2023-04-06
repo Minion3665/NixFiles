@@ -1,8 +1,8 @@
 { pkgs, nixpkgs-unfree, system, username, lib, ... }: {
   config = {
     services.mongodb = {
-      package = nixpkgs-unfree.legacyPackages.${system}.mongodb-6_0;
-      enable = true;
+      package = pkgs.legacyPackages.${system}.mongodb-6_0;
+      enable = false;
       dbpath = "/tmp/mongodb";
     };
     internal.allowUnfree = [ "mongodb" "mongodb-compass" ];

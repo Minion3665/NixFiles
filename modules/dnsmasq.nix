@@ -7,12 +7,10 @@
         settings = {
           server = [ "1.1.1.1" "1.0.0.1" ];
           conf-file = config.sops.secrets."dnsmasq-private.conf".path;
+          local = "/local/";
+          domain = "local";
+          expand-hosts = true;
         };
-        extraConfig = ''
-          local=/local/
-          domain=local
-          expand-hosts
-        '';
       };
       avahi = {
         enable = true;
