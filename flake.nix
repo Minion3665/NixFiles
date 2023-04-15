@@ -70,6 +70,7 @@
             inherit inputs
               username;
           });
+          replaceStdenv = { pkgs }: pkgs.ccacheStdenv;
         };
 
         utils = import ./utils pkgs;
