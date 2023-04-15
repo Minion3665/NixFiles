@@ -1,4 +1,6 @@
 { pkgs
+, home
+, config
 , username
 , gtimelog
 , lib
@@ -18,8 +20,14 @@
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.glib-networking ];
       }))
     ];
-    file.".gtimelog/gtimelogrc".source = ./gtimelog/gtimelogrc.toml;
   };
 
   config.environment.persistence."/nix/persist".users.${username}.directories = [ ".gtimelog" ];
+  config.sops.secrets."gtimelogrc.toml" = {
+    owner = config.users.users.${username}.name;
+    group = config.users.users.${username}.group;
+    format = "binary";
+    sopsFile = ../secrets/gtimelogrc.toml;
+    path = "${home.home.homeDirectory}/.gtimelog/gtimelogrc";
+  };
 }
