@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: {
   config.boot.kernelParams = [
     "video=eDP-1:2256x1440@60"
-    "video=HDMI-A-1:3840x2160@76"
+    "video=HDMI-1-1:3840x2160@76"
   ];
   home = {
     services.grobi = {
@@ -15,7 +15,7 @@
           atomic = true;
           primary = "eDP-1";
         })
-        ([ "HDMI-A-1" "HDMI-A-1-0" ] ++
+        ([ "HDMI-A-1" "HDMI-A-1-0" "HDMI-1-1" ] ++
           (map (num: "DP-" + toString num) (lib.range 1 8))
         )) ++ [
         {
@@ -31,10 +31,10 @@
       ];
     };
 
-    home.file.".config/prelaunch/desktop-portals.sh".text = ''
+    home.file.".config/prelaunch/displays.sh".text = ''
       ${pkgs.grobi}/bin/grobi watch -v
     '';
-    home.file.".config/prelaunch/desktop-portals.sh".executable = true;
+    home.file.".config/prelaunch/displays.sh".executable = true;
     systemd.user.services.grobi.Install.WantedBy = lib.mkForce [ ];
   };
 }
