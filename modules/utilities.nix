@@ -19,6 +19,7 @@
       btop
       rustscan
       graphicsmagick
+      insomnia
       gping
       curlie
       xcolor
