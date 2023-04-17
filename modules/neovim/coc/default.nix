@@ -37,6 +37,7 @@
           }
         ];
         "cSpell.dictionaries" = [ "imperative" ];
+        "java.import.gradle.wrapper.enabled" = false;
         "git.enableGutters" = false; # We're using another plugin to do this
         "rust-analyzer.server.path" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         "rust-analyzer.lens.enable" = false;
@@ -78,12 +79,12 @@
               };
             };
           };
-          ccls = {
-            command = "${pkgs.ccls}/bin/ccls";
-            filetypes = [ "c" "cc" "cpp" "c++" "objc" "objcpp" "C" ];
-            rootPatterns = [ ".ccls" "compile_commands.json" ".git/" ".vim/" ];
-            initializationOptions.cache.directory = "/tmp/ccls";
-          };
+          /* ccls = { */
+          /*   command = "${pkgs.ccls}/bin/ccls"; */
+          /*   filetypes = [ "c" "cc" "cpp" "c++" "objc" "objcpp" "C" ]; */
+          /*   rootPatterns = [ ".ccls" "compile_commands.json" ".git/" ".vim/" ]; */
+          /*   initializationOptions.cache.directory = "/tmp/ccls"; */
+          /* }; */
         };
         "snippets.extends" = {
           markdown = [ "tex" ];
@@ -94,6 +95,7 @@
     };
     plugins = with pkgs.vimPlugins; [
       # Language servers
+      coc-clangd
       coc-tsserver
       coc-eslint
       coc-rust-analyzer
