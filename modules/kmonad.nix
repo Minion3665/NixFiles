@@ -4,7 +4,7 @@
   config = {
     services.xserver = {
       layout = "us";
-      xkbVariant = "dvp";
+      xkbVariant = "";
     };
 
     services.kmonad = {
