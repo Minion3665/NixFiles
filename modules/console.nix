@@ -5,7 +5,7 @@
       consoleLogLevel = 2;
     };
     console = {
-      font = "LigaRobotoMono-Regular";
+      font = "";
       colors = [
         "383a42"
         "e45649"
