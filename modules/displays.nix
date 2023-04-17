@@ -10,8 +10,7 @@
         (output: {
           name = "Docked (${output})";
           outputs_connected = [ output "eDP-1" ];
-          configure_command = "xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x2160 --rotate normal --output ${output} --mode 3840x2160 --pos 1366x0 --rotate normal";
-
+          configure_command = "xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1454 --rotate normal --output ${output} --mode 3840x2160 --pos 2256x0 --rotate normal";
           atomic = true;
           primary = "eDP-1";
         })
