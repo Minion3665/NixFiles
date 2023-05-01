@@ -62,7 +62,7 @@ modifierKey = mod4Mask  -- Use Super as our mod key
 
 statusBar = "pkill polybar; polybar main; ${{builtins.concatStringsSep '' '' (map (num: ''polybar DP-'' + toString num + ''; '')(lib.range 1 8))}} polybar HDMI-A-1-0; polybar HDMI-A-1"
 compositor = "pkill picom; picom"
-background = "pkill show; show ~/.xmonad/wallpaper.glsl > /dev/null"
+background = "pkill show; show -d HDMI-1-1 ~/.xmonad/wallpaper.glsl > /dev/null && show -d eDP-1 ~/.xmonad/wallpaper.glsl > /dev/null"
 colorSelection = "xcolor | xclip -sel clip"
 keybindings = "setxkbmap -option caps:none && xmodmap ~/.Xmodmap"
 
@@ -71,7 +71,8 @@ shift = shiftMask
 -- spell-checker:words xobsock
 xobsock = "$XDG_RUNTIME_DIR/xob.sock"
 
-workspaces = ["7", "5", "3", "1", "9", "0", "2", "4", "6", "8"];
+-- workspaces = ["7", "5", "3", "1", "9", "0", "2", "4", "6", "8"];
+workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 data NonFloats = NonFloats deriving (Read, Show)
 
@@ -83,7 +84,7 @@ startupHook = do
   spawn Main.compositor
   spawn background
   spawn keybindings
-  windows $ W.view "0"
+  -- windows $ W.view "0"
   spawn "pgrep keepass || run_keepass"
   spawn $ "pkill xob; rm -f " ++ xobsock ++ " && mkfifo " ++ xobsock ++ " && tail -f " ++ xobsock ++ " | xob"
 
