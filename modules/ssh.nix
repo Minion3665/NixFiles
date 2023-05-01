@@ -30,8 +30,13 @@
           identityFile = "~/.ssh/id_tildetown";
         };
         clicks = {
-          hostname = "192.168.89.74";
-          proxyJump = "ssh.coded.codes";
+          hostname = "ssh.clicks.codes";
+          user = "minion";
+          identityFile = "~/.ssh/id_rsa";
+        };
+        coded = {
+          hostname = "coded-personal-projects.local";
+          proxyJump = "ssh.clicks.codes";
           user = "minion";
           identityFile = "~/.ssh/id_rsa";
         };
