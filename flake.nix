@@ -2,6 +2,7 @@
   description = "Minion's NixOS configuration (since 2022-08-19)";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.05";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +46,25 @@
     nps.url = "github:OleMussmann/Nix-Package-Search";
     lanzaboote.url = "github:nix-community/lanzaboote";
 
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    pre-commit-hooks-nix = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils-plus.inputs.flake-utils.follows = "flake-utils";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -56,6 +76,16 @@
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.inputs.flake-utils.follows = "flake-utils";
     lanzaboote.inputs.crane.follows = "crane";
+    vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+    vscode-extensions.inputs.flake-utils.follows = "flake-utils";
+    crane.inputs.flake-compat.follows = "flake-compat";
+    crane.inputs.rust-overlay.follows = "rust-overlay";
+    lanzaboote.inputs.flake-compat.follows = "flake-compat";
+    lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
+    lanzaboote.inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
+
+    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    pre-commit-hooks-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
   };
 
   outputs = inputs:
