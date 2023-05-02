@@ -45,8 +45,7 @@ in stdenv.mkDerivation {
 
     chmod +x $out/bin/sfs-select
 
-    makeWrapperArgs+=("''${qtWrapperArgs[@]}")
-    wrapQtApp $out/bin/sfs-select $makeWrapperArgs
+    wrapQtApp $out/bin/sfs-select
 
     runHook postBuild
   '';
