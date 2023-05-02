@@ -1,10 +1,7 @@
 { pkgs, mommy, ... }:
-let
-  mommy-script = pkgs.writeScript "mommy" (builtins.readFile "${mommy}/shell-mommy.sh");
-in
 {
   home.programs.zsh.initExtra = ''
-    source ${mommy-script}
+    source ${mommy}/shell-mommy.sh
     precmd() { if (( $? != 0 )); then; mommy false; fi }
   '';
 }
