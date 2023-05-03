@@ -1,14 +1,16 @@
-{ stdenv, p7zip, zip, python3, qt5 }: let
+{ stdenv, p7zip, zip, python3, qt5 }:
+let
   preExec = ''
-  import os
-  sfs_select_dir = os.path.expanduser('~/.local/share/Steam/sfs-select/runtime')
-  os.makedirs(sfs_select_dir, exist_ok=True)
-  os.chdir(sfs_select_dir)
+    import os
+    sfs_select_dir = os.path.expanduser('~/.local/share/Steam/sfs-select/runtime')
+    os.makedirs(sfs_select_dir, exist_ok=True)
+    os.chdir(sfs_select_dir)
 
 
   '';
-  preExecBash = builtins.replaceStrings ["\n"] ["\\n"] preExec;
-in stdenv.mkDerivation {
+  preExecBash = builtins.replaceStrings [ "\n" ] [ "\\n" ] preExec;
+in
+stdenv.mkDerivation {
   pname = "sfs-select";
   version = "0.5.0";
 

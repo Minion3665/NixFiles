@@ -23,7 +23,8 @@
         gamescope
         gamemode
         xboxdrv
-        sfs-select /*(
+        sfs-select
+        /*(
         writeTextDir "share/applications/steam.desktop" ''
           [Desktop Entry]
           Name=Steam

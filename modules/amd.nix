@@ -20,7 +20,7 @@
     /* services.xserver.config = lib.mkAfter '' */
     /*   Section "Device" */
     /*     Identifier "Device-radeon[1]" */
-    /*     Driver     "radeon" */ 
+    /*     Driver     "radeon" */
     /*     BusID      "PCI:06:00.0" */
     /*     Option     "AllowExternalGpus" "True" */
     /*     Option     "AllowEmptyInitialConfiguration" */

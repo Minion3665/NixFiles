@@ -1,9 +1,11 @@
-final: prev: let
+final: prev:
+let
   programs = [
     /* "steam" */
     /* "prismlauncher" */
   ];
-in prev.lib.pipe programs [
+in
+prev.lib.pipe programs [
   (map (name: {
     inherit name;
     value = prev.${name}.overrideAttrs (prevAttrs: {

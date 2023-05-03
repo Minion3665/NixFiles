@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.home = {
-    packages = [pkgs.show];
+    packages = [ pkgs.show ];
     file.".xmonad/wallpaper.glsl".source = ./wallpaper/wallpaper.glsl;
   };
 }

@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  home.home.packages = with pkgs; [vlc syncplay];
+{ pkgs, ... }: {
+  home.home.packages = with pkgs; [ vlc syncplay ];
 }

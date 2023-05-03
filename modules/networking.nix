@@ -31,8 +31,8 @@
         networks = {
           /* "HRSFC-LAN".psk = "@hrsfcStaffPass@"; */
           "HRSFC Wi-Fi".psk = "@hrsfcGuestPass@";
-          "UniOfCam-Guest" = {};
-          "Premier Inn Free Wi-Fi" = {};
+          "UniOfCam-Guest" = { };
+          "Premier Inn Free Wi-Fi" = { };
           adelie10 = {
             psk = "@adelie10Pass@";
             priority = 500;

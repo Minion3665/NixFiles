@@ -6,7 +6,7 @@
       dbpath = "/tmp/mongodb";
     };
     internal.allowUnfree = [ "mongodb" "mongodb-compass" ];
-    systemd.services.mongod.wantedBy = lib.mkForce [];
+    systemd.services.mongod.wantedBy = lib.mkForce [ ];
     environment.persistence."/nix/persist".users.${username}.directories = [
       ".config/MongoDB\ Compass/Connections/"
     ];

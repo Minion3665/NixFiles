@@ -1,6 +1,6 @@
 { vimUtils
 , fetchFromGitHub
-}: vimUtils.buildVimPluginFrom2Nix { 
+}: vimUtils.buildVimPluginFrom2Nix {
   name = "codeium.vim";
   src = fetchFromGitHub {
     owner = "Exafunction";

@@ -1,5 +1,5 @@
 {
   programs.neovim.extraConfig = ''
-  ${builtins.readFile ./retheme.vim} 
+    ${builtins.readFile ./retheme.vim} 
   '';
 }

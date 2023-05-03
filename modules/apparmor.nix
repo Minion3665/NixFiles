@@ -15,7 +15,7 @@
 
         default_deny = {
           profile = ''
-          profile default_deny /** { }
+            profile default_deny /** { }
           '';
           enforce = false;
           enable = false;
@@ -23,9 +23,9 @@
 
         sudo = {
           profile = ''
-          ${pkgs.sudo}/bin/sudo {
-            file /** rwlkUx,
-          }
+            ${pkgs.sudo}/bin/sudo {
+              file /** rwlkUx,
+            }
           '';
           enforce = false;
           enable = false;
@@ -33,9 +33,9 @@
 
         nix = {
           profile = ''
-          ${pkgs.nix}/bin/nix {
-            unconfined,
-          }
+            ${pkgs.nix}/bin/nix {
+              unconfined,
+            }
           '';
           enforce = false;
           enable = false;

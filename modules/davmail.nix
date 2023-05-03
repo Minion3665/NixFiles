@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.home = {
-    packages = [pkgs.davmail];
+    packages = [ pkgs.davmail ];
     file.".davmail.properties".text = ''
       davmail.server=true
       davmail.mode=EWS

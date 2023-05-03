@@ -5,10 +5,12 @@
 , system
 , _tooling
 ,
-}: let
+}:
+let
   craneLib = _tooling.crane.lib.${system};
   rev = "71638e6540e2fc30bd609f8f78131ec10217f906";
-in craneLib.buildPackage {
+in
+craneLib.buildPackage {
   pname = "tcount";
   version = builtins.substring 0 7 rev;
 

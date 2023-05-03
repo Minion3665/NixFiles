@@ -16,8 +16,8 @@
         initialPasswordFile = config.sops.secrets.pgadminPassword.path;
       };
     };
-    systemd.services.pgadmin.wantedBy = lib.mkForce [];
-    systemd.services.postgresql.wantedBy = lib.mkForce [];
+    systemd.services.pgadmin.wantedBy = lib.mkForce [ ];
+    systemd.services.postgresql.wantedBy = lib.mkForce [ ];
     sops.secrets.pgadminPassword = {
       mode = "0400";
       owner = config.users.users.pgadmin.name;

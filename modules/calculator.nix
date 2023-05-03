@@ -13,5 +13,5 @@ let
   };
 in
 {
-  home.home.packages = with pkgs; [ wcalc R  ];
+  home.home.packages = with pkgs; [ wcalc R ];
 }
