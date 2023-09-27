@@ -1,3 +1,9 @@
+# Migration
+
+This repository has been archived following a migration to <https://git.clicks.codes/minion/NixFiles>. The code will remain visible in perpetuity but no new code will be added.
+
+---
+
 #### Configuration format
 
 This is a group of NixOS modules that control user and system configuration for
