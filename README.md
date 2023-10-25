@@ -1,6 +1,6 @@
 # Migration
 
-This repository has been archived following a migration to <https://git.clicks.codes/minion/NixFiles>. The code will remain visible in perpetuity but no new code will be added.
+This repository has been archived following a migration to <https://git.clicks.codes/plugins/gitiles/Minion/NixFiles>. The code will remain visible in perpetuity but no new code will be added.
 
 ---
 
